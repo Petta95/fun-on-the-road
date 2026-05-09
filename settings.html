@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#020617" />
+  <title>Settings — Fun on the Road</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { outfit: ['Outfit','system-ui','sans-serif'] } } } };</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    /* Toggle switch — no extra CSS file needed, purely structural */
+    .toggle-track { transition: background 0.3s; }
+    .toggle-thumb { transition: transform 0.3s; }
+    input:checked ~ .toggle-track { background: #0ea5e9; }
+    input:checked ~ .toggle-track .toggle-thumb { transform: translateX(1.5rem); }
+  </style>
+</head>
+
+<body class="bg-slate-950 font-outfit antialiased overflow-x-hidden">
+
+  <div class="relative flex flex-col min-h-dvh max-w-[480px] mx-auto">
+
+    <!-- ── HEADER ─────────────────────────────── -->
+    <header class="safe-top px-5 pt-6 pb-2">
+      <div class="flex items-center gap-3 mb-2">
+        <a href="index.html" class="w-10 h-10 glass-card flex items-center justify-center text-slate-400 rounded-xl hover:text-white" aria-label="Back">
+          <i class="fa-solid fa-chevron-left text-sm"></i>
+        </a>
+        <div>
+          <h1 class="text-xl font-bold text-white" data-i18n="pageTitle">Settings</h1>
+          <p class="text-slate-400 text-xs" data-i18n="pageSubtitle">App preferences</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- ── MAIN ───────────────────────────────── -->
+    <main class="flex-1 px-5 py-4 flex flex-col gap-4">
+
+      <!-- ─ SECTION: Language ─ -->
+      <section>
+        <p class="text-slate-500 text-[10px] font-bold tracking-[0.18em] uppercase px-1 mb-2" data-i18n="sectionLanguage">Language</p>
+        <div class="glass-card p-4 flex items-center gap-4 animate-fade-in-up">
+          <div class="w-10 h-10 rounded-xl bg-sky-500/15 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-globe text-sky-400"></i>
+          </div>
+          <div class="flex-1">
+            <p class="text-white font-semibold text-sm" data-i18n="langLabel">App Language</p>
+            <p class="text-slate-400 text-xs" data-i18n="langHint">Changes all text in the app</p>
+          </div>
+          <!-- Language toggle EN / IT -->
+          <div class="flex items-center gap-1 glass-card px-1 py-1 rounded-xl">
+            <button id="lang-en" class="px-3 py-1.5 rounded-lg text-xs font-bold tracking-wide transition-all duration-200">EN</button>
+            <button id="lang-it" class="px-3 py-1.5 rounded-lg text-xs font-bold tracking-wide transition-all duration-200">IT</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─ SECTION: Audio ─ -->
+      <section>
+        <p class="text-slate-500 text-[10px] font-bold tracking-[0.18em] uppercase px-1 mb-2" data-i18n="sectionAudio">Audio</p>
+
+        <!-- Sound effects -->
+        <div class="glass-card p-4 flex items-center gap-4 mb-2 animate-fade-in-up">
+          <div class="w-10 h-10 rounded-xl bg-sky-500/15 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-volume-high text-sky-400" id="sfx-icon"></i>
+          </div>
+          <div class="flex-1">
+            <p class="text-white font-semibold text-sm" data-i18n="sfxLabel">Sound Effects</p>
+            <p class="text-slate-400 text-xs" data-i18n="sfxHint">Taps, results, countdowns</p>
+          </div>
+          <label class="relative inline-block cursor-pointer" aria-label="Toggle sound effects">
+            <input type="checkbox" id="toggle-sfx" class="sr-only" />
+            <div class="toggle-track w-12 h-6 rounded-full bg-slate-700 relative">
+              <div class="toggle-thumb absolute top-1 left-1 w-4 h-4 rounded-full bg-white shadow"></div>
+            </div>
+          </label>
+        </div>
+
+        <!-- Music -->
+        <div class="glass-card p-4 flex items-center gap-4 animate-fade-in-up" style="animation-delay:0.05s">
+          <div class="w-10 h-10 rounded-xl bg-sky-500/15 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-music text-sky-400" id="music-icon"></i>
+          </div>
+          <div class="flex-1">
+            <p class="text-white font-semibold text-sm" data-i18n="musicLabel">Background Music</p>
+            <p class="text-slate-400 text-xs" data-i18n="musicHint">Ambient road trip tracks</p>
+          </div>
+          <label class="relative inline-block cursor-pointer" aria-label="Toggle background music">
+            <input type="checkbox" id="toggle-music" class="sr-only" />
+            <div class="toggle-track w-12 h-6 rounded-full bg-slate-700 relative">
+              <div class="toggle-thumb absolute top-1 left-1 w-4 h-4 rounded-full bg-white shadow"></div>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <!-- ─ SECTION: Content ─ -->
+      <section>
+        <p class="text-slate-500 text-[10px] font-bold tracking-[0.18em] uppercase px-1 mb-2" data-i18n="sectionContent">Content</p>
+        <div class="glass-card p-4 flex items-center gap-4 animate-fade-in-up">
+          <div class="w-10 h-10 rounded-xl bg-rose-500/15 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-shield-heart text-rose-400"></i>
+          </div>
+          <div class="flex-1">
+            <p class="text-white font-semibold text-sm" data-i18n="safeLabel">Family Filter</p>
+            <p class="text-slate-400 text-xs" data-i18n="safeHint">Hide adult content (18+)</p>
+          </div>
+          <label class="relative inline-block cursor-pointer" aria-label="Toggle safe mode">
+            <input type="checkbox" id="toggle-safe" class="sr-only" />
+            <div class="toggle-track w-12 h-6 rounded-full bg-slate-700 relative">
+              <div class="toggle-thumb absolute top-1 left-1 w-4 h-4 rounded-full bg-white shadow"></div>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <!-- ─ SECTION: Game ─ -->
+      <section>
+        <p class="text-slate-500 text-[10px] font-bold tracking-[0.18em] uppercase px-1 mb-2" data-i18n="sectionGame">Game</p>
+
+        <!-- Teams quick link -->
+        <a href="teams.html" class="glass-card p-4 flex items-center gap-4 no-underline mb-2 animate-fade-in-up block">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-users text-amber-400"></i>
+          </div>
+          <div class="flex-1">
+            <p class="text-white font-semibold text-sm" data-i18n="teamsLink">Manage Teams</p>
+            <p id="teams-preview" class="text-slate-400 text-xs">Team A vs Team B</p>
+          </div>
+          <i class="fa-solid fa-chevron-right text-slate-600 text-xs"></i>
+        </a>
+
+        <!-- Reset scores -->
+        <div class="glass-card p-4 flex items-center gap-4 animate-fade-in-up" style="animation-delay:0.05s">
+          <div class="w-10 h-10 rounded-xl bg-rose-500/15 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-arrow-rotate-left text-rose-400"></i>
+          </div>
+          <div class="flex-1">
+            <p class="text-white font-semibold text-sm" data-i18n="resetLabel">Reset Scores</p>
+            <p class="text-slate-400 text-xs" data-i18n="resetHint">Clears all points, keeps team names</p>
+          </div>
+          <button id="btn-reset" class="btn-ghost px-3 py-1.5 text-xs rounded-xl border-rose-500/30 text-rose-400 hover:bg-rose-500/10 hover:border-rose-500/60" data-i18n="resetBtn">
+            Reset
+          </button>
+        </div>
+      </section>
+
+      <!-- ─ SECTION: About ─ -->
+      <section class="animate-fade-in-up" style="animation-delay:0.1s">
+        <p class="text-slate-500 text-[10px] font-bold tracking-[0.18em] uppercase px-1 mb-2" data-i18n="sectionAbout">About</p>
+        <div class="glass-card p-4">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-white font-semibold text-sm">Fun on the Road</span>
+            <span class="bg-sky-500/20 text-sky-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-sky-500/30">v1.0.0</span>
+          </div>
+          <p class="text-slate-400 text-xs leading-relaxed" data-i18n="aboutText">
+            The ultimate travel companion game for friends and families. Turn every km into fun.
+          </p>
+        </div>
+      </section>
+
+    </main>
+
+    <div class="h-24 flex-shrink-0"></div>
+
+  </div>
+
+  <!-- ── BOTTOM NAV ─────────────────────────── -->
+  <nav class="glass-nav fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 safe-bottom" role="navigation" aria-label="Main navigation">
+    <div class="flex items-center justify-around px-2 pt-3 pb-2">
+
+      <a href="index.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Home">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-house text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500" data-i18n="navHome">Home</span>
+      </a>
+
+      <a href="ranking.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Ranking">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-trophy text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500" data-i18n="navLeaderboard">Ranking</span>
+      </a>
+
+      <!-- Settings (active) -->
+      <a href="settings.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Settings" aria-current="page">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl bg-sky-500/15">
+          <i class="fa-solid fa-gear text-lg text-sky-400"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-sky-400" data-i18n="navSettings">Settings</span>
+      </a>
+
+    </div>
+  </nav>
+
+  <!-- ── SCRIPTS ────────────────────────────── -->
+  <script src="assets/js/app.js"></script>
+  <script>
+    const TRANSLATIONS = {
+      en: {
+        pageTitle: 'Settings', pageSubtitle: 'App preferences',
+        sectionLanguage: 'Language', langLabel: 'App Language', langHint: 'Changes all text in the app',
+        sectionAudio: 'Audio',
+        sfxLabel: 'Sound Effects', sfxHint: 'Taps, results, countdowns',
+        musicLabel: 'Background Music', musicHint: 'Ambient road trip tracks',
+        sectionContent: 'Content',
+        safeLabel: 'Family Filter', safeHint: 'Hide adult content (18+)',
+        sectionGame: 'Game',
+        teamsLink: 'Manage Teams',
+        resetLabel: 'Reset Scores', resetHint: 'Clears all points, keeps team names', resetBtn: 'Reset',
+        sectionAbout: 'About',
+        aboutText: 'The ultimate travel companion game for friends and families. Turn every km into fun.',
+        navHome: 'Home', navLeaderboard: 'Ranking', navSettings: 'Settings',
+      },
+      it: {
+        pageTitle: 'Impostazioni', pageSubtitle: 'Preferenze app',
+        sectionLanguage: 'Lingua', langLabel: 'Lingua dell\'app', langHint: 'Cambia tutti i testi',
+        sectionAudio: 'Audio',
+        sfxLabel: 'Effetti Sonori', sfxHint: 'Tap, risultati, countdown',
+        musicLabel: 'Musica di Sottofondo', musicHint: 'Tracce ambient per il viaggio',
+        sectionContent: 'Contenuti',
+        safeLabel: 'Filtro Famiglia', safeHint: 'Nascondi contenuti adulti (18+)',
+        sectionGame: 'Gioco',
+        teamsLink: 'Gestisci Squadre',
+        resetLabel: 'Azzera Punteggi', resetHint: 'Cancella i punti, mantiene i nomi', resetBtn: 'Azzera',
+        sectionAbout: 'Info',
+        aboutText: 'Il compagno di viaggio definitivo. Trasforma ogni km in divertimento.',
+        navHome: 'Home', navLeaderboard: 'Classifica', navSettings: 'Impostazioni',
+      },
+    };
+
+    let lang = localStorage.getItem('fotr_lang') || 'en';
+
+    function applyTranslations(l) {
+      const t = TRANSLATIONS[l] || TRANSLATIONS.en;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        if (t[el.dataset.i18n] !== undefined) el.textContent = t[el.dataset.i18n];
+      });
+      document.documentElement.lang = l;
+    }
+
+    /* ── Language buttons ── */
+    function updateLangButtons(l) {
+      document.getElementById('lang-en').className =
+        l === 'en'
+          ? 'px-3 py-1.5 rounded-lg text-xs font-bold tracking-wide bg-sky-500 text-white'
+          : 'px-3 py-1.5 rounded-lg text-xs font-bold tracking-wide text-slate-400 hover:text-white transition-colors';
+      document.getElementById('lang-it').className =
+        l === 'it'
+          ? 'px-3 py-1.5 rounded-lg text-xs font-bold tracking-wide bg-sky-500 text-white'
+          : 'px-3 py-1.5 rounded-lg text-xs font-bold tracking-wide text-slate-400 hover:text-white transition-colors';
+    }
+
+    document.getElementById('lang-en').addEventListener('click', () => {
+      lang = 'en';
+      localStorage.setItem('fotr_lang', 'en');
+      applyTranslations('en');
+      updateLangButtons('en');
+    });
+    document.getElementById('lang-it').addEventListener('click', () => {
+      lang = 'it';
+      localStorage.setItem('fotr_lang', 'it');
+      applyTranslations('it');
+      updateLangButtons('it');
+    });
+
+    /* ── Audio toggles ── */
+    function loadToggle(id, key) {
+      const el = document.getElementById(id);
+      el.checked = localStorage.getItem(key) !== 'false';
+    }
+    function bindToggle(id, key) {
+      document.getElementById(id).addEventListener('change', e => {
+        localStorage.setItem(key, e.target.checked);
+      });
+    }
+    loadToggle('toggle-sfx', 'fotr_sfx');
+    loadToggle('toggle-music', 'fotr_music');
+    bindToggle('toggle-sfx', 'fotr_sfx');
+    bindToggle('toggle-music', 'fotr_music');
+
+    /* ── Teams preview ── */
+    const savedTeams = JSON.parse(localStorage.getItem('fotr_teams') || '{}');
+    if (savedTeams.team1 && savedTeams.team2) {
+      document.getElementById('teams-preview').textContent = `${savedTeams.team1} vs ${savedTeams.team2}`;
+    }
+
+    /* ── Safe mode toggle ── */
+    const safeToggle = document.getElementById('toggle-safe');
+    safeToggle.checked = localStorage.getItem('fotr_safe_mode') !== 'false';
+    safeToggle.addEventListener('change', e => {
+      localStorage.setItem('fotr_safe_mode', e.target.checked ? 'true' : 'false');
+    });
+
+    /* ── Reset scores ── */
+    document.getElementById('btn-reset').addEventListener('click', () => {
+      const teams = JSON.parse(localStorage.getItem('fotr_teams') || '{}');
+      teams.score1 = 0;
+      teams.score2 = 0;
+      localStorage.setItem('fotr_teams', JSON.stringify(teams));
+      const btn = document.getElementById('btn-reset');
+      btn.textContent = '✓ Done';
+      setTimeout(() => applyTranslations(lang), 1500);
+    });
+
+    /* ── Init ── */
+    applyTranslations(lang);
+    updateLangButtons(lang);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#020617" />
+  <title>Music Buzz — Fun on the Road</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { outfit: ['Outfit','system-ui','sans-serif'] } } } };</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    .music-wave {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      height: 52px;
+    }
+    .music-wave .bar {
+      width: 6px;
+      border-radius: 4px;
+      background: linear-gradient(180deg, #38bdf8, #0ea5e9);
+      opacity: 0.9;
+      animation: waveAnim 1.3s ease-in-out infinite;
+    }
+    .music-wave .bar:nth-child(1) { height: 14px; animation-delay: 0s;     }
+    .music-wave .bar:nth-child(2) { height: 34px; animation-delay: 0.13s;  }
+    .music-wave .bar:nth-child(3) { height: 46px; animation-delay: 0.26s;  }
+    .music-wave .bar:nth-child(4) { height: 22px; animation-delay: 0.39s;  }
+    .music-wave .bar:nth-child(5) { height: 42px; animation-delay: 0.52s;  }
+    .music-wave .bar:nth-child(6) { height: 28px; animation-delay: 0.65s;  }
+    .music-wave .bar:nth-child(7) { height: 16px; animation-delay: 0.78s;  }
+    @keyframes waveAnim {
+      0%,100% { transform: scaleY(1);    opacity: 0.9; }
+      50%      { transform: scaleY(0.2); opacity: 0.35; }
+    }
+    .music-wave.paused .bar { animation-play-state: paused; }
+
+    .play-circle-btn {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      background: rgba(14,165,233,0.15);
+      border: 2px solid rgba(14,165,233,0.45);
+      color: #38bdf8;
+      font-size: 2.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+    .play-circle-btn:active { transform: scale(0.92); }
+    .play-circle-btn.playing {
+      background: rgba(14,165,233,0.25);
+      border-color: rgba(14,165,233,0.80);
+      box-shadow: 0 0 32px rgba(14,165,233,0.30), 0 0 8px rgba(14,165,233,0.20);
+    }
+  </style>
+</head>
+<body class="bg-slate-950 font-outfit antialiased overflow-x-hidden">
+
+  <div class="relative flex flex-col min-h-dvh max-w-[480px] mx-auto">
+
+    <!-- ── HEADER ───────────────────────────── -->
+    <header class="game-score-header safe-top">
+      <a href="index.html" class="w-9 h-9 glass-card flex items-center justify-center text-slate-400 rounded-xl hover:text-white flex-shrink-0 no-underline" aria-label="Back">
+        <i class="fa-solid fa-chevron-left text-sm"></i>
+      </a>
+      <div class="flex-1 text-center px-3">
+        <p class="text-white font-bold text-sm tracking-widest">MUSIC BUZZ</p>
+        <p class="text-slate-400 text-xs" id="score-label">Loading...</p>
+      </div>
+      <div class="w-9 h-9 rounded-xl bg-sky-500/15 flex items-center justify-center flex-shrink-0">
+        <i class="fa-solid fa-music text-sky-400 text-sm"></i>
+      </div>
+    </header>
+
+    <!-- ── MAIN ─────────────────────────────── -->
+    <main class="flex-1 overflow-y-auto flex flex-col">
+
+      <!-- START CARD -->
+      <div id="start-main-card" class="flex-1 flex flex-col items-center justify-center px-5 py-6">
+        <div class="glass-panel p-8 text-center w-full animate-fade-in-up">
+          <div class="w-20 h-20 rounded-3xl bg-sky-500/15 flex items-center justify-center mx-auto mb-5">
+            <i class="fa-solid fa-music text-sky-400 text-4xl"></i>
+          </div>
+          <h2 class="text-white font-extrabold text-2xl mb-2">Music Buzz</h2>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5" id="start-desc">
+            Listen to the clip and guess the song. Compete with your team!
+          </p>
+          <div class="flex items-center justify-center gap-3 text-xs text-slate-500 mb-2">
+            <span class="flex items-center gap-1">
+              <i class="fa-solid fa-music text-sky-500/60"></i>
+              <span id="start-count">130 songs</span>
+            </span>
+            <span class="text-slate-700">·</span>
+            <span class="flex items-center gap-1">
+              <i class="fa-solid fa-users text-sky-500/60"></i>
+              <span id="start-teams-info">No teams set</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLAY AREA (hidden until game starts) -->
+      <div id="play-area" class="px-5 pt-4 flex flex-col gap-4" style="display:none">
+
+        <!-- Progress -->
+        <div id="progress-section">
+          <div class="flex justify-between items-center text-xs mb-2">
+            <span class="text-slate-500 font-semibold" id="q-counter">1 / 130</span>
+            <span class="text-sky-400 font-bold tracking-wide">Music Buzz</span>
+          </div>
+          <div class="h-1.5 bg-white/5 rounded-full overflow-hidden border border-white/5">
+            <div id="progress-bar" class="h-full rounded-full transition-all duration-500"
+                 style="width:0%; background: linear-gradient(90deg, #0ea5e9, #8b5cf6)"></div>
+          </div>
+        </div>
+
+        <!-- Music Card -->
+        <div id="music-card" class="glass-panel p-8 text-center animate-fade-in-up flex flex-col items-center gap-7">
+          <div id="wave-anim" class="music-wave paused">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+
+          <button id="btn-play-song" class="play-circle-btn" aria-label="Play">
+            <i id="play-icon" class="fa-solid fa-play" style="margin-left:5px"></i>
+          </button>
+
+          <p class="text-slate-500 text-xs font-medium" id="play-hint">Tap to play</p>
+        </div>
+
+        <!-- Answer card (hidden until revealed) -->
+        <div id="answer-card" class="glass-card p-6 text-center animate-fade-in-up" style="display:none">
+          <p class="text-sky-400 text-[10px] font-bold tracking-widest uppercase mb-3">Answer</p>
+          <h3 id="answer-title" class="text-white font-extrabold text-2xl leading-snug mb-1.5"></h3>
+          <p id="answer-artist" class="text-slate-400 text-base font-medium"></p>
+        </div>
+
+        <!-- Bottom spacer so content clears fixed controls -->
+        <div class="h-64 flex-shrink-0"></div>
+      </div>
+
+    </main>
+
+    <!-- ── GAME CONTROLS (fixed bottom) ─────── -->
+    <div class="game-controls">
+
+      <!-- START state -->
+      <div id="ctrl-start">
+        <button id="btn-start" class="btn-cta w-full py-4 rounded-2xl text-[0.95rem] tracking-widest">
+          <i class="fa-solid fa-play"></i>
+          <span id="start-btn-label">Start Game</span>
+        </button>
+      </div>
+
+      <!-- PLAYING state -->
+      <div id="ctrl-playing" style="display:none">
+        <button id="btn-reveal" class="btn-brand w-full py-4 rounded-2xl text-[0.95rem] tracking-widest">
+          <i class="fa-solid fa-eye"></i>
+          <span id="reveal-label">Show Answer</span>
+        </button>
+      </div>
+
+      <!-- REVEALED state -->
+      <div id="ctrl-revealed" class="flex flex-col gap-3" style="display:none">
+        <div class="flex gap-3">
+          <button id="btn-pt1" class="flex-1 py-3 rounded-2xl font-bold text-sm text-white tracking-wide transition-all active:scale-95 flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-plus text-xs"></i>
+            <span id="pt1-label">Team 1</span>
+          </button>
+          <button id="btn-pt2" class="flex-1 py-3 rounded-2xl font-bold text-sm text-white tracking-wide transition-all active:scale-95 flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-plus text-xs"></i>
+            <span id="pt2-label">Team 2</span>
+          </button>
+        </div>
+        <button id="btn-next" class="btn-ghost w-full py-3 rounded-2xl text-sm flex items-center justify-center gap-2">
+          <i class="fa-solid fa-arrow-right"></i>
+          <span id="next-label">Next Song</span>
+        </button>
+      </div>
+
+    </div>
+
+    <div class="h-28 flex-shrink-0"></div>
+  </div>
+
+  <!-- ── BOTTOM NAV ─────────────────────────── -->
+  <nav class="glass-nav fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 safe-bottom" role="navigation">
+    <div class="flex items-center justify-around px-2 pt-3 pb-2">
+      <a href="index.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Home">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-house text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500">Home</span>
+      </a>
+      <a href="ranking.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Ranking">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-trophy text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500">Ranking</span>
+      </a>
+      <a href="settings.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Settings">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-gear text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500">Settings</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ── ROUND END OVERLAY ───────────────────── -->
+  <div id="round-end" class="fixed inset-0 z-[200] flex flex-col items-center justify-center px-5" style="display:none; background: rgba(2,6,23,0.94); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px)">
+    <div class="glass-panel p-8 text-center w-full max-w-sm animate-fade-in-up">
+      <div class="w-20 h-20 rounded-3xl bg-sky-500/15 flex items-center justify-center mx-auto mb-5">
+        <i class="fa-solid fa-trophy text-sky-400 text-4xl"></i>
+      </div>
+      <h2 class="text-white font-extrabold text-2xl mb-1" id="end-title">Round Complete!</h2>
+      <p class="text-slate-400 text-sm mb-7" id="end-subtitle"></p>
+
+      <div class="flex justify-center items-center gap-6 mb-8">
+        <div class="text-center">
+          <p class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2" id="end-t1-name">Team 1</p>
+          <p class="text-white font-extrabold leading-none" id="end-t1-score" style="font-size:3rem">0</p>
+        </div>
+        <div class="text-slate-700 font-bold text-3xl leading-none pb-1">—</div>
+        <div class="text-center">
+          <p class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2" id="end-t2-name">Team 2</p>
+          <p class="text-white font-extrabold leading-none" id="end-t2-score" style="font-size:3rem">0</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <button id="btn-play-again" class="btn-cta w-full py-4 rounded-2xl">
+          <i class="fa-solid fa-rotate-right"></i>
+          <span id="play-again-label">Play Again</span>
+        </button>
+        <a href="index.html" class="btn-ghost w-full py-3 rounded-2xl text-sm text-center no-underline flex items-center justify-center gap-2">
+          <i class="fa-solid fa-house"></i>
+          <span id="home-label">Back to Home</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PAYWALL OVERLAY ──────────────────────── -->
+  <div id="paywall" class="fixed inset-0 z-[400] flex-col items-center justify-center px-5" style="display:none; background:rgba(2,6,23,0.97); backdrop-filter:blur(28px); -webkit-backdrop-filter:blur(28px)">
+    <div class="glass-panel p-8 text-center w-full max-w-sm animate-fade-in-up">
+      <div class="w-20 h-20 rounded-3xl bg-amber-500/15 flex items-center justify-center mx-auto mb-5">
+        <i class="fa-solid fa-lock text-amber-400 text-4xl"></i>
+      </div>
+      <h2 class="text-white font-extrabold text-2xl mb-2" id="paywall-title">Free limit reached</h2>
+      <p class="text-slate-400 text-sm leading-relaxed mb-1" id="paywall-sub1">You've played 80 free rounds.</p>
+      <p class="text-slate-400 text-sm leading-relaxed mb-7" id="paywall-sub2">Unlock to keep playing!</p>
+      <button id="btn-buy-game" class="btn-cta w-full py-4 rounded-2xl mb-3 text-[0.95rem] tracking-widest">
+        <i class="fa-solid fa-unlock"></i>
+        <span id="paywall-game-label">Unlock this game — €1.99</span>
+      </button>
+      <button id="btn-buy-all" class="w-full py-3 rounded-2xl text-sm font-bold tracking-wide border border-amber-500/40 text-amber-400 bg-amber-500/10 active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer">
+        <i class="fa-solid fa-crown text-xs"></i>
+        <span id="paywall-all-label">Unlock ALL games — €4.99</span>
+      </button>
+      <a href="index.html" class="mt-5 block text-slate-500 text-xs font-medium hover:text-slate-400 transition-colors no-underline">← Back to Home</a>
+    </div>
+  </div>
+
+  <!-- ── CONFETTI CANVAS ─────────────────────── -->
+  <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-[150]"
+          style="width:100%; height:100%"></canvas>
+
+  <!-- ── AUDIO + LOGIC ──────────────────────── -->
+  <script src="assets/js/audio-manager.js"></script>
+
+  <script>
+  (function () {
+    var lang = localStorage.getItem('fotr_lang') || 'en';
+
+    /* ─ TRANSLATIONS ─ */
+    var T = {
+      en: {
+        revealBtn   : 'Show Answer',
+        nextBtn     : 'Next Song',
+        startBtn    : 'Start Game',
+        startDesc   : 'Listen to the clip and guess the song. Compete with your team!',
+        startCount  : function(n){ return n + ' songs'; },
+        roundEnd    : 'Round Complete!',
+        roundEndSub : function(w){ return w ? w + ' wins this round!' : "It's a tie!"; },
+        playAgain   : 'Play Again',
+        homeBtn     : 'Back to Home',
+        noTeams     : 'Set up teams first',
+        qOf         : function(n,t){ return n + ' / ' + t; },
+        tapToPlay   : 'Tap to play',
+        tapToReplay  : 'Tap to replay',
+        paywallTitle : 'Free limit reached',
+        paywallSub   : 'You\'ve played 80 free rounds of this game.',
+        paywallSub2  : 'Unlock to keep playing!',
+        paywallGame  : 'Unlock this game — €1.99',
+        paywallAll   : 'Unlock ALL games — €4.99',
+      },
+      it: {
+        revealBtn   : 'Mostra Risposta',
+        nextBtn     : 'Prossima Canzone',
+        startBtn    : 'Inizia Gioco',
+        startDesc   : 'Ascolta il pezzo e indovina la canzone. Sfida la tua squadra!',
+        startCount  : function(n){ return n + ' canzoni'; },
+        roundEnd    : 'Round Completato!',
+        roundEndSub : function(w){ return w ? w + ' vince questo round!' : 'Pareggio!'; },
+        playAgain   : 'Gioca Ancora',
+        homeBtn     : 'Torna alla Home',
+        noTeams     : 'Imposta le squadre prima',
+        qOf         : function(n,t){ return n + ' / ' + t; },
+        tapToPlay   : 'Tocca per ascoltare',
+        tapToReplay  : 'Tocca per riascoltare',
+        paywallTitle : 'Limite gratuito raggiunto',
+        paywallSub   : 'Hai giocato 80 round gratuiti di questo gioco.',
+        paywallSub2  : 'Sblocca per continuare a giocare!',
+        paywallGame  : 'Sblocca questo gioco — €1,99',
+        paywallAll   : 'Sblocca TUTTI i giochi — €4,99',
+      }
+    };
+    var t = T[lang] || T.en;
+
+    /* ─ PAYWALL ─ */
+    var GAME_KEY   = 'musicBuzz';
+    var FREE_LIMIT = 80;
+
+    function isPurchased(key) {
+      var p = JSON.parse(localStorage.getItem('fotr_purchases') || '{}');
+      return p[key] === true || p.all === true;
+    }
+
+    function showPaywall() {
+      document.getElementById('paywall-title').textContent      = t.paywallTitle;
+      document.getElementById('paywall-sub1').textContent       = t.paywallSub;
+      document.getElementById('paywall-sub2').textContent       = t.paywallSub2;
+      document.getElementById('paywall-game-label').textContent = t.paywallGame;
+      document.getElementById('paywall-all-label').textContent  = t.paywallAll;
+      document.getElementById('paywall').style.display = 'flex';
+    }
+
+    function handlePurchase(type) {
+      var p = JSON.parse(localStorage.getItem('fotr_purchases') || '{}');
+      if (type === 'game') p[GAME_KEY] = true;
+      else p.all = true;
+      localStorage.setItem('fotr_purchases', JSON.stringify(p));
+      document.getElementById('paywall').style.display = 'none';
+      startGame();
+    }
+
+    /* ─ SONG DATA ─ */
+    var SONGS = [
+      {file:'4 Minutes - Madonna.mp3',                                     title:'4 Minutes',                            artist:'Madonna'},
+      {file:'50 special - lunapop.mp3',                                    title:'50 Special',                           artist:'Lunapop'},
+      {file:'all i ever wanted - basshunter.mp3',                          title:'All I Ever Wanted',                    artist:'Basshunter'},
+      {file:'All Star - smash mouth.mp3',                                  title:'All Star',                             artist:'Smash Mouth'},
+      {file:'angela - checco.mp3',                                         title:'Angela',                               artist:'Checco Zalone'},
+      {file:'anima libera-dj provenzano.mp3',                              title:'Anima Libera',                         artist:'DJ Provenzano'},
+      {file:'Apologize - Timbaland.mp3',                                   title:'Apologize',                            artist:'Timbaland ft. OneRepublic'},
+      {file:'applausi per fibra - fabri fibra.mp3',                        title:'Applausi per Fibra',                   artist:'Fabri Fibra'},
+      {file:'as it was - harry styles.mp3',                                title:'As It Was',                            artist:'Harry Styles'},
+      {file:'asereje - las ketchup.mp3',                                   title:'Aserejé',                              artist:'Las Ketchup'},
+      {file:'bad guy - billie eilish.mp3',                                 title:'Bad Guy',                              artist:'Billie Eilish'},
+      {file:'bad romance - lady gaga.mp3',                                 title:'Bad Romance',                          artist:'Lady Gaga'},
+      {file:'Bangarang - skrillex.mp3',                                    title:'Bangarang',                            artist:'Skrillex'},
+      {file:'barbie girl - aqua.mp3',                                      title:'Barbie Girl',                          artist:'Aqua'},
+      {file:'Beat it - michael jackson.mp3',                               title:'Beat It',                              artist:'Michael Jackson'},
+      {file:'bellissima - annalisa.mp3',                                   title:'Bellissima',                           artist:'Annalisa'},
+      {file:'Big City Life - Mattafix.mp3',                                title:'Big City Life',                        artist:'Mattafix'},
+      {file:'bleeding love - leona lewis.mp3',                             title:'Bleeding Love',                        artist:'Leona Lewis'},
+      {file:'blinding lights - the weekend.mp3',                           title:'Blinding Lights',                      artist:'The Weeknd'},
+      {file:'Bring Me To Life - evanessence.mp3',                          title:'Bring Me to Life',                     artist:'Evanescence'},
+      {file:'buio davanti - lazza.mp3',                                    title:'Buio Davanti',                         artist:'Lazza'},
+      {file:'call me maybe - carly rae jepsen.mp3',                        title:'Call Me Maybe',                        artist:'Carly Rae Jepsen'},
+      {file:"Can't Hold Us - Macklemore and Ryan Lewis.mp3",               title:"Can't Hold Us",                        artist:'Macklemore & Ryan Lewis'},
+      {file:'candyman - christina aguilera.mp3',                           title:'Candyman',                             artist:'Christina Aguilera'},
+      {file:'caruso - lucio dalla.mp3',                                    title:'Caruso',                               artist:'Lucio Dalla'},
+      {file:'closer - ne yo.mp3',                                          title:'Closer',                               artist:'Ne-Yo'},
+      {file:'Come mai - max pezzali.mp3',                                  title:'Come Mai',                             artist:'Max Pezzali'},
+      {file:'come un tuono - rose villain.mp3',                            title:'Come un Tuono',                        artist:'Rose Villain'},
+      {file:'counting stars - one republic.mp3',                           title:'Counting Stars',                       artist:'OneRepublic'},
+      {file:'dance monkey - tones and i.mp3',                              title:'Dance Monkey',                         artist:'Tones and I'},
+      {file:'Dani California - red hot chili peppers.mp3',                 title:'Dani California',                      artist:'Red Hot Chili Peppers'},
+      {file:"don't start now - dualipa.mp3",                               title:"Don't Start Now",                      artist:'Dua Lipa'},
+      {file:"don't stop me now - queen.mp3",                               title:"Don't Stop Me Now",                    artist:'Queen'},
+      {file:"don't stop the music - rihanna.mp3",                          title:"Don't Stop the Music",                 artist:'Rihanna'},
+      {file:'dove e quando - benji e fede.mp3',                            title:'Dove e Quando',                        artist:'Benji & Fede'},
+      {file:'dragon ball gt - giorgio vanni.mp3',                          title:'Dragon Ball GT',                       artist:'Giorgio Vanni'},
+      {file:'dragostea din tein - haiducii.mp3',                           title:'Dragostea Din Tei',                    artist:'Haiducii'},
+      {file:'drunk - ed sheeran.mp3',                                      title:'Drunk',                                artist:'Ed Sheeran'},
+      {file:'El Mismo Sol - Alvaro Soler.mp3',                             title:'El Mismo Sol',                         artist:'Álvaro Soler'},
+      {file:'Elastic Heart - sia.mp3',                                     title:'Elastic Heart',                        artist:'Sia'},
+      {file:'Empire State of Mind - jay z.mp3',                            title:'Empire State of Mind',                 artist:'Jay-Z ft. Alicia Keys'},
+      {file:'end of beginning - djo.mp3',                                  title:'End of Beginning',                     artist:'Djo'},
+      {file:'estate - negramaro.mp3',                                      title:'Estate',                               artist:'Negramaro'},
+      {file:'farò di te un uomo - mulan.mp3',                         title:'Farò di Te un Uomo',                   artist:'Mulan (Colonna Sonora)'},
+      {file:'felicità - albano.mp3',                                  title:'Felicità',                             artist:'Al Bano & Romina Power'},
+      {file:'Get Busy - sean paul.mp3',                                    title:'Get Busy',                             artist:'Sean Paul'},
+      {file:'Get Low - florida.mp3',                                       title:'Get Low',                              artist:'Flo Rida'},
+      {file:'guerriero - marco mengoni.mp3',                               title:'Guerriero',                            artist:'Marco Mengoni'},
+      {file:'happy - pharrell williams.mp3',                               title:'Happy',                                artist:'Pharrell Williams'},
+      {file:'happy hour - ligabue.mp3',                                    title:'Happy Hour',                           artist:'Ligabue'},
+      {file:'Hey Ya! - outkast.mp3',                                       title:'Hey Ya!',                              artist:'OutKast'},
+      {file:'highway to hell - acdc.mp3',                                  title:'Highway to Hell',                      artist:'AC/DC'},
+      {file:"hips don't lie - shakira.mp3",                                title:"Hips Don't Lie",                       artist:'Shakira'},
+      {file:'hot n cold - katy perry.mp3',                                 title:'Hot N Cold',                           artist:'Katy Perry'},
+      {file:'How To Save A Life - the fray.mp3',                           title:'How to Save a Life',                   artist:'The Fray'},
+      {file:'humble - kendrick lamar.mp3',                                 title:'HUMBLE.',                              artist:'Kendrick Lamar'},
+      {file:"I Don't Care - fall out boy.mp3",                             title:"I Don't Care",                         artist:'Fall Out Boy'},
+      {file:'I Gotta Feeling - black eyed peas.mp3',                       title:'I Gotta Feeling',                      artist:'Black Eyed Peas'},
+      {file:'I took a pill in Ibiza L- mike posner .mp3',                  title:'I Took a Pill in Ibiza',               artist:'Mike Posner'},
+      {file:'i will always love you - whitney houston .mp3',               title:'I Will Always Love You',               artist:'Whitney Houston'},
+      {file:"i'll be there - jess glynne.mp3",                             title:"I'll Be There",                        artist:'Jess Glynne'},
+      {file:"I'm Blue - eiffel 65.mp3",                                    title:"I'm Blue (Da Ba Dee)",                 artist:'Eiffel 65'},
+      {file:"I'm Not The Only One - sam smith.mp3",                        title:"I'm Not the Only One",                 artist:'Sam Smith'},
+      {file:'il pescatore - de andrè.mp3',                            title:'Il Pescatore',                         artist:'Fabrizio De André'},
+      {file:'il volo - zucchero.mp3',                                      title:'Il Volo',                              artist:'Zucchero'},
+      {file:'Im Yours - jason mraz.mp3',                                   title:"I'm Yours",                            artist:'Jason Mraz'},
+      {file:'io vagabondo - nomadi.mp3',                                   title:'Io Vagabondo',                         artist:'Nomadi'},
+      {file:'islanda - pinguini tattici nucleari.mp3',                     title:'Islanda',                              artist:'Pinguini Tattici Nucleari'},
+      {file:"It's My Life - bonjovi.mp3",                                  title:"It's My Life",                         artist:'Bon Jovi'},
+      {file:'la cancion - j balvin bad bunny.mp3',                         title:'La Canción',                           artist:'J Balvin & Bad Bunny'},
+      {file:'La Guerra Di Piero - gem boy.mp3',                            title:'La Guerra Di Piero',                   artist:'Gem Boy'},
+      {file:'la solitudine - laura pausini.mp3',                           title:'La Solitudine',                        artist:'Laura Pausini'},
+      {file:'last christmas - wham.mp3',                                   title:'Last Christmas',                       artist:'Wham!'},
+      {file:'let me love you - justin bieber.mp3',                         title:'Let Me Love You',                      artist:'Justin Bieber'},
+      {file:'Love Generation - bob sinclair.mp3',                          title:'Love Generation',                      artist:'Bob Sinclar'},
+      {file:'mamma mia - abba.mp3',                                        title:'Mamma Mia',                            artist:'ABBA'},
+      {file:'memories - david guetta.mp3',                                 title:'Memories',                             artist:'David Guetta'},
+      {file:'mi fai impazzire - blanco.mp3',                               title:'Mi Fai Impazzire',                     artist:'Blanco'},
+      {file:'no one - alicia keys.mp3',                                    title:'No One',                               artist:'Alicia Keys'},
+      {file:'notte prima degli esami - venditti.mp3',                      title:'Notte Prima degli Esami',              artist:'Antonello Venditti'},
+      {file:'numb - linkin park.mp3',                                      title:'Numb',                                 artist:'Linkin Park'},
+      {file:'Panda - desiigner.mp3',                                       title:'Panda',                                artist:'Desiigner'},
+      {file:'papaoutai - stromea.mp3',                                     title:'Papaoutai',                            artist:'Stromae'},
+      {file:'passionfruit - drake.mp3',                                    title:'Passionfruit',                         artist:'Drake'},
+      {file:'Per Dimenticare - zero assoluto.mp3',                         title:'Per Dimenticare',                      artist:'Zero Assoluto'},
+      {file:'pianeti - ultimo.mp3',                                        title:'Pianeti',                              artist:'Ultimo'},
+      {file:'Radioactive - imagine dragons.mp3',                           title:'Radioactive',                          artist:'Imagine Dragons'},
+      {file:'rasputin - majestic.mp3',                                     title:'Rasputin',                             artist:'Majestic'},
+      {file:'regalo più grande - tiziano ferro.mp3',                  title:'Regalo Più Grande',                    artist:'Tiziano Ferro'},
+      {file:'riccione - thegiornalisti.mp3',                               title:'Riccione',                             artist:'Thegiornalisti'},
+      {file:'Rise Up - yves la rock.mp3',                                  title:'Rise Up',                              artist:'Yves Larock'},
+      {file:'running up that hill - kate bush.mp3',                        title:'Running Up That Hill',                 artist:'Kate Bush'},
+      {file:'say something - christina aguilera.mp3',                      title:'Say Something',                        artist:'Christina Aguilera'},
+      {file:'see you again - wiz khalifa.mp3',                             title:'See You Again',                        artist:'Wiz Khalifa'},
+      {file:'shakerando - rhove.mp3',                                      title:'Shakerando',                           artist:'Rhove'},
+      {file:'smooth criminal - mj.mp3',                                    title:'Smooth Criminal',                      artist:'Michael Jackson'},
+      {file:'solo una volta - alex britti.mp3',                            title:'Solo Una Volta',                       artist:'Alex Britti'},
+      {file:'somebody that i used to know - gotye.mp3',                    title:'Somebody That I Used to Know',         artist:'Gotye'},
+      {file:'somewhere over the rainbow - Israel Kamakawiwole.mp3',        title:'Somewhere Over the Rainbow',           artist:'Israel Kamakawiwoʻole'},
+      {file:'Stand by me - ben king.mp3',                                  title:'Stand by Me',                          artist:'Ben E. King'},
+      {file:'stolen dance - milky chance.mp3',                             title:'Stolen Dance',                         artist:'Milky Chance'},
+      {file:'Stronger - kanye west.mp3',                                   title:'Stronger',                             artist:'Kanye West'},
+      {file:'summer - calvin harris.mp3',                                  title:'Summer',                               artist:'Calvin Harris'},
+      {file:'sunflower - post malone.mp3',                                 title:'Sunflower',                            artist:'Post Malone'},
+      {file:'take me to church - hozier.mp3',                              title:'Take Me to Church',                    artist:'Hozier'},
+      {file:'The Scientist - coldplay.mp3',                                title:'The Scientist',                        artist:'Coldplay'},
+      {file:'This is What you came for - calvin harris&rihanna.mp3',       title:'This Is What You Came For',            artist:'Calvin Harris ft. Rihanna'},
+      {file:'tik tok - kesha.mp3',                                         title:'Tik Tok',                              artist:'Ke$ha'},
+      {file:'torna a casa - maneskin.mp3',                                 title:'Torna a Casa',                         artist:'Måneskin'},
+      {file:'Treasure - bruno mars.mp3',                                   title:'Treasure',                             artist:'Bruno Mars'},
+      {file:'Umbrella - rihanna.mp3',                                      title:'Umbrella',                             artist:'Rihanna'},
+      {file:'una mattina - einaudi.mp3',                                   title:'Una Mattina',                          artist:'Ludovico Einaudi'},
+      {file:'unwritten - natasha.mp3',                                     title:'Unwritten',                            artist:'Natasha Bedingfield'},
+      {file:'Vamos a la playa - miranda.mp3',                              title:'Vamos a la Playa',                     artist:'Miranda'},
+      {file:'vieni a ballare in puglia - caparezza.mp3',                   title:'Vieni a Ballare in Puglia',            artist:'Caparezza'},
+      {file:'viva la vida - coldplay.mp3',                                 title:'Viva la Vida',                         artist:'Coldplay'},
+      {file:'wake me up - avicii.mp3',                                     title:'Wake Me Up',                           artist:'Avicii'},
+      {file:'wannabe - spice girls.mp3',                                   title:'Wannabe',                              artist:'Spice Girls'},
+      {file:'We Are The Champions - queen.mp3',                            title:'We Are the Champions',                 artist:'Queen'},
+      {file:'We Don\'t Talk Anymore - charlie puth ft selena gomez.mp3',   title:"We Don't Talk Anymore",                artist:'Charlie Puth ft. Selena Gomez'},
+      {file:'Welcome To My Life - simple plan.mp3',                        title:'Welcome to My Life',                   artist:'Simple Plan'},
+      {file:'What Do You Mean - Justin Bieber.mp3',                        title:'What Do You Mean?',                    artist:'Justin Bieber'},
+      {file:'What Goes Around - timberlake.mp3',                           title:'What Goes Around',                     artist:'Justin Timberlake'},
+      {file:'What Is Love - Haddaway.mp3',                                 title:'What Is Love',                         artist:'Haddaway'},
+      {file:'what makes you beautiful - 1d.mp3',                           title:'What Makes You Beautiful',             artist:'One Direction'},
+      {file:'where is the love - black eyed peas.mp3',                     title:'Where Is the Love?',                   artist:'Black Eyed Peas'},
+      {file:'Without Me - eminem.mp3',                                     title:'Without Me',                           artist:'Eminem'},
+      {file:'wrecking ball - miley cyrus.mp3',                             title:'Wrecking Ball',                        artist:'Miley Cyrus'},
+      {file:'ymca - village people.mp3',                                   title:'Y.M.C.A.',                             artist:'Village People'},
+      {file:'zombie - the cranberries.mp3',                                title:'Zombie',                               artist:'The Cranberries'}
+    ];
+
+    /* ─ DOM REFS ─ */
+    var scoreLabel      = document.getElementById('score-label');
+    var qCounter        = document.getElementById('q-counter');
+    var progressBar     = document.getElementById('progress-bar');
+    var startMainCard   = document.getElementById('start-main-card');
+    var playArea        = document.getElementById('play-area');
+    var musicCard       = document.getElementById('music-card');
+    var waveAnim        = document.getElementById('wave-anim');
+    var btnPlaySong     = document.getElementById('btn-play-song');
+    var playIcon        = document.getElementById('play-icon');
+    var playHint        = document.getElementById('play-hint');
+    var answerCard      = document.getElementById('answer-card');
+    var answerTitle     = document.getElementById('answer-title');
+    var answerArtist    = document.getElementById('answer-artist');
+    var ctrlStart       = document.getElementById('ctrl-start');
+    var ctrlPlaying     = document.getElementById('ctrl-playing');
+    var ctrlRevealed    = document.getElementById('ctrl-revealed');
+    var btnStart        = document.getElementById('btn-start');
+    var btnReveal       = document.getElementById('btn-reveal');
+    var btnPt1          = document.getElementById('btn-pt1');
+    var btnPt2          = document.getElementById('btn-pt2');
+    var btnNext         = document.getElementById('btn-next');
+    var pt1Label        = document.getElementById('pt1-label');
+    var pt2Label        = document.getElementById('pt2-label');
+    var roundEndOverlay = document.getElementById('round-end');
+    var endTitle        = document.getElementById('end-title');
+    var endSubtitle     = document.getElementById('end-subtitle');
+    var endT1Name       = document.getElementById('end-t1-name');
+    var endT2Name       = document.getElementById('end-t2-name');
+    var endT1Score      = document.getElementById('end-t1-score');
+    var endT2Score      = document.getElementById('end-t2-score');
+    var btnPlayAgain    = document.getElementById('btn-play-again');
+    var confettiCanvas  = document.getElementById('confetti-canvas');
+
+    /* ─ AUDIO ─ */
+    var audio = new Audio();
+    audio.preload = 'none';
+
+    /* ─ STATE ─ */
+    var songs         = [];
+    var currentIdx    = 0;
+    var pointAssigned = false;
+    var gameState     = 'start';
+    var isPlaying     = false;
+
+    /* ─ HELPERS ─ */
+    function hexToRgba(hex, a) {
+      if (!hex || hex.length < 7) return 'rgba(14,165,233,' + a + ')';
+      var r = parseInt(hex.slice(1,3), 16);
+      var g = parseInt(hex.slice(3,5), 16);
+      var b = parseInt(hex.slice(5,7), 16);
+      return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+    }
+
+    function shuffle(arr) {
+      var a = arr.slice();
+      for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+      }
+      return a;
+    }
+
+    function getTeams() {
+      return JSON.parse(localStorage.getItem('fotr_teams') || '{}');
+    }
+
+    function sfxEnabled() {
+      return localStorage.getItem('fotr_sfx') !== 'false';
+    }
+
+    function playSound(fn) {
+      if (sfxEnabled() && typeof AudioManager !== 'undefined') {
+        try { AudioManager[fn](); } catch(e) {}
+      }
+    }
+
+    /* ─ SCORE HEADER ─ */
+    function updateHeaderScore() {
+      var teams = getTeams();
+      if (teams.team1 && teams.team2) {
+        scoreLabel.textContent = teams.team1 + ' ' + (teams.score1 || 0) + ' – ' + (teams.score2 || 0) + ' ' + teams.team2;
+      } else {
+        scoreLabel.textContent = t.noTeams;
+      }
+    }
+
+    /* ─ CONTROLS STATE ─ */
+    function setCtrl(state) {
+      ctrlStart.style.display    = 'none';
+      ctrlPlaying.style.display  = 'none';
+      ctrlRevealed.style.display = 'none';
+      if (state === 'start')    ctrlStart.style.display    = 'block';
+      if (state === 'playing')  ctrlPlaying.style.display  = 'block';
+      if (state === 'revealed') ctrlRevealed.style.display = 'flex';
+    }
+
+    /* ─ PLAY / PAUSE VISUALS ─ */
+    function setPlayingVisuals(playing) {
+      isPlaying = playing;
+      if (playing) {
+        playIcon.className     = 'fa-solid fa-pause';
+        playIcon.style.marginLeft = '0';
+        btnPlaySong.classList.add('playing');
+        waveAnim.classList.remove('paused');
+      } else {
+        playIcon.className     = 'fa-solid fa-play';
+        playIcon.style.marginLeft = '5px';
+        btnPlaySong.classList.remove('playing');
+        waveAnim.classList.add('paused');
+      }
+    }
+
+    /* ─ LOAD SONG ─ */
+    function loadSong(song) {
+      audio.pause();
+      audio.src = 'assets/audio/music-buzz/' + encodeURIComponent(song.file);
+      audio.load();
+      setPlayingVisuals(false);
+      playHint.textContent = t.tapToPlay;
+    }
+
+    /* ─ TOGGLE PLAY ─ */
+    function togglePlay() {
+      if (gameState !== 'playing' && gameState !== 'revealed') return;
+      if (audio.paused) {
+        var promise = audio.play();
+        if (promise !== undefined) {
+          promise.then(function() {
+            setPlayingVisuals(true);
+            playHint.textContent = t.tapToReplay;
+          }).catch(function() { /* autoplay blocked */ });
+        } else {
+          setPlayingVisuals(true);
+          playHint.textContent = t.tapToReplay;
+        }
+      } else {
+        audio.pause();
+        setPlayingVisuals(false);
+      }
+    }
+
+    audio.addEventListener('ended', function() {
+      setPlayingVisuals(false);
+      playHint.textContent = t.tapToReplay;
+    });
+
+    /* ─ SHOW SONG ─ */
+    function showSong() {
+      var u = JSON.parse(localStorage.getItem('fotr_usage') || '{}');
+      u[GAME_KEY] = (u[GAME_KEY] || 0) + 1;
+      localStorage.setItem('fotr_usage', JSON.stringify(u));
+      if (u[GAME_KEY] > FREE_LIMIT && !isPurchased(GAME_KEY)) { showPaywall(); return; }
+
+      var song = songs[currentIdx];
+      pointAssigned = false;
+
+      var total = songs.length;
+      qCounter.textContent    = t.qOf(currentIdx + 1, total);
+      progressBar.style.width = Math.round(((currentIdx + 1) / total) * 100) + '%';
+
+      answerCard.style.display = 'none';
+      btnPt1.disabled = false;
+      btnPt2.disabled = false;
+      btnPt1.style.opacity = '1';
+      btnPt2.style.opacity = '1';
+
+      loadSong(song);
+
+      musicCard.style.animation = 'none';
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          musicCard.style.animation = 'fadeInUp 0.35s ease both';
+        });
+      });
+    }
+
+    /* ─ START GAME ─ */
+    function startGame() {
+      var u = JSON.parse(localStorage.getItem('fotr_usage') || '{}');
+      if ((u[GAME_KEY] || 0) >= FREE_LIMIT && !isPurchased(GAME_KEY)) { showPaywall(); return; }
+
+      songs      = shuffle(SONGS);
+      currentIdx = 0;
+      gameState  = 'playing';
+
+      var games      = JSON.parse(localStorage.getItem('fotr_games') || '{}');
+      games.musicBuzz = (games.musicBuzz || 0) + 1;
+      localStorage.setItem('fotr_games', JSON.stringify(games));
+
+      startMainCard.style.display = 'none';
+      playArea.style.display      = 'flex';
+      setCtrl('playing');
+      showSong();
+      playSound('click');
+    }
+
+    /* ─ REVEAL ANSWER ─ */
+    function revealAnswer() {
+      if (gameState !== 'playing') return;
+      gameState = 'revealed';
+
+      audio.pause();
+      setPlayingVisuals(false);
+      playHint.textContent = t.tapToReplay;
+
+      var song = songs[currentIdx];
+      answerTitle.textContent  = song.title;
+      answerArtist.textContent = song.artist;
+      answerCard.style.display = 'block';
+      answerCard.style.animation = 'fadeInUp 0.35s ease both';
+
+      setCtrl('revealed');
+    }
+
+    /* ─ ASSIGN POINT ─ */
+    function assignPoint(teamKey) {
+      if (pointAssigned) return;
+      pointAssigned = true;
+
+      var teams    = getTeams();
+      var scoreKey = (teamKey === 'team1') ? 'score1' : 'score2';
+      teams[scoreKey] = (teams[scoreKey] || 0) + 1;
+      localStorage.setItem('fotr_teams', JSON.stringify(teams));
+      updateHeaderScore();
+
+      if (teamKey === 'team1') {
+        btnPt2.disabled = true; btnPt2.style.opacity = '0.4';
+      } else {
+        btnPt1.disabled = true; btnPt1.style.opacity = '0.4';
+      }
+
+      var stats    = JSON.parse(localStorage.getItem('fotr_stats') || '{}');
+      stats.points = (stats.points || 0) + 10;
+      localStorage.setItem('fotr_stats', JSON.stringify(stats));
+
+      playSound('win');
+
+      var color = (teamKey === 'team1') ? teams.color1 : teams.color2;
+      triggerConfetti(color);
+    }
+
+    /* ─ NEXT SONG ─ */
+    function nextSong() {
+      currentIdx++;
+      if (currentIdx >= songs.length) {
+        showRoundEnd();
+        return;
+      }
+      gameState = 'playing';
+      setCtrl('playing');
+      showSong();
+    }
+
+    /* ─ ROUND END ─ */
+    function showRoundEnd() {
+      gameState = 'end';
+      audio.pause();
+      setPlayingVisuals(false);
+
+      var teams = getTeams();
+      var s1    = teams.score1 || 0;
+      var s2    = teams.score2 || 0;
+
+      endT1Name.textContent  = teams.team1 || 'Team 1';
+      endT2Name.textContent  = teams.team2 || 'Team 2';
+      endT1Score.textContent = s1;
+      endT2Score.textContent = s2;
+      endTitle.textContent   = t.roundEnd;
+
+      var winner = null;
+      if (s1 > s2) winner = teams.team1;
+      else if (s2 > s1) winner = teams.team2;
+      endSubtitle.textContent = t.roundEndSub(winner);
+
+      var stats   = JSON.parse(localStorage.getItem('fotr_stats') || '{}');
+      stats.trips = (stats.trips || 0) + 1;
+      localStorage.setItem('fotr_stats', JSON.stringify(stats));
+
+      roundEndOverlay.style.display = 'flex';
+      setTimeout(function() { triggerConfetti(null, 6); }, 200);
+      if (winner) setTimeout(function() { playSound('win'); }, 400);
+    }
+
+    /* ─ CONFETTI ─ */
+    function triggerConfetti(teamColor, bursts) {
+      bursts = bursts || 3;
+      var canvas  = confettiCanvas;
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+      var ctx = canvas.getContext('2d');
+
+      var palette = teamColor
+        ? [teamColor, '#f59e0b', '#0ea5e9', '#8b5cf6', '#10b981']
+        : ['#f59e0b', '#0ea5e9', '#8b5cf6', '#10b981', '#f97316', '#ec4899'];
+
+      var particles = [];
+      for (var b = 0; b < bursts; b++) {
+        for (var i = 0; i < 35; i++) {
+          particles.push({
+            x    : canvas.width  * 0.3 + Math.random() * canvas.width  * 0.4,
+            y    : canvas.height * 0.35,
+            vx   : (Math.random() - 0.5) * 10,
+            vy   : -(Math.random() * 8 + 3),
+            color: palette[Math.floor(Math.random() * palette.length)],
+            size : Math.random() * 9 + 4,
+            rot  : Math.random() * 360,
+            rotV : (Math.random() - 0.5) * 10,
+            shape: Math.random() > 0.5 ? 'rect' : 'circle',
+            g    : 0.3,
+            life : 1,
+            decay: Math.random() * 0.012 + 0.007
+          });
+        }
+      }
+
+      (function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        var alive = false;
+        for (var p = 0; p < particles.length; p++) {
+          var pk = particles[p];
+          if (pk.life <= 0) continue;
+          alive = true;
+          pk.x   += pk.vx;
+          pk.y   += pk.vy;
+          pk.vy  += pk.g;
+          pk.rot += pk.rotV;
+          pk.life -= pk.decay;
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, pk.life);
+          ctx.translate(pk.x, pk.y);
+          ctx.rotate(pk.rot * Math.PI / 180);
+          ctx.fillStyle = pk.color;
+          if (pk.shape === 'rect') {
+            ctx.fillRect(-pk.size / 2, -pk.size / 4, pk.size, pk.size / 2);
+          } else {
+            ctx.beginPath();
+            ctx.arc(0, 0, pk.size / 2, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.restore();
+        }
+        if (alive) requestAnimationFrame(animate);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      })();
+    }
+
+    /* ─ APPLY TRANSLATIONS ─ */
+    document.getElementById('reveal-label').textContent     = t.revealBtn;
+    document.getElementById('next-label').textContent       = t.nextBtn;
+    document.getElementById('start-btn-label').textContent  = t.startBtn;
+    document.getElementById('start-desc').textContent       = t.startDesc;
+    document.getElementById('play-again-label').textContent = t.playAgain;
+    document.getElementById('home-label').textContent       = t.homeBtn;
+    document.getElementById('end-title').textContent        = t.roundEnd;
+    playHint.textContent = t.tapToPlay;
+    document.documentElement.lang = lang;
+
+    /* ─ TEAM INIT ─ */
+    var teams = getTeams();
+    updateHeaderScore();
+
+    if (teams.team1 && teams.team2) {
+      document.getElementById('start-teams-info').textContent = teams.team1 + ' vs ' + teams.team2;
+    } else {
+      document.getElementById('start-teams-info').textContent = t.noTeams;
+    }
+    document.getElementById('start-count').textContent = t.startCount(SONGS.length);
+
+    pt1Label.textContent = teams.team1 || 'Team 1';
+    pt2Label.textContent = teams.team2 || 'Team 2';
+
+    var c1bg = hexToRgba(teams.color1 || '#0ea5e9', 0.22);
+    var c1bo = hexToRgba(teams.color1 || '#0ea5e9', 0.50);
+    var c2bg = hexToRgba(teams.color2 || '#f59e0b', 0.22);
+    var c2bo = hexToRgba(teams.color2 || '#f59e0b', 0.50);
+    btnPt1.style.background = c1bg;
+    btnPt1.style.border     = '1px solid ' + c1bo;
+    btnPt2.style.background = c2bg;
+    btnPt2.style.border     = '1px solid ' + c2bo;
+
+    /* ─ EVENT LISTENERS ─ */
+    btnStart.addEventListener('click', startGame);
+    btnReveal.addEventListener('click', revealAnswer);
+    btnNext.addEventListener('click', nextSong);
+    btnPt1.addEventListener('click', function() { assignPoint('team1'); });
+    btnPt2.addEventListener('click', function() { assignPoint('team2'); });
+    btnPlaySong.addEventListener('click', togglePlay);
+    document.getElementById('btn-buy-game').addEventListener('click', function() { handlePurchase('game'); });
+    document.getElementById('btn-buy-all').addEventListener('click', function() { handlePurchase('all'); });
+    btnPlayAgain.addEventListener('click', function() {
+      roundEndOverlay.style.display = 'none';
+      startGame();
+    });
+
+    /* ─ INITIAL STATE ─ */
+    setCtrl('start');
+
+  })();
+  </script>
+
+</body>
+</html>

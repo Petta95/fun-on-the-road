@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#020617" />
+  <title>Taboo Travel — Fun on the Road</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { outfit: ['Outfit','system-ui','sans-serif'] } } } };</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    .forbidden-box {
+      background: rgba(239,68,68,0.09);
+      border: 1.5px solid rgba(239,68,68,0.26);
+      border-radius: 14px;
+      padding: 8px 14px;
+    }
+    .forbidden-word {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #fca5a5;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(239,68,68,0.09);
+    }
+    .forbidden-word:last-child { border-bottom: none; }
+    .forbidden-word::before {
+      content: '✕';
+      font-size: 0.52rem;
+      color: rgba(239,68,68,0.55);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .action-btn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 18px 8px;
+      border-radius: 20px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      color: #fff;
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      transition: transform 0.12s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .action-btn:active { transform: scale(0.91); }
+    .btn-guessed  { background: rgba(34,197,94,0.18);  border-color: rgba(34,197,94,0.42); }
+    .btn-taboo    { background: rgba(239,68,68,0.18);  border-color: rgba(239,68,68,0.42); }
+
+    #timer-text { font-family: 'Outfit', sans-serif; }
+
+    .team-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.70rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+    }
+
+    @keyframes pulse-ring {
+      0%   { transform: scale(1);    opacity: 1; }
+      50%  { transform: scale(1.08); opacity: 0.7; }
+      100% { transform: scale(1);    opacity: 1; }
+    }
+    .timer-urgent { animation: pulse-ring 0.6s ease infinite; }
+  </style>
+</head>
+<body class="bg-slate-950 font-outfit antialiased overflow-x-hidden">
+
+  <div class="relative flex flex-col min-h-dvh max-w-[480px] mx-auto">
+
+    <!-- ── HEADER ─────────────────────────────── -->
+    <header class="game-score-header safe-top">
+      <a href="index.html" class="w-9 h-9 glass-card flex items-center justify-center text-slate-400 rounded-xl hover:text-white flex-shrink-0 no-underline" aria-label="Back">
+        <i class="fa-solid fa-chevron-left text-sm"></i>
+      </a>
+      <div class="flex-1 text-center px-3">
+        <p class="text-white font-bold text-sm tracking-widest">TABOO TRAVEL</p>
+        <p class="text-slate-400 text-xs" id="score-label">Loading...</p>
+      </div>
+      <div class="w-9 h-9 rounded-xl bg-red-500/15 flex items-center justify-center flex-shrink-0">
+        <i class="fa-solid fa-ban text-red-400 text-sm"></i>
+      </div>
+    </header>
+
+    <!-- ── MAIN ───────────────────────────────── -->
+    <main class="flex-1 overflow-y-auto flex flex-col">
+
+      <!-- START PANEL -->
+      <div id="start-panel" class="flex-1 flex flex-col items-center justify-center px-5 py-6">
+        <div class="glass-panel p-8 text-center w-full animate-fade-in-up">
+          <div class="w-20 h-20 rounded-3xl bg-red-500/15 flex items-center justify-center mx-auto mb-4">
+            <i class="fa-solid fa-ban text-red-400 text-4xl"></i>
+          </div>
+          <div id="start-team-pill" class="team-pill mx-auto mb-4">—</div>
+          <h2 class="text-white font-extrabold text-2xl mb-2" id="start-heading">Your Turn!</h2>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5" id="start-desc">
+            Make your team say the word — without using the forbidden ones!
+          </p>
+          <div class="flex items-center justify-center gap-3 text-xs text-slate-500">
+            <span class="flex items-center gap-1">
+              <i class="fa-solid fa-ban text-red-500/50"></i>
+              <span id="start-count">50 cards</span>
+            </span>
+            <span class="text-slate-700">·</span>
+            <span class="flex items-center gap-1">
+              <i class="fa-solid fa-clock text-red-500/50"></i>
+              <span id="start-timer-info">60 seconds</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLAY AREA -->
+      <div id="play-area" class="px-5 pt-5 flex flex-col gap-4" style="display:none">
+
+        <!-- Timer + turn score -->
+        <div class="flex items-center gap-5">
+          <div id="timer-wrap" class="flex-shrink-0">
+            <svg viewBox="0 0 100 100" style="display:block; width:88px; height:88px">
+              <circle cx="50" cy="50" r="42" fill="none"
+                      stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+              <circle id="timer-ring" cx="50" cy="50" r="42" fill="none"
+                      stroke="#0ea5e9" stroke-width="8"
+                      stroke-dasharray="263.89" stroke-dashoffset="0"
+                      stroke-linecap="round"
+                      transform="rotate(-90 50 50)"/>
+              <text id="timer-text" x="50" y="50"
+                    text-anchor="middle" dominant-baseline="central"
+                    fill="#f8fafc" font-size="26" font-weight="800">60</text>
+            </svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="text-[0.60rem] font-black tracking-[0.15em] uppercase text-slate-500 mb-0.5" id="turn-team-name">TEAM 1</p>
+            <p class="text-white font-extrabold leading-none" id="turn-score-display" style="font-size:3rem">0</p>
+            <p class="text-slate-500 text-xs font-medium" id="pts-this-turn-label">pts this turn</p>
+          </div>
+        </div>
+
+        <!-- Word Card -->
+        <div id="word-card" class="glass-panel px-6 py-6 animate-fade-in-up">
+          <p class="text-center font-black text-white leading-tight mb-5 break-words"
+             id="target-word" style="font-size:2.4rem; letter-spacing:-0.01em">—</p>
+
+          <p class="text-[0.60rem] font-black tracking-[0.18em] uppercase text-red-400/70 mb-2"
+             id="do-not-say-label">DO NOT SAY:</p>
+
+          <div class="forbidden-box">
+            <div class="forbidden-word" id="fw-0">—</div>
+            <div class="forbidden-word" id="fw-1">—</div>
+            <div class="forbidden-word" id="fw-2">—</div>
+            <div class="forbidden-word" id="fw-3">—</div>
+            <div class="forbidden-word" id="fw-4">—</div>
+          </div>
+        </div>
+
+        <div class="h-24 flex-shrink-0"></div>
+      </div>
+
+    </main>
+
+    <!-- ── GAME CONTROLS (fixed bottom) ─────── -->
+    <div class="game-controls">
+
+      <!-- START -->
+      <div id="ctrl-start">
+        <button id="btn-start-turn" class="btn-cta w-full py-4 rounded-2xl text-[0.95rem] tracking-widest">
+          <i class="fa-solid fa-play"></i>
+          <span id="start-turn-label">Start Turn</span>
+        </button>
+      </div>
+
+      <!-- PLAYING: TABOO | GUESSED -->
+      <div id="ctrl-playing" style="display:none" class="flex gap-3">
+        <button id="btn-taboo" class="action-btn btn-taboo">
+          <i class="fa-solid fa-ban text-xl"></i>
+          <span class="text-sm font-black tracking-wide" id="taboo-label">TABOO</span>
+        </button>
+        <button id="btn-guessed" class="action-btn btn-guessed">
+          <i class="fa-solid fa-check text-xl"></i>
+          <span class="text-sm font-black tracking-wide" id="guessed-label">GUESSED</span>
+        </button>
+      </div>
+
+    </div>
+
+    <div class="h-28 flex-shrink-0"></div>
+  </div>
+
+  <!-- ── BOTTOM NAV ─────────────────────────── -->
+  <nav class="glass-nav fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 safe-bottom" role="navigation">
+    <div class="flex items-center justify-around px-2 pt-3 pb-2">
+      <a href="index.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Home">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-house text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500">Home</span>
+      </a>
+      <a href="ranking.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Ranking">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-trophy text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500">Ranking</span>
+      </a>
+      <a href="settings.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Settings">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-gear text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500">Settings</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ── TURN END OVERLAY ────────────────────── -->
+  <div id="turn-end-overlay" class="fixed inset-0 z-[200] flex-col items-center justify-center px-5" style="display:none; background:rgba(2,6,23,0.95); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px)">
+    <div class="glass-panel p-8 text-center w-full max-w-sm animate-fade-in-up">
+      <div class="w-16 h-16 rounded-3xl bg-red-500/15 flex items-center justify-center mx-auto mb-4">
+        <i class="fa-solid fa-stopwatch text-red-400 text-3xl"></i>
+      </div>
+      <h2 class="text-white font-extrabold text-2xl mb-1" id="turn-end-title">Time's up!</h2>
+      <p class="text-slate-400 text-sm mb-6" id="turn-end-team-name"></p>
+
+      <div class="flex justify-center items-center gap-5 mb-7">
+        <div class="text-center">
+          <p class="text-slate-500 text-[10px] font-bold tracking-widest uppercase mb-1" id="this-turn-label">This turn</p>
+          <p class="text-white font-extrabold leading-none" style="font-size:3rem" id="turn-end-pts">0</p>
+          <p class="text-slate-500 text-xs mt-1" id="pts-word">pts</p>
+        </div>
+        <div class="text-slate-700 font-bold text-2xl pb-1">→</div>
+        <div class="text-center">
+          <p class="text-slate-500 text-[10px] font-bold tracking-widest uppercase mb-1" id="total-label">Total</p>
+          <p class="text-emerald-400 font-extrabold leading-none" style="font-size:3rem" id="turn-end-total">0</p>
+          <p class="text-slate-500 text-xs mt-1" id="total-pts-word">pts</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <button id="btn-next-turn" class="btn-cta w-full py-4 rounded-2xl">
+          <i class="fa-solid fa-rotate-right"></i>
+          <span id="next-turn-label">Next Team's Turn</span>
+        </button>
+        <button id="btn-end-game" class="btn-ghost w-full py-3 rounded-2xl text-sm flex items-center justify-center gap-2">
+          <i class="fa-solid fa-flag-checkered"></i>
+          <span id="end-game-label">End Game</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ROUND END OVERLAY ───────────────────── -->
+  <div id="round-end" class="fixed inset-0 z-[200] flex-col items-center justify-center px-5" style="display:none; background:rgba(2,6,23,0.94); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px)">
+    <div class="glass-panel p-8 text-center w-full max-w-sm animate-fade-in-up">
+      <div class="w-20 h-20 rounded-3xl bg-red-500/15 flex items-center justify-center mx-auto mb-5">
+        <i class="fa-solid fa-trophy text-red-400 text-4xl"></i>
+      </div>
+      <h2 class="text-white font-extrabold text-2xl mb-1" id="end-title">Game Over!</h2>
+      <p class="text-slate-400 text-sm mb-7" id="end-subtitle"></p>
+
+      <div class="flex justify-center items-center gap-6 mb-8">
+        <div class="text-center">
+          <p class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2" id="end-t1-name">Team 1</p>
+          <p class="text-white font-extrabold leading-none" id="end-t1-score" style="font-size:3rem">0</p>
+        </div>
+        <div class="text-slate-700 font-bold text-3xl leading-none pb-1">—</div>
+        <div class="text-center">
+          <p class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2" id="end-t2-name">Team 2</p>
+          <p class="text-white font-extrabold leading-none" id="end-t2-score" style="font-size:3rem">0</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <button id="btn-play-again" class="btn-cta w-full py-4 rounded-2xl">
+          <i class="fa-solid fa-rotate-right"></i>
+          <span id="play-again-label">Play Again</span>
+        </button>
+        <a href="index.html" class="btn-ghost w-full py-3 rounded-2xl text-sm text-center no-underline flex items-center justify-center gap-2">
+          <i class="fa-solid fa-house"></i>
+          <span id="home-label">Back to Home</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PAYWALL OVERLAY ──────────────────────── -->
+  <div id="paywall" class="fixed inset-0 z-[400] flex-col items-center justify-center px-5" style="display:none; background:rgba(2,6,23,0.97); backdrop-filter:blur(28px); -webkit-backdrop-filter:blur(28px)">
+    <div class="glass-panel p-8 text-center w-full max-w-sm animate-fade-in-up">
+      <div class="w-20 h-20 rounded-3xl bg-amber-500/15 flex items-center justify-center mx-auto mb-5">
+        <i class="fa-solid fa-lock text-amber-400 text-4xl"></i>
+      </div>
+      <h2 class="text-white font-extrabold text-2xl mb-2" id="paywall-title">Free limit reached</h2>
+      <p class="text-slate-400 text-sm leading-relaxed mb-1" id="paywall-sub1">You've seen 50 free cards.</p>
+      <p class="text-slate-400 text-sm leading-relaxed mb-7" id="paywall-sub2">Unlock to keep playing!</p>
+      <button id="btn-buy-game" class="btn-cta w-full py-4 rounded-2xl mb-3 text-[0.95rem] tracking-widest">
+        <i class="fa-solid fa-unlock"></i>
+        <span id="paywall-game-label">Unlock this game — €1.99</span>
+      </button>
+      <button id="btn-buy-all" class="w-full py-3 rounded-2xl text-sm font-bold tracking-wide border border-amber-500/40 text-amber-400 bg-amber-500/10 active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer">
+        <i class="fa-solid fa-crown text-xs"></i>
+        <span id="paywall-all-label">Unlock ALL games — €4.99</span>
+      </button>
+      <a href="index.html" class="mt-5 block text-slate-500 text-xs font-medium hover:text-slate-400 transition-colors no-underline">← Back to Home</a>
+    </div>
+  </div>
+
+  <!-- ── CONFETTI CANVAS ─────────────────────── -->
+  <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-[150]"
+          style="width:100%; height:100%"></canvas>
+
+  <!-- ── AUDIO + LOGIC ──────────────────────── -->
+  <script src="assets/js/audio-manager.js"></script>
+
+  <script>
+  (function () {
+    var lang = localStorage.getItem('fotr_lang') || 'en';
+
+    /* ─ TRANSLATIONS ─ */
+    var T = {
+      en: {
+        startTurnBtn   : 'Start Turn',
+        startDesc      : 'Make your team say the word — without using the forbidden ones!',
+        startCount     : function(n){ return n + ' cards'; },
+        startTimerInfo : '60 seconds',
+        startHeading   : function(name){ return name + ', it\'s your turn!'; },
+        turnPill       : function(name){ return name + '\'s Turn'; },
+        doNotSay       : 'DO NOT SAY:',
+        tabooBtn       : 'TABOO',
+        guessedBtn     : 'GUESSED',
+        ptsThisTurn    : 'pts this turn',
+        turnEndTitle   : 'Time\'s up!',
+        turnEndSub     : function(name, n){ return name + ' scored ' + n + ' point' + (n === 1 ? '' : 's') + '!'; },
+        thisTurn       : 'This turn',
+        total          : 'Total',
+        nextTurnBtn    : 'Next Team\'s Turn',
+        endGameBtn     : 'End Game',
+        roundEnd       : 'Game Over!',
+        roundEndSub    : function(w){ return w ? w + ' wins!' : 'It\'s a tie!'; },
+        playAgain      : 'Play Again',
+        homeBtn        : 'Back to Home',
+        noTeams        : 'Set up teams first',
+        paywallTitle   : 'Free limit reached',
+        paywallSub     : 'You\'ve seen 50 free cards.',
+        paywallSub2    : 'Unlock to keep playing!',
+        paywallGame    : 'Unlock this game — €1.99',
+        paywallAll     : 'Unlock ALL games — €4.99',
+      },
+      it: {
+        startTurnBtn   : 'Inizia Turno',
+        startDesc      : 'Fai indovinare la parola alla tua squadra — senza usare quelle vietate!',
+        startCount     : function(n){ return n + ' carte'; },
+        startTimerInfo : '60 secondi',
+        startHeading   : function(name){ return name + ', tocca a te!'; },
+        turnPill       : function(name){ return 'Turno di ' + name; },
+        doNotSay       : 'NON DIRE:',
+        tabooBtn       : 'TABOO',
+        guessedBtn     : 'INDOVINATA',
+        ptsThisTurn    : 'punti questo turno',
+        turnEndTitle   : 'Tempo scaduto!',
+        turnEndSub     : function(name, n){ return name + ' ha fatto ' + n + ' punto' + (n === 1 ? '' : 'i') + '!'; },
+        thisTurn       : 'Questo turno',
+        total          : 'Totale',
+        nextTurnBtn    : 'Turno della prossima squadra',
+        endGameBtn     : 'Fine Partita',
+        roundEnd       : 'Partita Finita!',
+        roundEndSub    : function(w){ return w ? w + ' vince!' : 'Pareggio!'; },
+        playAgain      : 'Gioca Ancora',
+        homeBtn        : 'Torna alla Home',
+        noTeams        : 'Imposta le squadre prima',
+        paywallTitle   : 'Limite gratuito raggiunto',
+        paywallSub     : 'Hai visto 50 carte gratuite.',
+        paywallSub2    : 'Sblocca per continuare a giocare!',
+        paywallGame    : 'Sblocca questo gioco — €1,99',
+        paywallAll     : 'Sblocca TUTTI i giochi — €4,99',
+      }
+    };
+    var t = T[lang] || T.en;
+
+    /* ─ PAYWALL ─ */
+    var GAME_KEY   = 'tabooTravel';
+    var FREE_LIMIT = 50;
+
+    function isPurchased(key) {
+      var p = JSON.parse(localStorage.getItem('fotr_purchases') || '{}');
+      return p[key] === true || p.all === true;
+    }
+
+    function showPaywall() {
+      document.getElementById('paywall-title').textContent      = t.paywallTitle;
+      document.getElementById('paywall-sub1').textContent       = t.paywallSub;
+      document.getElementById('paywall-sub2').textContent       = t.paywallSub2;
+      document.getElementById('paywall-game-label').textContent = t.paywallGame;
+      document.getElementById('paywall-all-label').textContent  = t.paywallAll;
+      document.getElementById('paywall').style.display = 'flex';
+    }
+
+    function handlePurchase(type) {
+      var p = JSON.parse(localStorage.getItem('fotr_purchases') || '{}');
+      if (type === 'game') p[GAME_KEY] = true;
+      else p.all = true;
+      localStorage.setItem('fotr_purchases', JSON.stringify(p));
+      document.getElementById('paywall').style.display = 'none';
+      stopTimer();
+      gameState = 'idle';
+      document.getElementById('play-area').style.display = 'none';
+      document.getElementById('start-panel').style.display = 'flex';
+      updateStartPanel();
+      setCtrl('start');
+    }
+
+    /* ─ CARDS (50 EN + IT travel Taboo) ─ */
+   var CARDS = [
+  /* --- 1. VIAGGI E TRASPORTI (Le tue originali + nuove) --- */
+  { en:{word:'BEACH',forbidden:['sand','sea','swim','waves','shore']}, it:{word:'SPIAGGIA',forbidden:['sabbia','mare','nuotare','onde','riva']} },
+  { en:{word:'PASSPORT',forbidden:['travel','document','border','visa','photo']}, it:{word:'PASSAPORTO',forbidden:['viaggiare','documento','confine','visto','foto']} },
+  { en:{word:'HOTEL',forbidden:['sleep','room','bed','check-in','breakfast']}, it:{word:'HOTEL',forbidden:['dormire','camera','letto','ricevere','colazione']} },
+  { en:{word:'AIRPLANE',forbidden:['fly','wings','pilot','seat','flight']}, it:{word:'AEREO',forbidden:['volare','ali','pilota','sedile','volo']} },
+  { en:{word:'SUITCASE',forbidden:['pack','clothes','bag','wheels','travel']}, it:{word:'VALIGIA',forbidden:['vestiti','borsa','ruote','viaggio','preparare']} },
+  { en:{word:'ROME',forbidden:['Italy','ancient','ruins','pope','capital']}, it:{word:'ROMA',forbidden:['Italia','antico','rovine','papa','capitale']} },
+  { en:{word:'PARIS',forbidden:['France','tower','wine','fashion','romantic']}, it:{word:'PARIGI',forbidden:['Francia','torre','vino','moda','romantica']} },
+  { en:{word:'SOUVENIR',forbidden:['gift','shop','memory','buy','travel']}, it:{word:'SOUVENIR',forbidden:['regalo','negozio','ricordo','comprare','viaggio']} },
+  { en:{word:'TOURIST',forbidden:['visit','camera','foreign','guide','trip']}, it:{word:'TURISTA',forbidden:['visitare','fotocamera','straniero','guida','viaggio']} },
+  { en:{word:'MAP',forbidden:['direction','navigate','lost','route','GPS']}, it:{word:'CARTINA',forbidden:['direzione','navigare','perso','percorso','GPS']} },
+  { en:{word:'TAXI',forbidden:['car','driver','city','fare','ride']}, it:{word:'TAXI',forbidden:['auto','guidatore','città','tariffa','corsa']} },
+  { en:{word:'MUSEUM',forbidden:['art','history','exhibit','visit','painting']}, it:{word:'MUSEO',forbidden:['arte','storia','mostra','visitare','quadro']} },
+  { en:{word:'MOUNTAIN',forbidden:['climb','summit','snow','altitude','hiking']}, it:{word:'MONTAGNA',forbidden:['scalare','vetta','neve','altitudine','trekking']} },
+  { en:{word:'BRIDGE',forbidden:['cross','river','arch','connect','road']}, it:{word:'PONTE',forbidden:['attraversare','fiume','arco','collegare','strada']} },
+  { en:{word:'CRUISE',forbidden:['ship','sea','cabin','deck','island']}, it:{word:'CROCIERA',forbidden:['nave','mare','cabina','coperta','isola']} },
+  { en:{word:'CURRENCY',forbidden:['money','exchange','euro','rate','pay']}, it:{word:'VALUTA',forbidden:['denaro','cambio','euro','tasso','pagare']} },
+  { en:{word:'JET LAG',forbidden:['tired','time','flight','zone','sleep']}, it:{word:'JET LAG',forbidden:['stanco','fuso','volo','orario','dormire']} },
+  { en:{word:'BACKPACK',forbidden:['carry','hike','bag','travel','shoulders']}, it:{word:'ZAINO',forbidden:['portare','trekking','borsa','viaggio','spalle']} },
+  { en:{word:'LIGHTHOUSE',forbidden:['sea','light','coast','sailors','tower']}, it:{word:'FARO',forbidden:['mare','luce','costa','marinai','torre']} },
+  { en:{word:'TRAIN',forbidden:['rail','station','ticket','seat','tracks']}, it:{word:'TRENO',forbidden:['binario','stazione','biglietto','sedile','rotaie']} },
+  { en:{word:'GONDOLA',forbidden:['Venice','canal','boat','row','romantic']}, it:{word:'GONDOLA',forbidden:['Venezia','canale','barca','remare','romantico']} },
+  { en:{word:'AIRPORT',forbidden:['fly','plane','gate','departure','terminal']}, it:{word:'AEROPORTO',forbidden:['volare','aereo','gate','partenza','terminal']} },
+  { en:{word:'DELAY',forbidden:['late','wait','flight','time','schedule']}, it:{word:'RITARDO',forbidden:['tardi','aspettare','volo','tempo','orario']} },
+  { en:{word:'WATERFALL',forbidden:['water','fall','rocks','nature','spray']}, it:{word:'CASCATA',forbidden:['acqua','cadere','rocce','natura','spruzzi']} },
+  { en:{word:'DIVING',forbidden:['underwater','mask','fish','sea','oxygen']}, it:{word:'IMMERSIONE',forbidden:['sott\'acqua','maschera','pesci','mare','ossigeno']} },
+  { en:{word:'FERRY',forbidden:['boat','sea','port','island','cross']}, it:{word:'TRAGHETTO',forbidden:['barca','mare','porto','isola','attraversare']} },
+  { en:{word:'CAMPING',forbidden:['tent','fire','nature','sleep','outdoor']}, it:{word:'CAMPEGGIO',forbidden:['tenda','fuoco','natura','dormire','all\'aperto']} },
+  { en:{word:'TEMPLE',forbidden:['Asia','pray','stone','ancient','religion']}, it:{word:'TEMPIO',forbidden:['Asia','pregare','pietra','antico','religione']} },
+  { en:{word:'DESERT',forbidden:['sand','hot','dry','camel','oasis']}, it:{word:'DESERTO',forbidden:['sabbia','caldo','secco','cammello','oasi']} },
+  { en:{word:'SAFARI',forbidden:['Africa','animals','jeep','lion','wild']}, it:{word:'SAFARI',forbidden:['Africa','animali','jeep','leone','selvaggio']} },
+  { en:{word:'CARNIVAL',forbidden:['Venice','mask','parade','costume','festival']}, it:{word:'CARNEVALE',forbidden:['Venezia','maschera','sfilata','costume','festa']} },
+  { en:{word:'SUNGLASSES',forbidden:['sun','wear','lens','eyes','fashion']}, it:{word:'OCCHIALI DA SOLE',forbidden:['sole','indossare','lenti','occhi','moda']} },
+  { en:{word:'HOSTEL',forbidden:['sleep','cheap','backpack','bunk','young']}, it:{word:'OSTELLO',forbidden:['dormire','economico','zaino','brandina','giovani']} },
+  { en:{word:'VISA',forbidden:['document','country','embassy','travel','permission']}, it:{word:'VISTO',forbidden:['documento','paese','ambasciata','viaggiare','permesso']} },
+  { en:{word:'BUS',forbidden:['ride','stop','city','ticket','public']}, it:{word:'AUTOBUS',forbidden:['corsa','fermata','città','biglietto','pubblico']} },
+  { en:{word:'SUNBURN',forbidden:['sun','skin','red','pain','beach']}, it:{word:'SCOTTATURA',forbidden:['sole','pelle','rosso','dolore','spiaggia']} },
+  { en:{word:'SUNSCREEN',forbidden:['sun','skin','cream','apply','SPF']}, it:{word:'PROTEZIONE SOLARE',forbidden:['sole','pelle','crema','spalmare','fattore']} },
+  { en:{word:'CATHEDRAL',forbidden:['church','religion','tower','stone','bells']}, it:{word:'CATTEDRALE',forbidden:['chiesa','religione','torre','pietra','campane']} },
+  { en:{word:'HAMMOCK',forbidden:['relax','hang','trees','swing','holiday']}, it:{word:'AMACA',forbidden:['rilassarsi','appendere','alberi','oscillare','vacanza']} },
+  { en:{word:'STREET FOOD',forbidden:['eat','stall','cheap','city','local']}, it:{word:'CIBO DI STRADA',forbidden:['mangiare','bancarella','economico','città','locale']} },
+  { en:{word:'CUSTOMS',forbidden:['border','check','luggage','declare','tax']}, it:{word:'DOGANA',forbidden:['confine','controllo','bagagli','dichiarare','tasse']} },
+  { en:{word:'BOARDING PASS',forbidden:['plane','fly','gate','seat','print']}, it:{word:'CARTA D\'IMBARCO',forbidden:['aereo','volare','gate','posto','stampare']} },
+  { en:{word:'ISLAND',forbidden:['sea','surrounded','tropical','beach','water']}, it:{word:'ISOLA',forbidden:['mare','circondato','tropicale','spiaggia','acqua']} },
+  { en:{word:'VOLCANO',forbidden:['mountain','lava','erupt','fire','smoke']}, it:{word:'VULCANO',forbidden:['montagna','lava','eruzione','fuoco','fumo']} },
+  { en:{word:'GLACIER',forbidden:['ice','cold','melt','mountain','snow']}, it:{word:'GHIACCIAIO',forbidden:['ghiaccio','freddo','sciogliere','montagna','neve']} },
+  { en:{word:'HOT SPRING',forbidden:['water','hot','bath','relax','mineral']}, it:{word:'TERME',forbidden:['acqua','caldo','bagno','rilassarsi','minerale']} },
+  { en:{word:'CASTLE',forbidden:['medieval','tower','moat','king','stone']}, it:{word:'CASTELLO',forbidden:['medievale','torre','fossato','re','pietra']} },
+  { en:{word:'FJORD',forbidden:['Norway','water','cliff','narrow','boat']}, it:{word:'FIORDO',forbidden:['Norvegia','acqua','scogliera','stretto','barca']} },
+  { en:{word:'BAZAAR',forbidden:['market','buy','bargain','goods','oriental']}, it:{word:'BAZAR',forbidden:['mercato','comprare','contrattare','merci','orientale']} },
+  { en:{word:'ANCIENT RUINS',forbidden:['old','stone','archaeology','visit','history']}, it:{word:'ROVINE ANTICHE',forbidden:['vecchio','pietra','archeologia','visitare','storia']} },
+  { en:{word:'METRO',forbidden:['subway','underground','train','station','city']}, it:{word:'METROPOLITANA',forbidden:['sottoterra','treno','stazione','città','binari']} },
+  { en:{word:'BACKPACKING',forbidden:['travel','budget','youth','journey','hostel']}, it:{word:'VIAGGIO ZAINO IN SPALLA',forbidden:['viaggiare','budget','giovani','percorso','ostello']} },
+  { en:{word:'FIRST CLASS',forbidden:['luxury','plane','expensive','seat','comfort']}, it:{word:'PRIMA CLASSE',forbidden:['lusso','aereo','costoso','posto','comfort']} },
+  { en:{word:'HELICOPTER',forbidden:['fly','blades','pilot','vertical','transport']}, it:{word:'ELICOTTERO',forbidden:['volare','pale','pilota','verticale','trasporto']} },
+  { en:{word:'BICYCLE',forbidden:['ride','pedal','wheels','helmet','cycling']}, it:{word:'BICICLETTA',forbidden:['guidare','pedale','ruote','casco','ciclismo']} },
+  { en:{word:'CAR RENTAL',forbidden:['drive','vacation','hire','agency','keys']}, it:{word:'NOLEGGIO AUTO',forbidden:['guidare','vacanza','affitto','agenzia','chiavi']} },
+  { en:{word:'ROAD TRIP',forbidden:['drive','car','highway','travel','friends']}, it:{word:'VIAGGIO ON THE ROAD',forbidden:['guidare','auto','autostrada','viaggiare','amici']} },
+  { en:{word:'STOP OVER',forbidden:['wait','airport','layover','city','connection']}, it:{word:'SCALO',forbidden:['aspettare','aeroporto','pausa','città','connessione']} },
+  { en:{word:'HIKING',forbidden:['mountain','walk','shoes','nature','trail']}, it:{word:'TREKKING',forbidden:['montagna','camminare','scarpe','natura','sentiero']} },
+  { en:{word:'TRAFFIC',forbidden:['cars','jam','road','busy','commute']}, it:{word:'TRAFFICO',forbidden:['auto','ingorgo','strada','occupato','pendolare']} },
+
+  /* --- 2. CIBO E BEVANDE (61-120) --- */
+  { en:{word:'PIZZA',forbidden:['Italy','cheese','tomato','oven','dough']}, it:{word:'PIZZA',forbidden:['Italia','formaggio','pomodoro','forno','impasto']} },
+  { en:{word:'COFFEE',forbidden:['drink','caffeine','cup','morning','beans']}, it:{word:'CAFFÈ',forbidden:['bere','caffeina','tazza','mattina','chicchi']} },
+  { en:{word:'CHOCOLATE',forbidden:['sweet','cocoa','dark','candy','milk']}, it:{word:'CIOCCOLATO',forbidden:['dolce','cacao','fondente','caramella','latte']} },
+  { en:{word:'HAMBURGER',forbidden:['meat','fast food','bun','beef','cheese']}, it:{word:'HAMBURGER',forbidden:['carne','fast food','panino','manzo','formaggio']} },
+  { en:{word:'SPAGHETTI',forbidden:['pasta','noodles','Italian','fork','sauce']}, it:{word:'SPAGHETTI',forbidden:['pasta','lunghi','Italia','forchetta','salsa']} },
+  { en:{word:'SUSHI',forbidden:['fish','rice','Japan','raw','seaweed']}, it:{word:'SUSHI',forbidden:['pesce','riso','Giappone','crudo','alga']} },
+  { en:{word:'WINE',forbidden:['alcohol','grapes','bottle','glass','red']}, it:{word:'VINO',forbidden:['alcol','uva','bottiglia','bicchiere','rosso']} },
+  { en:{word:'BEER',forbidden:['alcohol','drink','can','bar','hops']}, it:{word:'BIRRA',forbidden:['alcol','bere','lattina','bar','luppolo']} },
+  { en:{word:'ICE CREAM',forbidden:['cold','sweet','cone','dessert','scoop']}, it:{word:'GELATO',forbidden:['freddo','dolce','cono','dessert','pallina']} },
+  { en:{word:'BREAKFAST',forbidden:['morning','eat','cereal','eggs','meal']}, it:{word:'COLAZIONE',forbidden:['mattina','mangiare','cereali','uova','pasto']} },
+  { en:{word:'RESTAURANT',forbidden:['eat','chef','menu','waiter','table']}, it:{word:'RISTORANTE',forbidden:['mangiare','chef','menu','cameriere','tavolo']} },
+  { en:{word:'BREAD',forbidden:['bakery','flour','sandwich','slice','loaf']}, it:{word:'PANE',forbidden:['forno','farina','panino','fetta','filone']} },
+  { en:{word:'FRUIT',forbidden:['apple','banana','sweet','vitamins','garden']}, it:{word:'FRUTTA',forbidden:['mela','banana','dolce','vitamine','giardino']} },
+  { en:{word:'VEGETABLE',forbidden:['green','healthy','salad','carrot','garden']}, it:{word:'VERDURA',forbidden:['verde','sano','insalata','carota','orto']} },
+  { en:{word:'CHEESE',forbidden:['milk','dairy','yellow','slice','mouse']}, it:{word:'FORMAGGIO',forbidden:['latte','caseificio','giallo','fetta','topo']} },
+  { en:{word:'TEA',forbidden:['hot','bag','leaves','cup','England']}, it:{word:'TÈ',forbidden:['caldo','bustina','foglie','tazza','Inghilterra']} },
+  { en:{word:'CAKE',forbidden:['birthday','sweet','dessert','bake','sugar']}, it:{word:'TORTA',forbidden:['compleanno','dolce','dessert','cuocere','zucchero']} },
+  { en:{word:'STEAK',forbidden:['meat','beef','grill','cow','dinner']}, it:{word:'BISTECCA',forbidden:['carne','manzo','griglia','mucca','cena']} },
+  { en:{word:'APPLE',forbidden:['fruit','red','tree','Newton','crunchy']}, it:{word:'MELA',forbidden:['frutta','rossa','albero','Newton','croccante']} },
+  { en:{word:'EGG',forbidden:['chicken','breakfast','white','yolk','shell']}, it:{word:'UOVO',forbidden:['gallina','colazione','albume','tuorlo','guscio']} },
+  { en:{word:'MILK',forbidden:['cow','white','drink','calcium','glass']}, it:{word:'LATTE',forbidden:['mucca','bianco','bere','calcio','bicchiere']} },
+  { en:{word:'HONEY',forbidden:['bees','sweet','yellow','sticky','jar']}, it:{word:'MIELE',forbidden:['api','dolce','giallo','appiccicoso','vasetto']} },
+  { en:{word:'LEMON',forbidden:['sour','yellow','fruit','juice','citrus']}, it:{word:'LIMONE',forbidden:['aspro','giallo','frutta','succo','agrume']} },
+  { en:{word:'SUGAR',forbidden:['sweet','white','coffee','candy','calories']}, it:{word:'ZUCCHERO',forbidden:['dolce','bianco','caffè','caramella','calorie']} },
+  { en:{word:'SALT',forbidden:['pepper','white','ocean','seasoning','shaker']}, it:{word:'SALE',forbidden:['pepe','bianco','oceano','condimento','saliera']} },
+  { en:{word:'POTATO',forbidden:['french fries','vegetable','chips','ground','mash']}, it:{word:'PATATA',forbidden:['patatine','verdura','tubero','terra','purè']} },
+  { en:{word:'TOMATO',forbidden:['red','salad','sauce','vegetable','ketchup']}, it:{word:'POMODORO',forbidden:['rosso','insalata','salsa','verdura','ketchup']} },
+  { en:{word:'ONION',forbidden:['cry','vegetable','smell','cook','layers']}, it:{word:'CIPOLLA',forbidden:['piangere','verdura','odore','cucinare','strati']} },
+  { en:{word:'GARLIC',forbidden:['smell','vampire','cook','breath','clove']}, it:{word:'AGLIO',forbidden:['odore','vampiro','cucinare','alito','spicchio']} },
+  { en:{word:'CHICKEN',forbidden:['bird','meat','fry','wings','farm']}, it:{word:'POLLO',forbidden:['uccello','carne','fritto','ali','fattoria']} },
+  { en:{word:'FISH',forbidden:['swim','ocean','water','scales','gill']}, it:{word:'PESCE',forbidden:['nuotare','oceano','acqua','squame','branchie']} },
+  { en:{word:'RICE',forbidden:['white','China','grain','bowl','sushi']}, it:{word:'RISO',forbidden:['bianco','Cina','chicco','ciotola','sushi']} },
+  { en:{word:'SANDWICH',forbidden:['bread','lunch','slice','ham','filling']}, it:{word:'PANINO',forbidden:['pane','pranzo','fette','prosciutto','farcito']} },
+  { en:{word:'SOUP',forbidden:['hot','bowl','liquid','spoon','vegetables']}, it:{word:'ZUPPA',forbidden:['calda','ciotola','liquido','cucchiaio','verdure']} },
+  { en:{word:'SALAD',forbidden:['lettuce','green','vegetables','bowl','healthy']}, it:{word:'INSALATA',forbidden:['lattuga','verde','verdure','ciotola','sano']} },
+  { en:{word:'COOKIES',forbidden:['sweet','milk','bake','chocolate','crunchy']}, it:{word:'BISCOTTI',forbidden:['dolci','latte','cuocere','cioccolato','croccanti']} },
+  { en:{word:'BUTTER',forbidden:['bread','milk','fat','yellow','spread']}, it:{word:'BURRO',forbidden:['pane','latte','grasso','giallo','spalmare']} },
+  { en:{word:'JUICE',forbidden:['fruit','drink','glass','orange','liquid']}, it:{word:'SUCCO',forbidden:['frutta','bere','bicchiere','arancia','liquido']} },
+  { en:{word:'WATER',forbidden:['drink','liquid','thirst','glass','transparent']}, it:{word:'ACQUA',forbidden:['bere','liquido','sete','bicchiere','trasparente']} },
+  { en:{word:'CHIPS',forbidden:['potato','salty','bag','snack','crunchy']}, it:{word:'PATATINE',forbidden:['patate','salate','sacchetto','snack','croccanti']} },
+  { en:{word:'PANCAKE',forbidden:['breakfast','syrup','fluffy','round','fry']}, it:{word:'PANCAKE',forbidden:['colazione','sciroppo','morbido','rotondo','frittella']} },
+  { en:{word:'WAFFLE',forbidden:['breakfast','square','syrup','iron','sweet']}, it:{word:'WAFFLE',forbidden:['colazione','quadrati','sciroppo','piastra','dolce']} },
+  { en:{word:'DONUT',forbidden:['round','hole','sweet','police','glaze']}, it:{word:'CIAMBELLA',forbidden:['rotonda','buco','dolce','polizia','glassa']} },
+  { en:{word:'POPCORN',forbidden:['movie','corn','salt','theatre','snack']}, it:{word:'POPCORN',forbidden:['film','mais','sale','cinema','snack']} },
+  { en:{word:'CANDY',forbidden:['sweet','sugar','kids','wrapper','treat']}, it:{word:'CARAMELLA',forbidden:['dolce','zucchero','bambini','incarto','dolcetto']} },
+  { en:{word:'GUM',forbidden:['chew','bubble','mouth','teeth','flavor']}, it:{word:'GOMMA DA MASTICARE',forbidden:['masticare','bolla','bocca','denti','gusto']} },
+  { en:{word:'SAUSAGE',forbidden:['meat','hot dog','grill','pork','breakfast']}, it:{word:'SALSICCIA',forbidden:['carne','hot dog','griglia','maiale','colazione']} },
+  { en:{word:'BACON',forbidden:['pig','breakfast','fry','eggs','crispy']}, it:{word:'BACON',forbidden:['maiale','colazione','friggere','uova','croccante']} },
+  { en:{word:'STRAWBERRY',forbidden:['fruit','red','sweet','berry','summer']}, it:{word:'FRAGOLA',forbidden:['frutta','rossa','dolce','bacca','estate']} },
+  { en:{word:'BANANA',forbidden:['fruit','yellow','peel','monkey','long']}, it:{word:'BANANA',forbidden:['frutta','gialla','buccia','scimmia','lunga']} },
+  { en:{word:'ORANGE',forbidden:['fruit','juice','color','peel','citrus']}, it:{word:'ARANCIA',forbidden:['frutta','succo','colore','buccia','agrume']} },
+  { en:{word:'GRAPES',forbidden:['fruit','wine','bunch','purple','green']}, it:{word:'UVA',forbidden:['frutta','vino','grappolo','viola','verde']} },
+  { en:{word:'WATERMELON',forbidden:['fruit','summer','red','green','seeds']}, it:{word:'ANGURIA',forbidden:['frutta','estate','rossa','verde','semi']} },
+  { en:{word:'PINEAPPLE',forbidden:['fruit','tropical','pizza','yellow','spiky']}, it:{word:'ANANAS',forbidden:['frutta','tropicale','pizza','giallo','spinoso']} },
+  { en:{word:'KITCHEN',forbidden:['cook','food','stove','room','chef']}, it:{word:'CUCINA',forbidden:['cucinare','cibo','fornelli','stanza','chef']} },
+  { en:{word:'OVEN',forbidden:['hot','cook','bake','kitchen','pizza']}, it:{word:'FORNO',forbidden:['caldo','cucinare','cuocere','cucina','pizza']} },
+  { en:{word:'REFRIGERATOR',forbidden:['cold','food','kitchen','ice','freeze']}, it:{word:'FRIGORIFERO',forbidden:['freddo','cibo','cucina','ghiaccio','congelare']} },
+  { en:{word:'FORK',forbidden:['eat','spoon','knife','utensil','prongs']}, it:{word:'FORCHETTA',forbidden:['mangiare','cucchiaio','coltello','posata','punte']} },
+  { en:{word:'SPOON',forbidden:['soup','eat','fork','utensil','liquid']}, it:{word:'CUCCHIAIO',forbidden:['zuppa','mangiare','forchetta','posata','liquido']} },
+  { en:{word:'PEACH',forbidden:['fruit','sweet','fuzz','pit','summer']}, it:{word:'PESCA',forbidden:['frutta','dolce','pelo','nocciolo','estate']} },
+
+
+  /* --- 3. OGGETTI QUOTIDIANI E TECNOLOGIA (121-180) --- */
+  { en:{word:'SMARTPHONE',forbidden:['call','phone','internet','apps','screen']}, it:{word:'CELLULARE',forbidden:['chiamare','telefono','internet','app','schermo']} },
+  { en:{word:'COMPUTER',forbidden:['keyboard','screen','internet','work','laptop']}, it:{word:'COMPUTER',forbidden:['tastiera','schermo','internet','lavoro','portatile']} },
+  { en:{word:'TELEVISION',forbidden:['watch','screen','shows','movies','remote']}, it:{word:'TELEVISIONE',forbidden:['guardare','schermo','programmi','film','telecomando']} },
+  { en:{word:'INTERNET',forbidden:['web','online','wifi','computer','connected']}, it:{word:'INTERNET',forbidden:['rete','online','wifi','computer','connesso']} },
+  { en:{word:'CAMERA',forbidden:['photo','picture','lens','flash','shoot']}, it:{word:'FOTOCAMERA',forbidden:['foto','immagine','lente','flash','scattare']} },
+  { en:{word:'HEADPHONES',forbidden:['music','listen','ears','sound','audio']}, it:{word:'CUFFIE',forbidden:['musica','ascoltare','orecchie','suono','audio']} },
+  { en:{word:'WATCH',forbidden:['time','wrist','clock','hours','minutes']}, it:{word:'OROLOGIO',forbidden:['ora','polso','tempo','ore','minuti']} },
+  { en:{word:'WALLET',forbidden:['money','cards','cash','pocket','leather']}, it:{word:'PORTAFOGLIO',forbidden:['soldi','carte','contanti','tasca','pelle']} },
+  { en:{word:'KEYS',forbidden:['lock','door','car','open','metal']}, it:{word:'CHIAVI',forbidden:['serratura','porta','auto','aprire','metallo']} },
+  { en:{word:'GLASSES',forbidden:['eyes','see','vision','lens','frames']}, it:{word:'OCCHIALI',forbidden:['occhi','vedere','vista','lenti','montatura']} },
+  { en:{word:'UMBRELLA',forbidden:['rain','wet','water','sun','handle']}, it:{word:'OMBRELLO',forbidden:['pioggia','bagnato','acqua','sole','manico']} },
+  { en:{word:'BOOK',forbidden:['read','pages','story','library','author']}, it:{word:'LIBRO',forbidden:['leggere','pagine','storia','biblioteca','autore']} },
+  { en:{word:'PEN',forbidden:['write','ink','paper','office','draw']}, it:{word:'PENNA',forbidden:['scrivere','inchiostro','carta','ufficio','disegnare']} },
+  { en:{word:'PAPER',forbidden:['write','tree','sheet','pen','printer']}, it:{word:'CARTA',forbidden:['scrivere','albero','foglio','penna','stampante']} },
+  { en:{word:'BACKPACK',forbidden:['school','carry','bag','shoulders','books']}, it:{word:'ZAINO',forbidden:['scuola','portare','borsa','spalle','libri']} },
+  { en:{word:'BED',forbidden:['sleep','night','room','pillow','mattress']}, it:{word:'LETTO',forbidden:['dormire','notte','camera','cuscino','materasso']} },
+  { en:{word:'CHAIR',forbidden:['sit','table','furniture','legs','seat']}, it:{word:'SEDIA',forbidden:['sedersi','tavolo','mobile','gambe','posto']} },
+  { en:{word:'TABLE',forbidden:['eat','chairs','furniture','wood','legs']}, it:{word:'TAVOLO',forbidden:['mangiare','sedie','mobile','legno','gambe']} },
+  { en:{word:'LAMP',forbidden:['light','dark','night','bulb','desk']}, it:{word:'LAMPADA',forbidden:['luce','buio','notte','lampadina','scrivania']} },
+  { en:{word:'MIRROR',forbidden:['look','reflection','glass','face','bathroom']}, it:{word:'SPECCHIO',forbidden:['guardarsi','riflesso','vetro','faccia','bagno']} },
+  { en:{word:'SHAMPOO',forbidden:['hair','wash','shower','soap','head']}, it:{word:'SHAMPOO',forbidden:['capelli','lavare','doccia','sapone','testa']} },
+  { en:{word:'TOOTHBRUSH',forbidden:['teeth','brush','mouth','paste','clean']}, it:{word:'SPAZZOLINO',forbidden:['denti','spazzolare','bocca','dentifricio','pulire']} },
+  { en:{word:'TOWEL',forbidden:['dry','water','shower','beach','bathroom']}, it:{word:'ASCIUGAMANO',forbidden:['asciugare','acqua','doccia','spiaggia','bagno']} },
+  { en:{word:'SOAP',forbidden:['wash','clean','bubbles','shower','hands']}, it:{word:'SAPONE',forbidden:['lavare','pulire','bolle','doccia','mani']} },
+  { en:{word:'SHOE',forbidden:['foot','walk','wear','pair','socks']}, it:{word:'SCARPA',forbidden:['piede','camminare','indossare','paio','calzini']} },
+  { en:{word:'SOCKS',forbidden:['feet','shoes','warm','pair','wear']}, it:{word:'CALZINI',forbidden:['piedi','scarpe','caldo','paio','indossare']} },
+  { en:{word:'JACKET',forbidden:['wear','cold','coat','winter','zipper']}, it:{word:'GIACCA',forbidden:['indossare','freddo','cappotto','inverno','cerniera']} },
+  { en:{word:'HAT',forbidden:['head','wear','sun','cap','winter']}, it:{word:'CAPPELLO',forbidden:['testa','indossare','sole','berretto','inverno']} },
+  { en:{word:'SHIRT',forbidden:['wear','clothes','buttons','sleeves','body']}, it:{word:'CAMICIA',forbidden:['indossare','vestiti','bottoni','maniche','corpo']} },
+  { en:{word:'PANTS',forbidden:['legs','wear','jeans','clothes','pocket']}, it:{word:'PANTALONI',forbidden:['gambe','indossare','jeans','vestiti','tasca']} },
+  { en:{word:'BATTERY',forbidden:['power','energy','charge','device','electricity']}, it:{word:'BATTERIA',forbidden:['energia','carica','dispositivo','elettricità','pila']} },
+  { en:{word:'REMOTE CONTROL',forbidden:['TV','button','change','distance','channels']}, it:{word:'TELECOMANDO',forbidden:['TV','bottone','cambiare','distanza','canali']} },
+  { en:{word:'WIFI',forbidden:['internet','connection','wireless','password','router']}, it:{word:'WIFI',forbidden:['internet','connessione','senza fili','password','router']} },
+  { en:{word:'HEADPHONES',forbidden:['music','sound','ears','wire','listen']}, it:{word:'CUFFIE',forbidden:['musica','suono','orecchie','filo','ascoltare']} },
+  { en:{word:'CLOCK',forbidden:['time','hours','wall','tick','minutes']}, it:{word:'OROLOGIO',forbidden:['tempo','ore','muro','ticchettio','minuti']} },
+  { en:{word:'CANDLE',forbidden:['fire','light','wax','smell','birthday']}, it:{word:'CANDELA',forbidden:['fuoco','luce','cera','odore','compleanno']} },
+  { en:{word:'SCISSORS',forbidden:['cut','paper','sharp','tool','fingers']}, it:{word:'FORBICI',forbidden:['tagliare','carta','affilato','strumento','dita']} },
+  { en:{word:'HAMMER',forbidden:['nail','tool','hit','wood','construction']}, it:{word:'MARTELLO',forbidden:['chiodo','strumento','colpire','legno','costruzione']} },
+  { en:{word:'LADDER',forbidden:['climb','high','steps','up','reach']}, it:{word:'SCALA',forbidden:['salire','alto','gradini','su','raggiungere']} },
+  { en:{word:'BUCKET',forbidden:['water','carry','handle','plastic','sand']}, it:{word:'SECCHIO',forbidden:['acqua','portare','manico','plastica','sabbia']} },
+
+  /* --- 4. NATURA E ANIMALI (181-240) --- */
+  { en:{word:'DOG',forbidden:['pet','bark','animal','friend','tail']}, it:{word:'CANE',forbidden:['animale','abbaiare','domestico','amico','coda']} },
+  { en:{word:'CAT',forbidden:['pet','meow','animal','whiskers','feline']}, it:{word:'GATTO',forbidden:['animale','miagolare','domestico','baffi','felino']} },
+  { en:{word:'HORSE',forbidden:['ride','animal','farm','gallop','saddle']}, it:{word:'CAVALLO',forbidden:['cavalcare','animale','fattoria','galoppo','sella']} },
+  { en:{word:'LION',forbidden:['king','jungle','animal','roar','Africa']}, it:{word:'LEONE',forbidden:['re','giungla','animale','ruggito','Africa']} },
+  { en:{word:'ELEPHANT',forbidden:['big','animal','trunk','gray','Africa']}, it:{word:'ELEFANTE',forbidden:['grande','animale','proboscide','grigio','Africa']} },
+  { en:{word:'BIRD',forbidden:['fly','wings','feathers','sky','nest']}, it:{word:'UCCELLO',forbidden:['volare','ali','piume','cielo','nido']} },
+  { en:{word:'FISH',forbidden:['water','swim','ocean','scales','gill']}, it:{word:'PESCE',forbidden:['acqua','nuotare','oceano','squame','branchie']} },
+  { en:{word:'SHARK',forbidden:['ocean','teeth','fish','bite','danger']}, it:{word:'SQUALO',forbidden:['oceano','denti','pesce','mordere','pericolo']} },
+  { en:{word:'SNAKE',forbidden:['reptile','long','slither','poison','hiss']}, it:{word:'SERPENTE',forbidden:['rettile','lungo','strisciare','veleno','sibilare']} },
+  { en:{word:'SPIDER',forbidden:['web','legs','insect','eight','crawl']}, it:{word:'RAGNO',forbidden:['tela','gambe','insetto','otto','strisciare']} },
+  { en:{word:'TREE',forbidden:['leaves','wood','forest','green','trunk']}, it:{word:'ALBERO',forbidden:['foglie','legno','foresta','verde','tronco']} },
+  { en:{word:'FLOWER',forbidden:['rose','plant','smell','garden','petal']}, it:{word:'FIORE',forbidden:['rosa','pianta','odore','giardino','petalo']} },
+  { en:{word:'SUN',forbidden:['sky','hot','yellow','day','light']}, it:{word:'SOLE',forbidden:['cielo','caldo','giallo','giorno','luce']} },
+  { en:{word:'MOON',forbidden:['night','sky','space','stars','white']}, it:{word:'LUNA',forbidden:['notte','cielo','spazio','stelle','bianca']} },
+  { en:{word:'RAIN',forbidden:['water','sky','wet','clouds','umbrella']}, it:{word:'PIOGGIA',forbidden:['acqua','cielo','bagnato','nuvole','ombrello']} },
+  { en:{word:'SNOW',forbidden:['cold','white','winter','ice','mountain']}, it:{word:'NEVE',forbidden:['freddo','bianca','inverno','ghiaccio','montagna']} },
+  { en:{word:'FOREST',forbidden:['trees','wood','nature','green','animals']}, it:{word:'FORESTA',forbidden:['alberi','legno','natura','verde','animali']} },
+  { en:{word:'RIVER',forbidden:['water','flow','stream','bridge','fish']}, it:{word:'FIUME',forbidden:['acqua','scorrere','torrente','ponte','pesci']} },
+  { en:{word:'OCEAN',forbidden:['sea','water','big','blue','waves']}, it:{word:'OCEANO',forbidden:['mare','acqua','grande','blu','onde']} },
+  { en:{word:'GRASS',forbidden:['green','garden','mow','ground','field']}, it:{word:'ERBA',forbidden:['verde','giardino','tagliare','terra','prato']} },
+  { en:{word:'COW',forbidden:['milk','animal','farm','beef','grass']}, it:{word:'MUCCA',forbidden:['latte','animale','fattoria','manzo','erba']} },
+  { en:{word:'PIG',forbidden:['animal','farm','pink','bacon','mud']}, it:{word:'MAIALE',forbidden:['animale','fattoria','rosa','bacon','fango']} },
+  { en:{word:'SHEEP',forbidden:['wool','animal','white','farm','lamb']}, it:{word:'PECORA',forbidden:['lana','animale','bianca','fattoria','agnello']} },
+  { en:{word:'MONKEY',forbidden:['animal','banana','tree','jungle','climb']}, it:{word:'SCIMMIA',forbidden:['animale','banana','albero','giungla','arrampicarsi']} },
+  { en:{word:'BEAR',forbidden:['animal','forest','honey','big','brown']}, it:{word:'ORSO',forbidden:['animale','foresta','miele','grande','marrone']} },
+  { en:{word:'RABBIT',forbidden:['animal','ears','carrot','hop','easter']}, it:{word:'CONIGLIO',forbidden:['animale','orecchie','carota','saltare','pasqua']} },
+  { en:{word:'BUTTERFLY',forbidden:['insect','wings','fly','colorful','cocoon']}, it:{word:'FARFALLA',forbidden:['insetto','ali','volare','colorata','bozzolo']} },
+  { en:{word:'BEE',forbidden:['insect','honey','sting','yellow','flowers']}, it:{word:'APE',forbidden:['insetto','miele','pungere','giallo','fiori']} },
+  { en:{word:'ANT',forbidden:['insect','small','tiny','colony','army']}, it:{word:'FORMICA',forbidden:['insetto','piccolo','minuscolo','colonia','esercito']} },
+  { en:{word:'FROG',forbidden:['animal','green','jump','water','pond']}, it:{word:'RANA',forbidden:['animale','verde','saltare','acqua','stagno']} },
+  { en:{word:'WHALE',forbidden:['ocean','big','animal','water','blowhole']}, it:{word:'BALENA',forbidden:['oceano','grande','animale','acqua','sfiatatoio']} },
+  { en:{word:'DOLPHIN',forbidden:['ocean','smart','swim','animal','jump']}, it:{word:'DELFINO',forbidden:['oceano','intelligente','nuotare','animale','saltare']} },
+  { en:{word:'PENGUIN',forbidden:['ice','cold','bird','fly','black']}, it:{word:'PINGUINO',forbidden:['ghiaccio','freddo','uccello','volare','nero']} },
+  { en:{word:'TIGER',forbidden:['animal','stripes','cat','jungle','orange']}, it:{word:'TIGRE',forbidden:['animale','strisce','gatto','giungla','arancione']} },
+  { en:{word:'WOLF',forbidden:['animal','howl','dog','forest','pack']}, it:{word:'LUPO',forbidden:['animale','ululare','cane','foresta','branco']} },
+  { en:{word:'FOX',forbidden:['animal','red','tail','smart','forest']}, it:{word:'VOLPE',forbidden:['animale','rossa','coda','furba','foresta']} },
+  { en:{word:'RAINBOW',forbidden:['colors','sky','rain','sun','pot of gold']}, it:{word:'ARCOBALENO',forbidden:['colori','cielo','pioggia','sole','pentola d\'oro']} },
+  { en:{word:'THUNDER',forbidden:['storm','noise','lightning','sound','sky']}, it:{word:'TUONO',forbidden:['tempesta','rumore','fulmine','suono','cielo']} },
+  { en:{word:'WIND',forbidden:['air','blow','storm','weather','move']}, it:{word:'VENTO',forbidden:['aria','soffiare','tempesta','meteo','muovere']} },
+  { en:{word:'CLOUDS',forbidden:['sky','white','rain','gray','weather']}, it:{word:'NUVOLE',forbidden:['cielo','bianco','pioggia','grigio','meteo']} },
+
+  /* --- 5. SPORT E TEMPO LIBERO (241-300) --- */
+  { en:{word:'SOCCER',forbidden:['football','ball','goal','kick','sport']}, it:{word:'CALCIO',forbidden:['pallone','rete','gol','calciare','sport']} },
+  { en:{word:'BASKETBALL',forbidden:['hoop','ball','shoot','dunk','court']}, it:{word:'BASKET',forbidden:['canestro','palla','tirare','schiacciata','campo']} },
+  { en:{word:'TENNIS',forbidden:['racket','ball','court','net','match']}, it:{word:'TENNIS',forbidden:['racchetta','palla','campo','rete','partita']} },
+  { en:{word:'SWIMMING',forbidden:['water','pool','pool','suit','strokes']}, it:{word:'NUOTO',forbidden:['acqua','piscina','costume','bracciate','corsia']} },
+  { en:{word:'RUNNING',forbidden:['race','feet','fast','marathon','shoes']}, it:{word:'CORSA',forbidden:['gara','piedi','veloce','maratona','scarpe']} },
+  { en:{word:'BICYCLE',forbidden:['pedal','wheels','ride','helmet','cycling']}, it:{word:'BICICLETTA',forbidden:['pedale','ruote','guidare','casco','ciclismo']} },
+  { en:{word:'CINEMA',forbidden:['movie','film','popcorn','watch','screen']}, it:{word:'CINEMA',forbidden:['film','popcorn','guardare','schermo','spettacolo']} },
+  { en:{word:'MUSIC',forbidden:['listen','song','instrument','sound','radio']}, it:{word:'MUSICA',forbidden:['ascoltare','canzone','strumento','suono','radio']} },
+  { en:{word:'DANCE',forbidden:['move','music','party','feet','rhythm']}, it:{word:'BALLO',forbidden:['muoversi','musica','festa','piedi','ritmo']} },
+  { en:{word:'PARTY',forbidden:['friends','celebrate','music','dance','birthday']}, it:{word:'FESTA',forbidden:['amici','festeggiare','musica','ballo','compleanno']} },
+  { en:{word:'PAINTING',forbidden:['art','color','brush','artist','canvas']}, it:{word:'PITTURA',forbidden:['arte','colore','pennello','artista','tela']} },
+  { en:{word:'GUITAR',forbidden:['music','instrument','strings','play','rock']}, it:{word:'CHITARRA',forbidden:['musica','strumento','corde','suonare','rock']} },
+  { en:{word:'PIANO',forbidden:['music','instrument','keys','black','white']}, it:{word:'PIANOFORTE',forbidden:['musica','strumento','tasti','nero','bianco']} },
+  { en:{word:'SINGING',forbidden:['voice','music','mouth','song','microphone']}, it:{word:'CANTO',forbidden:['voce','musica','bocca','canzone','microfono']} },
+  { en:{word:'GAME',forbidden:['play','fun','win','lose','rules']}, it:{word:'GIOCO',forbidden:['giocare','divertimento','vincere','perdere','regole']} },
+  { en:{word:'CAMPING',forbidden:['tent','fire','woods','outdoor','sleep']}, it:{word:'CAMPEGGIO',forbidden:['tenda','fuoco','bosco','aperto','dormire']} },
+  { en:{word:'SHOPPING',forbidden:['buy','store','money','clothes','mall']}, it:{word:'SHOPPING',forbidden:['comprare','negozio','soldi','vestiti','centro commerciale']} },
+  { en:{word:'READING',forbidden:['book','pages','eyes','story','library']}, it:{word:'LETTURA',forbidden:['libro','pagine','occhi','storia','biblioteca']} },
+  { en:{word:'COOKING',forbidden:['food','kitchen','chef','eat','recipe']}, it:{word:'CUCINARE',forbidden:['cibo','cucina','chef','mangiare','ricetta']} },
+  { en:{word:'PHOTOGRAPHY',forbidden:['camera','photo','picture','lens','shoot']}, it:{word:'FOTOGRAFIA',forbidden:['fotocamera','foto','immagine','lente','scatto']} },
+  { en:{word:'BASEBALL',forbidden:['bat','ball','glove','home run','diamond']}, it:{word:'BASEBALL',forbidden:['mazza','palla','guanto','fuoricampo','diamante']} },
+  { en:{word:'GOLF',forbidden:['club','ball','green','hole','swing']}, it:{word:'GOLF',forbidden:['mazza','palla','prato','buca','swing']} },
+  { en:{word:'SKIING',forbidden:['snow','mountain','winter','poles','skis']}, it:{word:'SCI',forbidden:['neve','montagna','inverno','bacchette','sci']} },
+  { en:{word:'SURFING',forbidden:['ocean','waves','board','water','beach']}, it:{word:'SURF',forbidden:['oceano','onde','tavola','acqua','spiaggia']} },
+  { en:{word:'BOXING',forbidden:['fight','gloves','ring','punch','sport']}, it:{word:'PUGILATO',forbidden:['combattere','guantoni','ring','pugno','sport']} },
+  { en:{word:'YOGA',forbidden:['stretch','relax','exercise','meditation','mat']}, it:{word:'YOGA',forbidden:['allungamento','rilassarsi','esercizio','meditazione','tappetino']} },
+  { en:{word:'CHESS',forbidden:['game','board','king','queen','checkmate']}, it:{word:'SCACCHI',forbidden:['gioco','scacchiera','re','regina','scacco matto']} },
+  { en:{word:'CARDS',forbidden:['play','game','deck','poker','shuffle']}, it:{word:'CARTE',forbidden:['giocare','gioco','mazzo','poker','mischiare']} },
+  { en:{word:'GYM',forbidden:['exercise','workout','muscles','weights','fitness']}, it:{word:'PALESTRA',forbidden:['esercizio','allenamento','muscoli','pesi','fitness']} },
+  { en:{word:'HIKE',forbidden:['walk','mountain','nature','trail','boots']}, it:{word:'ESCURSIONE',forbidden:['camminare','montagna','natura','sentiero','scarponi']} },
+
+  /* --- 6. PROFESSIONI E LUOGHI (301-350) --- */
+  { en:{word:'DOCTOR',forbidden:['hospital','sick','medicine','health','nurse']}, it:{word:'MEDICO',forbidden:['ospedale','malato','medicina','salute','infermiere']} },
+  { en:{word:'TEACHER',forbidden:['school','student','learn','classroom','lesson']}, it:{word:'INSEGNANTE',forbidden:['scuola','studente','imparare','classe','lezione']} },
+  { en:{word:'POLICE',forbidden:['cop','law','crime','arrest','badge']}, it:{word:'POLIZIA',forbidden:['agente','legge','crimine','arrestare','distintivo']} },
+  { en:{word:'FIREFIGTHER',forbidden:['fire','truck','water','rescue','hose']}, it:{word:'POMPIERE',forbidden:['fuoco','camion','acqua','salvataggio','idrante']} },
+  { en:{word:'CHEF',forbidden:['cook','restaurant','food','kitchen','recipe']}, it:{word:'CHEF',forbidden:['cucinare','ristorante','cibo','cucina','ricetta']} },
+  { en:{word:'PILOT',forbidden:['airplane','fly','sky','cockpit','captain']}, it:{word:'PILOTA',forbidden:['aereo','volare','cielo','cabina','capitano']} },
+  { en:{word:'ASTRONAUT',forbidden:['space','moon','stars','rocket','NASA']}, it:{word:'ASTRONAUTA',forbidden:['spazio','luna','stelle','razzo','NASA']} },
+  { en:{word:'ACTOR',forbidden:['movie','theatre','film','stage','famous']}, it:{word:'ATTORE',forbidden:['film','teatro','cinema','palco','famoso']} },
+  { en:{word:'SINGER',forbidden:['voice','music','song','microphone','concert']}, it:{word:'CANTANTE',forbidden:['voce','musica','canzone','microfono','concerto']} },
+  { en:{word:'ARTIST',forbidden:['paint','draw','museum','gallery','creative']}, it:{word:'ARTISTA',forbidden:['dipingere','disegnare','museo','galleria','creativo']} },
+  { en:{word:'HOSPITAL',forbidden:['doctor','sick','nurse','medicine','emergency']}, it:{word:'OSPEDALE',forbidden:['medico','malato','infermiere','medicina','emergenza']} },
+  { en:{word:'SCHOOL',forbidden:['teacher','student','learn','books','classroom']}, it:{word:'SCUOLA',forbidden:['insegnante','studente','imparare','libri','classe']} },
+  { en:{word:'OFFICE',forbidden:['work','desk','computer','business','company']}, it:{word:'UFFICIO',forbidden:['lavoro','scrivania','computer','affari','azienda']} },
+  { en:{word:'LIBRARY',forbidden:['books','read','quiet','borrow','shelves']}, it:{word:'BIBLIOTECA',forbidden:['libri','leggere','silenzio','prestito','scaffali']} },
+  { en:{word:'SUPERMARKET',forbidden:['food','buy','shop','grocery','cart']}, it:{word:'SUPERMERCATO',forbidden:['cibo','comprare','negozio','spesa','carrello']} },
+  { en:{word:'FARM',forbidden:['animals','cows','tractor','country','crops']}, it:{word:'FATTORIA',forbidden:['animali','mucche','trattore','campagna','raccolto']} },
+  { en:{word:'STADIUM',forbidden:['sport','soccer','game','fans','seats']}, it:{word:'STADIO',forbidden:['sport','calcio','partita','tifosi','sedili']} },
+  { en:{word:'BANK',forbidden:['money','account','cash','credit card','safe']}, it:{word:'BANCA',forbidden:['soldi','conto','contanti','carta di credito','cassaforte']} },
+  { en:{word:'CHURCH',forbidden:['religion','pray','priest','bells','god']}, it:{word:'CHIESA',forbidden:['religione','pregare','prete','campane','dio']} },
+  { en:{word:'PARK',forbidden:['green','trees','grass','bench','outdoor']}, it:{word:'PARCO',forbidden:['verde','alberi','erba','panchina','aperto']} },
+  { en:{word:'DENTIST',forbidden:['teeth','mouth','tooth','smile','clean']}, it:{word:'DENTISTA',forbidden:['denti','bocca','dente','sorriso','pulire']} },
+  { en:{word:'BAKER',forbidden:['bread','cake','flour','oven','pastry']}, it:{word:'FORNAIO',forbidden:['pane','torta','farina','forno','pasticceria']} },
+  { en:{word:'GARDENER',forbidden:['plants','flowers','garden','grass','water']}, it:{word:'GIARDINIERE',forbidden:['piante','fiori','giardino','erba','acqua']} },
+  { en:{word:'WAITER',forbidden:['restaurant','food','table','serve','menu']}, it:{word:'CAMERIERE',forbidden:['ristorante','cibo','tavolo','servire','menu']} },
+  { en:{word:'LAWYER',forbidden:['court','law','judge','legal','case']}, it:{word:'AVVOCATO',forbidden:['tribunale','legge','giudice','legale','causa']} },
+  { en:{word:'SCIENTIST',forbidden:['experiment','lab','research','theory','study']}, it:{word:'SCIENZIATO',forbidden:['esperimento','laboratorio','ricerca','teoria','studiare']} },
+  { en:{word:'FASHION DESIGNER',forbidden:['clothes','wear','style','runway','sew']}, it:{word:'STILISTA',forbidden:['vestiti','indossare','stile','sfilata','cucire']} },
+  { en:{word:'JOURNALIST',forbidden:['news','write','paper','interview','report']}, it:{word:'GIORNALISTA',forbidden:['notizie','scrivere','giornale','intervista','servizio']} },
+  { en:{word:'MECHANIC',forbidden:['car','fix','engine','garage','tools']}, it:{word:'MECCANICO',forbidden:['auto','riparare','motore','garage','strumenti']} },
+  { en:{word:'ASTRONOMY',forbidden:['stars','planets','telescope','sky','space']}, it:{word:'ASTRONOMIA',forbidden:['stelle','pianeti','telescopio','cielo','spazio']} },
+  { en:{word:'POST OFFICE',forbidden:['letter','stamp','mail','package','send']}, it:{word:'UFFICIO POSTALE',forbidden:['lettera','francobollo','posta','pacco','spedire']} },
+  { en:{word:'ZOO',forbidden:['animals','cages','wild','visit','exhibit']}, it:{word:'ZOO',forbidden:['animali','gabbie','selvaggi','visitare','mostra']} },
+  { en:{word:'AQUARIUM',forbidden:['fish','water','shark','glass','sea']}, it:{word:'ACQUARIO',forbidden:['pesci','acqua','squalo','vetro','mare']} },
+  { en:{word:'BAKERY',forbidden:['bread','cake','oven','sweet','morning']}, it:{word:'PANIFICIO',forbidden:['pane','torta','forno','dolce','mattina']} },
+  { en:{word:'MUSEUM',forbidden:['art','statues','history','exhibit','painting']}, it:{word:'MUSEO',forbidden:['arte','statue','storia','mostra','quadro']} },
+  { en:{word:'PHARMACY',forbidden:['medicine','drugs','health','chemist','prescription']}, it:{word:'FARMACIA',forbidden:['medicina','farmaci','salute','chimico','ricetta']} },
+  { en:{word:'BARBER',forbidden:['hair','cut','scissors','beard','head']}, it:{word:'BARBIERE',forbidden:['capelli','tagliare','forbici','barba','testa']} },
+  { en:{word:'GYM',forbidden:['weights','exercise','fitness','workout','coach']}, it:{word:'PALESTRA',forbidden:['pesi','esercizio','fitness','allenamento','istruttore']} },
+  { en:{word:'GAS STATION',forbidden:['car','fuel','petrol','drive','pump']}, it:{word:'BENZINAIO',forbidden:['auto','carburante','benzina','guidare','pompa']} },
+  { en:{word:'AIRPORT',forbidden:['plane','fly','travel','terminal','gate']}, it:{word:'AEROPORTO',forbidden:['aereo','volare','viaggio','terminal','gate']} },
+  { en:{word:'THEATRE',forbidden:['stage','actor','play','audience','curtain']}, it:{word:'TEATRO',forbidden:['palco','attore','spettacolo','pubblico','sipario']} },
+  { en:{word:'PRISON',forbidden:['jail','crime','guard','bars','criminal']}, it:{word:'PRIGIONE',forbidden:['carcere','crimine','guardia','sbarre','criminale']} },
+  { en:{word:'CINEMA',forbidden:['movie','film','screen','popcorn','seat']}, it:{word:'CINEMA',forbidden:['film','pellicola','schermo','popcorn','posto']} },
+  { en:{word:'COFFEE SHOP',forbidden:['coffee','cup','drink','caffeine','barista']}, it:{word:'BAR',forbidden:['caffè','tazza','bere','caffeina','bancone']} },
+  { en:{word:'MOUNTAIN',forbidden:['snow','high','climb','peak','rock']}, it:{word:'MONTAGNA',forbidden:['neve','alto','scalare','picco','roccia']} },
+  { en:{word:'VILLAGE',forbidden:['small','town','houses','people','countryside']}, it:{word:'VILLAGGIO',forbidden:['piccolo','paese','case','persone','campagna']} },
+  { en:{word:'BEACH',forbidden:['sand','ocean','summer','sun','swim']}, it:{word:'SPIAGGIA',forbidden:['sabbia','oceano','estate','sole','nuotare']} },
+  { en:{word:'LAKE',forbidden:['water','fishing','swim','surrounded','boat']}, it:{word:'LAGO',forbidden:['acqua','pesca','nuotare','circondato','barca']} },
+  { en:{word:'ISLAND',forbidden:['water','surrounded','beach','sea','palm']}, it:{word:'ISOLA',forbidden:['acqua','circondata','spiaggia','mare','palma']} },
+  { en:{word:'DESERT',forbidden:['sand','hot','camel','cactus','dry']}, it:{word:'DESERTO',forbidden:['sabbia','caldo','cammello','cactus','secco']} }
+];
+
+    /* ─ TIMER CONSTANTS ─ */
+    var TIMER_DURATION  = 60;
+    var CIRCUMFERENCE   = 263.89;   /* 2 * π * 42 */
+
+    /* ─ DOM REFS ─ */
+    var scoreLabel       = document.getElementById('score-label');
+    var startPanel       = document.getElementById('start-panel');
+    var playArea         = document.getElementById('play-area');
+    var startTeamPill    = document.getElementById('start-team-pill');
+    var startHeading     = document.getElementById('start-heading');
+    var turnTeamName     = document.getElementById('turn-team-name');
+    var turnScoreDisplay = document.getElementById('turn-score-display');
+    var timerRing        = document.getElementById('timer-ring');
+    var timerText        = document.getElementById('timer-text');
+    var timerWrap        = document.getElementById('timer-wrap');
+    var targetWord       = document.getElementById('target-word');
+    var wordCard         = document.getElementById('word-card');
+    var fwEls            = [
+      document.getElementById('fw-0'), document.getElementById('fw-1'),
+      document.getElementById('fw-2'), document.getElementById('fw-3'),
+      document.getElementById('fw-4')
+    ];
+    var ctrlStart        = document.getElementById('ctrl-start');
+    var ctrlPlaying      = document.getElementById('ctrl-playing');
+    var btnStartTurn     = document.getElementById('btn-start-turn');
+    var btnTaboo         = document.getElementById('btn-taboo');
+    var btnGuessed       = document.getElementById('btn-guessed');
+    var turnEndOverlay   = document.getElementById('turn-end-overlay');
+    var roundEndOverlay  = document.getElementById('round-end');
+    var confettiCanvas   = document.getElementById('confetti-canvas');
+
+    /* ─ STATE ─ */
+    var cards        = [];
+    var cardIdx      = 0;
+    var currentTeam  = 'team1';
+    var turnScore    = 0;
+    var timerSeconds = TIMER_DURATION;
+    var timerInterval= null;
+    var gameState    = 'idle';   /* idle | playing | turn-end | end */
+
+    /* ─ HELPERS ─ */
+    function hexToRgba(hex, a) {
+      if (!hex || hex.length < 7) return 'rgba(239,68,68,' + a + ')';
+      var r = parseInt(hex.slice(1,3), 16);
+      var g = parseInt(hex.slice(3,5), 16);
+      var b = parseInt(hex.slice(5,7), 16);
+      return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+    }
+
+    function shuffle(arr) {
+      var a = arr.slice();
+      for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+      }
+      return a;
+    }
+
+    function getTeams() {
+      return JSON.parse(localStorage.getItem('fotr_teams') || '{}');
+    }
+
+    function sfxEnabled() {
+      return localStorage.getItem('fotr_sfx') !== 'false';
+    }
+
+    function playSound(fn) {
+      if (sfxEnabled() && typeof AudioManager !== 'undefined') {
+        try { AudioManager[fn](); } catch(e) {}
+      }
+    }
+
+    function getTeamName(team) {
+      var teams = getTeams();
+      return (team === 'team1') ? (teams.team1 || 'Team 1') : (teams.team2 || 'Team 2');
+    }
+
+    function getTeamColor(team) {
+      var teams = getTeams();
+      return (team === 'team1') ? (teams.color1 || '#0ea5e9') : (teams.color2 || '#f59e0b');
+    }
+
+    /* ─ SCORE HEADER ─ */
+    function updateHeaderScore() {
+      var teams = getTeams();
+      if (teams.team1 && teams.team2) {
+        scoreLabel.textContent = teams.team1 + ' ' + (teams.score1 || 0) + ' – ' + (teams.score2 || 0) + ' ' + teams.team2;
+      } else {
+        scoreLabel.textContent = t.noTeams;
+      }
+    }
+
+    /* ─ CONTROLS ─ */
+    function setCtrl(state) {
+      ctrlStart.style.display   = 'none';
+      ctrlPlaying.style.display = 'none';
+      if (state === 'start')   ctrlStart.style.display   = 'block';
+      if (state === 'playing') ctrlPlaying.style.display = 'flex';
+    }
+
+    /* ─ UPDATE START PANEL ─ */
+    function updateStartPanel() {
+      var name  = getTeamName(currentTeam);
+      var color = getTeamColor(currentTeam);
+
+      startTeamPill.textContent        = t.turnPill(name);
+      startTeamPill.style.color        = color;
+      startTeamPill.style.background   = hexToRgba(color, 0.13);
+      startTeamPill.style.borderColor  = hexToRgba(color, 0.32);
+
+      startHeading.textContent         = t.startHeading(name);
+      turnTeamName.textContent         = name.toUpperCase();
+    }
+
+    /* ─ TIMER ─ */
+    function updateTimerDisplay() {
+      var progress = timerSeconds / TIMER_DURATION;
+      var offset   = CIRCUMFERENCE * (1 - progress);
+      timerRing.style.strokeDashoffset = offset;
+      timerText.textContent            = timerSeconds;
+
+      var color = timerSeconds > 20 ? '#0ea5e9' : timerSeconds > 10 ? '#f59e0b' : '#ef4444';
+      timerRing.style.stroke = color;
+      timerText.setAttribute('fill', timerSeconds <= 10 ? '#ef4444' : '#f8fafc');
+
+      if (timerSeconds <= 10) {
+        timerWrap.classList.add('timer-urgent');
+      } else {
+        timerWrap.classList.remove('timer-urgent');
+      }
+    }
+
+    function startTimer() {
+      timerSeconds = TIMER_DURATION;
+      updateTimerDisplay();
+      timerInterval = setInterval(function() {
+        timerSeconds--;
+        updateTimerDisplay();
+        if (timerSeconds <= 0) {
+          stopTimer();
+          endTurn();
+        }
+      }, 1000);
+    }
+
+    function stopTimer() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+      timerWrap.classList.remove('timer-urgent');
+    }
+
+    /* ─ SHOW CARD ─ */
+    function showCard() {
+      var u = JSON.parse(localStorage.getItem('fotr_usage') || '{}');
+      u[GAME_KEY] = (u[GAME_KEY] || 0) + 1;
+      localStorage.setItem('fotr_usage', JSON.stringify(u));
+      if (u[GAME_KEY] > FREE_LIMIT && !isPurchased(GAME_KEY)) {
+        stopTimer();
+        showPaywall();
+        return;
+      }
+
+      if (cardIdx >= cards.length) {
+        cards  = shuffle(CARDS);
+        cardIdx = 0;
+      }
+
+      var card = cards[cardIdx];
+      var cLoc = (lang === 'it') ? card.it : card.en;
+
+      targetWord.textContent = cLoc.word.toUpperCase();
+      for (var i = 0; i < 5; i++) {
+        fwEls[i].textContent = (cLoc.forbidden[i] || '—').toLowerCase();
+      }
+
+      wordCard.style.animation = 'none';
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          wordCard.style.animation = 'fadeInUp 0.25s ease both';
+        });
+      });
+    }
+
+    /* ─ INIT GAME ─ */
+    function initGame() {
+      cards        = shuffle(CARDS);
+      cardIdx      = 0;
+      currentTeam  = 'team1';
+      timerSeconds = TIMER_DURATION;
+      updateTimerDisplay();
+      updateStartPanel();
+      startPanel.style.display = 'flex';
+      playArea.style.display   = 'none';
+      setCtrl('start');
+      gameState = 'idle';
+    }
+
+    /* ─ START TURN ─ */
+    function startTurn() {
+      var u = JSON.parse(localStorage.getItem('fotr_usage') || '{}');
+      if ((u[GAME_KEY] || 0) >= FREE_LIMIT && !isPurchased(GAME_KEY)) { showPaywall(); return; }
+
+      turnScore                      = 0;
+      turnScoreDisplay.textContent   = '0';
+      gameState                      = 'playing';
+      startPanel.style.display       = 'none';
+      playArea.style.display         = 'flex';
+
+      var games           = JSON.parse(localStorage.getItem('fotr_games') || '{}');
+      games.tabooTravel   = (games.tabooTravel || 0) + 1;
+      localStorage.setItem('fotr_games', JSON.stringify(games));
+
+      setCtrl('playing');
+      showCard();
+      startTimer();
+      playSound('click');
+    }
+
+    /* ─ GUESSED ─ */
+    function onGuessed() {
+      if (gameState !== 'playing') return;
+      turnScore++;
+      turnScoreDisplay.textContent = turnScore;
+      playSound('win');
+      triggerConfetti(getTeamColor(currentTeam), 2);
+      cardIdx++;
+      showCard();
+    }
+
+    /* ─ TABOO ─ */
+    function onTaboo() {
+      if (gameState !== 'playing') return;
+      playSound('click');
+      cardIdx++;
+      showCard();
+    }
+
+    /* ─ END TURN ─ */
+    function endTurn() {
+      gameState = 'turn-end';
+      stopTimer();
+
+      var teams    = getTeams();
+      var scoreKey = (currentTeam === 'team1') ? 'score1' : 'score2';
+      var prevTotal = teams[scoreKey] || 0;
+      teams[scoreKey] = prevTotal + turnScore;
+      localStorage.setItem('fotr_teams', JSON.stringify(teams));
+      updateHeaderScore();
+
+      var stats    = JSON.parse(localStorage.getItem('fotr_stats') || '{}');
+      stats.points = (stats.points || 0) + turnScore * 10;
+      localStorage.setItem('fotr_stats', JSON.stringify(stats));
+
+      var name = getTeamName(currentTeam);
+      document.getElementById('turn-end-title').textContent     = t.turnEndTitle;
+      document.getElementById('turn-end-team-name').textContent = t.turnEndSub(name, turnScore);
+      document.getElementById('turn-end-pts').textContent       = turnScore;
+      document.getElementById('turn-end-total').textContent     = teams[scoreKey];
+
+      turnEndOverlay.style.display = 'flex';
+      if (turnScore > 0) {
+        setTimeout(function() { triggerConfetti(getTeamColor(currentTeam), 4); }, 200);
+        setTimeout(function() { playSound('win'); }, 300);
+      }
+    }
+
+    /* ─ NEXT TURN ─ */
+    function nextTurn() {
+      turnEndOverlay.style.display = 'none';
+      playArea.style.display       = 'none';
+      currentTeam  = (currentTeam === 'team1') ? 'team2' : 'team1';
+      timerSeconds = TIMER_DURATION;
+      updateTimerDisplay();
+      updateStartPanel();
+      startPanel.style.display = 'flex';
+      setCtrl('start');
+      gameState = 'idle';
+    }
+
+    /* ─ END GAME ─ */
+    function endGame() {
+      turnEndOverlay.style.display = 'none';
+      showRoundEnd();
+    }
+
+    /* ─ ROUND END ─ */
+    function showRoundEnd() {
+      gameState = 'end';
+      var teams = getTeams();
+      var s1    = teams.score1 || 0;
+      var s2    = teams.score2 || 0;
+      document.getElementById('end-t1-name').textContent  = teams.team1 || 'Team 1';
+      document.getElementById('end-t2-name').textContent  = teams.team2 || 'Team 2';
+      document.getElementById('end-t1-score').textContent = s1;
+      document.getElementById('end-t2-score').textContent = s2;
+      document.getElementById('end-title').textContent    = t.roundEnd;
+      var winner = null;
+      if (s1 > s2) winner = teams.team1;
+      else if (s2 > s1) winner = teams.team2;
+      document.getElementById('end-subtitle').textContent = t.roundEndSub(winner);
+
+      var stats   = JSON.parse(localStorage.getItem('fotr_stats') || '{}');
+      stats.trips = (stats.trips || 0) + 1;
+      localStorage.setItem('fotr_stats', JSON.stringify(stats));
+
+      roundEndOverlay.style.display = 'flex';
+      setTimeout(function() { triggerConfetti(null, 6); }, 200);
+      if (winner) setTimeout(function() { playSound('win'); }, 400);
+    }
+
+    /* ─ CONFETTI ─ */
+    function triggerConfetti(teamColor, bursts) {
+      bursts = bursts || 3;
+      var canvas  = confettiCanvas;
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+      var ctx = canvas.getContext('2d');
+      var palette = teamColor
+        ? [teamColor, '#ef4444', '#f59e0b', '#0ea5e9', '#8b5cf6']
+        : ['#ef4444', '#f59e0b', '#0ea5e9', '#8b5cf6', '#10b981', '#ec4899'];
+      var particles = [];
+      for (var b = 0; b < bursts; b++) {
+        for (var i = 0; i < 35; i++) {
+          particles.push({
+            x    : canvas.width  * 0.3 + Math.random() * canvas.width  * 0.4,
+            y    : canvas.height * 0.35,
+            vx   : (Math.random() - 0.5) * 10,
+            vy   : -(Math.random() * 8 + 3),
+            color: palette[Math.floor(Math.random() * palette.length)],
+            size : Math.random() * 9 + 4,
+            rot  : Math.random() * 360,
+            rotV : (Math.random() - 0.5) * 10,
+            shape: Math.random() > 0.5 ? 'rect' : 'circle',
+            g    : 0.3,
+            life : 1,
+            decay: Math.random() * 0.012 + 0.007
+          });
+        }
+      }
+      (function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        var alive = false;
+        for (var p = 0; p < particles.length; p++) {
+          var pk = particles[p];
+          if (pk.life <= 0) continue;
+          alive = true;
+          pk.x += pk.vx; pk.y += pk.vy; pk.vy += pk.g;
+          pk.rot += pk.rotV; pk.life -= pk.decay;
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, pk.life);
+          ctx.translate(pk.x, pk.y);
+          ctx.rotate(pk.rot * Math.PI / 180);
+          ctx.fillStyle = pk.color;
+          if (pk.shape === 'rect') {
+            ctx.fillRect(-pk.size / 2, -pk.size / 4, pk.size, pk.size / 2);
+          } else {
+            ctx.beginPath(); ctx.arc(0, 0, pk.size / 2, 0, Math.PI * 2); ctx.fill();
+          }
+          ctx.restore();
+        }
+        if (alive) requestAnimationFrame(animate);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      })();
+    }
+
+    /* ─ APPLY TRANSLATIONS ─ */
+    document.getElementById('start-btn-label') && (document.getElementById('start-btn-label').textContent = t.startTurnBtn);
+    btnStartTurn.querySelector('span').textContent          = t.startTurnBtn;
+    document.getElementById('start-desc').textContent      = t.startDesc;
+    document.getElementById('start-count').textContent     = t.startCount(CARDS.length);
+    document.getElementById('start-timer-info').textContent= t.startTimerInfo;
+    document.getElementById('do-not-say-label').textContent= t.doNotSay;
+    document.getElementById('taboo-label').textContent     = t.tabooBtn;
+    document.getElementById('guessed-label').textContent   = t.guessedBtn;
+    document.getElementById('pts-this-turn-label').textContent = t.ptsThisTurn;
+    document.getElementById('this-turn-label').textContent = t.thisTurn;
+    document.getElementById('total-label').textContent     = t.total;
+    document.getElementById('next-turn-label').textContent = t.nextTurnBtn;
+    document.getElementById('end-game-label').textContent  = t.endGameBtn;
+    document.getElementById('play-again-label').textContent= t.playAgain;
+    document.getElementById('home-label').textContent      = t.homeBtn;
+    document.getElementById('end-title').textContent       = t.roundEnd;
+    document.documentElement.lang = lang;
+
+    /* ─ EVENT LISTENERS ─ */
+    btnStartTurn.addEventListener('click', startTurn);
+    btnGuessed.addEventListener('click', onGuessed);
+    btnTaboo.addEventListener('click', onTaboo);
+    document.getElementById('btn-next-turn').addEventListener('click', nextTurn);
+    document.getElementById('btn-end-game').addEventListener('click', endGame);
+    document.getElementById('btn-buy-game').addEventListener('click', function() { handlePurchase('game'); });
+    document.getElementById('btn-buy-all').addEventListener('click', function() { handlePurchase('all'); });
+    document.getElementById('btn-play-again').addEventListener('click', function() {
+      roundEndOverlay.style.display = 'none';
+      initGame();
+    });
+
+    /* ─ BOOT ─ */
+    updateHeaderScore();
+    initGame();
+
+  })();
+  </script>
+
+</body>
+</html>

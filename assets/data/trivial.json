@@ -1,0 +1,2022 @@
+[
+  {
+    "Categoria": "Animali",
+    "Domanda": "Qual è l'animale più veloce del mondo?",
+    "Opzione A": "Ghepardo",
+    "Opzione B": "Falco Pellegrino",
+    "Opzione C": "Pesce Vela",
+    "Opzione D": "Aquila Reale",
+    "Risposta Corretta": "B",
+    "Curiosità": "Può superare i 320 km/h."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Qual è l'animale che uccide più esseri umani ogni anno?",
+    "Opzione A": "Squalo",
+    "Opzione B": "Leone",
+    "Opzione C": "Zanzara",
+    "Opzione D": "Serpente",
+    "Risposta Corretta": "C",
+    "Curiosità": "Le malattie trasmesse dalle zanzare uccidono circa 725.000 persone l'anno."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Qual è l'unico mammifero capace di volare?",
+    "Opzione A": "Scoiattolo volante",
+    "Opzione B": "Pipistrello",
+    "Opzione C": "Pinguino",
+    "Opzione D": "Ornitorinco",
+    "Risposta Corretta": "B",
+    "Curiosità": "Gli scoiattoli volanti in realtà planano solo."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Quante zampe ha una formica?",
+    "Opzione A": "4",
+    "Opzione B": "6",
+    "Opzione C": "8",
+    "Opzione D": "10",
+    "Risposta Corretta": "B",
+    "Curiosità": "In quanto insetto, ha sei zampe."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Quale animale ha il veleno più potente?",
+    "Opzione A": "Rana freccia dorata",
+    "Opzione B": "Polpo dagli anelli blu",
+    "Opzione C": "Pesce Palla",
+    "Opzione D": "Tarantola",
+    "Risposta Corretta": "A",
+    "Curiosità": "Il veleno di un solo esemplare può uccidere diversi esseri umani."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Quale animale è capace di rigenerare arti perduti?",
+    "Opzione A": "Stella marina",
+    "Opzione B": "Medusa",
+    "Opzione C": "Granchio",
+    "Opzione D": "Piovra",
+    "Risposta Corretta": "A",
+    "Curiosità": "Può rigenerare completamente un braccio e parte del corpo."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Quale animale terrestre ha la lingua più lunga rispetto al corpo?",
+    "Opzione A": "Camaleonte",
+    "Opzione B": "Formichiere",
+    "Opzione C": "Giraffa",
+    "Opzione D": "Rana",
+    "Risposta Corretta": "A",
+    "Curiosità": "La lingua può superare la lunghezza del suo stesso corpo."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Cosa riesce a fare un’anguilla?",
+    "Opzione A": "Può emettere ululati.",
+    "Opzione B": "Può volare per brevi tratte.",
+    "Opzione C": "Si può muovere sulla terraferma.",
+    "Opzione D": "Può autoriprodursi",
+    "Risposta Corretta": "C",
+    "Curiosità": "Si può muovere sulla terraferma, addirittura per molti chilometri. Si sposta ancora meglio se l’erba è bagnata."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Dove vivono i bradipi?",
+    "Opzione A": "Europa",
+    "Opzione B": "Asia",
+    "Opzione C": "Africa",
+    "Opzione D": "Sud America",
+    "Risposta Corretta": "D",
+    "Curiosità": "I bradipi vivono nelle foreste pluviali e tropicali del Centro e Sud America"
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Come viene anche chiamata la coda del castoro?",
+    "Opzione A": "Cucchiaio",
+    "Opzione B": "Pagaia",
+    "Opzione C": "Albero",
+    "Opzione D": "Paletta",
+    "Risposta Corretta": "B",
+    "Curiosità": "Chiamata così perché ricorda la pagaia del cannottaggio"
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Chi guida il branco degli elefanti?",
+    "Opzione A": "La femmina più vecchia",
+    "Opzione B": "Il maschio più forte",
+    "Opzione C": "Nessuno guida il branco",
+    "Opzione D": "Tutti gli elefanti a turno guidano il branco",
+    "Risposta Corretta": "A",
+    "Curiosità": "Il branco degli elefanti è guidato dalla matriarca, ovvero la femmina più anziana ed esperta del gruppo. Questa leader ha il compito cruciale di guidare la famiglia verso acqua e cibo, oltre a decidere come reagire ai pericoli, basandosi sulla sua lunga memoria e saggezza."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Quanto può durare la metamorfosi da bruco a farfalla?",
+    "Opzione A": "Pochi giorni",
+    "Opzione B": "Alcune settimane",
+    "Opzione C": "Fino a un anno",
+    "Opzione D": "Fino a otto anni",
+    "Risposta Corretta": "D",
+    "Curiosità": "La metamorfosi può durare anche fino a otto anni! Come nel caso della Eriogaster lanestris."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Quale affermazione è falsa?",
+    "Opzione A": "I gorilla non hanno quasi bisogno di bere",
+    "Opzione B": "I gorilla si nutrono quasi esclusivamente di piante",
+    "Opzione C": "I gorilla mangiano soprattutto banane",
+    "Opzione D": "I gorilla vivono solo in Africa",
+    "Risposta Corretta": "C",
+    "Curiosità": "Le banane coltivate sono un alimento troppo dolce e zuccherino per la loro dieta naturale e quella percezione è nata principalmente da vecchi zoo, film e circhi."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Dove nascono i piccoli di leone?",
+    "Opzione A": "In ospedale",
+    "Opzione B": "Vicino a un fiume, così la mamma può bere subito dopo aver partorito",
+    "Opzione C": "Al centro del branco, protetti da tutti i leoni",
+    "Opzione D": "In un nascondiglio, lontano dal branco",
+    "Risposta Corretta": "D",
+    "Curiosità": "Solo dopo circa sei settimane la mamma porta i cuccioli nel branco."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Quali di questi animali non vedono l'uomo come preda?",
+    "Opzione A": "Tigri",
+    "Opzione B": "Orche",
+    "Opzione C": "Coccodrilli",
+    "Opzione D": "Orsi polari",
+    "Risposta Corretta": "B",
+    "Curiosità": "Anche se al vertice della catena alimentare, questi animali generalmente non considerano l'uomo una fonte di cibo prioritaria o abituale."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Quanto sono grandi i panda giganti alla nascita?",
+    "Opzione A": "Quasi come un gatto ",
+    "Opzione B": "Quasi come un cane",
+    "Opzione C": "Quasi come un criceto",
+    "Opzione D": "Quasi come un maiale",
+    "Risposta Corretta": "C",
+    "Curiosità": "Alla nascita i cuccioli di panda sono minuscoli. Hanno appena le dimensioni di un criceto."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Dove vivono i pinguini?",
+    "Opzione A": "Al polo Sud",
+    "Opzione B": "Al polo Nord",
+    "Opzione C": "Al polo Sud e al polo Nord",
+    "Opzione D": "A Maranello",
+    "Risposta Corretta": "A",
+    "Curiosità": "I pinguini vivono esclusivamente nell'emisfero australe, principalmente al Polo Sud (Antartide) e nelle zone sub-antartiche. Non vivono al Polo Nord, poiché gli antenati si sono evoluti al sud e non migrano attraverso le calde acque tropicali, che agiscono da barriera naturale."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Che cosa non mangiano i ricci?",
+    "Opzione A": "Erba",
+    "Opzione B": "Uova",
+    "Opzione C": "Resti di animali morti",
+    "Opzione D": "Lombrichi",
+    "Risposta Corretta": "A",
+    "Curiosità": "I ricci mangiano insetti, lombrichi, uova, resti di animali morti, ma non erba."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Perché i serpenti tirano fuori la lingua?",
+    "Opzione A": "Per comunicare con gli altri serpenti",
+    "Opzione B": "Per scacciare i nemici",
+    "Opzione C": "Per sentire gli odori",
+    "Opzione D": "Per fare le pernacchie",
+    "Risposta Corretta": "C",
+    "Curiosità": "Non usano la lingua per il gusto, ma come un raffinato organo sensoriale per raccogliere particelle odorose dall'aria, aiutandoli a cacciare, trovare partner e orientarsi"
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Cosa non mangia uno squalo?",
+    "Opzione A": "Foche",
+    "Opzione B": "Fiori",
+    "Opzione C": "Tartarughe",
+    "Opzione D": "Pesci",
+    "Risposta Corretta": "B",
+    "Curiosità": "La maggior parte degli squali si ciba essenzialmente di tutti gli abitanti del mare"
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Tra questi animali, qual è il più grande?",
+    "Opzione A": "Tigre",
+    "Opzione B": "Leone",
+    "Opzione C": "Leopardo",
+    "Opzione D": "Pantera nera",
+    "Risposta Corretta": "A",
+    "Curiosità": "La tigre (Panthera tigris) è il più grande felino vivente, con maschi che possono raggiungere i 300 kg di peso e oltre 3 metri di lunghezza."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Quale colore è particolarmente difficile da vedere nelle profondità marine?",
+    "Opzione A": "Rosso",
+    "Opzione B": "Blu",
+    "Opzione C": "Verde",
+    "Opzione D": "Giallo",
+    "Risposta Corretta": "A",
+    "Curiosità": "Solo pochi animali degli abissi possono vedere il rosso."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Di che colore è la pelle di un orso polare?",
+    "Opzione A": "Bianca",
+    "Opzione B": "Rosa",
+    "Opzione C": "Nera",
+    "Opzione D": "Grigia",
+    "Risposta Corretta": "C",
+    "Curiosità": "La pelle è nera per assorbire il calore solare; il pelo è trasparente."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Quale animale può dormire fino a 3 anni?",
+    "Opzione A": "Lumaca",
+    "Opzione B": "Orso",
+    "Opzione C": "Tartaruga",
+    "Opzione D": "Serpente",
+    "Risposta Corretta": "A",
+    "Curiosità": "Alcune specie di chiocciole possono farlo per sopravvivere alla siccità."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Quale di questi animali non può saltare?",
+    "Opzione A": "Elefante",
+    "Opzione B": "Rinoceronte",
+    "Opzione C": "Ippopotamo",
+    "Opzione D": "Tutti e tre",
+    "Risposta Corretta": "A",
+    "Curiosità": "A causa della struttura ossea e del peso, l'elefante è l'unico mammifero che non salta."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Quale uccello depone l'uovo più grande rispetto al proprio corpo?",
+    "Opzione A": "Struzzo",
+    "Opzione B": "Kiwi",
+    "Opzione C": "Colibrì",
+    "Opzione D": "Aquila",
+    "Risposta Corretta": "B",
+    "Curiosità": "L'uovo può pesare fino al 25% del peso della femmina."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Come si chiama un gruppo di leoni?",
+    "Opzione A": "Branco",
+    "Opzione B": "Gregge",
+    "Opzione C": "Orgoglio",
+    "Opzione D": "Clan",
+    "Risposta Corretta": "C",
+    "Curiosità": "Dall'inglese 'Pride'."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Quale animale ha le impronte digitali simili alle umane?",
+    "Opzione A": "Scimpanzé",
+    "Opzione B": "Koala",
+    "Opzione C": "Gorilla",
+    "Opzione D": "Maiale",
+    "Risposta Corretta": "B",
+    "Curiosità": "Sono così simili che possono confondere la scientifica."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Quale animale ha il morso più potente?",
+    "Opzione A": "Leone",
+    "Opzione B": "Coccodrillo",
+    "Opzione C": "Orca",
+    "Opzione D": "Ippopotamo",
+    "Risposta Corretta": "C",
+    "Curiosità": "Con la sua forza, quasi cinque volte superiore a quella dello squalo bianco, è il predatore col morso più potente del pianeta."
+  },
+  {
+    "Categoria": "Animali",
+    "Domanda": "Qual è l'animale più rumoroso del mondo (può raggiungere i 188 decibel)?",
+    "Opzione A": "Leone",
+    "Opzione B": "Balenottera Azzurra",
+    "Opzione C": "Scimmia Urlatrice",
+    "Opzione D": "Elefante",
+    "Risposta Corretta": "B",
+    "Curiosità": "Il suo canto può essere sentito da altre balene fino a 800 km di distanza."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Da quale paese proviene originariamente il Kiwi (frutto)?",
+    "Opzione A": "Nuova Zelanda",
+    "Opzione B": "Australia",
+    "Opzione C": "Cina",
+    "Opzione D": "Cile",
+    "Risposta Corretta": "C",
+    "Curiosità": "Originariamente chiamato 'uva spina della Cina'."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Qual è l'unico alimento che non scade mai?",
+    "Opzione A": "Riso",
+    "Opzione B": "Miele",
+    "Opzione C": "Sale",
+    "Opzione D": "Zucchero",
+    "Risposta Corretta": "B",
+    "Curiosità": "Trovato commestibile anche nelle tombe egizie."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Quale spezia è la più costosa al mondo in base al peso?",
+    "Opzione A": "Vaniglia",
+    "Opzione B": "Zafferano",
+    "Opzione C": "Cardamomo",
+    "Opzione D": "Tartufo",
+    "Risposta Corretta": "B",
+    "Curiosità": "Per 1kg servono circa 150.000 fiori di crocus."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Quale tipo di pasta significa 'piccoli vermi'?",
+    "Opzione A": "Spaghetti",
+    "Opzione B": "Vermicelli",
+    "Opzione C": "Fusilli",
+    "Opzione D": "Linguine",
+    "Risposta Corretta": "B",
+    "Curiosità": "Il nome deriva proprio dalla loro forma sottile."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Quale frutto ha i semi all'esterno?",
+    "Opzione A": "Mora",
+    "Opzione B": "Fragola",
+    "Opzione C": "Lampone",
+    "Opzione D": "Fico",
+    "Risposta Corretta": "B",
+    "Curiosità": "La fragola è l'unico 'frutto' con i semi sulla buccia."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "In quale paese è stata inventata la pizza 'Hawaiiana' (ananas)?",
+    "Opzione A": "USA",
+    "Opzione B": "Italia",
+    "Opzione C": "Canada",
+    "Opzione D": "Australia",
+    "Risposta Corretta": "C",
+    "Curiosità": "Creata in Ontario nel 1962 da un ristoratore greco."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Quale vitamina è prodotta dal corpo con l'esposizione al sole?",
+    "Opzione A": "Vitamina A",
+    "Opzione B": "Vitamina C",
+    "Opzione C": "Vitamina D",
+    "Opzione D": "Vitamina K",
+    "Risposta Corretta": "C",
+    "Curiosità": "È fondamentale per l'assorbimento del calcio."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Qual è l'alimento più rubato nei supermercati?",
+    "Opzione A": "Carne",
+    "Opzione B": "Formaggio",
+    "Opzione C": "Cioccolato",
+    "Opzione D": "Frutta",
+    "Risposta Corretta": "B",
+    "Curiosità": "Rubato per la rivendita nei mercati neri o ristoranti a causa del suo alto valore al kg (es: Parmigiano Reggiano)"
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Qual è il cibo più consumato al mondo?",
+    "Opzione A": "Pane",
+    "Opzione B": "Riso",
+    "Opzione C": "Patate",
+    "Opzione D": "Pasta",
+    "Risposta Corretta": "B",
+    "Curiosità": "è l'alimento base per oltre metà della popolazione mondiale."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Quale alimento non affonda mai nell'acqua perché contiene il 25% di aria?",
+    "Opzione A": "Mela",
+    "Opzione B": "Pera",
+    "Opzione C": "Anguria",
+    "Opzione D": "Arancia",
+    "Risposta Corretta": "A",
+    "Curiosità": "Grazie all'aria tra le cellule, le mele galleggiano perfettamente."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Quale verdura contiene più acqua in assoluto (96%)?",
+    "Opzione A": "Pomodoro",
+    "Opzione B": "Cetriolo",
+    "Opzione C": "Lattuga",
+    "Opzione D": "Zucchina",
+    "Risposta Corretta": "B",
+    "Curiosità": "Mangiare un cetriolo equivale quasi a bere un bicchiere d'acqua."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Quale bevanda gassata conteneva originariamente cocaina?",
+    "Opzione A": "Pepsi",
+    "Opzione B": "Coca Cola",
+    "Opzione C": "Dr Pepper",
+    "Opzione D": "Fanta",
+    "Risposta Corretta": "B",
+    "Curiosità": "Fu rimossa completamente dalla ricetta solo nel 1903."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Qual è il peperoncino più piccante del mondo?",
+    "Opzione A": "Jalapeño",
+    "Opzione B": "Ghost Pepper",
+    "Opzione C": "Carolina Reaper",
+    "Opzione D": "Habanero",
+    "Risposta Corretta": "C",
+    "Curiosità": "Supera 2 milioni di unità Scoville."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Qual è il formaggio più costoso al mondo?",
+    "Opzione A": "Parmigiano",
+    "Opzione B": "Stilton",
+    "Opzione C": "Pule",
+    "Opzione D": "Blu di Bufala",
+    "Risposta Corretta": "C",
+    "Curiosità": "Prodotto con latte d’asina."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Qual è l'origine dei famosi \"\"Biscotti della Fortuna\"\"?",
+    "Opzione A": "Cina",
+    "Opzione B": "Italia",
+    "Opzione C": "USA (San Francisco)",
+    "Opzione D": "Corea del Sud",
+    "Risposta Corretta": "C",
+    "Curiosità": "Sono stati inventati in California all'inizio del 1900; in Cina sono quasi sconosciuti e considerati un cibo americano."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Quale paese consuma più pizza pro capite al mondo?",
+    "Opzione A": "USA",
+    "Opzione B": "Norvegia",
+    "Opzione C": "Italia",
+    "Opzione D": "Germania",
+    "Risposta Corretta": "B",
+    "Curiosità": "In rapporto alla popolazione, i norvegesi consumano più pizza (soprattutto surgelata) di qualunque altra nazione."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Qual è il gusto del gelato più venduto e amato a livello globale?",
+    "Opzione A": "Cioccolato",
+    "Opzione B": "Fragola",
+    "Opzione C": "Vaniglia",
+    "Opzione D": "Pistacchio",
+    "Risposta Corretta": "C",
+    "Curiosità": "La vaniglia è costantemente al primo posto in quasi tutte le classifiche mondiali per la sua versatilità negli abbinamenti."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Quale di questi formati di pasta non esiste?",
+    "Opzione A": "Pipe",
+    "Opzione B": "Trenette",
+    "Opzione C": "Zitoni",
+    "Opzione D": "Imbutini",
+    "Risposta Corretta": "D",
+    "Curiosità": "Pipe e Zitoni sono formati corti, Trenette è un formato lungo"
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Quale di questi cibi ha più calorie per 100g?",
+    "Opzione A": "Mortadella",
+    "Opzione B": "Mozzarella di bufala",
+    "Opzione C": "Cocco",
+    "Opzione D": "Ketchup",
+    "Risposta Corretta": "C",
+    "Curiosità": "Per 100g il cocco è decisamente il più calorico, avente circa 365 kcal. Poi ci sono la mortadella a 315, la mozzarella di bufala a 288 e il ketchup sui 100."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Quale paese produce più vino al mondo?",
+    "Opzione A": "Francia",
+    "Opzione B": "Italia",
+    "Opzione C": "Spagna",
+    "Opzione D": "USA",
+    "Risposta Corretta": "B",
+    "Curiosità": "L'Italia è solitamente al primo posto per produzione mondiale di vino, davanti a Francia e Spagna."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Molti credono sia nato all'estero, ma quale di questi è un piatto 100% italiano?",
+    "Opzione A": "Fettuccine Alfredo",
+    "Opzione B": "Pizza Hawaii",
+    "Opzione C": "Caesar Salad",
+    "Opzione D": "French Toast",
+    "Risposta Corretta": "A",
+    "Curiosità": "Spesso scambiato per americano, è nato a Roma nel 1908 nel ristorante di Alfredo di Lelio."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Tra i giudici di MasterChef Italia, chi detiene attualmente il maggior numero di stelle Michelin?",
+    "Opzione A": "Antonino Cannavacciuolo",
+    "Opzione B": "Carlo Cracco",
+    "Opzione C": "Giorgio Locatelli",
+    "Opzione D": "Bruno Barbieri",
+    "Risposta Corretta": "D",
+    "Curiosità": "Bruno Barbieri, dopo Enrico Bartolini, è il secondo italiano con più stelle. Cannavacciuolo ne ha 5."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Qual è il paese che mangia più pizza pro capite?",
+    "Opzione A": "Italia",
+    "Opzione B": "USA",
+    "Opzione C": "Norvegia",
+    "Opzione D": "Germania",
+    "Risposta Corretta": "C",
+    "Curiosità": "I norvegesi consumano quantità altissime."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Qual è il fast food più venduto al mondo?",
+    "Opzione A": "Hamburger",
+    "Opzione B": "Pizza",
+    "Opzione C": "Pollo fritto",
+    "Opzione D": "Tacos",
+    "Risposta Corretta": "A",
+    "Curiosità": "Miliardi venduti ogni anno."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "In quale città è stata inventata la \"\"Cotoletta alla Milanese\"\"?",
+    "Opzione A": "Milano",
+    "Opzione B": "Vienna",
+    "Opzione C": "Torino",
+    "Opzione D": "Mantova",
+    "Risposta Corretta": "A",
+    "Curiosità": "Esiste un'eterna sfida con la Wiener Schnitzel, ma documenti del 1148 citano già la \"\"lombolum cum panitio\"\" a Milano."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Cosa rende neri i famosi \"\"Spaghetti al nero\"\"?",
+    "Opzione A": "Liquirizia",
+    "Opzione B": "Carbone vegetale",
+    "Opzione C": "Inchiostro di seppia",
+    "Opzione D": "Olio bruciato",
+    "Risposta Corretta": "C",
+    "Curiosità": "La sacca dell'inchiostro della seppia viene rotta direttamente nel sugo durante la cottura."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Quale regione vanta la paternità della \"\"Nduja\"\"?",
+    "Opzione A": "Sicilia",
+    "Opzione B": "Calabria",
+    "Opzione C": "Puglia",
+    "Opzione D": "Sardegna",
+    "Risposta Corretta": "B",
+    "Curiosità": "È un salame piccante spalmabile tipico di Spilinga, fatto con parti grasse del maiale e peperoncino."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Quale di questi non è un ingrediente del Tiramisù originale?",
+    "Opzione A": "Marsala",
+    "Opzione B": "Mascarpone",
+    "Opzione C": "Panna",
+    "Opzione D": "Savoiardi",
+    "Risposta Corretta": "C",
+    "Curiosità": "La ricetta originale trevigiana prevede uova, zucchero, mascarpone, caffè e savoiardi (no panna!)."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Quale condimento emiliano deve invecchiare almeno 12 anni per essere \"\"Tradizionale\"\"?",
+    "Opzione A": "Lambrusco",
+    "Opzione B": "Aceto Balsamico",
+    "Opzione C": "Olio di noci",
+    "Opzione D": "Mostarda",
+    "Risposta Corretta": "B",
+    "Curiosità": "L'Aceto Balsamico Tradizionale di Modena DOP richiede un invecchiamento minimo di 12 o 25 anni."
+  },
+  {
+    "Categoria": "Cibo",
+    "Domanda": "Cos'è la \"\"Finocchiona\"\"?",
+    "Opzione A": "Una torta al finocchio",
+    "Opzione B": "Un salame",
+    "Opzione C": "Una zuppa",
+    "Opzione D": "Un'erba medica",
+    "Risposta Corretta": "B",
+    "Curiosità": "È un tipico salume toscano che contiene semi di finocchio nell'impasto."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Qual è il manga più venduto di sempre?",
+    "Opzione A": "Dragon Ball",
+    "Opzione B": "Naruto",
+    "Opzione C": "One Piece",
+    "Opzione D": "Doraemon",
+    "Risposta Corretta": "C",
+    "Curiosità": "One Piece di Eiichiro Oda è il manga più venduto di sempre, con oltre 500-600 milioni di copie in circolazione a livello mondiale. Segue Dragon Ball di Akira Toriyama con circa 350-360 milioni, mentre Golgo 13, Detective Conan e Naruto completano la parte alta della classifica, tutti sopra i 250 milioni di copie"
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Qual è la serie tv con il punteggio più alto secondo IMDb?",
+    "Opzione A": "Il Trono di Spade",
+    "Opzione B": "Breaking Bad",
+    "Opzione C": "Chernobyl",
+    "Opzione D": "Avatar: The Last Airbender",
+    "Risposta Corretta": "B",
+    "Curiosità": "Secondo la classifica IMDb Top 250 TV, la serie TV con il punteggio più alto di sempre è Breaking Bad - Reazioni collaterali (2008-2013), con una valutazione di 9,5/10 basata su oltre 2,6 milioni di voti. È considerata la migliore per la qualità della sceneggiatura, recitazione e sviluppo dei personaggi."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Qual è il film con il punteggio più alto secondo IMDb?",
+    "Opzione A": "Le ali della libertà",
+    "Opzione B": "Il padrino",
+    "Opzione C": "Il cavaliere oscuro",
+    "Opzione D": "Pulp Fiction",
+    "Risposta Corretta": "A",
+    "Curiosità": "Il film con il punteggio più alto di sempre su IMDb è Le ali della libertà (The Shawshank Redemption) del 1994, che mantiene stabilmente il primo posto con una valutazione di 9,3/10 basata su oltre 3 milioni di voti. Segue da vicino Il padrino (1972) con 9,2"
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Quale attore detiene il record per il maggior numero di premi Oscar vinti come Miglior Attore Protagonista?",
+    "Opzione A": "Robert De Niro",
+    "Opzione B": "Jack Nicholson",
+    "Opzione C": "Daniel Day-Lewis",
+    "Opzione D": "Tom Hanks",
+    "Risposta Corretta": "C",
+    "Curiosità": "Daniel Day-Lewis è l'unico uomo ad averne vinti tre come protagonista (Il mio piede sinistro, Il petroliere, Lincoln)."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Qual è l'anime più longevo della storia, con oltre 7.000 episodi?",
+    "Opzione A": "Sazae-san",
+    "Opzione B": "Doraemon",
+    "Opzione C": "One Piece",
+    "Opzione D": "Detective Conan",
+    "Risposta Corretta": "A",
+    "Curiosità": "In onda dal 1969, Sazae-san è entrato nel Guinness dei Primati come la serie animata più lunga al mondo."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Quanti minuti dura il film \"\"Titanic\"\" (1997), curiosamente la stessa durata del tempo di affondamento reale?",
+    "Opzione A": "120 minuti",
+    "Opzione B": "160 minuti",
+    "Opzione C": "195 minuti",
+    "Opzione D": "210 minuti",
+    "Risposta Corretta": "C",
+    "Curiosità": "Escludendo i titoli di testa e di coda, le scene ambientate nel 1912 durano esattamente 2 ore e 40 minuti, il tempo reale dell'affondamento."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Quale film horror detiene il record di spettatori svenuti in sala all'epoca della sua uscita?",
+    "Opzione A": "L'esorcista",
+    "Opzione B": "Shining",
+    "Opzione C": "Psycho",
+    "Opzione D": "Halloween",
+    "Risposta Corretta": "A",
+    "Curiosità": "Nel 1973, L'esorcista causò reazioni talmente forti che molti cinema misero a disposizione sacchetti per il vomito."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Qual è il titolo del film dello Studio Ghibli che ha vinto l'Oscar nel 2003?",
+    "Opzione A": "Il mio vicino Totoro",
+    "Opzione B": "La città incantata",
+    "Opzione C": "Il castello errante di Howl",
+    "Opzione D": "Ponyo",
+    "Risposta Corretta": "B",
+    "Curiosità": "È stato il primo film non in lingua inglese a vincere l'Oscar per il miglior film d'animazione."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Quale iconico cattivo cinematografico appare sullo schermo per soli 16 minuti in un film di oltre 2 ore?",
+    "Opzione A": "Joker",
+    "Opzione B": "Hannibal Lecter",
+    "Opzione C": "Darth Vader",
+    "Opzione D": "Lord Voldemort",
+    "Risposta Corretta": "B",
+    "Curiosità": "Ne \"\"Il Silenzio degli Innocenti\"\", Anthony Hopkins vinse l'Oscar come miglior attore con una delle performance più brevi della storia."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Nel film \"\"Interstellar\"\", ogni \"\"tic\"\" sonoro che si sente sul pianeta Miller a cosa corrisponde?",
+    "Opzione A": "Un secondo sulla Terra",
+    "Opzione B": "Un giorno sulla Terra",
+    "Opzione C": "Una settimana sulla Terra",
+    "Opzione D": "Un anno sulla Terra",
+    "Risposta Corretta": "C",
+    "Curiosità": "Hans Zimmer ha inserito un tic ogni 1,25 secondi: ogni tic rappresenta un'intera settimana che passa sulla Terra mentre i protagonisti sono lì."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Per il film \"\"Il Signore degli Anelli\"\", quante paia di piedi da Hobbit sono state fabbricate in totale?",
+    "Opzione A": "Circa 100",
+    "Opzione B": "Circa 500",
+    "Opzione C": "Oltre 1.800",
+    "Opzione D": "Oltre 5.000",
+    "Risposta Corretta": "C",
+    "Curiosità": "Ogni paio di piedi era \"\"usa e getta\"\" e doveva essere incollato ogni mattina; ne sono stati prodotti più di 1.800 per i quattro protagonisti."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "In quale film Disney viene detta la famose frase \"\"Le persone fanno sempre cose pazze quando sono innamorate\"\"?",
+    "Opzione A": "Hercules",
+    "Opzione B": "Tarzan",
+    "Opzione C": "Aladdin",
+    "Opzione D": "La Bella e la Bestia",
+    "Risposta Corretta": "A",
+    "Curiosità": "Megara pronuncia questa frase mentre parla con Ade, giustificando le sue azioni legate ai sentimenti che prova per Hercules."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Nel film \"\"Il Re Leone\"\", il ruggito dei leoni che sentiamo non è di veri leoni. Di quale animale è?",
+    "Opzione A": "Tigre",
+    "Opzione B": "Orso",
+    "Opzione C": "Pantera",
+    "Opzione D": "Alce",
+    "Risposta Corretta": "A",
+    "Curiosità": "Il ruggito del leone non era considerato abbastanza \"\"potente\"\", così usarono ruggiti di tigre mixati con suoni ambientali."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Quale delle seguenti frasi non è detta in Shrek?",
+    "Opzione A": "Meglio fuori che dentro, quello che dico sempre",
+    "Opzione B": "Non sono io ad avere un problema col mondo, è il mondo che sembra avere un problema con me",
+    "Opzione C": "Non riesco a dimenticare il mio sedere",
+    "Opzione D": "Non si incontra tutti i giorni un asino su un cavallo",
+    "Risposta Corretta": "D",
+    "Curiosità": "L'ultima frase è detta da Aladdin riferita all'arrogante principe Achmed."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Quale di queste star non è mai apparsa nella serie Friends?",
+    "Opzione A": "Robin Williams",
+    "Opzione B": "Brad Pitt",
+    "Opzione C": "Jim Carrey",
+    "Opzione D": "Julia Roberts",
+    "Risposta Corretta": "C",
+    "Curiosità": "Jim Carrey non ha mai fatto una comparsa in Friends, al contrario degli altri."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Qual è il film con più incassi nella storia?",
+    "Opzione A": "Titanic",
+    "Opzione B": "Avengers: Endgame",
+    "Opzione C": "Avatar",
+    "Opzione D": "Star Wars",
+    "Risposta Corretta": "C",
+    "Curiosità": "Detiene il record con oltre 2.9 miliardi di dollari."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Quanti Oscar ha vinto 'Il Ritorno del Re'?",
+    "Opzione A": "9",
+    "Opzione B": "11",
+    "Opzione C": "13",
+    "Opzione D": "10",
+    "Risposta Corretta": "B",
+    "Curiosità": "Ha vinto in tutte le categorie in cui era candidato."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Chi interpreta Jack Sparrow?",
+    "Opzione A": "Brad Pitt",
+    "Opzione B": "Tom Cruise",
+    "Opzione C": "Johnny Depp",
+    "Opzione D": "Orlando Bloom",
+    "Risposta Corretta": "C",
+    "Curiosità": "Il ruolo gli è valso una nomination agli Oscar."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Qual è il nome della città dei Simpson?",
+    "Opzione A": "Shelbyville",
+    "Opzione B": "Quahog",
+    "Opzione C": "Springfield",
+    "Opzione D": "South Park",
+    "Risposta Corretta": "C",
+    "Curiosità": "Scelta perché è uno dei nomi di città più comuni negli USA."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "In Matrix, di che colore è la pillola della verità?",
+    "Opzione A": "Blu",
+    "Opzione B": "Verde",
+    "Opzione C": "Rossa",
+    "Opzione D": "Gialla",
+    "Risposta Corretta": "C",
+    "Curiosità": "La blu serve a restare nell'illusione."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Quale attore ha interpretato James Bond in 7 film ufficiali?",
+    "Opzione A": "Sean Connery",
+    "Opzione B": "Roger Moore",
+    "Opzione C": "Daniel Craig",
+    "Opzione D": "Pierce Brosnan",
+    "Risposta Corretta": "B",
+    "Curiosità": "Connery ne ha fatti 6 ufficiali e uno non ufficiale."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Qual è il primo lungometraggio animato Disney?",
+    "Opzione A": "Pinocchio",
+    "Opzione B": "Bambi",
+    "Opzione C": "Biancaneve",
+    "Opzione D": "Dumbo",
+    "Risposta Corretta": "C",
+    "Curiosità": "Uscito nel 1937."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Chi ha diretto 'Inception'?",
+    "Opzione A": "Steven Spielberg",
+    "Opzione B": "Christopher Nolan",
+    "Opzione C": "Quentin Tarantino",
+    "Opzione D": "Martin Scorsese",
+    "Risposta Corretta": "B",
+    "Curiosità": "Noto per le sue trame complesse e non lineari."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Chi è stato nominato \"\"Uomo più bello del mondo\"\" nel 2016?",
+    "Opzione A": "Dwayne The Rock Johnson",
+    "Opzione B": "Brad Pitt",
+    "Opzione C": "Leonardo di Caprio",
+    "Opzione D": "Ryan Gosling",
+    "Risposta Corretta": "A",
+    "Curiosità": "Nel 2016 la rivista People lo ha premiato come Sexiest Man Alive"
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Qual è la serie Netflix più vista di sempre, considerando tutte le stagioni?",
+    "Opzione A": "Stranger Things",
+    "Opzione B": "Squid Game",
+    "Opzione C": "La Casa di Carta",
+    "Opzione D": "Wednesday",
+    "Risposta Corretta": "A",
+    "Curiosità": "Stranger Things è considerata la serie TV più vista di sempre su Netflix, con oltre 1,2 miliardi di visualizzazioni totali considerando l'intero arco delle stagioni"
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Qual è il video YouTube più visto di sempre?",
+    "Opzione A": "Despacito",
+    "Opzione B": "Baby Shark",
+    "Opzione C": "Gangnam Style",
+    "Opzione D": "Evolution of Dance",
+    "Risposta Corretta": "B",
+    "Curiosità": "Ha oltre 10 miliardi di visualizzazioni."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Quale film Disney è stato il primo ad essere nominato all'Oscar come Miglior Film?",
+    "Opzione A": "Biancaneve",
+    "Opzione B": "Il Re Leone",
+    "Opzione C": "La Bella e la Bestia",
+    "Opzione D": "Fantasia",
+    "Risposta Corretta": "C",
+    "Curiosità": "Nel 1991 fu un traguardo storico per l'animazione."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Quale di questi attori ha vinto un Oscar postumo?",
+    "Opzione A": "James Dean",
+    "Opzione B": "Heath Ledger",
+    "Opzione C": "Marilyn Monroe",
+    "Opzione D": "Paul Walker",
+    "Risposta Corretta": "B",
+    "Curiosità": "Vinse come Miglior Attore non Protagonista per \"\"Il Cavaliere Oscuro\"\"."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Qual è il film che ha generato più profitti rispetto al budget (costato 15k, incassato 193M)?",
+    "Opzione A": "Paranormal Activity",
+    "Opzione B": "Titanic",
+    "Opzione C": "Rocky",
+    "Opzione D": "Mad Max",
+    "Risposta Corretta": "A",
+    "Curiosità": "È considerato il film più redditizio della storia del cinema in termini di percentuale."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Quale film ha il record per il maggior numero di parolacce (oltre 500 \"\"F-word\"\")?",
+    "Opzione A": "Pulp Fiction",
+    "Opzione B": "Scarface",
+    "Opzione C": "The Wolf of Wall Street",
+    "Opzione D": "Casino",
+    "Risposta Corretta": "C",
+    "Curiosità": "La parola viene pronunciata in media 3 volte al minuto per tutta la durata del film."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è la bevanda più bevuta al mondo dopo l'acqua?",
+    "Opzione A": "Coca-Cola",
+    "Opzione B": "Caffè",
+    "Opzione C": "Tè",
+    "Opzione D": "Birra",
+    "Risposta Corretta": "C",
+    "Curiosità": "Il tè batte il caffè per volume di consumo globale."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è il colore della 'Scatola Nera' degli aerei?",
+    "Opzione A": "Nero",
+    "Opzione B": "Rosso",
+    "Opzione C": "Arancione",
+    "Opzione D": "Giallo",
+    "Risposta Corretta": "C",
+    "Curiosità": "È arancione fluorescente per essere facilmente rintracciabile."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Quanti tasti ha un pianoforte standard?",
+    "Opzione A": "88",
+    "Opzione B": "76",
+    "Opzione C": "92",
+    "Opzione D": "80",
+    "Risposta Corretta": "A",
+    "Curiosità": "52 tasti bianchi e 36 tasti neri."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "In quale lingua è stato scritto 'Il Piccolo Principe'?",
+    "Opzione A": "Spagnolo",
+    "Opzione B": "Francese",
+    "Opzione C": "Italiano",
+    "Opzione D": "Tedesco",
+    "Risposta Corretta": "B",
+    "Curiosità": "Scritto da Antoine de Saint-Exupéry nel 1943."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è l'elemento chimico più abbondante nell'universo?",
+    "Opzione A": "Ossigeno",
+    "Opzione B": "Idrogeno",
+    "Opzione C": "Elio",
+    "Opzione D": "Carbonio",
+    "Risposta Corretta": "B",
+    "Curiosità": "Costituisce circa il 75% della massa della materia elementare."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Cosa significa l'acronimo 'LEGO'?",
+    "Opzione A": "Mattoncini Uniti",
+    "Opzione B": "Gioca Bene",
+    "Opzione C": "Leggero e Gommoso",
+    "Opzione D": "Costruisci Tutto",
+    "Risposta Corretta": "B",
+    "Curiosità": "Dal danese 'Leg Godt'."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è il social network con più utenti al mondo?",
+    "Opzione A": "Instagram",
+    "Opzione B": "TikTok",
+    "Opzione C": "Facebook",
+    "Opzione D": "WhatsApp",
+    "Risposta Corretta": "C",
+    "Curiosità": "Facebook mantiene ancora il primato con circa 3 miliardi di utenti."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Quanti cuori ha un polpo?",
+    "Opzione A": "1",
+    "Opzione B": "2",
+    "Opzione C": "3",
+    "Opzione D": "4",
+    "Risposta Corretta": "C",
+    "Curiosità": "Due cuori pompano sangue alle branchie, uno al resto del corpo."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "In quale città si trova l'aeroporto più trafficato del mondo?",
+    "Opzione A": "Dubai",
+    "Opzione B": "Londra",
+    "Opzione C": "Atlanta",
+    "Opzione D": "Pechino",
+    "Risposta Corretta": "C",
+    "Curiosità": "L'aeroporto Hartsfield-Jackson di Atlanta detiene quasi sempre il primato."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Quante volte al giorno ride mediamente una persona adulta?",
+    "Opzione A": "5",
+    "Opzione B": "15",
+    "Opzione C": "50",
+    "Opzione D": "100",
+    "Risposta Corretta": "B",
+    "Curiosità": "I bambini oltre 300"
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Quanta pelle perdiamo mediamente ogni anno?",
+    "Opzione A": "100 g",
+    "Opzione B": "500 g",
+    "Opzione C": "2 kg",
+    "Opzione D": "4 kg",
+    "Risposta Corretta": "D",
+    "Curiosità": "Circa 4 kg di pelle morta ogni anno."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Quante persone hanno vissuto sulla Terra in totale nella storia?",
+    "Opzione A": "10 miliardi",
+    "Opzione B": "25 miliardi",
+    "Opzione C": "50 miliardi",
+    "Opzione D": "100 miliardi",
+    "Risposta Corretta": "D",
+    "Curiosità": "Circa il 7% di tutti gli essere umani mai nati è vivo oggi"
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Quante ossa ha un adulto?",
+    "Opzione A": "180",
+    "Opzione B": "206",
+    "Opzione C": "230",
+    "Opzione D": "250",
+    "Risposta Corretta": "B",
+    "Curiosità": "Oltre la metà delle ossa (106 su 206) si trova nelle mani e nei piedi, e al mattino siamo leggermente più alti a causa della decompressione della cartilagine."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Quanto pesa mediamente una nuvola?",
+    "Opzione A": "1 tonnellata",
+    "Opzione B": "100 kg",
+    "Opzione C": "500 tonnellate",
+    "Opzione D": "50 tonnellate",
+    "Risposta Corretta": "C",
+    "Curiosità": "Una nuvola di medie dimensioni (cumulo) pesa circa 500 tonnellate"
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è il videogioco più venduto della storia?",
+    "Opzione A": "GTA V",
+    "Opzione B": "Tetris",
+    "Opzione C": "Minecraft",
+    "Opzione D": "Mario Kart",
+    "Risposta Corretta": "C",
+    "Curiosità": "Minecraft è il videogioco più venduto di sempre, con oltre 300-350 milioni di copie."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è l'oggetto più venduto al mondo?",
+    "Opzione A": "Smartphon",
+    "Opzione B": "Penna Bic",
+    "Opzione C": "Libro",
+    "Opzione D": "Coca Cola",
+    "Risposta Corretta": "B",
+    "Curiosità": "La penna a sfera BIC Cristal è considerata l'oggetto più venduto nella storia, con oltre 100 miliardi di pezzi venduti."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è il colore più amato al mondo?",
+    "Opzione A": "Rosso",
+    "Opzione B": "Blu",
+    "Opzione C": "Verde",
+    "Opzione D": "Nero",
+    "Risposta Corretta": "B",
+    "Curiosità": "Il blu è ampiamente riconosciuto come il colore preferito più popolare al mondo, vincendo in numerosi sondaggi internazionali condotti su diversi continenti. È associato a sensazioni di calma, serenità, fiducia e sicurezza, spesso collegato biologicamente a elementi naturali come il cielo e l'acqua."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è la password più usata al mondo?",
+    "Opzione A": "123456",
+    "Opzione B": "password",
+    "Opzione C": "qwerty",
+    "Opzione D": "admin",
+    "Risposta Corretta": "A",
+    "Curiosità": "La password più comune al mondo, “123456”, è utilizzata da oltre 21.6 milioni di utenti ed è crackabile in meno di un secondo."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è la paura più comune?",
+    "Opzione A": "Ragni",
+    "Opzione B": "Altezza",
+    "Opzione C": "Parlare in pubblico",
+    "Opzione D": "Buio",
+    "Risposta Corretta": "C",
+    "Curiosità": "La paura più diffusa al mondo è la glossofobia, ovvero la paura di parlare in pubblico, che colpisce circa il 75% della popolazione. Spesso legata al timore del giudizio, si manifesta con ansia, sudorazione e tachicardia, superando in alcuni studi persino la paura della morte."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Quante lingue esistono nel mondo?",
+    "Opzione A": "20",
+    "Opzione B": "100",
+    "Opzione C": "2000",
+    "Opzione D": "7000",
+    "Risposta Corretta": "D",
+    "Curiosità": "Nel mondo si parlano circa 7.000 lingue, sebbene il numero esatto sia in continua evoluzione a causa di estinzioni e nuove documentazioni."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è il nome più diffuso al mondo?",
+    "Opzione A": "Mauro",
+    "Opzione B": "John Adams",
+    "Opzione C": "Maria",
+    "Opzione D": "Mohammed",
+    "Risposta Corretta": "D",
+    "Curiosità": "Il nome proprio più diffuso al mondo è considerato Muhammad dovuto alla vastissima diffusione della religione islamica."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è il ricordo più resistente nel cervello umano?",
+    "Opzione A": "Odori",
+    "Opzione B": "Suoni",
+    "Opzione C": "Immagini",
+    "Opzione D": "Numeri",
+    "Risposta Corretta": "A",
+    "Curiosità": "L'olfatto è collegato direttamente alle aree emotive del cervello: per questo un profumo può riportarti istantaneamente nel passato."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è la professione più diffusa al mondo?",
+    "Opzione A": "Insegnante",
+    "Opzione B": "Agricoltore",
+    "Opzione C": "Venditore",
+    "Opzione D": "Operaio",
+    "Risposta Corretta": "B",
+    "Curiosità": "Ancora oggi miliardi di persone lavorano direttamente o indirettamente nell'agricoltura."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è il colore originale delle carote?",
+    "Opzione A": "Arancione",
+    "Opzione B": "Giallo",
+    "Opzione C": "Viola",
+    "Opzione D": "Bianco",
+    "Risposta Corretta": "C",
+    "Curiosità": "Il colore arancione fu creato dagli olandesi nel XVII secolo per onorare la dinastia d'Orange."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è l'oggetto più smarrito dai passeggeri della metropolitana di Londra?",
+    "Opzione A": "Ombrelli",
+    "Opzione B": "Cellulari",
+    "Opzione C": "Dentiere",
+    "Opzione D": "Preservativi",
+    "Risposta Corretta": "C",
+    "Curiosità": "Ogni anno vengono ritrovate centinaia di dentiere negli uffici oggetti smarriti!"
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è la parola più usata al mondo dopo \"\"Ciao\"\" o \"\"Hello\"\"?",
+    "Opzione A": "OK",
+    "Opzione B": "No",
+    "Opzione C": "Mamma",
+    "Opzione D": "Pizza",
+    "Risposta Corretta": "A",
+    "Curiosità": "È riconosciuta universalmente in quasi ogni lingua del pianeta."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è la nazione più felice del mondo secondo il World Happiness Report?",
+    "Opzione A": "Svizzera",
+    "Opzione B": "Finlandia",
+    "Opzione C": "Danimarca",
+    "Opzione D": "Canada",
+    "Risposta Corretta": "B",
+    "Curiosità": "Vince stabilmente il primo posto da diversi anni."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Quale regione italiana ha il maggior numero di siti Patrimonio UNESCO?",
+    "Opzione A": "Toscana",
+    "Opzione B": "Lombardia",
+    "Opzione C": "Sicilia",
+    "Opzione D": "Veneto",
+    "Risposta Corretta": "B",
+    "Curiosità": "La Lombardia detiene il primato con ben 10 siti riconosciuti."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Quale università italiana è la più antica del mondo occidentale?",
+    "Opzione A": "Padova",
+    "Opzione B": "Bologna",
+    "Opzione C": "Sapienza Roma",
+    "Opzione D": "Federico II Napoli",
+    "Risposta Corretta": "B",
+    "Curiosità": "L'Università di Bologna (Alma Mater Studiorum) è stata fondata nel 1088."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Quante regioni ha l'Italia?",
+    "Opzione A": "18",
+    "Opzione B": "20",
+    "Opzione C": "22",
+    "Opzione D": "15",
+    "Risposta Corretta": "B",
+    "Curiosità": "Di queste, 5 sono a statuto speciale (Sicilia, Sardegna, Valle d'Aosta, Trentino, Friuli)."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è il prodotto tecnologico più venduto di sempre?",
+    "Opzione A": "PlayStation 2",
+    "Opzione B": "Nokia 3310",
+    "Opzione C": "iPhone",
+    "Opzione D": "Televisore Samsung",
+    "Risposta Corretta": "A",
+    "Curiosità": "Ha superato i 155 milioni di unità."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è l'auto più venduta della storia?",
+    "Opzione A": "Ford Fiesta",
+    "Opzione B": "Toyota Corolla",
+    "Opzione C": "Volkswagen Golf",
+    "Opzione D": "Fiat Panda",
+    "Risposta Corretta": "B",
+    "Curiosità": "Oltre 50 milioni vendute."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è il quadro più rubato della storia?",
+    "Opzione A": "Urlo",
+    "Opzione B": "Gioconda",
+    "Opzione C": "Ritratto di Rembrandt",
+    "Opzione D": "Guernica",
+    "Risposta Corretta": "A",
+    "Curiosità": "È stato rubato più volte."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è il giocattolo più venduto di sempre?",
+    "Opzione A": "LEGO",
+    "Opzione B": "Barbie",
+    "Opzione C": "Rubik's Cube",
+    "Opzione D": "Hot Wheels",
+    "Risposta Corretta": "A",
+    "Curiosità": "I mattoncini LEGO sono prodotti dal 1949."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è la regione italiana con più castelli?",
+    "Opzione A": "Toscana",
+    "Opzione B": "Trentino-Alto Adige",
+    "Opzione C": "Piemonte",
+    "Opzione D": "Lazio",
+    "Risposta Corretta": "C",
+    "Curiosità": "Oltre 700 castelli censiti."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è la regione italiana con più comuni?",
+    "Opzione A": "Lombardia",
+    "Opzione B": "Piemonte",
+    "Opzione C": "Campania",
+    "Opzione D": "Veneto",
+    "Risposta Corretta": "A",
+    "Curiosità": "Ha oltre 1500 comuni."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Quale città italiana ha più ponti?",
+    "Opzione A": "Venezia",
+    "Opzione B": "Firenze",
+    "Opzione C": "Roma",
+    "Opzione D": "Milano",
+    "Risposta Corretta": "A",
+    "Curiosità": "Oltre 400 ponti."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Quale regione produce più vino in Italia?",
+    "Opzione A": "Sicilia",
+    "Opzione B": "Veneto",
+    "Opzione C": "Toscana",
+    "Opzione D": "Puglia",
+    "Risposta Corretta": "B",
+    "Curiosità": "Il Veneto è primo per quantità."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è la città più visitata d’Italia?",
+    "Opzione A": "Roma",
+    "Opzione B": "Venezia",
+    "Opzione C": "Milano",
+    "Opzione D": "Firenze",
+    "Risposta Corretta": "A",
+    "Curiosità": "Accoglie milioni di turisti ogni anno."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Quale paese europeo beve più alcol pro capite?",
+    "Opzione A": "Germania",
+    "Opzione B": "Francia",
+    "Opzione C": "Repubblica Ceca",
+    "Opzione D": "Irlanda",
+    "Risposta Corretta": "C",
+    "Curiosità": "La birra è parte della cultura locale."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Quale multinazionale è il più grande distributore di giocattoli al mondo?",
+    "Opzione A": "LEGO",
+    "Opzione B": "Barbie",
+    "Opzione C": "McDonald's",
+    "Opzione D": "Hasbro",
+    "Risposta Corretta": "C",
+    "Curiosità": "Con gli \"\"Happy Meal\"\", McDonald's distribuisce oltre 1,5 miliardi di giocattoli all'anno, superando colossi come LEGO."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Quanti elementi ci sono nella tavola periodica attualmente?",
+    "Opzione A": "92",
+    "Opzione B": "108",
+    "Opzione C": "118",
+    "Opzione D": "124",
+    "Risposta Corretta": "C",
+    "Curiosità": "L'elemento più pesante è l'Oganesson (numero atomico 118), sintetizzato in laboratorio."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è l'organo più grande del corpo umano?",
+    "Opzione A": "Fegato",
+    "Opzione B": "Polmone",
+    "Opzione C": "Intestino",
+    "Opzione D": "Pelle",
+    "Risposta Corretta": "D",
+    "Curiosità": "La pelle pesa in media tra i 3,5 e i 5 kg e copre circa 2 m² di superficie."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Quale tennista ha vinto più Slam nella storia?",
+    "Opzione A": "Roger Federer",
+    "Opzione B": "Rafael Nadal",
+    "Opzione C": "Novak Djokovic",
+    "Opzione D": "Pete Sampras",
+    "Risposta Corretta": "C",
+    "Curiosità": "Novak Djokovic guida con 24 Slam, davanti a Nadal (22) e Federer (20)."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è l'edificio più alto del mondo (828 metri)?",
+    "Opzione A": "Empire State Building",
+    "Opzione B": "Shanghai Tower",
+    "Opzione C": "Burj Khalifa",
+    "Opzione D": "Torre Eiffel",
+    "Risposta Corretta": "C",
+    "Curiosità": "Si trova a Dubai e ha oltre 160 piani."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Cosa fanno i pinguini maschi per \"\"chiedere la mano\"\" a una femmina?",
+    "Opzione A": "Portano un pesce",
+    "Opzione B": "Regalano un sasso",
+    "Opzione C": "Cantano",
+    "Opzione D": "Danzano",
+    "Risposta Corretta": "B",
+    "Curiosità": "Cercano il ciottolo più liscio e bello della spiaggia per donarlo alla prescelta."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Chi è l'autore del quadro “Guernica”?",
+    "Opzione A": "Picasso",
+    "Opzione B": "Monet",
+    "Opzione C": "Salvator Dalì",
+    "Opzione D": "Michelangelo",
+    "Risposta Corretta": "A",
+    "Curiosità": "Il pittore di Guernica è Pablo Picasso, che realizzò l'opera monumentale nel 1937"
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è il colore di auto più rubato al mondo?",
+    "Opzione A": "Rosso",
+    "Opzione B": "Nero",
+    "Opzione C": "Bianco",
+    "Opzione D": "Grigio",
+    "Risposta Corretta": "C",
+    "Curiosità": "Semplicemente perché è il colore più diffuso; le auto bianche sono più facili da rivendere o camuffare."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è la provincia italiana con la qualità della vita più alta (spesso 1ª in classifica)?",
+    "Opzione A": "Milano",
+    "Opzione B": "Bolzano",
+    "Opzione C": "Trento",
+    "Opzione D": "Bologna",
+    "Risposta Corretta": "D",
+    "Curiosità": "Bologna vince spesso la classifica del Sole 24 Ore per servizi, cultura e reddito."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è il sito web più visitato al mondo (escluso Google)?",
+    "Opzione A": "Facebook",
+    "Opzione B": "YouTube",
+    "Opzione C": "Amazon",
+    "Opzione D": "Instagram",
+    "Risposta Corretta": "B",
+    "Curiosità": "YouTube è il secondo sito più visitato e il secondo motore di ricerca più usato."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è la sostanza più costosa al mondo al grammo?",
+    "Opzione A": "Diamanti",
+    "Opzione B": "Plutonio",
+    "Opzione C": "Antimateria",
+    "Opzione D": "Oro",
+    "Risposta Corretta": "C",
+    "Curiosità": "Produrre un solo grammo di antimateria costerebbe circa 62 trilioni di dollari."
+  },
+  {
+    "Categoria": "Cultura Generale",
+    "Domanda": "Qual è il cognome più diffuso sul pianeta Terra?",
+    "Opzione A": "Smith",
+    "Opzione B": "Rossi",
+    "Opzione C": "Wang",
+    "Opzione D": "Garcia",
+    "Risposta Corretta": "C",
+    "Curiosità": "Oltre 100 milioni di persone nel mondo si chiamano Wang (prevalentemente in Cina)."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Qual è il paese con più lingue ufficiali?",
+    "Opzione A": "Svizzera",
+    "Opzione B": "Sudafrica",
+    "Opzione C": "India",
+    "Opzione D": "Canada",
+    "Risposta Corretta": "B",
+    "Curiosità": "Ha 11 lingue ufficiali."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Qual è il paese con più isole?",
+    "Opzione A": "Indonesia",
+    "Opzione B": "Norvegia",
+    "Opzione C": "Svezia",
+    "Opzione D": "Filippine",
+    "Risposta Corretta": "C",
+    "Curiosità": "Oltre 260.000 isole."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Qual è il paese più giovane del mondo?",
+    "Opzione A": "Sudan del Sud",
+    "Opzione B": "Kosovo",
+    "Opzione C": "Montenegro",
+    "Opzione D": "Eritrea",
+    "Risposta Corretta": "A",
+    "Curiosità": "Indipendente dal 2011."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Quale continente ha più deserti?",
+    "Opzione A": "Africa",
+    "Opzione B": "Asia",
+    "Opzione C": "Oceania",
+    "Opzione D": "Antartide",
+    "Risposta Corretta": "D",
+    "Curiosità": "È tecnicamente un deserto freddo."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Qual è il paese più grande del mondo per superficie?",
+    "Opzione A": "Canada",
+    "Opzione B": "Cina",
+    "Opzione C": "Russia",
+    "Opzione D": "Stati Uniti",
+    "Risposta Corretta": "C",
+    "Curiosità": "Copre 11 fusi orari diversi."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "In quale città si trova la 'Città dei Morti', un cimitero abitato da persone vive?",
+    "Opzione A": "Nuova Delhi",
+    "Opzione B": "Il Cairo",
+    "Opzione C": "Città del Messico",
+    "Opzione D": "Manila",
+    "Risposta Corretta": "B",
+    "Curiosità": "È una zona del Cairo dove migliaia di persone vivono tra le tombe dei propri antenati."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Qual è l'isola più grande del mondo?",
+    "Opzione A": "Australia",
+    "Opzione B": "Groenlandia",
+    "Opzione C": "Madagascar",
+    "Opzione D": "Nuova Guinea",
+    "Risposta Corretta": "B",
+    "Curiosità": "Nonostante le dimensioni immense, la Groenlandia ha solo 56.000 abitanti a causa dei ghiacci perenni."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Quale città è divisa tra due continenti, Europa e Asia?",
+    "Opzione A": "Mosca",
+    "Opzione B": "Istanbul",
+    "Opzione C": "Atene",
+    "Opzione D": "Il Cairo",
+    "Risposta Corretta": "B",
+    "Curiosità": "Divisa dallo stretto del Bosforo, Istanbul è l'unica metropoli al mondo situata su due continenti."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Qual è lo stato più popoloso del mondo?",
+    "Opzione A": "USA",
+    "Opzione B": "India",
+    "Opzione C": "Cina",
+    "Opzione D": "Indonesia",
+    "Risposta Corretta": "B",
+    "Curiosità": "L'India è diventata ufficialmente la nazione più popolata, superando la soglia di 1,4 miliardi di persone."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Esiste un punto nell'Oceano Pacifico chiamato \"\"Punto Nemo\"\". Qual è la sua particolarità?",
+    "Opzione A": "È infestato dagli squali bianchi",
+    "Opzione B": "È il punto dove non tramonta mai il sole",
+    "Opzione C": "Gli umani più vicini sono gli astronauti",
+    "Opzione D": "Vi si trova una piramide sommersa",
+    "Risposta Corretta": "C",
+    "Curiosità": "Essendo il punto più lontano da qualsiasi terra emersa (2.688 km), gli esseri umani più vicini sono spesso quelli sulla Stazione Spaziale Internazionale."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Qual è l'unico continente senza deserti?",
+    "Opzione A": "Europa",
+    "Opzione B": "Sud America",
+    "Opzione C": "Nord America",
+    "Opzione D": "Oceania",
+    "Risposta Corretta": "A",
+    "Curiosità": "Sebbene ci siano zone aride (come in Spagna), l'Europa è l'unica priva di deserti sabbiosi classici."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "In quale mare si trova l'isola di Creta?",
+    "Opzione A": "Mar Ionio",
+    "Opzione B": "Mar Tirreno",
+    "Opzione C": "Mar Egeo",
+    "Opzione D": "Mar Adriatico",
+    "Risposta Corretta": "C",
+    "Curiosità": "È l'isola più grande della Grecia e chiude a sud il bacino del Mar Egeo."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Quale delle seguenti città, tre delle quali in provincia di Modena, non è in Emilia Romagna?",
+    "Opzione A": "San Possidonio",
+    "Opzione B": "Polinago",
+    "Opzione C": "Montefiorino",
+    "Opzione D": "Asola",
+    "Risposta Corretta": "D",
+    "Curiosità": "Asola è un comune italiano di 9 860 abitanti della provincia di Mantova in Lombardia"
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Qual è lo Stato americano più grande in termini di superficie?",
+    "Opzione A": "Alaska",
+    "Opzione B": "Texas",
+    "Opzione C": "California",
+    "Opzione D": "Colorado",
+    "Risposta Corretta": "A",
+    "Curiosità": "L'Alaska copre oltre il 20% dell'intera area degli Stati Uniti continentali ed è più del doppio del Texas, il secondo Stato più grande. "
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Quale catena montuosa separa l'Europa dall'Asia?",
+    "Opzione A": "Himalaya",
+    "Opzione B": "Monti Urali",
+    "Opzione C": "Montagne del Caucaso",
+    "Opzione D": "Alpi",
+    "Risposta Corretta": "B",
+    "Curiosità": "Situati in Russia, si estendono per circa 2.000 km da nord a sud, costituendo il confine naturale convenzionale tra i due continenti. "
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Qual è lo stato pià costoso al mondo per vivere e visitare?",
+    "Opzione A": "Singapore",
+    "Opzione B": "Hong Kong",
+    "Opzione C": "Giappone",
+    "Opzione D": "Svizzera",
+    "Risposta Corretta": "D",
+    "Curiosità": "La Svizzera è costantemente classificata come il paese più costoso al mondo per vivere nel 2024-2026, grazie ad altissimi costi di affitto, servizi e beni di consumo."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Qual è il paese con più siti dell'unesco?",
+    "Opzione A": "Italia",
+    "Opzione B": "Francia",
+    "Opzione C": "Cina",
+    "Opzione D": "Germania",
+    "Risposta Corretta": "A",
+    "Curiosità": "Al 2025/2026, l'Italia è il paese con il maggior numero di siti Patrimonio dell'Umanità UNESCO al mondo, raggiungendo quota 61 siti. Segue la Cina con 60 siti."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Qual è il paese con la forza militare più potente al mondo?",
+    "Opzione A": "Usa",
+    "Opzione B": "Russia",
+    "Opzione C": "Cina",
+    "Opzione D": "India",
+    "Risposta Corretta": "A",
+    "Curiosità": "Gli Stati Uniti sono considerati il paese con la forza militare più potente al mondo, guidando la classifica per budget, tecnologia, e capacità navale/aerea. Seguono Russia e Cina."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Quale paese ha il maggior numero di fusi orari (ben 12)?",
+    "Opzione A": "Russia",
+    "Opzione B": "USA",
+    "Opzione C": "Cina",
+    "Opzione D": "Francia",
+    "Risposta Corretta": "D",
+    "Curiosità": "Grazie ai suoi numerosi territori d'oltremare sparsi per il globo."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "In quale oceano si trova l'isola di Pasqua?",
+    "Opzione A": "Atlantico",
+    "Opzione B": "Indiano",
+    "Opzione C": "Pacifico",
+    "Opzione D": "Artico",
+    "Risposta Corretta": "C",
+    "Curiosità": "Appartiene al Cile ma si trova nel Pacifico meridionale."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Quale di queste città non è una capitale?",
+    "Opzione A": "Sydney",
+    "Opzione B": "Ottawa",
+    "Opzione C": "Ankara",
+    "Opzione D": "Rabat",
+    "Risposta Corretta": "A",
+    "Curiosità": "La capitale dell'Australia è Canberra, non Sydney."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Quale è il fiume più lungo del mondo?",
+    "Opzione A": "Nilo",
+    "Opzione B": "Danubio",
+    "Opzione C": "Reno",
+    "Opzione D": "Rio delle Amazzoni",
+    "Risposta Corretta": "D",
+    "Curiosità": "Misurazioni moderne lo indicano come più lungo del Nilo."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Qual è lo stato più piccolo del mondo per superficie?",
+    "Opzione A": "Monaco",
+    "Opzione B": "San Marino",
+    "Opzione C": "Città del Vaticano",
+    "Opzione D": "Liechtenstein",
+    "Risposta Corretta": "C",
+    "Curiosità": "Misura solo 0,44 km quadrati."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Qual è la città più visitata al mondo?",
+    "Opzione A": "Parigi",
+    "Opzione B": "New York",
+    "Opzione C": "Bangkok",
+    "Opzione D": "Londra",
+    "Risposta Corretta": "C",
+    "Curiosità": "Bangkok si conferma la città più visitata al mondo, consolidando il suo primato nel 2025 con oltre 30 milioni di arrivi internazionali."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Qual è il vulcano più attivo d'Europa?",
+    "Opzione A": "Vesuvio",
+    "Opzione B": "Etna",
+    "Opzione C": "Stromboli",
+    "Opzione D": "Vulcano",
+    "Risposta Corretta": "B",
+    "Curiosità": "L'Etna è in eruzione quasi costante."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "In quale mare si trova l'isola d'Elba?",
+    "Opzione A": "Adriatico",
+    "Opzione B": "Tirreno",
+    "Opzione C": "Ionio",
+    "Opzione D": "Ligure",
+    "Risposta Corretta": "B",
+    "Curiosità": "Fa parte dell'arcipelago toscano."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Quanti vulcani attivi ci sono in Italia?",
+    "Opzione A": "1",
+    "Opzione B": "3",
+    "Opzione C": "10",
+    "Opzione D": "25",
+    "Risposta Corretta": "C",
+    "Curiosità": "Oltre a Etna, Vesuvio e Stromboli, ce ne sono molti sottomarini o considerati quiescenti."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Qual è il lago più grande d'Italia?",
+    "Opzione A": "Lago di Como",
+    "Opzione B": "Lago Maggiore",
+    "Opzione C": "Lago di Garda",
+    "Opzione D": "Lago Trasimeno",
+    "Risposta Corretta": "C",
+    "Curiosità": "Il Garda bagna tre regioni: Lombardia, Veneto e Trentino-Alto Adige."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Qual è lo Stato con più laghi al mondo (ne ha più di tutti gli altri messi insieme)?",
+    "Opzione A": "Russia",
+    "Opzione B": "Canada",
+    "Opzione C": "Finlandia",
+    "Opzione D": "Brasile",
+    "Risposta Corretta": "B",
+    "Curiosità": "Il Canada ospita circa il 60% dei laghi di tutto il pianeta Terra."
+  },
+  {
+    "Categoria": "Geografia",
+    "Domanda": "Qual è la capitale dell'Estonia?",
+    "Opzione A": "Vilnius",
+    "Opzione B": "Riga",
+    "Opzione C": "Tallinn",
+    "Opzione D": "Copenaghen",
+    "Risposta Corretta": "C",
+    "Curiosità": "Le altre sono rispettivamente di Lituania, Lettonia, Danimarca"
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Quale antica civiltà costruì la città di Machu Picchu in Perù?",
+    "Opzione A": "Maya",
+    "Opzione B": "Aztechi",
+    "Opzione C": "Inca",
+    "Opzione D": "Toltechi",
+    "Risposta Corretta": "C",
+    "Curiosità": "Costruita nel XV secolo, la città rimase sconosciuta ai conquistadores spagnoli fino al 1911."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "In che anno iniziò la Rivoluzione Francese?",
+    "Opzione A": "1776",
+    "Opzione B": "1789",
+    "Opzione C": "1815",
+    "Opzione D": "1792",
+    "Risposta Corretta": "B",
+    "Curiosità": "Iniziò con la presa della Bastiglia il 14 luglio 1789, data che oggi è festa nazionale in Francia."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Quale esploratore guidò la prima spedizione che completò la circumnavigazione del globo?",
+    "Opzione A": "Cristoforo Colombo",
+    "Opzione B": "Ferdinando Magellano",
+    "Opzione C": "Vasco da Gama",
+    "Opzione D": "Amerigo Vespucci",
+    "Risposta Corretta": "B",
+    "Curiosità": "Magellano morì durante il viaggio nelle Filippine, ma la sua nave completò l'impresa sotto il comando di Elcano."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "In quale anno l'uomo è sbarcato sulla Luna per la prima volta?",
+    "Opzione A": "1963",
+    "Opzione B": "1967",
+    "Opzione C": "1969",
+    "Opzione D": "1972",
+    "Risposta Corretta": "C",
+    "Curiosità": "La missione Apollo 11 portò Neil Armstrong e Buzz Aldrin sul suolo lunare il 20 luglio 1969."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Quale evento scatenò ufficialmente l'inizio della Prima Guerra Mondiale?",
+    "Opzione A": "Attacco a Pearl Harbor",
+    "Opzione B": "Invasione della Polonia",
+    "Opzione C": "Attentato di Sarajevo",
+    "Opzione D": "Presa della Bastiglia",
+    "Risposta Corretta": "C",
+    "Curiosità": "L'uccisione dell'arciduca Francesco Ferdinando nel 1914 portò all'attivazione delle alleanze europee."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Chi era il leader dell'Unione Sovietica durante la Seconda Guerra Mondiale?",
+    "Opzione A": "Lenin",
+    "Opzione B": "Stalin",
+    "Opzione C": "Kruscev",
+    "Opzione D": "Gorbaciov",
+    "Risposta Corretta": "B",
+    "Curiosità": "Stalin guidò l'URSS dal 1924 fino alla sua morte nel 1953, coprendo l'intero conflitto mondiale."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Nel 1932, l'esercito australiano dichiarò ufficialmente \"\"guerra\"\" a quale animale, perdendola clamorosamente?",
+    "Opzione A": "Canguri",
+    "Opzione B": "Emu",
+    "Opzione C": "Coccodrilli",
+    "Opzione D": "Dingo",
+    "Risposta Corretta": "B",
+    "Curiosità": "La \"\"Guerra degli Emu\"\" vide i soldati fallire nel tentativo di abbattere i volatili con le mitragliatrici: gli uccelli erano troppo veloci e resistenti."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Quale scienziato fu invitato a diventare il secondo Presidente dello Stato di Israele nel 1952?",
+    "Opzione A": "Sigmund Freud",
+    "Opzione B": "Isaac Newton",
+    "Opzione C": "Albert Einstein",
+    "Opzione D": "Nikola Tesla",
+    "Risposta Corretta": "C",
+    "Curiosità": "Einstein rifiutò gentilmente l'offerta, dicendo di non avere le attitudini giuste per trattare con le persone e le funzioni ufficiali."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Quale imperatore romano costruì il Colosseo?",
+    "Opzione A": "Nerone",
+    "Opzione B": "Cesare",
+    "Opzione C": "Vespasiano",
+    "Opzione D": "Traiano",
+    "Risposta Corretta": "C",
+    "Curiosità": "Iniziato da Vespasiano intorno al 70 d.C. e completato sotto Tito nell'80 d.C."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Chi è l'artista con più album venduti nella storia?",
+    "Opzione A": "Michael Jackson",
+    "Opzione B": "Elvis Presley",
+    "Opzione C": "The Beatles",
+    "Opzione D": "Madonna",
+    "Risposta Corretta": "C",
+    "Curiosità": "The Beatles hanno venduto oltre 600 milioni di dischi nel mondo."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Quale città fu la prima capitale del Regno d'Italia?",
+    "Opzione A": "Milano",
+    "Opzione B": "Firenze",
+    "Opzione C": "Roma",
+    "Opzione D": "Torino",
+    "Risposta Corretta": "D",
+    "Curiosità": "Torino fu capitale dal 1861 al 1865, seguita da Firenze e infine Roma."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Quale animale fu \"\"processato\"\" e giustiziato ufficialmente nel Medioevo?",
+    "Opzione A": "Un lupo",
+    "Opzione B": "Un maiale",
+    "Opzione C": "Un gatto",
+    "Opzione D": "Un orso",
+    "Risposta Corretta": "B",
+    "Curiosità": "Nel 1386 in Francia, un maiale fu condannato a morte per aver ferito un bambino."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Cosa mangiarono gli astronauti dell'Apollo 11 come primo pasto sulla Luna?",
+    "Opzione A": "Pancetta e caffè",
+    "Opzione B": "Lasagne",
+    "Opzione C": "Gelato",
+    "Opzione D": "Pizza",
+    "Risposta Corretta": "A",
+    "Curiosità": "Il pasto era confezionato in cubetti ricoperti di gelatina per evitare briciole fluttuanti."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "In che anno è morto Michael Jackson",
+    "Opzione A": "2002",
+    "Opzione B": "2005",
+    "Opzione C": "2009",
+    "Opzione D": "2012",
+    "Risposta Corretta": "C",
+    "Curiosità": "Jackson è morto il 25 giugno 2009 all'età di 50 anni in una villa di Holmby Hills, Los Angeles"
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Quanto è durata la 'Guerra dei Cent'anni'?",
+    "Opzione A": "100 anni",
+    "Opzione B": "99 anni",
+    "Opzione C": "116 anni",
+    "Opzione D": "150 anni",
+    "Risposta Corretta": "C",
+    "Curiosità": "Combattuta tra Francia e Inghilterra dal 1337 al 1453."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Chi fu il primo presidente degli Stati Uniti a vivere nella Casa Bianca?",
+    "Opzione A": "George Washington",
+    "Opzione B": "John Adams",
+    "Opzione C": "Thomas Jefferson",
+    "Opzione D": "Abraham Lincoln",
+    "Risposta Corretta": "B",
+    "Curiosità": "Washington supervisionò la costruzione ma non ci visse mai."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Quale imperatore romano nominò il proprio cavallo senatore?",
+    "Opzione A": "Nerone",
+    "Opzione B": "Caligola",
+    "Opzione C": "Commodo",
+    "Opzione D": "Tiberio",
+    "Risposta Corretta": "B",
+    "Curiosità": "Il cavallo si chiamava Incitatus."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "In che anno è affondato il Titanic?",
+    "Opzione A": "1912",
+    "Opzione B": "1905",
+    "Opzione C": "1920",
+    "Opzione D": "1898",
+    "Risposta Corretta": "A",
+    "Curiosità": "Nella notte tra il 14 e il 15 aprile."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Quale famosa regina d'Egitto era in realtà di origine greca?",
+    "Opzione A": "Nefertiti",
+    "Opzione B": "Cleopatra",
+    "Opzione C": "Hatshepsut",
+    "Opzione D": "Iside",
+    "Risposta Corretta": "B",
+    "Curiosità": "Discendeva dalla dinastia tolemaica, di origine macedone."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "In che anno è caduto il muro di Berlino?",
+    "Opzione A": "1987",
+    "Opzione B": "1988",
+    "Opzione C": "1989",
+    "Opzione D": "1990",
+    "Risposta Corretta": "C",
+    "Curiosità": "Il 9 novembre 1989."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "In quale isola morì Napoleone Bonaparte?",
+    "Opzione A": "Elba",
+    "Opzione B": "Corsica",
+    "Opzione C": "Sant'Elena",
+    "Opzione D": "Capri",
+    "Risposta Corretta": "C",
+    "Curiosità": "Vi fu esiliato dopo la sconfitta di Waterloo."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Quale paese europeo è rimasto neutrale durante entrambe le guerre mondiali?",
+    "Opzione A": "Norvegia",
+    "Opzione B": "Svizzera",
+    "Opzione C": "Belgio",
+    "Opzione D": "Polonia",
+    "Risposta Corretta": "B",
+    "Curiosità": "La Svizzera mantiene la neutralità dal 1815."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Chi fu il primo imperatore romano?",
+    "Opzione A": "Giulio Cesare",
+    "Opzione B": "Nerone",
+    "Opzione C": "Augusto",
+    "Opzione D": "Traiano",
+    "Risposta Corretta": "C",
+    "Curiosità": "Il suo vero nome era Ottaviano."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Quanto è durata la guerra più breve della storia?",
+    "Opzione A": "2 giorni",
+    "Opzione B": "38 minuti",
+    "Opzione C": "4 ore",
+    "Opzione D": "12 minuti",
+    "Risposta Corretta": "B",
+    "Curiosità": "Fu la guerra anglo-zanzibariana del 1896. Zanzibar si arrese subito dopo il bombardamento iniziale."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Qual era il lavoro di Hitler prima di entrare in politica?",
+    "Opzione A": "Fornaio",
+    "Opzione B": "Pittore",
+    "Opzione C": "Postino",
+    "Opzione D": "Spazzino",
+    "Risposta Corretta": "B",
+    "Curiosità": "Fu respinto due volte dall'Accademia di Belle Arti di Vienna."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Qual era il nome originale di New York?",
+    "Opzione A": "New London",
+    "Opzione B": "New Amsterdam",
+    "Opzione C": "New Paris",
+    "Opzione D": "New Berlin",
+    "Risposta Corretta": "B",
+    "Curiosità": "Fu fondata dagli olandesi prima di passare agli inglesi."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "In quale città italiana è nata ufficialmente la Pizza Margherita?",
+    "Opzione A": "Roma",
+    "Opzione B": "Napoli",
+    "Opzione C": "Firenze",
+    "Opzione D": "Milano",
+    "Risposta Corretta": "B",
+    "Curiosità": "Fu creata nel 1889 dal pizzaiolo Raffaele Esposito in onore della Regina Margherita."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "In quale anno l'Italia è diventata una Repubblica?",
+    "Opzione A": "1861",
+    "Opzione B": "1918",
+    "Opzione C": "1946",
+    "Opzione D": "1950",
+    "Risposta Corretta": "C",
+    "Curiosità": "Gli italiani scelsero tra Monarchia e Repubblica con un referendum il 2 giugno."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Qual è l'impero più vasto della storia per estensione territoriale continua?",
+    "Opzione A": "Romano",
+    "Opzione B": "Mongolo",
+    "Opzione C": "Britannico",
+    "Opzione D": "Ottomano",
+    "Risposta Corretta": "B",
+    "Curiosità": "L'Impero Britannico fu più grande ma frammentato; quello Mongolo era un unico blocco immenso."
+  },
+  {
+    "Categoria": "Storia",
+    "Domanda": "Chi è l'uomo più ricco mai esistito (patrimonio stimato 400 miliardi di oggi)?",
+    "Opzione A": "John Rockefeller",
+    "Opzione B": "Elon Musk",
+    "Opzione C": "Mansa Musa",
+    "Opzione D": "Giulio Cesare",
+    "Risposta Corretta": "C",
+    "Curiosità": "Imperatore del Mali nel 1300, possedeva metà dell'oro del mondo allora conosciuto."
+  }
+]

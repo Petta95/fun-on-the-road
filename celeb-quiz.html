@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#020617" />
+  <title>Celeb Quiz — Fun on the Road</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { outfit: ['Outfit','system-ui','sans-serif'] } } } };</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    /* ── Celebrity image ── */
+    #celeb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transform: scale(1.10);
+      filter: blur(20px) contrast(1.15) saturate(1.4);
+      transition: filter 0.7s ease, transform 0.7s ease, opacity 0.4s ease;
+      opacity: 0;
+      position: absolute;
+      inset: 0;
+    }
+    #celeb-img.loaded   { opacity: 1; }
+    #celeb-img.revealed { filter: blur(0px) contrast(1) saturate(1); transform: scale(1); }
+
+    /* ── Answer overlay at image bottom ── */
+    #answer-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.5rem 1rem 1.1rem;
+      background: linear-gradient(to top, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.5) 60%, transparent 100%);
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    #answer-overlay.visible { transform: translateY(0); }
+
+    /* ── Hint bar ── */
+    #hint-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 1rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    #btn-hint {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 12px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #38bdf8;
+      background: rgba(14,165,233,0.10);
+      border: 1px solid rgba(14,165,233,0.22);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      letter-spacing: 0.03em;
+    }
+    #btn-hint:active   { transform: scale(0.94); }
+    #btn-hint:disabled { opacity: 0.35; cursor: default; transform: none; }
+    #btn-hint.used-all { color: #64748b; background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+
+    /* ── Loading spinner ── */
+    @keyframes spinAnim { to { transform: rotate(360deg); } }
+    .spin-icon { animation: spinAnim 0.9s linear infinite; }
+  </style>
+</head>
+<body class="bg-slate-950 font-outfit antialiased overflow-x-hidden">
+
+  <div class="relative flex flex-col min-h-dvh max-w-[480px] mx-auto">
+
+    <!-- ── HEADER ───────────────────────────── -->
+    <header class="game-score-header safe-top">
+      <a href="index.html" class="w-9 h-9 glass-card flex items-center justify-center text-slate-400 rounded-xl hover:text-white flex-shrink-0 no-underline" aria-label="Back">
+        <i class="fa-solid fa-chevron-left text-sm"></i>
+      </a>
+      <div class="flex-1 text-center px-3">
+        <p class="text-white font-bold text-sm tracking-widest">CELEB QUIZ</p>
+        <p class="text-slate-400 text-xs" id="score-label">Loading...</p>
+      </div>
+      <div class="w-9 h-9 rounded-xl bg-sky-500/15 flex items-center justify-center flex-shrink-0">
+        <i class="fa-solid fa-star text-sky-400 text-sm"></i>
+      </div>
+    </header>
+
+    <!-- ── MAIN ─────────────────────────────── -->
+    <main class="flex-1 overflow-y-auto flex flex-col">
+
+      <!-- START CARD -->
+      <div id="start-main-card" class="flex-1 flex flex-col items-center justify-center px-5 py-6">
+        <div class="glass-panel p-8 text-center w-full animate-fade-in-up">
+          <div class="w-20 h-20 rounded-3xl bg-sky-500/15 flex items-center justify-center mx-auto mb-5">
+            <i class="fa-solid fa-star text-sky-400 text-4xl"></i>
+          </div>
+          <h2 class="text-white font-extrabold text-2xl mb-2">Celeb Quiz</h2>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5" id="start-desc">
+            Guess the celebrity from the blurred photo. Use hints to reveal it step by step!
+          </p>
+          <div class="flex items-center justify-center gap-3 text-xs text-slate-500 mb-2">
+            <span class="flex items-center gap-1">
+              <i class="fa-solid fa-star text-sky-500/60"></i>
+              <span id="start-count">198 celebrities</span>
+            </span>
+            <span class="text-slate-700">·</span>
+            <span class="flex items-center gap-1">
+              <i class="fa-solid fa-users text-sky-500/60"></i>
+              <span id="start-teams-info">No teams set</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLAY AREA (hidden until game starts) -->
+      <div id="play-area" class="px-5 pt-4 flex flex-col gap-4" style="display:none">
+
+        <!-- Progress -->
+        <div id="progress-section">
+          <div class="flex justify-between items-center text-xs mb-2">
+            <span class="text-slate-500 font-semibold" id="q-counter">1 / 198</span>
+            <span class="text-sky-400 font-bold tracking-wide">Celeb Quiz</span>
+          </div>
+          <div class="h-1.5 bg-white/5 rounded-full overflow-hidden border border-white/5">
+            <div id="progress-bar" class="h-full rounded-full transition-all duration-500"
+                 style="width:0%; background: linear-gradient(90deg, #0ea5e9, #8b5cf6)"></div>
+          </div>
+        </div>
+
+        <!-- Celeb Card -->
+        <div id="celeb-card" class="glass-panel overflow-hidden animate-fade-in-up">
+
+          <!-- Image wrapper — square-ish to frame faces -->
+          <div id="celeb-img-wrap" class="relative overflow-hidden bg-slate-900/60" style="height:300px">
+            <!-- Loading state -->
+            <div id="celeb-loading" class="absolute inset-0 flex flex-col items-center justify-center gap-3">
+              <i class="fa-solid fa-compact-disc text-slate-700 text-3xl spin-icon"></i>
+              <span class="text-slate-700 text-xs font-medium" id="loading-text">Loading...</span>
+            </div>
+            <!-- Celebrity image -->
+            <img id="celeb-img" src="" alt="Celebrity" />
+            <!-- Answer overlay (slides up on reveal) -->
+            <div id="answer-overlay">
+              <p class="text-sky-400 text-[9px] font-bold tracking-widest uppercase mb-1" id="answer-label">Who is it?</p>
+              <h3 id="answer-name" class="text-white font-extrabold text-xl leading-snug drop-shadow-lg"></h3>
+            </div>
+          </div>
+
+          <!-- Hint bar -->
+          <div id="hint-bar">
+            <span class="text-slate-600 text-xs font-medium" id="hint-remaining-label">3 hints available</span>
+            <button id="btn-hint" aria-label="Hint">
+              <i class="fa-solid fa-eye text-xs"></i>
+              <span id="hint-btn-text">Reveal a bit</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Bottom spacer so content clears fixed controls -->
+        <div class="h-56 flex-shrink-0"></div>
+      </div>
+
+    </main>
+
+    <!-- ── GAME CONTROLS (fixed bottom) ─────── -->
+    <div class="game-controls">
+
+      <!-- START state -->
+      <div id="ctrl-start">
+        <button id="btn-start" class="btn-cta w-full py-4 rounded-2xl text-[0.95rem] tracking-widest">
+          <i class="fa-solid fa-play"></i>
+          <span id="start-btn-label">Start Game</span>
+        </button>
+      </div>
+
+      <!-- PLAYING state -->
+      <div id="ctrl-playing" style="display:none">
+        <button id="btn-reveal" class="btn-brand w-full py-4 rounded-2xl text-[0.95rem] tracking-widest">
+          <i class="fa-solid fa-eye"></i>
+          <span id="reveal-label">Show Name</span>
+        </button>
+      </div>
+
+      <!-- REVEALED state -->
+      <div id="ctrl-revealed" class="flex flex-col gap-3" style="display:none">
+        <div class="flex gap-3">
+          <button id="btn-pt1" class="flex-1 py-3 rounded-2xl font-bold text-sm text-white tracking-wide transition-all active:scale-95 flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-plus text-xs"></i>
+            <span id="pt1-label">Team 1</span>
+          </button>
+          <button id="btn-pt2" class="flex-1 py-3 rounded-2xl font-bold text-sm text-white tracking-wide transition-all active:scale-95 flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-plus text-xs"></i>
+            <span id="pt2-label">Team 2</span>
+          </button>
+        </div>
+        <button id="btn-next" class="btn-ghost w-full py-3 rounded-2xl text-sm flex items-center justify-center gap-2">
+          <i class="fa-solid fa-arrow-right"></i>
+          <span id="next-label">Next Celebrity</span>
+        </button>
+      </div>
+
+    </div>
+
+    <div class="h-28 flex-shrink-0"></div>
+  </div>
+
+  <!-- ── BOTTOM NAV ─────────────────────────── -->
+  <nav class="glass-nav fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 safe-bottom" role="navigation">
+    <div class="flex items-center justify-around px-2 pt-3 pb-2">
+      <a href="index.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Home">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-house text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500">Home</span>
+      </a>
+      <a href="ranking.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Ranking">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-trophy text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500">Ranking</span>
+      </a>
+      <a href="settings.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Settings">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-gear text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500">Settings</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ── ROUND END OVERLAY ───────────────────── -->
+  <div id="round-end" class="fixed inset-0 z-[200] flex flex-col items-center justify-center px-5" style="display:none; background: rgba(2,6,23,0.94); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px)">
+    <div class="glass-panel p-8 text-center w-full max-w-sm animate-fade-in-up">
+      <div class="w-20 h-20 rounded-3xl bg-sky-500/15 flex items-center justify-center mx-auto mb-5">
+        <i class="fa-solid fa-trophy text-sky-400 text-4xl"></i>
+      </div>
+      <h2 class="text-white font-extrabold text-2xl mb-1" id="end-title">Round Complete!</h2>
+      <p class="text-slate-400 text-sm mb-7" id="end-subtitle"></p>
+
+      <div class="flex justify-center items-center gap-6 mb-8">
+        <div class="text-center">
+          <p class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2" id="end-t1-name">Team 1</p>
+          <p class="text-white font-extrabold leading-none" id="end-t1-score" style="font-size:3rem">0</p>
+        </div>
+        <div class="text-slate-700 font-bold text-3xl leading-none pb-1">—</div>
+        <div class="text-center">
+          <p class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2" id="end-t2-name">Team 2</p>
+          <p class="text-white font-extrabold leading-none" id="end-t2-score" style="font-size:3rem">0</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <button id="btn-play-again" class="btn-cta w-full py-4 rounded-2xl">
+          <i class="fa-solid fa-rotate-right"></i>
+          <span id="play-again-label">Play Again</span>
+        </button>
+        <a href="index.html" class="btn-ghost w-full py-3 rounded-2xl text-sm text-center no-underline flex items-center justify-center gap-2">
+          <i class="fa-solid fa-house"></i>
+          <span id="home-label">Back to Home</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PAYWALL OVERLAY ──────────────────────── -->
+  <div id="paywall" class="fixed inset-0 z-[400] flex-col items-center justify-center px-5" style="display:none; background:rgba(2,6,23,0.97); backdrop-filter:blur(28px); -webkit-backdrop-filter:blur(28px)">
+    <div class="glass-panel p-8 text-center w-full max-w-sm animate-fade-in-up">
+      <div class="w-20 h-20 rounded-3xl bg-amber-500/15 flex items-center justify-center mx-auto mb-5">
+        <i class="fa-solid fa-lock text-amber-400 text-4xl"></i>
+      </div>
+      <h2 class="text-white font-extrabold text-2xl mb-2" id="paywall-title">Free limit reached</h2>
+      <p class="text-slate-400 text-sm leading-relaxed mb-1" id="paywall-sub1">You've played 80 free rounds.</p>
+      <p class="text-slate-400 text-sm leading-relaxed mb-7" id="paywall-sub2">Unlock to keep playing!</p>
+      <button id="btn-buy-game" class="btn-cta w-full py-4 rounded-2xl mb-3 text-[0.95rem] tracking-widest">
+        <i class="fa-solid fa-unlock"></i>
+        <span id="paywall-game-label">Unlock this game — €1.99</span>
+      </button>
+      <button id="btn-buy-all" class="w-full py-3 rounded-2xl text-sm font-bold tracking-wide border border-amber-500/40 text-amber-400 bg-amber-500/10 active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer">
+        <i class="fa-solid fa-crown text-xs"></i>
+        <span id="paywall-all-label">Unlock ALL games — €4.99</span>
+      </button>
+      <a href="index.html" class="mt-5 block text-slate-500 text-xs font-medium hover:text-slate-400 transition-colors no-underline">← Back to Home</a>
+    </div>
+  </div>
+
+  <!-- ── CONFETTI CANVAS ─────────────────────── -->
+  <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-[150]"
+          style="width:100%; height:100%"></canvas>
+
+  <!-- ── AUDIO + LOGIC ──────────────────────── -->
+  <script src="assets/js/audio-manager.js"></script>
+
+  <script>
+  (function () {
+    var lang = localStorage.getItem('fotr_lang') || 'en';
+
+    /* ─ TRANSLATIONS ─ */
+    var T = {
+      en: {
+        revealBtn      : 'Show Name',
+        nextBtn        : 'Next Celebrity',
+        startBtn       : 'Start Game',
+        startDesc      : 'Guess the celebrity from the blurred photo. Use hints to reveal it step by step!',
+        startCount     : function(n){ return n + ' celebrities'; },
+        roundEnd       : 'Round Complete!',
+        roundEndSub    : function(w){ return w ? w + ' wins this round!' : "It's a tie!"; },
+        playAgain      : 'Play Again',
+        homeBtn        : 'Back to Home',
+        noTeams        : 'Set up teams first',
+        qOf            : function(n,t){ return n + ' / ' + t; },
+        answerLabel    : 'Who is it?',
+        hintBtn        : 'Reveal a bit',
+        hintBtnUsedAll : 'Max hints used',
+        hintRemaining  : function(n){ return n === 1 ? '1 hint left' : n + ' hints left'; },
+        hintNone       : 'No hints left',
+        loading        : 'Loading...',
+        paywallTitle   : 'Free limit reached',
+        paywallSub     : 'You\'ve played 80 free rounds of this game.',
+        paywallSub2    : 'Unlock to keep playing!',
+        paywallGame    : 'Unlock this game — €1.99',
+        paywallAll     : 'Unlock ALL games — €4.99',
+      },
+      it: {
+        revealBtn      : 'Mostra Nome',
+        nextBtn        : 'Prossima Celebrity',
+        startBtn       : 'Inizia Gioco',
+        startDesc      : 'Indovina la celebrity dalla foto sfocata. Usa gli aiuti per rivelare!',
+        startCount     : function(n){ return n + ' celebrities'; },
+        roundEnd       : 'Round Completato!',
+        roundEndSub    : function(w){ return w ? w + ' vince questo round!' : 'Pareggio!'; },
+        playAgain      : 'Gioca Ancora',
+        homeBtn        : 'Torna alla Home',
+        noTeams        : 'Imposta le squadre prima',
+        qOf            : function(n,t){ return n + ' / ' + t; },
+        answerLabel    : 'Chi è?',
+        hintBtn        : 'Aiuto',
+        hintBtnUsedAll : 'Aiuti esauriti',
+        hintRemaining  : function(n){ return n === 1 ? '1 aiuto rimasto' : n + ' aiuti rimasti'; },
+        hintNone       : 'Nessun aiuto rimasto',
+        loading        : 'Caricamento...',
+        paywallTitle   : 'Limite gratuito raggiunto',
+        paywallSub     : 'Hai giocato 80 round gratuiti di questo gioco.',
+        paywallSub2    : 'Sblocca per continuare a giocare!',
+        paywallGame    : 'Sblocca questo gioco — €1,99',
+        paywallAll     : 'Sblocca TUTTI i giochi — €4,99',
+      }
+    };
+    var t = T[lang] || T.en;
+
+    /* ─ PAYWALL ─ */
+    var GAME_KEY   = 'celebQuiz';
+    var FREE_LIMIT = 80;
+
+    function isPurchased(key) {
+      var p = JSON.parse(localStorage.getItem('fotr_purchases') || '{}');
+      return p[key] === true || p.all === true;
+    }
+
+    function showPaywall() {
+      document.getElementById('paywall-title').textContent      = t.paywallTitle;
+      document.getElementById('paywall-sub1').textContent       = t.paywallSub;
+      document.getElementById('paywall-sub2').textContent       = t.paywallSub2;
+      document.getElementById('paywall-game-label').textContent = t.paywallGame;
+      document.getElementById('paywall-all-label').textContent  = t.paywallAll;
+      document.getElementById('paywall').style.display = 'flex';
+    }
+
+    function handlePurchase(type) {
+      var p = JSON.parse(localStorage.getItem('fotr_purchases') || '{}');
+      if (type === 'game') p[GAME_KEY] = true;
+      else p.all = true;
+      localStorage.setItem('fotr_purchases', JSON.stringify(p));
+      document.getElementById('paywall').style.display = 'none';
+      startGame();
+    }
+
+    /* ─ CELEBRITY DATA ─ */
+    /* Name is derived by stripping the file extension */
+    var CELEBS = [
+      "Aaron Paul.jpg",
+      "Adam Driver.jpg",
+      "Adam Levine.jpg",
+      "Adam Sandler.jpg",
+      "Adele.jpg",
+      "Aldo Giovanni e Giacomo.jpg",
+      "Alessandro Cattelan.jpg",
+      "Alessandro Florenzi.jpg",
+      "Amy Adams.jpg",
+      "Andrea Bocelli.jpg",
+      "Andrea Pirlo.jpg",
+      "Andrew Garfield.jpg",
+      "Angelina Jolie.jpg",
+      "Anne Hathaway.jpg",
+      "Ariana Grande.jpg",
+      "Arnold Schwarznegger.jpg",
+      "Ashton Kutcher.jpg",
+      "Barbra Streisand.jpg",
+      "Ben Affleck.jpg",
+      "Ben Stiller.jpg",
+      "Beppe Grillo.jpg",
+      "Beyonce.jpg",
+      "Blake Lively.jpg",
+      "Brad Pitt.jpg",
+      "Bradley Cooper.jpg",
+      "Britney Spears.jpg",
+      "Bruce Willis.jpg",
+      "Bruno Mars.jpg",
+      "Bryan Cranston.jpg",
+      "Bud Spencer e Terence Hill.jpg",
+      "Calvin Harris.jpg",
+      "Cara Delevigne.jpg",
+      "Carmen Electra.jpg",
+      "Charlize Theron.jpg",
+      "Chloe Grace Moretz.jpg",
+      "Chris Evans.jpg",
+      "Chris Pratt.jpg",
+      "Christian Bale.jpg",
+      "Christian De Sica.jpg",
+      "Chuck Norris.jpg",
+      "Cobie Smulders.jpg",
+      "Dan Bilzerian.jpeg",
+      "David Beckham.jpg",
+      "David Guetta.jpg",
+      "David Schwimmer.jpg",
+      "Demi Lovato.jpg",
+      "Drake.jpg",
+      "Drew Barrimore.jpg",
+      "Dustin Hoffman.jpg",
+      "Dwayne Johnson.jpg",
+      "Eddie Guerrero.jpg",
+      "Eddie Murphy.jpg",
+      "Elisabetta Canalis.jpg",
+      "Elle Degeneres.jpg",
+      "Emilia Clarke.jpg",
+      "Emily Blunt.jpg",
+      "Emily Ratajkowski.jpg",
+      "Emma Stone.jpg",
+      "Emma Watson.jpg",
+      "Enrique Iglesias.jpg",
+      "Eva Mendes.jpg",
+      "Evangeline Lilly.jpg",
+      "Fabio De Luigi.jpeg",
+      "Fabri Fibra.jpeg",
+      "Federico Lucia.jpg",
+      "Fergie.jpg",
+      "Francesco Totti.jpg",
+      "George Clooney.jpg",
+      "Gigi dagostino.jpg",
+      "Gigi Hadid.jpg",
+      "Gordon Ramsey.jpg",
+      "Gwyneth Paltrow.jpg",
+      "Halle Berry.jpg",
+      "Harrison Ford.jpg",
+      "Hilary Duff.jpg",
+      "Hugh Jackman.jpg",
+      "Ilary Blasi.jpg",
+      "Jack Black.jpg",
+      "Jackie Chan.jpg",
+      "Jaden Smith.jpg",
+      "Jake Gyllenhaal.jpg",
+      "James Franco.jpg",
+      "Jamie Foxx.jpg",
+      "Jared Leto.jpg",
+      "Jason Segel.jpg",
+      "Jenna Ortega.jpg",
+      "Jennifer Aniston.jpg",
+      "Jennifer Garner.jpg",
+      "Jennifer Lawrence.jpg",
+      "Jennifer Lopez.jpg",
+      "Jessica Alba.jpg",
+      "Jessica Biel.jpg",
+      "Jessie J.jpg",
+      "Jim Belushi.jpg",
+      "Jim Carrey.jpg",
+      "Jim Parsons.jpg",
+      "Joe Jonas.jpg",
+      "John Travolta.jpg",
+      "Johnny Depp.jpg",
+      "Josh Radnor.jpeg",
+      "Julia Roberts.jpg",
+      "Justin Timberlake.jpg",
+      "Kaley Cuoco.jpg",
+      "Kanye West.jpg",
+      "Kate Winslet.jpg",
+      "Katie Holmes.jpg",
+      "Katy Perry.jpg",
+      "Kendall Jenner.jpg",
+      "Kevin Hart.jpg",
+      "Kim Kardashan.jpg",
+      "Kit Harington.jpg",
+      "Kristen Stewart.jpg",
+      "Lady Gaga.jpg",
+      "Lenny Kravitz.jpg",
+      "Leo di Caprio.jpg",
+      "Liam Hemswort.jpg",
+      "Liam Neeson.jpg",
+      "Lindsay Lohan.jpg",
+      "Luciana Littizzetto.jpg",
+      "Madonna.jpg",
+      "Maisie Williams.jpg",
+      "Marco Mengoni.jpg",
+      "Margot Robbie.jpg",
+      "Mark Walhberg.jpg",
+      "Mark Zurkemberg.jpg",
+      "Marylin Monroe.jpg",
+      "Matt Damon.jpg",
+      "Matthew Mcconaughey.jpg",
+      "Michael Jordan.jpg",
+      "Michael Schumacher.jpg",
+      "Michelle Hunziker.jpg",
+      "Michelle Obama.jpg",
+      "Mila Kunis.jpg",
+      "Miley Cyrus.jpg",
+      "Milly Bobby Brown.jpg",
+      "MJ.jpg",
+      "Monica Bellucci.jpg",
+      "Morgan Freeman.jpg",
+      "Natalie Portman.jpg",
+      "Neil Patrick Harris.jpg",
+      "Nelson Mandela.jpg",
+      "Nicky Minaj.jpg",
+      "Nicolas Cage.jpg",
+      "Nicole Kidman.jpg",
+      "Olivia Wilde.jpg",
+      "Orlando Bloom.jpg",
+      "Paolo Bonolis.jpg",
+      "Paris Hilton.jpg",
+      "Paris Jackson.jpg",
+      "Pedro Pascal.jpg",
+      "Penelope Cruz.jpg",
+      "Peter Dinklage.jpg",
+      "Prince.jpg",
+      "Raul Bova.jpg",
+      "Rihanna.jpg",
+      "Rita Ora.jpg",
+      "Robert De Niro.jpg",
+      "Robert Downey Jr.jpg",
+      "Robert Pattinson.jpg",
+      "Roberto Benigni.jpg",
+      "Robin Williams.jpg",
+      "Roger Federer.jpg",
+      "Rowan Atkinson.jpeg",
+      "Russell Crowe.jpg",
+      "Ryan Gosling.jpg",
+      "Sabrina Ferilli.jpg",
+      "Salma Hayek.jpg",
+      "Samuel Jackson.jpg",
+      "Saoirse Ronan.jpg",
+      "Sarah Jessica Parker.jpg",
+      "Scarlett Johansson.jpg",
+      "Serena Williams.jpg",
+      "Shailene Woodley.jpg",
+      "Silvio Berlusconi.jpg",
+      "Snoop Dogg.jpg",
+      "Sofia Vergara.jpg",
+      "Sophie Turner.jpg",
+      "Stephen Hawking.jpg",
+      "Steve Carell.jpg",
+      "Steve Jobs.jpg",
+      "Steve O.jpg",
+      "Sydney Sweeney.jpg",
+      "Sylvester Stallone.jpg",
+      "Taylor Lautner.jpg",
+      "Taylor Swift.jpg",
+      "Timothee Chalamet.jpg",
+      "Tobey Maguire.jpg",
+      "Tom Cruise.jpg",
+      "Tom Hanks.jpeg",
+      "Tom Hardy.jpg",
+      "Tupac.jpg",
+      "Ursula Corbero.jpg",
+      "Vanessa Hudgens.jpg",
+      "Will Smith.jpg",
+      "Woody Allen.jpg",
+      "Zack Efron.jpg",
+      "Zayn Malik.jpg",
+      "Zoe Saldana.jpg"
+    ];
+
+    /* ─ BLUR STEPS (px) ─ */
+    var BLUR_STEPS = [
+      'blur(20px) contrast(1.15) saturate(1.4)',
+      'blur(12px) contrast(1.05) saturate(1.1)',
+      'blur(5px)',
+      'blur(1.5px)',
+    ];
+    var MAX_HINTS = BLUR_STEPS.length - 1; /* 3 hints */
+
+    /* ─ DOM REFS ─ */
+    var scoreLabel      = document.getElementById('score-label');
+    var qCounter        = document.getElementById('q-counter');
+    var progressBar     = document.getElementById('progress-bar');
+    var startMainCard   = document.getElementById('start-main-card');
+    var playArea        = document.getElementById('play-area');
+    var celebCard       = document.getElementById('celeb-card');
+    var celebImg        = document.getElementById('celeb-img');
+    var celebLoading    = document.getElementById('celeb-loading');
+    var loadingText     = document.getElementById('loading-text');
+    var answerOverlay   = document.getElementById('answer-overlay');
+    var answerLabel     = document.getElementById('answer-label');
+    var answerName      = document.getElementById('answer-name');
+    var btnHint         = document.getElementById('btn-hint');
+    var hintBtnText     = document.getElementById('hint-btn-text');
+    var hintRemLabel    = document.getElementById('hint-remaining-label');
+    var ctrlStart       = document.getElementById('ctrl-start');
+    var ctrlPlaying     = document.getElementById('ctrl-playing');
+    var ctrlRevealed    = document.getElementById('ctrl-revealed');
+    var btnStart        = document.getElementById('btn-start');
+    var btnReveal       = document.getElementById('btn-reveal');
+    var btnPt1          = document.getElementById('btn-pt1');
+    var btnPt2          = document.getElementById('btn-pt2');
+    var btnNext         = document.getElementById('btn-next');
+    var pt1Label        = document.getElementById('pt1-label');
+    var pt2Label        = document.getElementById('pt2-label');
+    var roundEndOverlay = document.getElementById('round-end');
+    var endTitle        = document.getElementById('end-title');
+    var endSubtitle     = document.getElementById('end-subtitle');
+    var endT1Name       = document.getElementById('end-t1-name');
+    var endT2Name       = document.getElementById('end-t2-name');
+    var endT1Score      = document.getElementById('end-t1-score');
+    var endT2Score      = document.getElementById('end-t2-score');
+    var btnPlayAgain    = document.getElementById('btn-play-again');
+    var confettiCanvas  = document.getElementById('confetti-canvas');
+
+    /* ─ STATE ─ */
+    var celebs        = [];
+    var currentIdx    = 0;
+    var hintStep      = 0;
+    var pointAssigned = false;
+    var gameState     = 'start';
+    var advanceTimer  = null;
+
+    /* ─ HELPERS ─ */
+    function hexToRgba(hex, a) {
+      if (!hex || hex.length < 7) return 'rgba(14,165,233,' + a + ')';
+      var r = parseInt(hex.slice(1,3), 16);
+      var g = parseInt(hex.slice(3,5), 16);
+      var b = parseInt(hex.slice(5,7), 16);
+      return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+    }
+
+    function shuffle(arr) {
+      var a = arr.slice();
+      for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+      }
+      return a;
+    }
+
+    function getTeams() {
+      return JSON.parse(localStorage.getItem('fotr_teams') || '{}');
+    }
+
+    function sfxEnabled() {
+      return localStorage.getItem('fotr_sfx') !== 'false';
+    }
+
+    function playSound(fn) {
+      if (sfxEnabled() && typeof AudioManager !== 'undefined') {
+        try { AudioManager[fn](); } catch(e) {}
+      }
+    }
+
+    function nameFromFile(filename) {
+      return filename.replace(/\.[^.]+$/, '').replace(/_/g, ' ');
+    }
+
+    /* ─ SCORE HEADER ─ */
+    function updateHeaderScore() {
+      var teams = getTeams();
+      if (teams.team1 && teams.team2) {
+        scoreLabel.textContent = teams.team1 + ' ' + (teams.score1 || 0) + ' – ' + (teams.score2 || 0) + ' ' + teams.team2;
+      } else {
+        scoreLabel.textContent = t.noTeams;
+      }
+    }
+
+    /* ─ CONTROLS STATE ─ */
+    function setCtrl(state) {
+      ctrlStart.style.display    = 'none';
+      ctrlPlaying.style.display  = 'none';
+      ctrlRevealed.style.display = 'none';
+      if (state === 'start')    ctrlStart.style.display    = 'block';
+      if (state === 'playing')  ctrlPlaying.style.display  = 'block';
+      if (state === 'revealed') ctrlRevealed.style.display = 'flex';
+    }
+
+    /* ─ UPDATE HINT UI ─ */
+    function updateHintUI() {
+      var remaining = MAX_HINTS - hintStep;
+      if (remaining > 0) {
+        hintBtnText.textContent  = t.hintBtn;
+        hintRemLabel.textContent = t.hintRemaining(remaining);
+        btnHint.disabled         = false;
+        btnHint.classList.remove('used-all');
+      } else {
+        hintBtnText.textContent  = t.hintBtnUsedAll;
+        hintRemLabel.textContent = t.hintNone;
+        btnHint.disabled         = true;
+        btnHint.classList.add('used-all');
+      }
+    }
+
+    /* ─ HINT CLICK ─ */
+    function useHint() {
+      if (hintStep >= MAX_HINTS) return;
+      if (gameState !== 'playing') return;
+      hintStep++;
+      celebImg.style.filter = BLUR_STEPS[hintStep];
+      updateHintUI();
+      playSound('click');
+    }
+
+    /* ─ LOAD CELEBRITY IMAGE ─ */
+    function loadCeleb(filename) {
+      celebImg.classList.remove('loaded', 'revealed');
+      celebImg.style.filter    = BLUR_STEPS[0];
+      celebImg.style.transform = 'scale(1.10)';
+      celebLoading.style.display = 'flex';
+      loadingText.textContent  = t.loading;
+
+      celebImg.onload = function() {
+        celebLoading.style.display = 'none';
+        celebImg.classList.add('loaded');
+        /* Preload next */
+        if (currentIdx + 1 < celebs.length) {
+          var pre = new Image();
+          pre.src = 'assets/data/celeb/' + encodeURIComponent(celebs[currentIdx + 1]);
+        }
+      };
+      celebImg.onerror = function() {
+        celebLoading.innerHTML = '<i class="fa-solid fa-user-slash text-slate-700 text-3xl"></i>';
+        celebImg.classList.add('loaded');
+      };
+      celebImg.src = 'assets/data/celeb/' + encodeURIComponent(filename);
+    }
+
+    /* ─ SHOW CELEBRITY ─ */
+    function showCeleb() {
+      var u = JSON.parse(localStorage.getItem('fotr_usage') || '{}');
+      u[GAME_KEY] = (u[GAME_KEY] || 0) + 1;
+      localStorage.setItem('fotr_usage', JSON.stringify(u));
+      if (u[GAME_KEY] > FREE_LIMIT && !isPurchased(GAME_KEY)) { showPaywall(); return; }
+
+      var filename = celebs[currentIdx];
+      hintStep      = 0;
+      pointAssigned = false;
+
+      var total = celebs.length;
+      qCounter.textContent    = t.qOf(currentIdx + 1, total);
+      progressBar.style.width = Math.round(((currentIdx + 1) / total) * 100) + '%';
+
+      answerOverlay.classList.remove('visible');
+      answerName.textContent = '';
+      btnPt1.disabled = false;
+      btnPt2.disabled = false;
+      btnPt1.style.opacity = '1';
+      btnPt2.style.opacity = '1';
+
+      updateHintUI();
+      loadCeleb(filename);
+
+      /* Card entrance animation */
+      celebCard.style.animation = 'none';
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          celebCard.style.animation = 'fadeInUp 0.35s ease both';
+        });
+      });
+    }
+
+    /* ─ START GAME ─ */
+    function startGame() {
+      var u = JSON.parse(localStorage.getItem('fotr_usage') || '{}');
+      if ((u[GAME_KEY] || 0) >= FREE_LIMIT && !isPurchased(GAME_KEY)) { showPaywall(); return; }
+
+      celebs     = shuffle(CELEBS);
+      currentIdx = 0;
+      gameState  = 'playing';
+
+      var games       = JSON.parse(localStorage.getItem('fotr_games') || '{}');
+      games.celebQuiz = (games.celebQuiz || 0) + 1;
+      localStorage.setItem('fotr_games', JSON.stringify(games));
+
+      startMainCard.style.display = 'none';
+      playArea.style.display      = 'flex';
+      setCtrl('playing');
+      showCeleb();
+      playSound('click');
+    }
+
+    /* ─ REVEAL ANSWER ─ */
+    function revealAnswer() {
+      if (gameState !== 'playing') return;
+      gameState = 'revealed';
+
+      /* Full reveal */
+      celebImg.style.filter    = 'blur(0px) contrast(1) saturate(1)';
+      celebImg.style.transform = 'scale(1)';
+      celebImg.classList.add('revealed');
+
+      btnHint.disabled = true;
+      btnHint.classList.add('used-all');
+
+      answerLabel.textContent = t.answerLabel;
+      answerName.textContent  = nameFromFile(celebs[currentIdx]);
+      answerOverlay.classList.add('visible');
+
+      setCtrl('revealed');
+    }
+
+    /* ─ ASSIGN POINT ─ */
+    function assignPoint(teamKey) {
+      if (pointAssigned) return;
+      pointAssigned = true;
+
+      var teams    = getTeams();
+      var scoreKey = (teamKey === 'team1') ? 'score1' : 'score2';
+      teams[scoreKey] = (teams[scoreKey] || 0) + 1;
+      localStorage.setItem('fotr_teams', JSON.stringify(teams));
+      updateHeaderScore();
+
+      if (teamKey === 'team1') {
+        btnPt2.disabled = true; btnPt2.style.opacity = '0.4';
+      } else {
+        btnPt1.disabled = true; btnPt1.style.opacity = '0.4';
+      }
+
+      var stats    = JSON.parse(localStorage.getItem('fotr_stats') || '{}');
+      stats.points = (stats.points || 0) + 10;
+      localStorage.setItem('fotr_stats', JSON.stringify(stats));
+
+      playSound('win');
+      var color = (teamKey === 'team1') ? teams.color1 : teams.color2;
+      triggerConfetti(color);
+
+      /* Auto-advance after 2 seconds */
+      clearTimeout(advanceTimer);
+      advanceTimer = setTimeout(nextCeleb, 2000);
+    }
+
+    /* ─ NEXT CELEBRITY ─ */
+    function nextCeleb() {
+      clearTimeout(advanceTimer);
+      currentIdx++;
+      if (currentIdx >= celebs.length) {
+        showRoundEnd();
+        return;
+      }
+      gameState = 'playing';
+      setCtrl('playing');
+      showCeleb();
+    }
+
+    /* ─ ROUND END ─ */
+    function showRoundEnd() {
+      gameState = 'end';
+      clearTimeout(advanceTimer);
+
+      var teams = getTeams();
+      var s1    = teams.score1 || 0;
+      var s2    = teams.score2 || 0;
+
+      endT1Name.textContent  = teams.team1 || 'Team 1';
+      endT2Name.textContent  = teams.team2 || 'Team 2';
+      endT1Score.textContent = s1;
+      endT2Score.textContent = s2;
+      endTitle.textContent   = t.roundEnd;
+
+      var winner = null;
+      if (s1 > s2) winner = teams.team1;
+      else if (s2 > s1) winner = teams.team2;
+      endSubtitle.textContent = t.roundEndSub(winner);
+
+      var stats   = JSON.parse(localStorage.getItem('fotr_stats') || '{}');
+      stats.trips = (stats.trips || 0) + 1;
+      localStorage.setItem('fotr_stats', JSON.stringify(stats));
+
+      roundEndOverlay.style.display = 'flex';
+      setTimeout(function() { triggerConfetti(null, 6); }, 200);
+      if (winner) setTimeout(function() { playSound('win'); }, 400);
+    }
+
+    /* ─ CONFETTI ─ */
+    function triggerConfetti(teamColor, bursts) {
+      bursts = bursts || 3;
+      var canvas  = confettiCanvas;
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+      var ctx = canvas.getContext('2d');
+
+      var palette = teamColor
+        ? [teamColor, '#f59e0b', '#0ea5e9', '#8b5cf6', '#10b981']
+        : ['#f59e0b', '#0ea5e9', '#8b5cf6', '#10b981', '#f97316', '#ec4899'];
+
+      var particles = [];
+      for (var b = 0; b < bursts; b++) {
+        for (var i = 0; i < 35; i++) {
+          particles.push({
+            x    : canvas.width  * 0.3 + Math.random() * canvas.width  * 0.4,
+            y    : canvas.height * 0.35,
+            vx   : (Math.random() - 0.5) * 10,
+            vy   : -(Math.random() * 8 + 3),
+            color: palette[Math.floor(Math.random() * palette.length)],
+            size : Math.random() * 9 + 4,
+            rot  : Math.random() * 360,
+            rotV : (Math.random() - 0.5) * 10,
+            shape: Math.random() > 0.5 ? 'rect' : 'circle',
+            g    : 0.3,
+            life : 1,
+            decay: Math.random() * 0.012 + 0.007
+          });
+        }
+      }
+
+      (function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        var alive = false;
+        for (var p = 0; p < particles.length; p++) {
+          var pk = particles[p];
+          if (pk.life <= 0) continue;
+          alive = true;
+          pk.x   += pk.vx;
+          pk.y   += pk.vy;
+          pk.vy  += pk.g;
+          pk.rot += pk.rotV;
+          pk.life -= pk.decay;
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, pk.life);
+          ctx.translate(pk.x, pk.y);
+          ctx.rotate(pk.rot * Math.PI / 180);
+          ctx.fillStyle = pk.color;
+          if (pk.shape === 'rect') {
+            ctx.fillRect(-pk.size / 2, -pk.size / 4, pk.size, pk.size / 2);
+          } else {
+            ctx.beginPath();
+            ctx.arc(0, 0, pk.size / 2, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.restore();
+        }
+        if (alive) requestAnimationFrame(animate);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      })();
+    }
+
+    /* ─ APPLY TRANSLATIONS ─ */
+    document.getElementById('reveal-label').textContent     = t.revealBtn;
+    document.getElementById('next-label').textContent       = t.nextBtn;
+    document.getElementById('start-btn-label').textContent  = t.startBtn;
+    document.getElementById('start-desc').textContent       = t.startDesc;
+    document.getElementById('play-again-label').textContent = t.playAgain;
+    document.getElementById('home-label').textContent       = t.homeBtn;
+    document.getElementById('end-title').textContent        = t.roundEnd;
+    answerLabel.textContent  = t.answerLabel;
+    hintBtnText.textContent  = t.hintBtn;
+    loadingText.textContent  = t.loading;
+    document.documentElement.lang = lang;
+
+    /* ─ TEAM INIT ─ */
+    var teams = getTeams();
+    updateHeaderScore();
+
+    if (teams.team1 && teams.team2) {
+      document.getElementById('start-teams-info').textContent = teams.team1 + ' vs ' + teams.team2;
+    } else {
+      document.getElementById('start-teams-info').textContent = t.noTeams;
+    }
+    document.getElementById('start-count').textContent = t.startCount(CELEBS.length);
+    document.getElementById('hint-remaining-label').textContent = t.hintRemaining(MAX_HINTS);
+
+    pt1Label.textContent = teams.team1 || 'Team 1';
+    pt2Label.textContent = teams.team2 || 'Team 2';
+
+    var c1bg = hexToRgba(teams.color1 || '#0ea5e9', 0.22);
+    var c1bo = hexToRgba(teams.color1 || '#0ea5e9', 0.50);
+    var c2bg = hexToRgba(teams.color2 || '#f59e0b', 0.22);
+    var c2bo = hexToRgba(teams.color2 || '#f59e0b', 0.50);
+    btnPt1.style.background = c1bg;
+    btnPt1.style.border     = '1px solid ' + c1bo;
+    btnPt2.style.background = c2bg;
+    btnPt2.style.border     = '1px solid ' + c2bo;
+
+    /* ─ EVENT LISTENERS ─ */
+    btnStart.addEventListener('click', startGame);
+    btnReveal.addEventListener('click', revealAnswer);
+    btnHint.addEventListener('click', useHint);
+    btnNext.addEventListener('click', nextCeleb);
+    btnPt1.addEventListener('click', function() { assignPoint('team1'); });
+    btnPt2.addEventListener('click', function() { assignPoint('team2'); });
+    document.getElementById('btn-buy-game').addEventListener('click', function() { handlePurchase('game'); });
+    document.getElementById('btn-buy-all').addEventListener('click', function() { handlePurchase('all'); });
+    btnPlayAgain.addEventListener('click', function() {
+      roundEndOverlay.style.display = 'none';
+      startGame();
+    });
+
+    /* ─ INITIAL STATE ─ */
+    setCtrl('start');
+
+  })();
+  </script>
+
+</body>
+</html>

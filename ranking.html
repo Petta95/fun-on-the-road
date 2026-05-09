@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#020617" />
+  <title>Ranking — Fun on the Road</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { outfit: ['Outfit','system-ui','sans-serif'] } } } };</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body class="bg-slate-950 font-outfit antialiased overflow-x-hidden">
+
+  <div class="relative flex flex-col min-h-dvh max-w-[480px] mx-auto">
+
+    <!-- ── HEADER ─────────────────────────────── -->
+    <header class="safe-top px-5 pt-6 pb-4">
+      <div class="flex items-center justify-between mb-1">
+        <div>
+          <p class="text-sky-500 text-xs font-semibold tracking-[0.2em] uppercase mb-1" data-i18n="tagline">Leaderboard</p>
+          <h1 class="text-2xl font-extrabold text-white" data-i18n="pageTitle">Ranking</h1>
+        </div>
+        <button
+          id="btn-reset-all"
+          class="glass-card w-10 h-10 flex items-center justify-center text-slate-400 rounded-xl hover:text-rose-400"
+          aria-label="Reset all scores"
+          title="Reset scores"
+        >
+          <i class="fa-solid fa-arrow-rotate-left text-sm"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- ── MAIN ───────────────────────────────── -->
+    <main class="flex-1 px-5 pb-6">
+
+      <!-- Live score card -->
+      <div id="score-card" class="glass-card p-6 mb-5 animate-fade-in-up">
+        <p class="text-slate-400 text-xs font-semibold tracking-widest uppercase mb-4 text-center" data-i18n="currentMatch">Current Match</p>
+        <div class="flex items-center justify-between gap-4">
+
+          <!-- Team 1 -->
+          <div class="flex-1 text-center">
+            <div class="w-14 h-14 rounded-2xl bg-sky-500/20 flex items-center justify-center mx-auto mb-2">
+              <i class="fa-solid fa-shield-halved text-sky-400 text-xl"></i>
+            </div>
+            <p id="t1-name" class="text-sky-400 font-bold text-base truncate">Team A</p>
+            <p id="t1-score" class="text-white font-extrabold text-4xl mt-1 leading-none">0</p>
+            <p class="text-slate-500 text-xs mt-1" data-i18n="ptsLabel">pts</p>
+          </div>
+
+          <!-- VS -->
+          <div class="flex flex-col items-center gap-1">
+            <span class="glass-card px-3 py-1.5 text-xs font-bold text-slate-400 tracking-widest">VS</span>
+            <div class="w-px h-8 bg-white/10"></div>
+          </div>
+
+          <!-- Team 2 -->
+          <div class="flex-1 text-center">
+            <div class="w-14 h-14 rounded-2xl bg-amber-500/20 flex items-center justify-center mx-auto mb-2">
+              <i class="fa-solid fa-shield-halved text-amber-400 text-xl"></i>
+            </div>
+            <p id="t2-name" class="text-amber-400 font-bold text-base truncate">Team B</p>
+            <p id="t2-score" class="text-white font-extrabold text-4xl mt-1 leading-none">0</p>
+            <p class="text-slate-500 text-xs mt-1" data-i18n="ptsLabel">pts</p>
+          </div>
+
+        </div>
+
+        <!-- Winner banner (hidden by default) -->
+        <div id="winner-banner" class="hidden mt-5 py-3 px-4 rounded-2xl bg-amber-500/15 border border-amber-500/30 text-center">
+          <p id="winner-text" class="text-amber-400 font-bold text-sm">🏆 is winning!</p>
+        </div>
+      </div>
+
+      <!-- Score controls -->
+      <p class="text-slate-500 text-[10px] font-bold tracking-[0.18em] uppercase px-1 mb-3" data-i18n="adjustLabel">Adjust score</p>
+      <div class="grid grid-cols-2 gap-3 mb-5">
+
+        <!-- Team 1 controls -->
+        <div class="glass-card p-4 animate-fade-in-up">
+          <p id="ctrl-t1" class="text-sky-400 font-bold text-sm text-center mb-3 truncate">Team A</p>
+          <div class="flex items-center justify-between gap-2">
+            <button class="score-btn w-10 h-10 rounded-xl bg-slate-700/50 text-white font-bold text-lg hover:bg-slate-600/50 transition-colors flex items-center justify-center" data-team="1" data-delta="-1">−</button>
+            <span class="text-white font-extrabold text-xl" id="ctrl-score1">0</span>
+            <button class="score-btn w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 font-bold text-lg hover:bg-sky-500/30 transition-colors flex items-center justify-center" data-team="1" data-delta="1">+</button>
+          </div>
+        </div>
+
+        <!-- Team 2 controls -->
+        <div class="glass-card p-4 animate-fade-in-up" style="animation-delay:0.05s">
+          <p id="ctrl-t2" class="text-amber-400 font-bold text-sm text-center mb-3 truncate">Team B</p>
+          <div class="flex items-center justify-between gap-2">
+            <button class="score-btn w-10 h-10 rounded-xl bg-slate-700/50 text-white font-bold text-lg hover:bg-slate-600/50 transition-colors flex items-center justify-center" data-team="2" data-delta="-1">−</button>
+            <span class="text-white font-extrabold text-xl" id="ctrl-score2">0</span>
+            <button class="score-btn w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 font-bold text-lg hover:bg-amber-500/30 transition-colors flex items-center justify-center" data-team="2" data-delta="1">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty state (shown when no teams configured) -->
+      <div id="empty-state" class="hidden glass-card p-8 text-center animate-fade-in">
+        <div class="w-16 h-16 rounded-2xl bg-sky-500/10 flex items-center justify-center mx-auto mb-4">
+          <i class="fa-solid fa-users text-sky-500/40 text-3xl"></i>
+        </div>
+        <p class="text-white font-bold text-base mb-1" data-i18n="emptyTitle">No teams yet</p>
+        <p class="text-slate-400 text-sm mb-4" data-i18n="emptyHint">Set up your teams first, then scores will appear here.</p>
+        <a href="teams.html" class="btn-brand rounded-xl text-sm px-5 py-2.5 inline-flex items-center gap-2">
+          <i class="fa-solid fa-users-gear text-sm"></i>
+          <span data-i18n="goTeams">Go to Teams</span>
+        </a>
+      </div>
+
+    </main>
+
+    <div class="h-24 flex-shrink-0"></div>
+
+  </div>
+
+  <!-- ── BOTTOM NAV ─────────────────────────── -->
+  <nav class="glass-nav fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 safe-bottom" role="navigation" aria-label="Main navigation">
+    <div class="flex items-center justify-around px-2 pt-3 pb-2">
+
+      <a href="index.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Home">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-house text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500" data-i18n="navHome">Home</span>
+      </a>
+
+      <!-- Ranking (active) -->
+      <a href="ranking.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Ranking" aria-current="page">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl bg-sky-500/15">
+          <i class="fa-solid fa-trophy text-lg text-sky-400"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-sky-400" data-i18n="navLeaderboard">Ranking</span>
+      </a>
+
+      <a href="settings.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Settings">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-gear text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500" data-i18n="navSettings">Settings</span>
+      </a>
+
+    </div>
+  </nav>
+
+  <!-- ── SCRIPTS ────────────────────────────── -->
+  <script src="assets/js/app.js"></script>
+  <script>
+    const TRANSLATIONS = {
+      en: {
+        tagline: 'Leaderboard', pageTitle: 'Ranking',
+        currentMatch: 'Current Match', ptsLabel: 'pts',
+        winnerLabel: '🏆 is winning!',
+        adjustLabel: 'Adjust score',
+        emptyTitle: 'No teams yet', emptyHint: 'Set up your teams first, then scores will appear here.',
+        goTeams: 'Go to Teams',
+        navHome: 'Home', navLeaderboard: 'Ranking', navSettings: 'Settings',
+      },
+      it: {
+        tagline: 'Classifica', pageTitle: 'Classifica',
+        currentMatch: 'Partita in corso', ptsLabel: 'punti',
+        winnerLabel: '🏆 sta vincendo!',
+        adjustLabel: 'Modifica punteggio',
+        emptyTitle: 'Nessuna squadra', emptyHint: 'Configura le squadre prima di vedere i punteggi.',
+        goTeams: 'Vai alle Squadre',
+        navHome: 'Home', navLeaderboard: 'Classifica', navSettings: 'Impostazioni',
+      },
+    };
+
+    const lang = localStorage.getItem('fotr_lang') || 'en';
+
+    function applyTranslations(l) {
+      const t = TRANSLATIONS[l] || TRANSLATIONS.en;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        if (t[el.dataset.i18n] !== undefined) el.textContent = t[el.dataset.i18n];
+      });
+      document.documentElement.lang = l;
+    }
+
+    /* ── Load & render teams ── */
+    function loadState() {
+      return JSON.parse(localStorage.getItem('fotr_teams') || '{}');
+    }
+
+    function saveScore(state) {
+      localStorage.setItem('fotr_teams', JSON.stringify(state));
+    }
+
+    function render() {
+      const state = loadState();
+      const hasTeams = state.team1 && state.team2;
+
+      document.getElementById('score-card').classList.toggle('hidden', !hasTeams);
+      document.getElementById('empty-state').classList.toggle('hidden', hasTeams);
+
+      if (!hasTeams) return;
+
+      const s1 = state.score1 ?? 0;
+      const s2 = state.score2 ?? 0;
+
+      document.getElementById('t1-name').textContent    = state.team1;
+      document.getElementById('t2-name').textContent    = state.team2;
+      document.getElementById('t1-score').textContent   = s1;
+      document.getElementById('t2-score').textContent   = s2;
+      document.getElementById('ctrl-t1').textContent    = state.team1;
+      document.getElementById('ctrl-t2').textContent    = state.team2;
+      document.getElementById('ctrl-score1').textContent = s1;
+      document.getElementById('ctrl-score2').textContent = s2;
+
+      /* apply saved team colours */
+      if (state.color1) {
+        document.getElementById('t1-name').style.color  = state.color1;
+        document.getElementById('ctrl-t1').style.color  = state.color1;
+      }
+      if (state.color2) {
+        document.getElementById('t2-name').style.color  = state.color2;
+        document.getElementById('ctrl-t2').style.color  = state.color2;
+      }
+
+      const banner     = document.getElementById('winner-banner');
+      const winnerText = document.getElementById('winner-text');
+      if (s1 === 0 && s2 === 0) {
+        banner.classList.add('hidden');
+      } else if (s1 === s2) {
+        winnerText.textContent = lang === 'it' ? '🤝 Pareggio!' : '🤝 Tie game!';
+        winnerText.className   = 'text-sky-400 font-bold text-sm';
+        banner.classList.remove('hidden');
+      } else {
+        const winner = s1 > s2 ? state.team1 : state.team2;
+        winnerText.textContent = lang === 'it'
+          ? `🏆 ${winner} sta vincendo!`
+          : `🏆 ${winner} is winning!`;
+        winnerText.className   = 'text-amber-400 font-bold text-sm';
+        banner.classList.remove('hidden');
+      }
+    }
+
+    /* ── Score buttons ── */
+    document.querySelectorAll('.score-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const state = loadState();
+        const team  = btn.dataset.team;
+        const delta = parseInt(btn.dataset.delta, 10);
+        const key   = team === '1' ? 'score1' : 'score2';
+        state[key]  = Math.max(0, (state[key] ?? 0) + delta);
+        saveScore(state);
+        render();
+      });
+    });
+
+    /* ── Reset all ── */
+    document.getElementById('btn-reset-all').addEventListener('click', () => {
+      const state = loadState();
+      state.score1 = 0;
+      state.score2 = 0;
+      saveScore(state);
+      render();
+    });
+
+    /* ── Init ── */
+    applyTranslations(lang);
+    render();
+  </script>
+
+</body>
+</html>

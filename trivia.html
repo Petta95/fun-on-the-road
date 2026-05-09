@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#020617" />
+  <title>Trivia — Fun on the Road</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { outfit: ['Outfit','system-ui','sans-serif'] } } } };</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="bg-slate-950 font-outfit antialiased overflow-x-hidden">
+
+  <div class="relative flex flex-col min-h-dvh max-w-[480px] mx-auto">
+
+    <!-- ── HEADER ───────────────────────────── -->
+    <header class="game-score-header safe-top">
+      <a href="index.html" class="w-9 h-9 glass-card flex items-center justify-center text-slate-400 rounded-xl hover:text-white flex-shrink-0 no-underline" aria-label="Back">
+        <i class="fa-solid fa-chevron-left text-sm"></i>
+      </a>
+      <div class="flex-1 text-center px-3">
+        <p class="text-white font-bold text-sm" id="header-title">Trivia</p>
+        <p class="text-slate-400 text-xs" id="score-label">Loading...</p>
+      </div>
+      <div class="w-9 h-9 rounded-xl bg-amber-500/15 flex items-center justify-center flex-shrink-0">
+        <i class="fa-solid fa-lightbulb text-amber-400 text-sm"></i>
+      </div>
+    </header>
+
+    <!-- ── MAIN ─────────────────────────────── -->
+    <main class="flex-1 overflow-y-auto flex flex-col">
+
+      <!-- START CARD -->
+      <div id="start-main-card" class="flex-1 flex flex-col items-center justify-center px-5 py-6">
+        <div class="glass-panel p-8 text-center w-full animate-fade-in-up">
+          <div class="w-20 h-20 rounded-3xl bg-amber-500/15 flex items-center justify-center mx-auto mb-5">
+            <i class="fa-solid fa-lightbulb text-amber-400 text-4xl"></i>
+          </div>
+          <h2 class="text-white font-extrabold text-2xl mb-2" id="start-title">Trivia</h2>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5" id="start-desc">
+            Answer questions across categories: science, history, pop culture &amp; more.
+          </p>
+          <div class="flex items-center justify-center gap-3 text-xs text-slate-500 mb-2">
+            <span class="flex items-center gap-1">
+              <i class="fa-solid fa-circle-question text-amber-500/60"></i>
+              <span id="start-count">222 questions</span>
+            </span>
+            <span class="text-slate-700">·</span>
+            <span class="flex items-center gap-1" id="start-teams-wrap">
+              <i class="fa-solid fa-users text-sky-500/60"></i>
+              <span id="start-teams-info">No teams set</span>
+            </span>
+          </div>
+          <div id="data-error" class="mt-4 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-xs" style="display:none">
+            <i class="fa-solid fa-triangle-exclamation mr-1"></i>
+            Questions data not found. Check assets/data/trivia-data.js
+          </div>
+        </div>
+      </div>
+
+      <!-- PLAY AREA (hidden until game starts) -->
+      <div id="play-area" class="px-5 pt-4 flex flex-col gap-4" style="display:none">
+
+        <!-- Progress -->
+        <div id="progress-section">
+          <div class="flex justify-between items-center text-xs mb-2">
+            <span class="text-slate-500 font-semibold" id="q-counter">1 / 222</span>
+            <span class="text-amber-400 font-bold tracking-wide" id="q-category-badge"></span>
+          </div>
+          <div class="h-1.5 bg-white/5 rounded-full overflow-hidden border border-white/5">
+            <div id="progress-bar" class="h-full rounded-full transition-all duration-500"
+                 style="width:0%; background: linear-gradient(90deg, #0ea5e9, #8b5cf6)"></div>
+          </div>
+        </div>
+
+        <!-- Question card -->
+        <div id="question-card" class="glass-panel p-6 animate-fade-in-up">
+          <p class="text-white font-bold text-lg leading-snug mb-5" id="q-text"></p>
+          <div class="grid grid-cols-2 gap-3">
+            <button id="opt-A" data-opt="A" class="opt-btn text-left p-4 rounded-2xl transition-all duration-200 active:scale-95">
+              <span class="opt-letter block text-xs font-bold mb-1.5" style="color:#f59e0b">A</span>
+              <span id="opt-A-text" class="text-white text-sm font-medium leading-snug block"></span>
+            </button>
+            <button id="opt-B" data-opt="B" class="opt-btn text-left p-4 rounded-2xl transition-all duration-200 active:scale-95">
+              <span class="opt-letter block text-xs font-bold mb-1.5" style="color:#f59e0b">B</span>
+              <span id="opt-B-text" class="text-white text-sm font-medium leading-snug block"></span>
+            </button>
+            <button id="opt-C" data-opt="C" class="opt-btn text-left p-4 rounded-2xl transition-all duration-200 active:scale-95">
+              <span class="opt-letter block text-xs font-bold mb-1.5" style="color:#f59e0b">C</span>
+              <span id="opt-C-text" class="text-white text-sm font-medium leading-snug block"></span>
+            </button>
+            <button id="opt-D" data-opt="D" class="opt-btn text-left p-4 rounded-2xl transition-all duration-200 active:scale-95">
+              <span class="opt-letter block text-xs font-bold mb-1.5" style="color:#f59e0b">D</span>
+              <span id="opt-D-text" class="text-white text-sm font-medium leading-snug block"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Curiosità card -->
+        <div id="curiosita-card" class="glass-card p-4" style="display:none">
+          <div class="flex gap-3 items-start">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fa-solid fa-lightbulb text-amber-400 text-sm"></i>
+            </div>
+            <div>
+              <p class="text-amber-400 text-[10px] font-bold tracking-widest uppercase mb-1" id="curiosita-label">Did you know?</p>
+              <p class="text-slate-300 text-sm leading-relaxed" id="curiosita-text"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom spacer so content clears fixed controls -->
+        <div class="h-64 flex-shrink-0"></div>
+      </div>
+
+    </main>
+
+    <!-- ── GAME CONTROLS (fixed bottom) ─────── -->
+    <div class="game-controls">
+
+      <!-- START state -->
+      <div id="ctrl-start">
+        <button id="btn-start" class="btn-cta w-full py-4 rounded-2xl text-[0.95rem] tracking-widest">
+          <i class="fa-solid fa-play"></i>
+          <span id="start-btn-label">Start Game</span>
+        </button>
+      </div>
+
+      <!-- PLAYING state -->
+      <div id="ctrl-playing" style="display:none">
+        <button id="btn-reveal" class="btn-brand w-full py-4 rounded-2xl text-[0.95rem] tracking-widest">
+          <i class="fa-solid fa-eye"></i>
+          <span id="reveal-label">Show Answer</span>
+        </button>
+      </div>
+
+      <!-- REVEALED state -->
+      <div id="ctrl-revealed" class="flex flex-col gap-3" style="display:none">
+        <div class="flex gap-3">
+          <button id="btn-pt1" class="flex-1 py-3 rounded-2xl font-bold text-sm text-white tracking-wide transition-all active:scale-95 flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-plus text-xs"></i>
+            <span id="pt1-label">Team 1</span>
+          </button>
+          <button id="btn-pt2" class="flex-1 py-3 rounded-2xl font-bold text-sm text-white tracking-wide transition-all active:scale-95 flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-plus text-xs"></i>
+            <span id="pt2-label">Team 2</span>
+          </button>
+        </div>
+        <button id="btn-next" class="btn-ghost w-full py-3 rounded-2xl text-sm flex items-center justify-center gap-2">
+          <i class="fa-solid fa-arrow-right"></i>
+          <span id="next-label">Next Question</span>
+        </button>
+      </div>
+
+    </div>
+
+    <div class="h-28 flex-shrink-0"></div>
+  </div>
+
+  <!-- ── BOTTOM NAV ─────────────────────────── -->
+  <nav class="glass-nav fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 safe-bottom" role="navigation">
+    <div class="flex items-center justify-around px-2 pt-3 pb-2">
+      <a href="index.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Home">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-house text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500">Home</span>
+      </a>
+      <a href="ranking.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Ranking">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-trophy text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500">Ranking</span>
+      </a>
+      <a href="settings.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Settings">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-gear text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500">Settings</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ── ROUND END OVERLAY ───────────────────── -->
+  <div id="round-end" class="fixed inset-0 z-[200] flex flex-col items-center justify-center px-5" style="display:none; background: rgba(2,6,23,0.94); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px)">
+    <div class="glass-panel p-8 text-center w-full max-w-sm animate-fade-in-up">
+      <div class="w-20 h-20 rounded-3xl bg-amber-500/15 flex items-center justify-center mx-auto mb-5">
+        <i class="fa-solid fa-trophy text-amber-400 text-4xl"></i>
+      </div>
+      <h2 class="text-white font-extrabold text-2xl mb-1" id="end-title">Round Complete!</h2>
+      <p class="text-slate-400 text-sm mb-7" id="end-subtitle"></p>
+
+      <!-- Scores -->
+      <div class="flex justify-center items-center gap-6 mb-8">
+        <div class="text-center">
+          <p class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2" id="end-t1-name">Team 1</p>
+          <p class="text-white font-extrabold leading-none" id="end-t1-score" style="font-size:3rem">0</p>
+        </div>
+        <div class="text-slate-700 font-bold text-3xl leading-none pb-1">—</div>
+        <div class="text-center">
+          <p class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2" id="end-t2-name">Team 2</p>
+          <p class="text-white font-extrabold leading-none" id="end-t2-score" style="font-size:3rem">0</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <button id="btn-play-again" class="btn-cta w-full py-4 rounded-2xl">
+          <i class="fa-solid fa-rotate-right"></i>
+          <span id="play-again-label">Play Again</span>
+        </button>
+        <a href="index.html" id="home-link" class="btn-ghost w-full py-3 rounded-2xl text-sm text-center no-underline flex items-center justify-center gap-2">
+          <i class="fa-solid fa-house"></i>
+          <span id="home-label">Back to Home</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PAYWALL OVERLAY ──────────────────────── -->
+  <div id="paywall" class="fixed inset-0 z-[400] flex-col items-center justify-center px-5" style="display:none; background:rgba(2,6,23,0.97); backdrop-filter:blur(28px); -webkit-backdrop-filter:blur(28px)">
+    <div class="glass-panel p-8 text-center w-full max-w-sm animate-fade-in-up">
+      <div class="w-20 h-20 rounded-3xl bg-amber-500/15 flex items-center justify-center mx-auto mb-5">
+        <i class="fa-solid fa-lock text-amber-400 text-4xl"></i>
+      </div>
+      <h2 class="text-white font-extrabold text-2xl mb-2" id="paywall-title">Free limit reached</h2>
+      <p class="text-slate-400 text-sm leading-relaxed mb-1" id="paywall-sub1">You've played 80 free rounds.</p>
+      <p class="text-slate-400 text-sm leading-relaxed mb-7" id="paywall-sub2">Unlock to keep playing!</p>
+      <button id="btn-buy-game" class="btn-cta w-full py-4 rounded-2xl mb-3 text-[0.95rem] tracking-widest">
+        <i class="fa-solid fa-unlock"></i>
+        <span id="paywall-game-label">Unlock this game — €1.99</span>
+      </button>
+      <button id="btn-buy-all" class="w-full py-3 rounded-2xl text-sm font-bold tracking-wide border border-amber-500/40 text-amber-400 bg-amber-500/10 active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer">
+        <i class="fa-solid fa-crown text-xs"></i>
+        <span id="paywall-all-label">Unlock ALL games — €4.99</span>
+      </button>
+      <a href="index.html" class="mt-5 block text-slate-500 text-xs font-medium hover:text-slate-400 transition-colors no-underline">← Back to Home</a>
+    </div>
+  </div>
+
+  <!-- ── CONFETTI CANVAS ─────────────────────── -->
+  <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-[150]"
+          style="width:100%; height:100%"></canvas>
+
+  <!-- ── DATA + AUDIO ────────────────────────── -->
+  <script src="assets/data/trivia-data.js"></script>
+  <script src="assets/js/audio-manager.js"></script>
+
+  <!-- ── GAME LOGIC ──────────────────────────── -->
+  <script>
+  (function () {
+    /* ─ LANGUAGE & DATA ─ */
+    var lang = localStorage.getItem('fotr_lang') || 'en';
+    var RAW  = (lang === 'it') ? window.TRIVIA_IT : window.TRIVIA_EN;
+
+    /* ─ TRANSLATIONS ─ */
+    var T = {
+      en: {
+        revealBtn   : 'Show Answer',
+        nextBtn     : 'Next Question',
+        startBtn    : 'Start Game',
+        startDesc   : 'Answer questions across categories: science, history, pop culture & more.',
+        startCount  : function(n){ return n + ' questions'; },
+        pointTo     : function(n){ return 'Point to ' + n; },
+        roundEnd    : 'Round Complete!',
+        roundEndSub : function(w){ return w ? w + ' wins this round!' : "It's a tie!"; },
+        playAgain   : 'Play Again',
+        homeBtn     : 'Back to Home',
+        noTeams     : 'Set up teams first',
+        curiosita    : 'Did you know?',
+        qOf          : function(n,t){ return n + ' / ' + t; },
+        paywallTitle : 'Free limit reached',
+        paywallSub   : 'You\'ve played 80 free rounds of this game.',
+        paywallSub2  : 'Unlock to keep playing!',
+        paywallGame  : 'Unlock this game — €1.99',
+        paywallAll   : 'Unlock ALL games — €4.99',
+      },
+      it: {
+        revealBtn   : 'Mostra Risposta',
+        nextBtn     : 'Prossima Domanda',
+        startBtn    : 'Inizia Gioco',
+        startDesc   : 'Rispondi a domande di ogni categoria: scienza, storia, cultura pop e altro.',
+        startCount  : function(n){ return n + ' domande'; },
+        pointTo     : function(n){ return 'Punto a ' + n; },
+        roundEnd    : 'Round Completato!',
+        roundEndSub : function(w){ return w ? w + ' vince questo round!' : 'Pareggio!'; },
+        playAgain   : 'Gioca Ancora',
+        homeBtn     : 'Torna alla Home',
+        noTeams     : 'Imposta le squadre prima',
+        curiosita   : 'Lo sapevi?',
+        qOf         : function(n,t){ return n + ' / ' + t; },
+        paywallTitle : 'Limite gratuito raggiunto',
+        paywallSub   : 'Hai giocato 80 round gratuiti di questo gioco.',
+        paywallSub2  : 'Sblocca per continuare a giocare!',
+        paywallGame  : 'Sblocca questo gioco — €1,99',
+        paywallAll   : 'Sblocca TUTTI i giochi — €4,99',
+      }
+    };
+    var t = T[lang] || T.en;
+
+    /* ─ PAYWALL ─ */
+    var GAME_KEY   = 'trivia';
+    var FREE_LIMIT = 80;
+
+    function isPurchased(key) {
+      var p = JSON.parse(localStorage.getItem('fotr_purchases') || '{}');
+      return p[key] === true || p.all === true;
+    }
+
+    function showPaywall() {
+      document.getElementById('paywall-title').textContent      = t.paywallTitle;
+      document.getElementById('paywall-sub1').textContent       = t.paywallSub;
+      document.getElementById('paywall-sub2').textContent       = t.paywallSub2;
+      document.getElementById('paywall-game-label').textContent = t.paywallGame;
+      document.getElementById('paywall-all-label').textContent  = t.paywallAll;
+      document.getElementById('paywall').style.display = 'flex';
+    }
+
+    function handlePurchase(type) {
+      var p = JSON.parse(localStorage.getItem('fotr_purchases') || '{}');
+      if (type === 'game') p[GAME_KEY] = true;
+      else p.all = true;
+      localStorage.setItem('fotr_purchases', JSON.stringify(p));
+      document.getElementById('paywall').style.display = 'none';
+      startGame();
+    }
+
+    /* ─ DOM REFS ─ */
+    var scoreLabel       = document.getElementById('score-label');
+    var qCounter         = document.getElementById('q-counter');
+    var qCategoryBadge   = document.getElementById('q-category-badge');
+    var progressBar      = document.getElementById('progress-bar');
+    var questionCard     = document.getElementById('question-card');
+    var qText            = document.getElementById('q-text');
+    var curiositaCard    = document.getElementById('curiosita-card');
+    var curiositaText    = document.getElementById('curiosita-text');
+    var curiositaLabel   = document.getElementById('curiosita-label');
+    var startMainCard    = document.getElementById('start-main-card');
+    var playArea         = document.getElementById('play-area');
+    var ctrlStart        = document.getElementById('ctrl-start');
+    var ctrlPlaying      = document.getElementById('ctrl-playing');
+    var ctrlRevealed     = document.getElementById('ctrl-revealed');
+    var btnStart         = document.getElementById('btn-start');
+    var btnReveal        = document.getElementById('btn-reveal');
+    var btnPt1           = document.getElementById('btn-pt1');
+    var btnPt2           = document.getElementById('btn-pt2');
+    var btnNext          = document.getElementById('btn-next');
+    var pt1Label         = document.getElementById('pt1-label');
+    var pt2Label         = document.getElementById('pt2-label');
+    var roundEndOverlay  = document.getElementById('round-end');
+    var endTitle         = document.getElementById('end-title');
+    var endSubtitle      = document.getElementById('end-subtitle');
+    var endT1Name        = document.getElementById('end-t1-name');
+    var endT2Name        = document.getElementById('end-t2-name');
+    var endT1Score       = document.getElementById('end-t1-score');
+    var endT2Score       = document.getElementById('end-t2-score');
+    var btnPlayAgain     = document.getElementById('btn-play-again');
+    var confettiCanvas   = document.getElementById('confetti-canvas');
+
+    var optBtns  = { A: document.getElementById('opt-A'), B: document.getElementById('opt-B'), C: document.getElementById('opt-C'), D: document.getElementById('opt-D') };
+    var optTexts = { A: document.getElementById('opt-A-text'), B: document.getElementById('opt-B-text'), C: document.getElementById('opt-C-text'), D: document.getElementById('opt-D-text') };
+
+    /* ─ STATE ─ */
+    var questions    = [];
+    var currentIdx   = 0;
+    var selectedOpt  = null;
+    var pointAssigned = false;
+    var gameState    = 'start';
+
+    /* ─ HELPERS ─ */
+    function hexToRgba(hex, a) {
+      if (!hex || hex.length < 7) return 'rgba(14,165,233,' + a + ')';
+      var r = parseInt(hex.slice(1,3), 16);
+      var g = parseInt(hex.slice(3,5), 16);
+      var b = parseInt(hex.slice(5,7), 16);
+      return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+    }
+
+    function shuffle(arr) {
+      var a = arr.slice();
+      for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+      }
+      return a;
+    }
+
+    function getTeams() {
+      return JSON.parse(localStorage.getItem('fotr_teams') || '{}');
+    }
+
+    function sfxEnabled() {
+      return localStorage.getItem('fotr_sfx') !== 'false';
+    }
+
+    function playSound(fn) {
+      if (sfxEnabled() && typeof AudioManager !== 'undefined') {
+        try { AudioManager[fn](); } catch(e) {}
+      }
+    }
+
+    /* ─ SCORE HEADER ─ */
+    function updateHeaderScore() {
+      var teams = getTeams();
+      if (teams.team1 && teams.team2) {
+        scoreLabel.textContent = teams.team1 + ' ' + (teams.score1 || 0) + ' – ' + (teams.score2 || 0) + ' ' + teams.team2;
+      } else {
+        scoreLabel.textContent = t.noTeams;
+      }
+    }
+
+    /* ─ OPTION BUTTON STYLES ─ */
+    var OPT_DEFAULT  = { bg: 'rgba(255,255,255,0.05)', border: 'rgba(255,255,255,0.10)', opacity: '1', scale: 'scale(1)', letterColor: '#f59e0b' };
+    var OPT_SELECTED = { bg: 'rgba(14,165,233,0.15)',  border: 'rgba(14,165,233,0.55)',  opacity: '1', scale: 'scale(1.02)', letterColor: '#38bdf8' };
+    var OPT_CORRECT  = { bg: 'rgba(16,185,129,0.18)',  border: 'rgba(16,185,129,0.55)',  opacity: '1', scale: 'scale(1)',   letterColor: '#10b981' };
+    var OPT_WRONG    = { bg: 'rgba(239,68,68,0.15)',   border: 'rgba(239,68,68,0.50)',   opacity: '1', scale: 'scale(1)',   letterColor: '#ef4444' };
+    var OPT_DIM      = { bg: 'rgba(255,255,255,0.03)', border: 'rgba(255,255,255,0.06)', opacity: '0.32', scale: 'scale(1)', letterColor: '#475569' };
+
+    function applyOptStyle(opt, style) {
+      var btn = optBtns[opt];
+      btn.style.background   = style.bg;
+      btn.style.border       = '1px solid ' + style.border;
+      btn.style.opacity      = style.opacity;
+      btn.style.transform    = style.scale;
+      btn.querySelector('.opt-letter').style.color = style.letterColor;
+    }
+
+    function resetAllOpts() {
+      ['A','B','C','D'].forEach(function(o){ applyOptStyle(o, OPT_DEFAULT); });
+    }
+
+    /* ─ CONTROLS STATE ─ */
+    function setCtrl(state) {
+      ctrlStart.style.display   = 'none';
+      ctrlPlaying.style.display = 'none';
+      ctrlRevealed.style.display = 'none';
+      if (state === 'start')    ctrlStart.style.display   = 'block';
+      if (state === 'playing')  ctrlPlaying.style.display = 'block';
+      if (state === 'revealed') ctrlRevealed.style.display = 'flex';
+    }
+
+    /* ─ SHOW QUESTION ─ */
+    function showQuestion() {
+      var u = JSON.parse(localStorage.getItem('fotr_usage') || '{}');
+      u[GAME_KEY] = (u[GAME_KEY] || 0) + 1;
+      localStorage.setItem('fotr_usage', JSON.stringify(u));
+      if (u[GAME_KEY] > FREE_LIMIT && !isPurchased(GAME_KEY)) { showPaywall(); return; }
+
+      var q = questions[currentIdx];
+      selectedOpt   = null;
+      pointAssigned = false;
+
+      /* progress */
+      var total = questions.length;
+      qCounter.textContent       = t.qOf(currentIdx + 1, total);
+      qCategoryBadge.textContent = q.Categoria;
+      progressBar.style.width    = Math.round(((currentIdx + 1) / total) * 100) + '%';
+
+      /* question + options */
+      qText.textContent = q.Domanda;
+      ['A','B','C','D'].forEach(function(o) {
+        optTexts[o].textContent = q['Opzione ' + o] || '';
+        applyOptStyle(o, OPT_DEFAULT);
+        optBtns[o].disabled = false;
+      });
+
+      /* hide curiosità */
+      curiositaCard.style.display = 'none';
+
+      /* re-enable point buttons */
+      btnPt1.disabled = false;
+      btnPt2.disabled = false;
+      btnPt1.style.opacity = '1';
+      btnPt2.style.opacity = '1';
+
+      /* animate card */
+      questionCard.style.animation = 'none';
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          questionCard.style.animation = 'fadeInUp 0.35s ease both';
+        });
+      });
+    }
+
+    /* ─ START GAME ─ */
+    function startGame() {
+      if (!RAW || RAW.length === 0) return;
+      var u = JSON.parse(localStorage.getItem('fotr_usage') || '{}');
+      if ((u[GAME_KEY] || 0) >= FREE_LIMIT && !isPurchased(GAME_KEY)) { showPaywall(); return; }
+
+      questions   = shuffle(RAW);
+      currentIdx  = 0;
+      gameState   = 'playing';
+
+      /* increment fotr_games.trivia */
+      var games    = JSON.parse(localStorage.getItem('fotr_games') || '{}');
+      games.trivia = (games.trivia || 0) + 1;
+      localStorage.setItem('fotr_games', JSON.stringify(games));
+
+      startMainCard.style.display = 'none';
+      playArea.style.display      = 'flex';
+      setCtrl('playing');
+      showQuestion();
+      playSound('click');
+    }
+
+    /* ─ REVEAL ANSWER ─ */
+    function revealAnswer() {
+      if (gameState !== 'playing') return;
+      gameState = 'revealed';
+
+      var correct = questions[currentIdx]['Risposta Corretta'];
+
+      ['A','B','C','D'].forEach(function(o) {
+        optBtns[o].disabled = true;
+        if (o === correct) {
+          applyOptStyle(o, OPT_CORRECT);
+        } else if (o === selectedOpt) {
+          applyOptStyle(o, OPT_WRONG);
+        } else {
+          applyOptStyle(o, OPT_DIM);
+        }
+      });
+
+      /* curiosità */
+      curiositaLabel.textContent  = t.curiosita;
+      curiositaText.textContent   = questions[currentIdx]['Curiosità'] || '';
+      curiositaCard.style.display = 'block';
+      curiositaCard.style.animation = 'fadeInUp 0.35s ease both';
+
+      setCtrl('revealed');
+
+      if (selectedOpt && selectedOpt === correct) {
+        playSound('success');
+      } else if (selectedOpt) {
+        playSound('error');
+      }
+    }
+
+    /* ─ SELECT OPTION ─ */
+    function selectOption(opt) {
+      if (gameState !== 'playing') return;
+      if (selectedOpt) applyOptStyle(selectedOpt, OPT_DEFAULT);
+      selectedOpt = opt;
+      applyOptStyle(opt, OPT_SELECTED);
+      playSound('click');
+    }
+
+    /* ─ ASSIGN POINT ─ */
+    function assignPoint(teamKey) {
+      if (pointAssigned) return;
+      pointAssigned = true;
+
+      var teams    = getTeams();
+      var scoreKey = (teamKey === 'team1') ? 'score1' : 'score2';
+      teams[scoreKey] = (teams[scoreKey] || 0) + 1;
+      localStorage.setItem('fotr_teams', JSON.stringify(teams));
+      updateHeaderScore();
+
+      /* dim the other button, keep this one lit */
+      if (teamKey === 'team1') {
+        btnPt2.disabled = true; btnPt2.style.opacity = '0.4';
+      } else {
+        btnPt1.disabled = true; btnPt1.style.opacity = '0.4';
+      }
+
+      /* stats points */
+      var stats   = JSON.parse(localStorage.getItem('fotr_stats') || '{}');
+      stats.points = (stats.points || 0) + 10;
+      localStorage.setItem('fotr_stats', JSON.stringify(stats));
+
+      playSound('win');
+
+      var color = (teamKey === 'team1') ? teams.color1 : teams.color2;
+      triggerConfetti(color);
+    }
+
+    /* ─ NEXT QUESTION ─ */
+    function nextQuestion() {
+      currentIdx++;
+      if (currentIdx >= questions.length) {
+        showRoundEnd();
+        return;
+      }
+      gameState = 'playing';
+      setCtrl('playing');
+      showQuestion();
+    }
+
+    /* ─ ROUND END ─ */
+    function showRoundEnd() {
+      gameState = 'end';
+      var teams = getTeams();
+      var s1    = teams.score1 || 0;
+      var s2    = teams.score2 || 0;
+
+      endT1Name.textContent  = teams.team1 || 'Team 1';
+      endT2Name.textContent  = teams.team2 || 'Team 2';
+      endT1Score.textContent = s1;
+      endT2Score.textContent = s2;
+      endTitle.textContent   = t.roundEnd;
+
+      var winner = null;
+      if (s1 > s2) winner = teams.team1;
+      else if (s2 > s1) winner = teams.team2;
+      endSubtitle.textContent = t.roundEndSub(winner);
+
+      /* update stats trips */
+      var stats  = JSON.parse(localStorage.getItem('fotr_stats') || '{}');
+      stats.trips = (stats.trips || 0) + 1;
+      localStorage.setItem('fotr_stats', JSON.stringify(stats));
+
+      roundEndOverlay.style.display = 'flex';
+      setTimeout(function() { triggerConfetti(null, 6); }, 200);
+      if (winner) setTimeout(function(){ playSound('win'); }, 400);
+    }
+
+    /* ─ CONFETTI ─ */
+    function triggerConfetti(teamColor, bursts) {
+      bursts = bursts || 3;
+      var canvas = confettiCanvas;
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+      var ctx = canvas.getContext('2d');
+
+      var palette = teamColor
+        ? [teamColor, '#f59e0b', '#0ea5e9', '#8b5cf6', '#10b981']
+        : ['#f59e0b', '#0ea5e9', '#8b5cf6', '#10b981', '#f97316', '#ec4899'];
+
+      var particles = [];
+      for (var b = 0; b < bursts; b++) {
+        for (var i = 0; i < 35; i++) {
+          particles.push({
+            x     : canvas.width  * 0.3 + Math.random() * canvas.width * 0.4,
+            y     : canvas.height * 0.35,
+            vx    : (Math.random() - 0.5) * 10,
+            vy    : -(Math.random() * 8 + 3),
+            color : palette[Math.floor(Math.random() * palette.length)],
+            size  : Math.random() * 9 + 4,
+            rot   : Math.random() * 360,
+            rotV  : (Math.random() - 0.5) * 10,
+            shape : Math.random() > 0.5 ? 'rect' : 'circle',
+            g     : 0.3,
+            life  : 1,
+            decay : Math.random() * 0.012 + 0.007
+          });
+        }
+      }
+
+      (function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        var alive = false;
+        for (var p = 0; p < particles.length; p++) {
+          var pk = particles[p];
+          if (pk.life <= 0) continue;
+          alive = true;
+          pk.x  += pk.vx;
+          pk.y  += pk.vy;
+          pk.vy += pk.g;
+          pk.rot += pk.rotV;
+          pk.life -= pk.decay;
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, pk.life);
+          ctx.translate(pk.x, pk.y);
+          ctx.rotate(pk.rot * Math.PI / 180);
+          ctx.fillStyle = pk.color;
+          if (pk.shape === 'rect') {
+            ctx.fillRect(-pk.size / 2, -pk.size / 4, pk.size, pk.size / 2);
+          } else {
+            ctx.beginPath();
+            ctx.arc(0, 0, pk.size / 2, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.restore();
+        }
+        if (alive) requestAnimationFrame(animate);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      })();
+    }
+
+    /* ─ APPLY TRANSLATIONS ─ */
+    document.getElementById('reveal-label').textContent    = t.revealBtn;
+    document.getElementById('next-label').textContent      = t.nextBtn;
+    document.getElementById('start-btn-label').textContent = t.startBtn;
+    document.getElementById('start-desc').textContent      = t.startDesc;
+    document.getElementById('play-again-label').textContent = t.playAgain;
+    document.getElementById('home-label').textContent      = t.homeBtn;
+    document.getElementById('end-title').textContent       = t.roundEnd;
+    document.documentElement.lang = lang;
+
+    /* ─ TEAM INIT ─ */
+    var teams = getTeams();
+    updateHeaderScore();
+
+    if (teams.team1 && teams.team2) {
+      document.getElementById('start-teams-info').textContent = teams.team1 + ' vs ' + teams.team2;
+    } else {
+      document.getElementById('start-teams-info').textContent = t.noTeams;
+    }
+    document.getElementById('start-count').textContent = t.startCount(RAW ? RAW.length : 0);
+
+    pt1Label.textContent = teams.team1 || 'Team 1';
+    pt2Label.textContent = teams.team2 || 'Team 2';
+
+    /* point button colors */
+    var c1bg = hexToRgba(teams.color1 || '#0ea5e9', 0.22);
+    var c1bo = hexToRgba(teams.color1 || '#0ea5e9', 0.50);
+    var c2bg = hexToRgba(teams.color2 || '#f59e0b', 0.22);
+    var c2bo = hexToRgba(teams.color2 || '#f59e0b', 0.50);
+    btnPt1.style.background   = c1bg;
+    btnPt1.style.border       = '1px solid ' + c1bo;
+    btnPt2.style.background   = c2bg;
+    btnPt2.style.border       = '1px solid ' + c2bo;
+
+    /* data error check */
+    if (!RAW || RAW.length === 0) {
+      document.getElementById('data-error').style.display = 'block';
+      btnStart.disabled    = true;
+      btnStart.style.opacity = '0.5';
+    }
+
+    /* ─ EVENT LISTENERS ─ */
+    btnStart.addEventListener('click', startGame);
+    btnReveal.addEventListener('click', revealAnswer);
+    btnNext.addEventListener('click', nextQuestion);
+    btnPt1.addEventListener('click', function(){ assignPoint('team1'); });
+    btnPt2.addEventListener('click', function(){ assignPoint('team2'); });
+    document.getElementById('btn-buy-game').addEventListener('click', function() { handlePurchase('game'); });
+    document.getElementById('btn-buy-all').addEventListener('click', function() { handlePurchase('all'); });
+    btnPlayAgain.addEventListener('click', function() {
+      roundEndOverlay.style.display = 'none';
+      startGame();
+    });
+
+    ['A','B','C','D'].forEach(function(o) {
+      optBtns[o].addEventListener('click', function(){ selectOption(o); });
+    });
+
+    /* ─ INITIAL STATE ─ */
+    setCtrl('start');
+
+  })();
+  </script>
+
+</body>
+</html>

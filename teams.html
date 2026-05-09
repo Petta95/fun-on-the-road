@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#020617" />
+  <title>Teams — Fun on the Road</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { outfit: ['Outfit','system-ui','sans-serif'] } } } };</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body class="bg-slate-950 font-outfit antialiased overflow-x-hidden">
+
+  <div class="relative flex flex-col min-h-dvh max-w-[480px] mx-auto">
+
+    <!-- ── HEADER ─────────────────────────────── -->
+    <header class="safe-top px-5 pt-6 pb-4">
+      <div class="flex items-center gap-3 mb-6">
+        <a href="index.html" class="w-10 h-10 glass-card flex items-center justify-center text-slate-400 rounded-xl hover:text-white" aria-label="Back">
+          <i class="fa-solid fa-chevron-left text-sm"></i>
+        </a>
+        <div>
+          <h1 class="text-xl font-bold text-white" data-i18n="pageTitle">Teams Setup</h1>
+          <p class="text-slate-400 text-xs" data-i18n="pageSubtitle">Name your teams to start playing</p>
+        </div>
+      </div>
+
+      <!-- VS banner -->
+      <div class="flex items-center gap-3">
+        <div class="flex-1 h-px bg-white/10"></div>
+        <span class="glass-card px-3 py-1 text-xs font-bold text-sky-400 tracking-widest">VS</span>
+        <div class="flex-1 h-px bg-white/10"></div>
+      </div>
+    </header>
+
+    <!-- ── MAIN ───────────────────────────────── -->
+    <main class="flex-1 px-5 pb-6 flex flex-col gap-4">
+
+      <!-- Team 1 -->
+      <div class="glass-card p-5 animate-fade-in-up">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-sky-500/20 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-shield-halved text-sky-400"></i>
+          </div>
+          <div>
+            <p class="text-slate-400 text-xs font-semibold tracking-widest uppercase" data-i18n="team1Label">Team 1</p>
+            <p class="text-white font-bold text-sm" data-i18n="team1Hint">Blue side</p>
+          </div>
+        </div>
+
+        <label class="block text-slate-400 text-xs font-medium mb-2" for="team1-input" data-i18n="namePlaceholder">Team name</label>
+        <input
+          id="team1-input"
+          type="text"
+          maxlength="20"
+          placeholder="Team A"
+          class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-semibold text-sm placeholder-slate-600 focus:outline-none focus:border-sky-500/60 focus:bg-white/8 transition-all duration-300"
+          data-i18n-placeholder="team1Default"
+          autocomplete="off"
+          spellcheck="false"
+        />
+
+        <!-- Color picker row -->
+        <div class="flex gap-3 mt-3 items-center">
+          <p class="text-slate-500 text-xs self-center" data-i18n="colorLabel">Color:</p>
+          <button class="team1-color w-8 h-8 rounded-full" data-hex="#0ea5e9" aria-label="Sky blue"    style="background:#0ea5e9"></button>
+          <button class="team1-color w-8 h-8 rounded-full" data-hex="#8b5cf6" aria-label="Violet"      style="background:#8b5cf6"></button>
+          <button class="team1-color w-8 h-8 rounded-full" data-hex="#10b981" aria-label="Emerald"     style="background:#10b981"></button>
+          <button class="team1-color w-8 h-8 rounded-full" data-hex="#f43f5e" aria-label="Rose"        style="background:#f43f5e"></button>
+        </div>
+      </div>
+
+      <!-- Team 2 -->
+      <div class="glass-card p-5 animate-fade-in-up" style="animation-delay:0.1s">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-shield-halved text-amber-400"></i>
+          </div>
+          <div>
+            <p class="text-slate-400 text-xs font-semibold tracking-widest uppercase" data-i18n="team2Label">Team 2</p>
+            <p class="text-white font-bold text-sm" data-i18n="team2Hint">Amber side</p>
+          </div>
+        </div>
+
+        <label class="block text-slate-400 text-xs font-medium mb-2" for="team2-input" data-i18n="namePlaceholder">Team name</label>
+        <input
+          id="team2-input"
+          type="text"
+          maxlength="20"
+          placeholder="Team B"
+          class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white font-semibold text-sm placeholder-slate-600 focus:outline-none focus:border-amber-500/60 transition-all duration-300"
+          data-i18n-placeholder="team2Default"
+          autocomplete="off"
+          spellcheck="false"
+        />
+
+        <!-- Color picker row -->
+        <div class="flex gap-3 mt-3 items-center">
+          <p class="text-slate-500 text-xs self-center" data-i18n="colorLabel">Color:</p>
+          <button class="team2-color w-8 h-8 rounded-full" data-hex="#f59e0b" aria-label="Amber"   style="background:#f59e0b"></button>
+          <button class="team2-color w-8 h-8 rounded-full" data-hex="#f97316" aria-label="Orange"  style="background:#f97316"></button>
+          <button class="team2-color w-8 h-8 rounded-full" data-hex="#ec4899" aria-label="Pink"    style="background:#ec4899"></button>
+          <button class="team2-color w-8 h-8 rounded-full" data-hex="#14b8a6" aria-label="Teal"    style="background:#14b8a6"></button>
+        </div>
+      </div>
+
+      <!-- Score preview -->
+      <div class="glass-card p-4 animate-fade-in-up" style="animation-delay:0.2s">
+        <p class="text-slate-400 text-xs font-semibold tracking-widest uppercase mb-3" data-i18n="scorePreviewLabel">Scoreboard preview</p>
+        <div class="flex items-center justify-between">
+          <div class="flex-1 text-center">
+            <p id="preview-t1" class="text-sky-400 font-extrabold text-2xl leading-none">Team A</p>
+            <p class="text-slate-500 text-xs mt-1">0 pts</p>
+          </div>
+          <div class="text-slate-600 font-bold text-lg px-4">—</div>
+          <div class="flex-1 text-center">
+            <p id="preview-t2" class="text-amber-400 font-extrabold text-2xl leading-none">Team B</p>
+            <p class="text-slate-500 text-xs mt-1">0 pts</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Save CTA -->
+      <div class="animate-fade-in-up" style="animation-delay:0.25s">
+        <button id="btn-save" class="btn-cta w-full py-4 rounded-2xl text-[0.95rem] tracking-widest">
+          <i class="fa-solid fa-floppy-disk"></i>
+          <span data-i18n="saveBtn">Save &amp; Continue</span>
+        </button>
+        <p class="text-slate-500 text-xs text-center mt-2" data-i18n="saveHint">Names are saved locally on this device</p>
+      </div>
+
+    </main>
+
+    <div class="h-24 flex-shrink-0"></div>
+
+  </div>
+
+  <!-- ── BOTTOM NAV ─────────────────────────── -->
+  <nav class="glass-nav fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 safe-bottom" role="navigation" aria-label="Main navigation">
+    <div class="flex items-center justify-around px-2 pt-3 pb-2">
+
+      <a href="index.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Home">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-house text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500" data-i18n="navHome">Home</span>
+      </a>
+
+      <a href="ranking.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Ranking">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-trophy text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500" data-i18n="navLeaderboard">Ranking</span>
+      </a>
+
+      <a href="settings.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Settings">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-gear text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500" data-i18n="navSettings">Settings</span>
+      </a>
+
+    </div>
+  </nav>
+
+  <!-- ── SCRIPTS ────────────────────────────── -->
+  <script src="assets/js/app.js"></script>
+  <script>
+    const TRANSLATIONS = {
+      en: {
+        pageTitle: 'Teams Setup', pageSubtitle: 'Name your teams to start playing',
+        team1Label: 'Team 1', team1Hint: 'Blue side', team1Default: 'Team A',
+        team2Label: 'Team 2', team2Hint: 'Amber side', team2Default: 'Team B',
+        namePlaceholder: 'Team name', colorLabel: 'Color:',
+        scorePreviewLabel: 'Scoreboard preview',
+        saveBtn: 'Save & Continue', saveHint: 'Names are saved locally on this device',
+        navHome: 'Home', navLeaderboard: 'Ranking', navSettings: 'Settings',
+      },
+      it: {
+        pageTitle: 'Squadre', pageSubtitle: 'Dai un nome alle squadre per iniziare',
+        team1Label: 'Squadra 1', team1Hint: 'Lato blu', team1Default: 'Squadra A',
+        team2Label: 'Squadra 2', team2Hint: 'Lato ambra', team2Default: 'Squadra B',
+        namePlaceholder: 'Nome squadra', colorLabel: 'Colore:',
+        scorePreviewLabel: 'Anteprima punteggio',
+        saveBtn: 'Salva e Continua', saveHint: 'I nomi sono salvati localmente',
+        navHome: 'Home', navLeaderboard: 'Classifica', navSettings: 'Impostazioni',
+      },
+    };
+
+    const lang = localStorage.getItem('fotr_lang') || 'en';
+
+    function applyTranslations(l) {
+      const t = TRANSLATIONS[l] || TRANSLATIONS.en;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        if (t[el.dataset.i18n] !== undefined) el.textContent = t[el.dataset.i18n];
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        if (t[el.dataset.i18nPlaceholder] !== undefined) el.placeholder = t[el.dataset.i18nPlaceholder];
+      });
+      document.documentElement.lang = l;
+    }
+
+    /* ── Load saved teams ── */
+    const saved = JSON.parse(localStorage.getItem('fotr_teams') || '{}');
+    const t1Input = document.getElementById('team1-input');
+    const t2Input = document.getElementById('team2-input');
+    const prevT1  = document.getElementById('preview-t1');
+    const prevT2  = document.getElementById('preview-t2');
+
+    if (saved.team1) t1Input.value = saved.team1;
+    if (saved.team2) t2Input.value = saved.team2;
+
+    /* ── Live preview ── */
+    function updatePreview() {
+      prevT1.textContent = t1Input.value.trim() || t1Input.placeholder;
+      prevT2.textContent = t2Input.value.trim() || t2Input.placeholder;
+    }
+    t1Input.addEventListener('input', updatePreview);
+    t2Input.addEventListener('input', updatePreview);
+    updatePreview();
+
+    /* ── Color selectors (inline styles — no Tailwind dynamic classes) ── */
+    function initColorPicker(selector, previewEl, savedHex) {
+      const btns = Array.from(document.querySelectorAll('.' + selector));
+      let activeHex = savedHex || btns[0].dataset.hex;
+
+      function select(idx) {
+        activeHex = btns[idx].dataset.hex;
+        btns.forEach((b, i) => {
+          if (i === idx) {
+            b.style.outline       = '2.5px solid rgba(255,255,255,0.85)';
+            b.style.outlineOffset = '3px';
+            b.style.opacity       = '1';
+            b.style.transform     = 'scale(1.18)';
+          } else {
+            b.style.outline       = 'none';
+            b.style.outlineOffset = '0';
+            b.style.opacity       = '0.42';
+            b.style.transform     = 'scale(1)';
+          }
+        });
+        if (previewEl) previewEl.style.color = activeHex;
+      }
+
+      const savedIdx = savedHex ? btns.findIndex(b => b.dataset.hex === savedHex) : -1;
+      select(savedIdx >= 0 ? savedIdx : 0);
+
+      btns.forEach((btn, i) => btn.addEventListener('click', () => select(i)));
+
+      return () => activeHex;
+    }
+
+    const getColor1 = initColorPicker('team1-color', prevT1, saved.color1);
+    const getColor2 = initColorPicker('team2-color', prevT2, saved.color2);
+
+    /* ── Save ── */
+    document.getElementById('btn-save').addEventListener('click', () => {
+      const n1 = t1Input.value.trim() || t1Input.placeholder;
+      const n2 = t2Input.value.trim() || t2Input.placeholder;
+      const existing = JSON.parse(localStorage.getItem('fotr_teams') || '{}');
+      localStorage.setItem('fotr_teams', JSON.stringify({
+        team1: n1, team2: n2,
+        color1: getColor1(), color2: getColor2(),
+        score1: existing.score1 ?? 0,
+        score2: existing.score2 ?? 0,
+      }));
+      window.location.href = 'index.html';
+    });
+
+    applyTranslations(lang);
+  </script>
+
+</body>
+</html>

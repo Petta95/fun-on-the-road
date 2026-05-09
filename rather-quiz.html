@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#020617" />
+  <title>Rather Battle — Fun on the Road</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { outfit: ['Outfit','system-ui','sans-serif'] } } } };</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    /* ── Option display cards ── */
+    .option-card {
+      position: relative;
+      border-radius: 18px;
+      padding: 16px 15px 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1.5px solid rgba(255,255,255,0.09);
+      transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .option-card.chosen-a {
+      background: rgba(14,165,233,0.14);
+      border-color: rgba(14,165,233,0.50);
+      box-shadow: 0 0 22px rgba(14,165,233,0.16);
+    }
+    .option-card.chosen-b {
+      background: rgba(245,158,11,0.14);
+      border-color: rgba(245,158,11,0.50);
+      box-shadow: 0 0 22px rgba(245,158,11,0.16);
+    }
+    .opt-label {
+      font-size: 0.60rem;
+      font-weight: 800;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .opt-label-a { color: #38bdf8; }
+    .opt-label-b { color: #fbbf24; }
+    .opt-text {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      line-height: 1.35;
+    }
+    .chosen-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 8px;
+      background: rgba(255,255,255,0.10);
+      border-radius: 7px;
+      padding: 2px 9px;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .option-card.chosen-a .chosen-badge-a,
+    .option-card.chosen-b .chosen-badge-b { opacity: 1; }
+
+    /* ── OR divider ── */
+    .or-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 2px 0;
+    }
+    .or-row::before, .or-row::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+    }
+    .or-row span {
+      font-size: 0.62rem;
+      font-weight: 800;
+      color: #475569;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ── Choice buttons (driver tap) ── */
+    .choice-btn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 16px 10px;
+      border-radius: 18px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      color: #fff;
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      min-height: 76px;
+      text-align: center;
+    }
+    .choice-btn:active { transform: scale(0.93); }
+    .choice-btn-a {
+      background: rgba(14,165,233,0.18);
+      border-color: rgba(14,165,233,0.45);
+    }
+    .choice-btn-b {
+      background: rgba(245,158,11,0.18);
+      border-color: rgba(245,158,11,0.45);
+    }
+    .choice-letter {
+      font-size: 0.60rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .choice-letter-a { color: #7dd3fc; }
+    .choice-letter-b { color: #fcd34d; }
+
+    /* ── Award buttons ── */
+    .award-btn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      padding: 13px 8px;
+      border-radius: 18px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      color: #fff;
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      transition: transform 0.15s ease, opacity 0.25s ease;
+    }
+    .award-btn:active:not(:disabled) { transform: scale(0.93); }
+    .award-btn:disabled {
+      opacity: 0.30;
+      cursor: default;
+      transform: none;
+    }
+    .award-btn.scored { opacity: 0.38; }
+
+    /* ── Bet badge ── */
+    .bet-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: rgba(168,85,247,0.10);
+      border: 1px solid rgba(168,85,247,0.25);
+      border-radius: 14px;
+      font-size: 0.80rem;
+      font-weight: 700;
+      color: #c084fc;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    /* ── Phase badge colours ── */
+    .phase-bet    { color: #c084fc; }
+    .phase-choose { color: #38bdf8; }
+    .phase-score  { color: #34d399; }
+  </style>
+</head>
+<body class="bg-slate-950 font-outfit antialiased overflow-x-hidden">
+
+  <div class="relative flex flex-col min-h-dvh max-w-[480px] mx-auto">
+
+    <!-- ── HEADER ─────────────────────────────── -->
+    <header class="game-score-header safe-top">
+      <a href="index.html" class="w-9 h-9 glass-card flex items-center justify-center text-slate-400 rounded-xl hover:text-white flex-shrink-0 no-underline" aria-label="Back">
+        <i class="fa-solid fa-chevron-left text-sm"></i>
+      </a>
+      <div class="flex-1 text-center px-3">
+        <p class="text-white font-bold text-sm tracking-widest">RATHER BATTLE</p>
+        <p class="text-slate-400 text-xs" id="score-label">Loading...</p>
+      </div>
+      <div class="w-9 h-9 rounded-xl bg-purple-500/15 flex items-center justify-center flex-shrink-0">
+        <i class="fa-solid fa-bolt text-purple-400 text-sm"></i>
+      </div>
+    </header>
+
+    <!-- ── MAIN ───────────────────────────────── -->
+    <main class="flex-1 overflow-y-auto flex flex-col">
+
+      <!-- START CARD -->
+      <div id="start-main-card" class="flex-1 flex flex-col items-center justify-center px-5 py-6">
+        <div class="glass-panel p-8 text-center w-full animate-fade-in-up">
+          <div class="w-20 h-20 rounded-3xl bg-purple-500/15 flex items-center justify-center mx-auto mb-5">
+            <i class="fa-solid fa-bolt text-purple-400 text-4xl"></i>
+          </div>
+          <h2 class="text-white font-extrabold text-2xl mb-2">Rather Battle</h2>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5" id="start-desc">
+            Would you rather...? Teams bet on the driver's answer — then points are awarded!
+          </p>
+          <div class="flex items-center justify-center gap-3 text-xs text-slate-500 mb-4">
+            <span class="flex items-center gap-1">
+              <i class="fa-solid fa-bolt text-purple-500/60"></i>
+              <span id="start-count">110 dilemmas</span>
+            </span>
+            <span class="text-slate-700">·</span>
+            <span class="flex items-center gap-1">
+              <i class="fa-solid fa-users text-purple-500/60"></i>
+              <span id="start-teams-info">No teams set</span>
+            </span>
+          </div>
+          <div class="flex items-center justify-center gap-2 text-xs">
+            <span class="bg-sky-500/15 text-sky-400 border border-sky-500/25 rounded-lg px-2.5 py-1 font-bold">Option A</span>
+            <span class="text-slate-700 font-bold">vs</span>
+            <span class="bg-amber-500/15 text-amber-400 border border-amber-500/25 rounded-lg px-2.5 py-1 font-bold">Option B</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLAY AREA -->
+      <div id="play-area" class="px-5 pt-4 flex flex-col gap-4" style="display:none">
+
+        <!-- Progress -->
+        <div>
+          <div class="flex justify-between items-center text-xs mb-2">
+            <span class="text-slate-500 font-semibold" id="q-counter">1 / 110</span>
+            <span class="font-bold tracking-wide" id="phase-badge">🎲 Bet!</span>
+          </div>
+          <div class="h-1.5 bg-white/5 rounded-full overflow-hidden border border-white/5">
+            <div id="progress-bar" class="h-full rounded-full transition-all duration-500"
+                 style="width:0%; background: linear-gradient(90deg, #a855f7, #0ea5e9)"></div>
+          </div>
+        </div>
+
+        <!-- Question Card -->
+        <div id="question-card" class="glass-panel p-5 flex flex-col gap-3 animate-fade-in-up">
+
+          <p class="text-[0.68rem] font-black tracking-[0.12em] uppercase text-purple-400" id="q-prefix">Would you rather…</p>
+
+          <!-- Option A -->
+          <div id="opt-card-a" class="option-card">
+            <p class="opt-label opt-label-a">Option A</p>
+            <p class="opt-text" id="opt-a-text">—</p>
+            <span class="chosen-badge chosen-badge-a text-sky-300">
+              <i class="fa-solid fa-check text-[0.55rem]"></i>
+              <span id="chosen-label-a">Chosen</span>
+            </span>
+          </div>
+
+          <!-- OR -->
+          <div class="or-row"><span id="or-label">or</span></div>
+
+          <!-- Option B -->
+          <div id="opt-card-b" class="option-card">
+            <p class="opt-label opt-label-b">Option B</p>
+            <p class="opt-text" id="opt-b-text">—</p>
+            <span class="chosen-badge chosen-badge-b text-amber-300">
+              <i class="fa-solid fa-check text-[0.55rem]"></i>
+              <span id="chosen-label-b">Chosen</span>
+            </span>
+          </div>
+
+        </div>
+
+        <div class="h-52 flex-shrink-0"></div>
+      </div>
+
+    </main>
+
+    <!-- ── GAME CONTROLS (fixed bottom) ─────── -->
+    <div class="game-controls">
+
+      <!-- START -->
+      <div id="ctrl-start">
+        <button id="btn-start" class="btn-cta w-full py-4 rounded-2xl text-[0.95rem] tracking-widest">
+          <i class="fa-solid fa-play"></i>
+          <span id="start-btn-label">Start Game</span>
+        </button>
+      </div>
+
+      <!-- BETTING: teams declare verbally, then driver reveals -->
+      <div id="ctrl-betting" style="display:none" class="flex flex-col gap-3">
+        <div class="bet-badge" id="bet-badge">
+          <i class="fa-solid fa-comments text-sm"></i>
+          <span id="bet-badge-text">Teams, place your bets!</span>
+        </div>
+        <button id="btn-driver-choose" class="btn-cta w-full py-4 rounded-2xl text-[0.95rem] tracking-widest">
+          <i class="fa-solid fa-hand-point-up"></i>
+          <span id="driver-choose-label">Driver, choose!</span>
+        </button>
+      </div>
+
+      <!-- CHOICE: driver taps A or B -->
+      <div id="ctrl-choice" style="display:none" class="flex flex-col gap-2">
+        <p class="text-center text-slate-400 text-xs font-semibold tracking-wide" id="choice-hint">Driver, tap your answer!</p>
+        <div class="flex gap-3">
+          <button id="btn-opt-a" class="choice-btn choice-btn-a">
+            <span class="choice-letter choice-letter-a">A</span>
+            <span class="text-[0.82rem] font-bold leading-tight text-center" id="btn-opt-a-text">—</span>
+          </button>
+          <button id="btn-opt-b" class="choice-btn choice-btn-b">
+            <span class="choice-letter choice-letter-b">B</span>
+            <span class="text-[0.82rem] font-bold leading-tight text-center" id="btn-opt-b-text">—</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- SCORING: award points independently, then next -->
+      <div id="ctrl-scoring" style="display:none" class="flex flex-col gap-2">
+        <div class="flex gap-3">
+          <button id="btn-award1" class="award-btn">
+            <i class="fa-solid fa-plus text-xs opacity-70"></i>
+            <span class="text-xs font-bold" id="award-t1-label">Team 1</span>
+          </button>
+          <button id="btn-award2" class="award-btn">
+            <i class="fa-solid fa-plus text-xs opacity-70"></i>
+            <span class="text-xs font-bold" id="award-t2-label">Team 2</span>
+          </button>
+        </div>
+        <button id="btn-next" class="btn-cta w-full py-4 rounded-2xl text-[0.95rem] tracking-widest">
+          <i class="fa-solid fa-arrow-right"></i>
+          <span id="next-label">Next Dilemma</span>
+        </button>
+      </div>
+
+    </div>
+
+    <div class="h-28 flex-shrink-0"></div>
+  </div>
+
+  <!-- ── BOTTOM NAV ─────────────────────────── -->
+  <nav class="glass-nav fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 safe-bottom" role="navigation">
+    <div class="flex items-center justify-around px-2 pt-3 pb-2">
+      <a href="index.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Home">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-house text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500">Home</span>
+      </a>
+      <a href="ranking.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Ranking">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-trophy text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500">Ranking</span>
+      </a>
+      <a href="settings.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Settings">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-gear text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500">Settings</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ── ROUND END OVERLAY ───────────────────── -->
+  <div id="round-end" class="fixed inset-0 z-[200] flex flex-col items-center justify-center px-5" style="display:none; background:rgba(2,6,23,0.94); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px)">
+    <div class="glass-panel p-8 text-center w-full max-w-sm animate-fade-in-up">
+      <div class="w-20 h-20 rounded-3xl bg-purple-500/15 flex items-center justify-center mx-auto mb-5">
+        <i class="fa-solid fa-trophy text-purple-400 text-4xl"></i>
+      </div>
+      <h2 class="text-white font-extrabold text-2xl mb-1" id="end-title">Round Complete!</h2>
+      <p class="text-slate-400 text-sm mb-7" id="end-subtitle"></p>
+
+      <div class="flex justify-center items-center gap-6 mb-8">
+        <div class="text-center">
+          <p class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2" id="end-t1-name">Team 1</p>
+          <p class="text-white font-extrabold leading-none" id="end-t1-score" style="font-size:3rem">0</p>
+        </div>
+        <div class="text-slate-700 font-bold text-3xl leading-none pb-1">—</div>
+        <div class="text-center">
+          <p class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2" id="end-t2-name">Team 2</p>
+          <p class="text-white font-extrabold leading-none" id="end-t2-score" style="font-size:3rem">0</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <button id="btn-play-again" class="btn-cta w-full py-4 rounded-2xl">
+          <i class="fa-solid fa-rotate-right"></i>
+          <span id="play-again-label">Play Again</span>
+        </button>
+        <a href="index.html" class="btn-ghost w-full py-3 rounded-2xl text-sm text-center no-underline flex items-center justify-center gap-2">
+          <i class="fa-solid fa-house"></i>
+          <span id="home-label">Back to Home</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PAYWALL OVERLAY ──────────────────────── -->
+  <div id="paywall" class="fixed inset-0 z-[400] flex-col items-center justify-center px-5" style="display:none; background:rgba(2,6,23,0.97); backdrop-filter:blur(28px); -webkit-backdrop-filter:blur(28px)">
+    <div class="glass-panel p-8 text-center w-full max-w-sm animate-fade-in-up">
+      <div class="w-20 h-20 rounded-3xl bg-amber-500/15 flex items-center justify-center mx-auto mb-5">
+        <i class="fa-solid fa-lock text-amber-400 text-4xl"></i>
+      </div>
+      <h2 class="text-white font-extrabold text-2xl mb-2" id="paywall-title">Free limit reached</h2>
+      <p class="text-slate-400 text-sm leading-relaxed mb-1" id="paywall-sub1">You've played 50 free rounds.</p>
+      <p class="text-slate-400 text-sm leading-relaxed mb-7" id="paywall-sub2">Unlock to keep playing!</p>
+      <button id="btn-buy-game" class="btn-cta w-full py-4 rounded-2xl mb-3 text-[0.95rem] tracking-widest">
+        <i class="fa-solid fa-unlock"></i>
+        <span id="paywall-game-label">Unlock this game — €1.99</span>
+      </button>
+      <button id="btn-buy-all" class="w-full py-3 rounded-2xl text-sm font-bold tracking-wide border border-amber-500/40 text-amber-400 bg-amber-500/10 active:scale-95 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer">
+        <i class="fa-solid fa-crown text-xs"></i>
+        <span id="paywall-all-label">Unlock ALL games — €4.99</span>
+      </button>
+      <a href="index.html" class="mt-5 block text-slate-500 text-xs font-medium hover:text-slate-400 transition-colors no-underline">← Back to Home</a>
+    </div>
+  </div>
+
+  <!-- ── CONFETTI CANVAS ─────────────────────── -->
+  <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-[150]"
+          style="width:100%; height:100%"></canvas>
+
+  <!-- ── AUDIO + LOGIC ──────────────────────── -->
+  <script src="assets/js/audio-manager.js"></script>
+
+  <script>
+  (function () {
+    var lang = localStorage.getItem('fotr_lang') || 'en';
+
+    /* ─ TRANSLATIONS ─ */
+    var T = {
+      en: {
+        startBtn      : 'Start Game',
+        startDesc     : 'Would you rather...? Teams bet on the driver\'s answer, then award points!',
+        startCount    : function(n){ return n + ' dilemmas'; },
+        nextBtn       : 'Next Dilemma',
+        roundEnd      : 'Round Complete!',
+        roundEndSub   : function(w){ return w ? w + ' wins this round!' : 'It\'s a tie!'; },
+        playAgain     : 'Play Again',
+        homeBtn       : 'Back to Home',
+        noTeams       : 'Set up teams first',
+        qOf           : function(n,t){ return n + ' / ' + t; },
+        qPrefix       : 'Would you rather…',
+        orLabel       : 'or',
+        betBadge      : 'Teams, place your bets!',
+        driverChoose  : 'Driver, choose!',
+        choiceHint    : 'Driver, tap your answer!',
+        chosenLabel   : 'Chosen',
+        phaseBet      : '🎲 Bet!',
+        phaseChoose   : '👆 Choose!',
+        phaseScore    : '🏆 Score!',
+        paywallTitle  : 'Free limit reached',
+        paywallSub    : 'You\'ve played 50 free rounds of this game.',
+        paywallSub2   : 'Unlock to keep playing!',
+        paywallGame   : 'Unlock this game — €1.99',
+        paywallAll    : 'Unlock ALL games — €4.99',
+      },
+      it: {
+        startBtn      : 'Inizia Gioco',
+        startDesc     : 'Preferiresti...? Le squadre scommettono sulla risposta del guidatore, poi si assegnano i punti!',
+        startCount    : function(n){ return n + ' dilemmi'; },
+        nextBtn       : 'Prossimo Dilemma',
+        roundEnd      : 'Round Completato!',
+        roundEndSub   : function(w){ return w ? w + ' vince questo round!' : 'Pareggio!'; },
+        playAgain     : 'Gioca Ancora',
+        homeBtn       : 'Torna alla Home',
+        noTeams       : 'Imposta le squadre prima',
+        qOf           : function(n,t){ return n + ' / ' + t; },
+        qPrefix       : 'Preferiresti…',
+        orLabel       : 'oppure',
+        betBadge      : 'Squadre, fate le vostre scommesse!',
+        driverChoose  : 'Guidatore, scegli!',
+        choiceHint    : 'Guidatore, tocca la tua risposta!',
+        chosenLabel   : 'Scelto',
+        phaseBet      : '🎲 Scommetti!',
+        phaseChoose   : '👆 Scegli!',
+        phaseScore    : '🏆 Punteggio!',
+        paywallTitle  : 'Limite gratuito raggiunto',
+        paywallSub    : 'Hai giocato 50 round gratuiti di questo gioco.',
+        paywallSub2   : 'Sblocca per continuare a giocare!',
+        paywallGame   : 'Sblocca questo gioco — €1,99',
+        paywallAll    : 'Sblocca TUTTI i giochi — €4,99',
+      }
+    };
+    var t = T[lang] || T.en;
+
+    /* ─ PAYWALL ─ */
+    var GAME_KEY   = 'ratherBattle';
+    var FREE_LIMIT = 50;
+
+    function isPurchased(key) {
+      var p = JSON.parse(localStorage.getItem('fotr_purchases') || '{}');
+      return p[key] === true || p.all === true;
+    }
+
+    function showPaywall() {
+      document.getElementById('paywall-title').textContent      = t.paywallTitle;
+      document.getElementById('paywall-sub1').textContent       = t.paywallSub;
+      document.getElementById('paywall-sub2').textContent       = t.paywallSub2;
+      document.getElementById('paywall-game-label').textContent = t.paywallGame;
+      document.getElementById('paywall-all-label').textContent  = t.paywallAll;
+      document.getElementById('paywall').style.display = 'flex';
+    }
+
+    function handlePurchase(type) {
+      var p = JSON.parse(localStorage.getItem('fotr_purchases') || '{}');
+      if (type === 'game') p[GAME_KEY] = true;
+      else p.all = true;
+      localStorage.setItem('fotr_purchases', JSON.stringify(p));
+      document.getElementById('paywall').style.display = 'none';
+      startGame();
+    }
+
+    var QUESTIONS = [
+      { en:{a:'Live without music',b:'Live without movies'}, it:{a:'Vivere senza musica',b:'Vivere senza film'} },
+      { en:{a:'Always be 10 minutes late',b:'Always be 20 minutes early'}, it:{a:'Essere sempre in ritardo di 10 minuti',b:'Essere sempre in anticipo di 20 minuti'} },
+      { en:{a:'Have super speed',b:'Have super strength'}, it:{a:'Avere super velocità',b:'Avere super forza'} },
+      { en:{a:'Eat only sweet food forever',b:'Eat only salty food forever'}, it:{a:'Mangiare solo cibo dolce per sempre',b:'Mangiare solo cibo salato per sempre'} },
+      { en:{a:'Know exactly when you\'ll die',b:'Know exactly how you\'ll die'}, it:{a:'Sapere esattamente quando morirai',b:'Sapere esattamente come morirai'} },
+      { en:{a:'Be invisible for a day',b:'Be able to fly for a day'}, it:{a:'Essere invisibile per un giorno',b:'Poter volare per un giorno'} },
+      { en:{a:'Fight 100 duck-sized horses',b:'Fight 1 horse-sized duck'}, it:{a:'Combattere 100 cavalli grandi come anatre',b:'Combattere 1 anatra grande come un cavallo'} },
+      { en:{a:'Always say exactly what you think',b:'Never be able to express your opinion'}, it:{a:'Dire sempre esattamente quello che pensi',b:'Non poter mai esprimere la tua opinione'} },
+      { en:{a:'Be famous but lonely',b:'Be unknown but deeply loved'}, it:{a:'Essere famoso ma solo',b:'Essere sconosciuto ma profondamente amato'} },
+      { en:{a:'Live without internet',b:'Live without air conditioning'}, it:{a:'Vivere senza internet',b:'Vivere senza aria condizionata'} },
+      { en:{a:'Have a photographic memory',b:'Be able to forget anything you want'}, it:{a:'Avere una memoria fotografica',b:'Poter dimenticare qualsiasi cosa tu voglia'} },
+      { en:{a:'Lose all your money',b:'Lose all your memories'}, it:{a:'Perdere tutti i tuoi soldi',b:'Perdere tutti i tuoi ricordi'} },
+      { en:{a:'Be fluent in every language',b:'Play every musical instrument perfectly'}, it:{a:'Essere fluente in ogni lingua',b:'Suonare perfettamente ogni strumento musicale'} },
+      { en:{a:'Have a personal chef',b:'Have a personal driver'}, it:{a:'Avere uno chef personale',b:'Avere un autista personale'} },
+      { en:{a:'Never need to sleep',b:'Never need to eat'}, it:{a:'Non dover mai dormire',b:'Non dover mai mangiare'} },
+      { en:{a:'Be 10 years older',b:'Be 10 years younger'}, it:{a:'Avere 10 anni in più',b:'Avere 10 anni in meno'} },
+      { en:{a:'Always feel too hot',b:'Always feel too cold'}, it:{a:'Avere sempre troppo caldo',b:'Avere sempre troppo freddo'} },
+      { en:{a:'Be able to teleport anywhere',b:'Be able to travel through time'}, it:{a:'Poter teletrasportarti ovunque',b:'Poter viaggiare nel tempo'} },
+      { en:{a:'Be stranded on a desert island alone',b:'Be stranded with someone you hate'}, it:{a:'Essere su un\'isola deserta da solo',b:'Essere su un\'isola deserta con qualcuno che odi'} },
+      { en:{a:'Watch the same movie forever',b:'Listen to the same song forever'}, it:{a:'Guardare lo stesso film per sempre',b:'Ascoltare la stessa canzone per sempre'} },
+      { en:{a:'Be the smartest person in any room',b:'Be the funniest person in any room'}, it:{a:'Essere la persona più intelligente in ogni stanza',b:'Essere la persona più divertente in ogni stanza'} },
+      { en:{a:'Have unlimited money but zero free time',b:'Have unlimited free time but zero money'}, it:{a:'Avere soldi illimitati ma nessun tempo libero',b:'Avere tempo libero illimitato ma nessun soldo'} },
+      { en:{a:'Live in a world without cars',b:'Live in a world without planes'}, it:{a:'Vivere in un mondo senza auto',b:'Vivere in un mondo senza aerei'} },
+      { en:{a:'Always wear formal clothes',b:'Always wear pajamas'}, it:{a:'Indossare sempre abiti formali',b:'Indossare sempre il pigiama'} },
+      { en:{a:'Talk to animals',b:'Speak every human language'}, it:{a:'Parlare con gli animali',b:'Parlare ogni lingua umana'} },
+      { en:{a:'Have hiccups for the rest of your life',b:'Feel like sneezing but never actually sneeze'}, it:{a:'Avere il singhiozzo per il resto della vita',b:'Sentire sempre di dover starnutire senza mai riuscirci'} },
+      { en:{a:'Be extremely beautiful but not very smart',b:'Be extremely smart but not very attractive'}, it:{a:'Essere bellissimo ma poco intelligente',b:'Essere intelligentissimo ma poco attraente'} },
+      { en:{a:'Always win every argument',b:'Always lose arguments but always be right'}, it:{a:'Vincere sempre ogni discussione',b:'Perdere sempre le discussioni ma avere sempre ragione'} },
+      { en:{a:'Live in the city',b:'Live in the countryside'}, it:{a:'Vivere in città',b:'Vivere in campagna'} },
+      { en:{a:'Have no sense of smell',b:'Have no sense of taste'}, it:{a:'Non avere olfatto',b:'Non avere gusto'} },
+      { en:{a:'Have a lion as a pet',b:'Have a shark as a pet'}, it:{a:'Avere un leone come animale domestico',b:'Avere uno squalo come animale domestico'} },
+      { en:{a:'Be able to stop time',b:'Be able to rewind time'}, it:{a:'Poter fermare il tempo',b:'Poter riavvolgere il tempo'} },
+      { en:{a:'Always know when someone is lying to you',b:'Lie perfectly and never get caught'}, it:{a:'Sapere sempre quando qualcuno ti mente',b:'Mentire perfettamente senza mai essere scoperto'} },
+      { en:{a:'Be stuck in a lift with your boss',b:'Be stuck in a lift with your ex'}, it:{a:'Restare bloccato in un ascensore col tuo capo',b:'Restare bloccato in un ascensore col tuo ex'} },
+      { en:{a:'Have unlimited sushi for life',b:'Have unlimited pizza for life'}, it:{a:'Avere sushi illimitato per tutta la vita',b:'Avere pizza illimitata per tutta la vita'} },
+      { en:{a:'Be a master chef',b:'Be a world-class athlete'}, it:{a:'Essere uno chef di livello mondiale',b:'Essere un atleta di livello mondiale'} },
+      { en:{a:'Live in 1950',b:'Live in 2150'}, it:{a:'Vivere nel 1950',b:'Vivere nel 2150'} },
+      { en:{a:'Have a life rewind button',b:'Have a life fast-forward button'}, it:{a:'Avere un tasto rewind per la tua vita',b:'Avere un tasto fast-forward per la tua vita'} },
+      { en:{a:'Only be able to whisper',b:'Only be able to shout'}, it:{a:'Poter solo sussurrare',b:'Poter solo urlare'} },
+      { en:{a:'Be a famous musician',b:'Be a famous actor'}, it:{a:'Essere un musicista famoso',b:'Essere un attore famoso'} },
+      { en:{a:'Lose your sense of direction forever',b:'Lose your sense of time forever'}, it:{a:'Perdere il senso dell\'orientamento per sempre',b:'Perdere il senso del tempo per sempre'} },
+      { en:{a:'Read minds but only hear bad thoughts',b:'See the future but only bad events'}, it:{a:'Leggere le menti ma sentire solo pensieri cattivi',b:'Vedere il futuro ma solo eventi negativi'} },
+      { en:{a:'Eat a live worm',b:'Drink a glass of pure hot sauce'}, it:{a:'Mangiare un verme vivo',b:'Bere un bicchiere di salsa piccante pura'} },
+      { en:{a:'Have a terrible job you love',b:'Have an amazing job you hate'}, it:{a:'Avere un lavoro pessimo che ami',b:'Avere un ottimo lavoro che odi'} },
+      { en:{a:'Never use social media again',b:'Never watch TV or streaming again'}, it:{a:'Non usare mai più i social media',b:'Non guardare mai più TV o streaming'} },
+      { en:{a:'Live in a house with no windows',b:'Live in a glass house where everyone can see in'}, it:{a:'Vivere in una casa senza finestre',b:'Vivere in una casa di vetro dove tutti possono vedere dentro'} },
+      { en:{a:'Go to space',b:'Explore the deepest part of the ocean'}, it:{a:'Andare nello spazio',b:'Esplorare le profondità dell\'oceano'} },
+      { en:{a:'Be a wizard',b:'Be a superhero'}, it:{a:'Essere un mago',b:'Essere un supereroe'} },
+      { en:{a:'Wake up as a different person every day',b:'Be frozen at your current age forever'}, it:{a:'Svegliarti come una persona diversa ogni giorno',b:'Restare alla tua età attuale per sempre'} },
+      { en:{a:'Never feel any pain at all',b:'Always feel a mild pleasant warmth'}, it:{a:'Non sentire mai alcun dolore',b:'Sentire sempre un piacevole calore moderato'} },
+      { en:{a:'Live forever watching everyone you love die',b:'Live a normal lifespan but never lose anyone you love'}, it:{a:'Vivere per sempre guardando morire tutti quelli che ami',b:'Vivere una vita normale senza mai perdere chi ami'} },
+      { en:{a:'Meet your future self',b:'Meet your past self'}, it:{a:'Incontrare il tuo io futuro',b:'Incontrare il tuo io passato'} },
+      { en:{a:'Have unlimited phone battery forever',b:'Have unlimited mobile data forever'}, it:{a:'Avere batteria illimitata sul telefono per sempre',b:'Avere dati mobili illimitati per sempre'} },
+      { en:{a:'Be allergic to sugar',b:'Be allergic to coffee'}, it:{a:'Essere allergico allo zucchero',b:'Essere allergico al caffè'} },
+      { en:{a:'Speak only in rhymes for the rest of your life',b:'Sing everything you say for the rest of your life'}, it:{a:'Parlare solo in rime per il resto della vita',b:'Cantare tutto quello che dici per il resto della vita'} },
+      { en:{a:'Never be stuck in traffic again',b:'Never stand in a queue again'}, it:{a:'Non essere mai più bloccato nel traffico',b:'Non fare mai più la fila'} },
+      { en:{a:'Be the absolute best in the world at one thing',b:'Be genuinely great at everything'}, it:{a:'Essere il migliore assoluto del mondo in una cosa',b:'Essere bravo in tutto'} },
+      { en:{a:'Have a pet dragon',b:'Have a pet unicorn'}, it:{a:'Avere un drago come animale domestico',b:'Avere un unicorno come animale domestico'} },
+      { en:{a:'Always feel slightly hungry',b:'Always feel slightly sleepy'}, it:{a:'Sentirsi sempre leggermente affamato',b:'Sentirsi sempre leggermente assonnato'} },
+      { en:{a:'Laugh uncontrollably for a full minute every hour',b:'Cry uncontrollably for 30 seconds once a day'}, it:{a:'Ridere incontrollabilmente per un minuto intero ogni ora',b:'Piangere incontrollabilmente per 30 secondi una volta al giorno'} },
+      { en:{a:'Be able to talk to the dead',b:'Be able to predict the future'}, it:{a:'Poter parlare con i morti',b:'Poter predire il futuro'} },
+      { en:{a:'Spend a week in prison',b:'Spend a month lost in the wilderness'}, it:{a:'Passare una settimana in prigione',b:'Passare un mese perso nella natura selvaggia'} },
+      { en:{a:'Free access to every concert ever',b:'Free access to every restaurant ever'}, it:{a:'Accesso gratuito a ogni concerto mai tenuto',b:'Accesso gratuito a ogni ristorante mai esistito'} },
+      { en:{a:'Be trapped inside a video game',b:'Be trapped inside a movie'}, it:{a:'Essere intrappolato in un videogioco',b:'Essere intrappolato in un film'} },
+      { en:{a:'Eat only your least favourite food for a year',b:'Never eat your favourite food for 5 years'}, it:{a:'Mangiare solo il tuo cibo meno preferito per un anno',b:'Non mangiare il tuo cibo preferito per 5 anni'} },
+      { en:{a:'Have an exact clone of yourself',b:'Have a twin who is your complete opposite'}, it:{a:'Avere un clone esatto di te stesso',b:'Avere un gemello che è il tuo esatto opposto'} },
+      { en:{a:'Have a tail',b:'Have horns'}, it:{a:'Avere una coda',b:'Avere le corna'} },
+      { en:{a:'Be born in ancient Rome',b:'Be born in medieval Japan'}, it:{a:'Nascere nell\'antica Roma',b:'Nascere nel Giappone medievale'} },
+      { en:{a:'Have unlimited coffee for life',b:'Have unlimited wine for life'}, it:{a:'Avere caffè illimitato per tutta la vita',b:'Avere vino illimitato per tutta la vita'} },
+      { en:{a:'Live in a space station',b:'Live in a submarine'}, it:{a:'Vivere in una stazione spaziale',b:'Vivere in un sottomarino'} },
+      { en:{a:'Have skin that changes colour with your mood',b:'Have hair that grows 1 cm per minute'}, it:{a:'Avere la pelle che cambia colore in base all\'umore',b:'Avere capelli che crescono 1 cm al minuto'} },
+      { en:{a:'Be immune to all diseases',b:'Be immune to all physical injuries'}, it:{a:'Essere immune a tutte le malattie',b:'Essere immune a tutti gli infortuni fisici'} },
+      { en:{a:'Win an Oscar',b:'Win a Nobel Prize'}, it:{a:'Vincere un Oscar',b:'Vincere un Premio Nobel'} },
+      { en:{a:'Pause time for everyone except yourself',b:'Create a perfect duplicate of yourself'}, it:{a:'Mettere in pausa il tempo per tutti tranne te',b:'Creare un duplicato perfetto di te stesso'} },
+      { en:{a:'Live with a constant movie soundtrack following you',b:'Live in a world where everyone spontaneously bursts into song'}, it:{a:'Vivere con una colonna sonora cinematografica costante',b:'Vivere in un mondo dove tutti iniziano a cantare spontaneamente'} },
+      { en:{a:'Always win at board games',b:'Always win at video games'}, it:{a:'Vincere sempre ai giochi da tavolo',b:'Vincere sempre ai videogiochi'} },
+      { en:{a:'Eat anything and never gain weight',b:'Exercise for half the time and always get double the results'}, it:{a:'Mangiare qualsiasi cosa senza mai ingrassare',b:'Allenarsi per metà del tempo e ottenere sempre il doppio dei risultati'} },
+      { en:{a:'Know a shocking secret about the government',b:'Know a shocking secret about a celebrity'}, it:{a:'Conoscere un segreto scioccante sul governo',b:'Conoscere un segreto scioccante su un personaggio famoso'} },
+      { en:{a:'Spend a year as a monk with no technology',b:'Spend a year as a nomad with no fixed home'}, it:{a:'Passare un anno come monaco senza tecnologia',b:'Passare un anno come nomade senza una casa fissa'} },
+      { en:{a:'Have access to every museum on Earth',b:'Have access to every library on Earth'}, it:{a:'Avere accesso a ogni museo del mondo',b:'Avere accesso a ogni biblioteca del mondo'} },
+      { en:{a:'Be bulletproof',b:'Be able to instantly heal any wound'}, it:{a:'Essere a prova di proiettile',b:'Poter guarire istantaneamente qualsiasi ferita'} },
+      { en:{a:'Live in a world with real magic',b:'Live in a world with advanced AI robots'}, it:{a:'Vivere in un mondo con la magia vera',b:'Vivere in un mondo con robot AI avanzati'} },
+      { en:{a:'Age backwards from 80 back to 0',b:'Relive the same perfect day 1000 times'}, it:{a:'Invecchiare al contrario da 80 a 0',b:'Rivivere lo stesso giorno perfetto 1000 volte'} },
+      { en:{a:'Have the power to heal any illness with a touch',b:'Have the power to make any plant grow instantly'}, it:{a:'Avere il potere di guarire qualsiasi malattia con un tocco',b:'Avere il potere di far crescere istantaneamente qualsiasi pianta'} },
+      { en:{a:'Only sleep 2 hours a night and feel fully rested',b:'Sleep 14 hours a night and still feel tired'}, it:{a:'Dormire solo 2 ore a notte e sentirti completamente riposato',b:'Dormire 14 ore a notte e sentirti ancora stanco'} },
+      { en:{a:'Have everyone instantly trust you',b:'Have everyone instantly like you'}, it:{a:'Fare in modo che tutti si fidino istantaneamente di te',b:'Fare in modo che tutti ti apprezzino istantaneamente'} },
+      { en:{a:'Be able to speak to every animal',b:'Have every animal obey your commands'}, it:{a:'Poter parlare con ogni animale',b:'Avere tutti gli animali che obbediscono ai tuoi comandi'} },
+      { en:{a:'Know every answer during any exam',b:'Never have to take an exam ever again'}, it:{a:'Conoscere ogni risposta in qualsiasi esame',b:'Non dover mai più sostenere un esame'} },
+      { en:{a:'Have a robot that does all your housework',b:'Have a robot that does all your work tasks'}, it:{a:'Avere un robot che fa tutte le faccende domestiche',b:'Avere un robot che svolge tutti i tuoi compiti lavorativi'} },
+      { en:{a:'Discover a new planet',b:'Discover a new species on Earth'}, it:{a:'Scoprire un nuovo pianeta',b:'Scoprire una nuova specie sulla Terra'} },
+      { en:{a:'Have perfect skin forever',b:'Have perfect hair forever'}, it:{a:'Avere una pelle perfetta per sempre',b:'Avere capelli perfetti per sempre'} },
+      { en:{a:'Be famous on social media',b:'Be deeply respected in your profession'}, it:{a:'Essere famoso sui social media',b:'Essere profondamente rispettato nella tua professione'} },
+      { en:{a:'Have an eidetic memory',b:'Have an IQ of 200'}, it:{a:'Avere una memoria eidetica',b:'Avere un QI di 200'} },
+      { en:{a:'Ride a dragon to work every day',b:'Have a giant friendly wolf as your guard dog'}, it:{a:'Andare al lavoro su un drago ogni giorno',b:'Avere un lupo gigante amichevole come cane da guardia'} },
+      { en:{a:'Be teleported to a random country every morning',b:'Meet a random famous person every day'}, it:{a:'Essere teletrasportato in un paese a caso ogni mattina',b:'Incontrare una persona famosa a caso ogni giorno'} },
+      { en:{a:'Never feel embarrassed ever again',b:'Never feel bored ever again'}, it:{a:'Non sentirsi mai più in imbarazzo',b:'Non sentirsi mai più annoiato'} },
+      { en:{a:'Have your dream job but earn minimum wage',b:'Have a boring job but earn a million a year'}, it:{a:'Avere il lavoro dei sogni ma guadagnare il minimo sindacale',b:'Avere un lavoro noioso ma guadagnare un milione all\'anno'} },
+      { en:{a:'Only eat food that tastes amazing but looks disgusting',b:'Only eat food that looks amazing but tastes like cardboard'}, it:{a:'Mangiare solo cibo dal sapore fantastico ma dall\'aspetto disgustoso',b:'Mangiare solo cibo dall\'aspetto fantastico ma dal sapore di cartone'} },
+      { en:{a:'Have every wish granted but age 10 years each time',b:'Live forever but never have any wishes granted'}, it:{a:'Avere ogni desiderio esaudito ma invecchiare di 10 anni ogni volta',b:'Vivere per sempre ma non avere mai nessun desiderio esaudito'} },
+      { en:{a:'Be able to breathe underwater',b:'Be able to survive in the vacuum of space'}, it:{a:'Poter respirare sott\'acqua',b:'Poter sopravvivere nel vuoto dello spazio'} },
+      { en:{a:'Give up smartphones forever',b:'Give up fast food forever'}, it:{a:'Rinunciare agli smartphone per sempre',b:'Rinunciare al fast food per sempre'} },
+      { en:{a:'Always have the perfect comeback in arguments',b:'Always make people laugh when you want to'}, it:{a:'Avere sempre la risposta perfetta nelle discussioni',b:'Riuscire sempre a far ridere le persone quando vuoi'} },
+      { en:{a:'Lose all your photos',b:'Lose all your text message history'}, it:{a:'Perdere tutte le tue foto',b:'Perdere tutta la tua cronologia dei messaggi'} },
+      { en:{a:'Be able to see everyone\'s health bar above their head',b:'Be able to see everyone\'s current emotion as a colour'}, it:{a:'Poter vedere la barra della salute di tutti sopra la testa',b:'Poter vedere l\'emozione attuale di tutti come un colore'} },
+      { en:{a:'Have a magic bag that always contains €50',b:'Have a magic fridge that always has your favourite food'}, it:{a:'Avere una borsa magica che contiene sempre 50€',b:'Avere un frigo magico che ha sempre il tuo cibo preferito'} },
+      { en:{a:'Be a deep sea diver',b:'Be an astronaut'}, it:{a:'Essere un subacqueo di profondità',b:'Essere un astronauta'} },
+      { en:{a:'Only travel by bicycle',b:'Only travel by horse'}, it:{a:'Viaggiare solo in bicicletta',b:'Viaggiare solo a cavallo'} },
+      { en:{a:'Have a talking cat',b:'Have a talking dog'}, it:{a:'Avere un gatto parlante',b:'Avere un cane parlante'} },
+      { en:{a:'Always have wet socks',b:'Always have itchy skin'}, it:{a:'Avere sempre i calzini bagnati',b:'Avere sempre il prurito'} },
+      { en:{a:'Live in a treehouse',b:'Live in a lighthouse'}, it:{a:'Vivere in una casa sull\'albero',b:'Vivere in un faro'} },
+      { en:{a:'Be able to talk to ghosts',b:'Be able to talk to aliens'}, it:{a:'Poter parlare con i fantasmi',b:'Poter parlare con gli alieni'} },
+      { en:{a:'Only be able to eat spicy food',b:'Only be able to eat cold food'}, it:{a:'Poter mangiare solo cibo piccante',b:'Poter mangiare solo cibo freddo'} },
+      { en:{a:'Have a magic carpet',b:'Have a flying car'}, it:{a:'Avere un tappeto volante',b:'Avere un\'auto volante'} },
+      { en:{a:'Never have to wash dishes again',b:'Never have to do laundry again'}, it:{a:'Non dover mai più lavare i piatti',b:'Non dover mai più fare il bucato'} },
+      { en:{a:'Live in a world of permanent summer',b:'Live in a world of permanent winter'}, it:{a:'Vivere in un mondo dove è sempre estate',b:'Vivere in un mondo dove è sempre inverno'} },
+      { en:{a:'Have 5 siblings',b:'Be an only child'}, it:{a:'Avere 5 fratelli',b:'Essere figlio unico'} },
+      { en:{a:'Be a world-famous painter',b:'Be a world-famous scientist'}, it:{a:'Essere un pittore di fama mondiale',b:'Essere uno scienziato di fama mondiale'} },
+      { en:{a:'Always have to sing instead of speaking',b:'Always have to dance instead of walking'}, it:{a:'Dover sempre cantare invece di parlare',b:'Dover sempre ballare invece di camminare'} },
+      { en:{a:'Have the ability to change your appearance at will',b:'Have the ability to change your voice at will'}, it:{a:'Poter cambiare il tuo aspetto a piacimento',b:'Poter cambiare la tua voce a piacimento'} },
+      { en:{a:'Own a private island',b:'Own a private jet'}, it:{a:'Possedere un\'isola privata',b:'Possedere un jet privato'} },
+      { en:{a:'Never be able to use a computer again',b:'Never be able to use a stove again'}, it:{a:'Non poter mai più usare un computer',b:'Non poter mai più usare i fornelli'} },
+      { en:{a:'Always have a full battery but no signal',b:'Always have a full signal but 1% battery'}, it:{a:'Avere sempre la batteria carica ma senza segnale',b:'Avere sempre segnale pieno ma l\'1% di batteria'} },
+      { en:{a:'Be able to control the weather',b:'Be able to control traffic lights'}, it:{a:'Poter controllare il meteo',b:'Poter controllare i semafori'} },
+      { en:{a:'Only be able to use a spoon',b:'Only be able to use a fork'}, it:{a:'Poter usare solo il cucchiaio',b:'Poter usare solo la forchetta'} },
+      { en:{a:'Live in a world where everyone is honest',b:'Live in a world where everyone is kind'}, it:{a:'Vivere in un mondo dove tutti sono onesti',b:'Vivere in un mondo dove tutti sono gentili'} },
+      { en:{a:'Have a permanent clown nose',b:'Have permanent giant elf ears'}, it:{a:'Avere un naso da clown permanente',b:'Avere orecchie da elfo giganti permanenti'} },
+      { en:{a:'Be able to run at 100 km/h',b:'Be able to jump 10 meters high'}, it:{a:'Poter correre a 100 km/h',b:'Poter saltare a 10 metri d\'altezza'} },
+      { en:{a:'Have a house made of candy',b:'Have a house made of LEGO'}, it:{a:'Avere una casa fatta di caramelle',b:'Avere una casa fatta di LEGO'} },
+      { en:{a:'Only drink water for the rest of your life',b:'Only drink tea for the rest of your life'}, it:{a:'Bere solo acqua per il resto della vita',b:'Bere solo tè per il resto della vita'} },
+      { en:{a:'Be the first person to step on Mars',b:'Be the person who cures a major disease'}, it:{a:'Essere la prima persona su Marte',b:'Essere la persona che cura una grave malattia'} },
+      { en:{a:'Have x-ray vision',b:'Have night vision'}, it:{a:'Avere la vista a raggi x',b:'Avere la visione notturna'} },
+      { en:{a:'Be able to shrink to the size of an ant',b:'Be able to grow to the size of a giant'}, it:{a:'Poter rimpicciolirti come una formica',b:'Poter diventare grande come un gigante'} },
+      { en:{a:'Never be able to wear shoes again',b:'Never be able to wear a hat again'}, it:{a:'Non poter mai più indossare scarpe',b:'Non poter mai più indossare un cappello'} },
+      { en:{a:'Always smell like popcorn',b:'Always smell like fresh flowers'}, it:{a:'Avere sempre l\'odore di popcorn',b:'Avere sempre l\'odore di fiori freschi'} },
+      { en:{a:'Be a pirate',b:'Be a ninja'}, it:{a:'Essere un pirata',b:'Essere un ninja'} },
+      { en:{a:'Lose your sense of touch',b:'Lose your sense of hearing'}, it:{a:'Perdere il senso del tatto',b:'Perdere l\'udito'} },
+      { en:{a:'Live in a castle',b:'Live in a high-tech penthouse'}, it:{a:'Vivere in un castello',b:'Vivere in un attico super tecnologico'} },
+      { en:{a:'Have the power of telekinesis',b:'Have the power of telepathy'}, it:{a:'Avere il potere della telecinesi',b:'Avere il potere della telepatia'} },
+      { en:{a:'Always have a theme song playing when you enter a room',b:'Always have credits roll when you leave a room'}, it:{a:'Avere sempre una sigla quando entri in una stanza',b:'Avere sempre i titoli di coda quando esci da una stanza'} },
+      { en:{a:'Be able to hold your breath for an hour',b:'Be able to never get tired from running'}, it:{a:'Poter trattenere il respiro per un\'ora',b:'Non stancarti mai di correre'} },
+      { en:{a:'Only be able to read books',b:'Only be able to watch documentaries'}, it:{a:'Poter solo leggere libri',b:'Poter solo guardare documentari'} },
+      { en:{a:'Have a golden touch (everything turns to gold)',b:'Have a chocolate touch (everything turns to chocolate)'}, it:{a:'Avere il tocco d\'oro (tutto diventa oro)',b:'Avere il tocco di cioccolato (tutto diventa cioccolato)'} },
+      { en:{a:'Be a detective',b:'Be a secret agent'}, it:{a:'Essere un detective',b:'Essere un agente segreto'} },
+      { en:{a:'Never have to pay for a taxi again',b:'Never have to pay for a hotel again'}, it:{a:'Non dover mai più pagare un taxi',b:'Non dover mai più pagare un hotel'} },
+      { en:{a:'Be able to see through walls',b:'Be able to see through lies'}, it:{a:'Poter vedere attraverso i muri',b:'Poter vedere attraverso le bugie'} },
+      { en:{a:'Have a permanent blue face',b:'Have a permanent green body'}, it:{a:'Avere la faccia blu permanente',b:'Avere il corpo verde permanente'} },
+      { en:{a:'Be able to talk to plants',b:'Be able to talk to machines'}, it:{a:'Poter parlare con le piante',b:'Poter parlare con le macchine'} },
+      { en:{a:'Live in a world without music',b:'Live in a world without colors'}, it:{a:'Vivere in un mondo senza musica',b:'Vivere in un mondo senza colori'} },
+      { en:{a:'Only be able to eat with your hands',b:'Only be able to eat with chopsticks'}, it:{a:'Poter mangiare solo con le mani',b:'Poter mangiare solo con le bacchette'} },
+      { en:{a:'Be a famous chef with no sense of taste',b:'Be a famous musician who is deaf'}, it:{a:'Essere un famoso chef senza gusto',b:'Essere un famoso musicista sordo'} },
+      { en:{a:'Always have to tell the truth',b:'Always have to lie'}, it:{a:'Dover dire sempre la verità',b:'Dover mentire sempre'} },
+      { en:{a:'Have a third eye on your forehead',b:'Have a third arm on your back'}, it:{a:'Avere un terzo occhio sulla fronte',b:'Avere un terzo braccio sulla schiena'} },
+      { en:{a:'Be able to breathe fire',b:'Be able to shoot ice from your hands'}, it:{a:'Poter sputare fuoco',b:'Poter sparare ghiaccio dalle mani'} },
+      { en:{a:'Always have sticky hands',b:'Always have itchy feet'}, it:{a:'Avere sempre le mani appiccicose',b:'Avere sempre i piedi che prudono'} },
+      { en:{a:'Live in a library',b:'Live in a museum'}, it:{a:'Vivere in una biblioteca',b:'Vivere in un museo'} },
+      { en:{a:'Be able to jump over buildings',b:'Be able to run through walls'}, it:{a:'Poter saltare sopra gli edifici',b:'Poter correre attraverso i muri'} },
+      { en:{a:'Never have to pay for gas again',b:'Never have to pay for electricity again'}, it:{a:'Non dover mai più pagare la benzina',b:'Non dover mai più pagare l\'elettricità'} },
+      { en:{a:'Have a house that is always perfectly clean',b:'Have a car that never needs repairs'}, it:{a:'Avere una casa sempre perfettamente pulita',b:'Avere un\'auto che non ha mai bisogno di riparazioni'} },
+      { en:{a:'Be able to remember everything you read',b:'Be able to remember everything you hear'}, it:{a:'Poter ricordare tutto ciò che leggi',b:'Poter ricordare tutto ciò che senti'} },
+      { en:{a:'Always have to wear a tuxedo',b:'Always have to wear a swimsuit'}, it:{a:'Dover indossare sempre uno smoking',b:'Dover indossare sempre un costume da bagno'} },
+      { en:{a:'Be able to turn into any animal',b:'Be able to turn into any object'}, it:{a:'Poterti trasformare in qualsiasi animale',b:'Poterti trasformare in qualsiasi oggetto'} },
+      { en:{a:'Have your own personal theme park',b:'Have your own personal zoo'}, it:{a:'Avere il tuo parco divertimenti personale',b:'Avere il tuo zoo personale'} },
+      { en:{a:'Be the smartest person on Earth but very ugly',b:'Be the most beautiful person on Earth but very dumb'}, it:{a:'Essere la persona più intelligente sulla terra ma brutta',b:'Essere la persona più bella sulla terra ma stupida'} },
+      { en:{a:'Never have to wait in line again',b:'Never have to pay for taxes again'}, it:{a:'Non dover mai più fare la fila',b:'Non dover mai più pagare le tasse'} },
+      { en:{a:'Be able to move things with your mind',b:'Be able to create fire with your mind'}, it:{a:'Poter muovere le cose con la mente',b:'Poter creare il fuoco con la mente'} },
+      { en:{a:'Only be able to watch 80s movies',b:'Only be able to watch silent movies'}, it:{a:'Poter guardare solo film degli anni \'80',b:'Poter guardare solo film muti'} },
+      { en:{a:'Have a map that shows where everyone is',b:'Have a book that tells the future of anyone'}, it:{a:'Avere una mappa che mostra dove sono tutti',b:'Avere un libro che predice il futuro di chiunque'} },
+      { en:{a:'Always have a pebble in your shoe',b:'Always have a hair in your mouth'}, it:{a:'Avere sempre un sassolino nella scarpa',b:'Avere sempre un capello in bocca'} },
+      { en:{a:'Be able to fly but only at 5 km/h',b:'Be able to teleport but only once a month'}, it:{a:'Poter volare ma solo a 5 km/h',b:'Poter teletrasportarti ma solo una volta al mese'} },
+      { en:{a:'Live in a world with no laws',b:'Live in a world with too many laws'}, it:{a:'Vivere in un mondo senza leggi',b:'Vivere in un mondo con troppe leggi'} },
+      { en:{a:'Never be able to use a phone again',b:'Never be able to use a bed again'}, it:{a:'Non poter mai più usare un telefono',b:'Non poter mai più usare un letto'} },
+      { en:{a:'Be a vampire',b:'Be a werewolf'}, it:{a:'Essere un vampiro',b:'Essere un lupo mannaro'} },
+      { en:{a:'Always have to talk like a pirate',b:'Always have to talk like a robot'}, it:{a:'Dover sempre parlare come un pirata',b:'Dover sempre parlare come un robot'} },
+      { en:{a:'Have a clock that can stop time for 5 minutes',b:'Have a remote that can skip 1 hour of the day'}, it:{a:'Avere un orologio che ferma il tempo per 5 minuti',b:'Avere un telecomando che salta un\'ora del giorno'} },
+      { en:{a:'Only be able to wear one color for life',b:'Only be able to eat one type of food for life'}, it:{a:'Poter vestire solo un colore per tutta la vita',b:'Poter mangiare solo un tipo di cibo per tutta la vita'} },
+      { en:{a:'Have a pet dinosaur',b:'Have a pet alien'}, it:{a:'Avere un dinosauro domestico',b:'Avere un alieno domestico'} },
+      { en:{a:'Be able to see through clothes',b:'Be able to see through walls'}, it:{a:'Poter vedere attraverso i vestiti',b:'Poter vedere attraverso i muri'} },
+      { en:{a:'Always be the funniest person in the room',b:'Always be the most respected person in the room'}, it:{a:'Essere sempre la persona più divertente',b:'Essere sempre la persona più rispettata'} },
+      { en:{a:'Never have to sleep but you are always bored',b:'Sleep 12 hours a day but you are always excited'}, it:{a:'Non dover mai dormire ma essere sempre annoiato',b:'Dormire 12 ore al giorno ma essere sempre entusiasta'} },
+      { en:{a:'Be able to change the color of anything',b:'Be able to change the size of anything'}, it:{a:'Poter cambiare il colore di qualsiasi cosa',b:'Poter cambiare la dimensione di qualsiasi cosa'} },
+      { en:{a:'Live in a giant bubble',b:'Live in a giant underground bunker'}, it:{a:'Vivere in una bolla gigante',b:'Vivere in un bunker sotterraneo gigante'} },
+      { en:{a:'Only be able to walk backwards',b:'Only be able to crawl'}, it:{a:'Poter camminare solo all\'indietro',b:'Poter solo strisciare'} },
+      { en:{a:'Have hair that glows in the dark',b:'Have teeth that glow in the dark'}, it:{a:'Avere capelli che brillano al buio',b:'Avere denti che brillano al buio'} },
+      { en:{a:'Be able to control shadows',b:'Be able to control reflections'}, it:{a:'Poter controllare le ombre',b:'Poter controllare i riflessi'} },
+      { en:{a:'Have a bottomless wallet',b:'Have a bottomless fridge'}, it:{a:'Avere un portafoglio senza fondo',b:'Avere un frigo senza fondo'} },
+      { en:{a:'Always have a bad haircut',b:'Always have to wear ugly shoes'}, it:{a:'Avere sempre un brutto taglio di capelli',b:'Dover sempre indossare scarpe brutte'} },
+      { en:{a:'Be a world-class singer',b:'Be a world-class dancer'}, it:{a:'Essere un cantante di classe mondiale',b:'Essere un ballerino di classe mondiale'} },
+      { en:{a:'Be able to talk to your past self',b:'Be able to talk to your future self'}, it:{a:'Poter parlare con il tuo io passato',b:'Poter parlare con il tuo io futuro'} },
+      { en:{a:'Only eat breakfast food',b:'Only eat dinner food'}, it:{a:'Mangiare solo cibi da colazione',b:'Mangiare solo cibi da cena'} },
+      { en:{a:'Have a personal robot butler',b:'Have a personal flying dragon'}, it:{a:'Avere un maggiordomo robot personale',b:'Avere un drago volante personale'} },
+      { en:{a:'Never get a cold again',b:'Never get a headache again'}, it:{a:'Non avere mai più il raffreddore',b:'Non avere mai più il mal di testa'} },
+      { en:{a:'Always have to shout everything you say',b:'Always have to whisper everything you say'}, it:{a:'Dover urlare tutto ciò che dici',b:'Dover sussurrare tutto ciò che dici'} },
+      { en:{a:'Be able to breathe in space',b:'Be able to breathe in fire'}, it:{a:'Poter respirare nello spazio',b:'Poter respirare nel fuoco'} },
+      { en:{a:'Have the power to make anyone fall in love with you',b:'Have the power to make anyone forget you'}, it:{a:'Avere il potere di far innamorare chiunque',b:'Avere il potere di far dimenticare chiunque'} },
+      { en:{a:'Live in a world where it only rains glitter',b:'Live in a world where it only rains soap bubbles'}, it:{a:'Vivere in un mondo dove piove glitter',b:'Vivere in un mondo dove piovono bolle di sapone'} },
+      { en:{a:'Always have 10/10 luck',b:'Always have 10/10 intelligence'}, it:{a:'Avere sempre fortuna 10/10',b:'Avere sempre intelligenza 10/10'} },
+      { en:{a:'Be able to walk on water',b:'Be able to walk on clouds'}, it:{a:'Poter camminare sull\'acqua',b:'Poter camminare sulle nuvole'} },
+      { en:{a:'Only be able to communicate through emojis',b:'Only be able to communicate through drawings'}, it:{a:'Comunicare solo tramite emoji',b:'Comunicare solo tramite disegni'} },
+      { en:{a:'Have a nose that grows when you lie',b:'Have ears that turn red when you are angry'}, it:{a:'Avere il naso che si allunga quando menti',b:'Avere le orecchie rosse quando sei arrabbiato'} },
+      { en:{a:'Be a knight in the middle ages',b:'Be a pilot in the future'}, it:{a:'Essere un cavaliere nel medioevo',b:'Essere un pilota nel futuro'} },
+      { en:{a:'Always have a sweaty forehead',b:'Always have cold hands'}, it:{a:'Avere sempre la fronte sudata',b:'Avere sempre le mani fredde'} },
+      { en:{a:'Be able to speak with plants',b:'Be able to speak with stones'}, it:{a:'Poter parlare con le piante',b:'Poter parlare con le pietre'} },
+      { en:{a:'Have a house that can fly',b:'Have a house that can sail'}, it:{a:'Avere una casa che vola',b:'Avere una casa che naviga'} },
+      { en:{a:'Never have to charge your phone again',b:'Never have to fill your car with fuel again'}, it:{a:'Non caricare mai più il telefono',b:'Non fare mai più benzina'} },
+      { en:{a:'Always know the location of lost objects',b:'Always know the answer to any riddle'}, it:{a:'Sapere sempre dove sono gli oggetti smarriti',b:'Sapere sempre la risposta a ogni indovinello'} },
+      { en:{a:'Only be able to listen to rock music',b:'Only be able to listen to classical music'}, it:{a:'Ascoltare solo musica rock',b:'Ascoltare solo musica classica'} },
+      { en:{a:'Have a golden tooth',b:'Have a silver eye'}, it:{a:'Avere un dente d\'oro',b:'Avere un occhio d\'argento'} },
+      { en:{a:'Be able to summon any food instantly',b:'Be able to summon any clothing instantly'}, it:{a:'Evocare qualsiasi cibo istantaneamente',b:'Evocare qualsiasi vestito istantaneamente'} },
+      { en:{a:'Always have to wear your clothes inside out',b:'Always have to wear your shoes on the wrong feet'}, it:{a:'Vestire sempre al rovescio',b:'Mettere sempre le scarpe ai piedi sbagliati'} },
+      { en:{a:'Be the captain of a pirate ship',b:'Be the commander of a space station'}, it:{a:'Essere il capitano di una nave pirata',b:'Essere il comandante di una stazione spaziale'} },
+      { en:{a:'Have a tail that wags when you are happy',b:'Have ears that wiggle when you are surprised'}, it:{a:'Avere la coda che scodinzola quando sei felice',b:'Avere le orecchie che si muovono quando sei sorpreso'} },
+      { en:{a:'Only be able to sleep on the floor',b:'Only be able to sleep standing up'}, it:{a:'Dormire solo sul pavimento',b:'Dormire solo in piedi'} },
+      { en:{a:'Be able to see in the dark',b:'Be able to see through smoke'}, it:{a:'Vedere al buio',b:'Vedere attraverso il fumo'} },
+      { en:{a:'Always have a perfect tan',b:'Always have perfect white teeth'}, it:{a:'Avere sempre un\'abbronzatura perfetta',b:'Avere sempre denti bianchi perfetti'} },
+      { en:{a:'Have the power to change the weather',b:'Have the power to change the gravity'}, it:{a:'Poter cambiare il meteo',b:'Poter cambiare la gravità'} },
+      { en:{a:'Only use a typewriter',b:'Only use a quill and ink'}, it:{a:'Usare solo la macchina da scrivere',b:'Usare solo piuma e inchiostro'} },
+      { en:{a:'Be able to clone yourself for 1 hour a day',b:'Be able to become invisible for 1 hour a day'}, it:{a:'Clonarti per un\'ora al giorno',b:'Diventare invisibile per un\'ora al giorno'} },
+      { en:{a:'Always have a smell of chocolate',b:'Always have a smell of vanilla'}, it:{a:'Avere sempre odore di cioccolato',b:'Avere sempre odore di vaniglia'} },
+      { en:{a:'Only be able to eat blue foods',b:'Only be able to eat green foods'}, it:{a:'Mangiare solo cibi blu',b:'Mangiare solo cibi verdi'} },
+      { en:{a:'Have a car that can drive underwater',b:'Have a car that can fly'}, it:{a:'Un\'auto che va sott\'acqua',b:'Un\'auto che vola'} },
+      { en:{a:'Be a professional video gamer',b:'Be a professional athlete'}, it:{a:'Essere un gamer professionista',b:'Essere un atleta professionista'} },
+      { en:{a:'Always have to wear a cape',b:'Always have to wear a crown'}, it:{a:'Indossare sempre un mantello',b:'Indossare sempre una corona'} },
+      { en:{a:'Be able to read everyone\'s name above their head',b:'Be able to see everyone\'s age above their head'}, it:{a:'Vedere il nome di tutti sopra la testa',b:'Vedere l\'età di tutti sopra la testa'} },
+      { en:{a:'Never have to brush your teeth again',b:'Never have to shower again'}, it:{a:'Non lavarti mai più i denti',b:'Non farti mai più la doccia'} },
+      { en:{a:'Be able to instantly learn any dance',b:'Be able to instantly learn any recipe'}, it:{a:'Imparare subito ogni ballo',b:'Imparare subito ogni ricetta'} },
+      { en:{a:'Have a magic pen that draws 3D objects',b:'Have a magic camera that takes photos of the past'}, it:{a:'Una penna che disegna oggetti 3D',b:'Una macchina fotografica che fotografa il passato'} },
+      { en:{a:'Always have a pocket full of candy',b:'Always have a pocket full of coins'}, it:{a:'Avere sempre la tasca piena di caramelle',b:'Avere sempre la tasca piena di monete'} },
+      { en:{a:'Only be able to speak in movies quotes',b:'Only be able to speak in song lyrics'}, it:{a:'Parlare solo con citazioni di film',b:'Parlare solo con testi di canzoni'} },
+      { en:{a:'Be able to teleport your items to you',b:'Be able to teleport yourself to your items'}, it:{a:'Teletrasportare i tuoi oggetti da te',b:'Teletrasportarti dai tuoi oggetti'} },
+      { en:{a:'Always have the perfect temperature',b:'Always have the perfect lighting'}, it:{a:'Avere sempre la temperatura perfetta',b:'Avere sempre la luce perfetta'} },
+      { en:{a:'Live in a world where dinosaurs are pets',b:'Live in a world where robots are pets'}, it:{a:'Un mondo con dinosauri domestici',b:'Un mondo con robot domestici'} },
+      { en:{a:'Be able to walk through fire',b:'Be able to walk through ice'}, it:{a:'Camminare nel fuoco',b:'Camminare nel ghiaccio'} },
+      { en:{a:'Have a voice that sounds like a celebrity',b:'Have a face that looks like a celebrity'}, it:{a:'Voce da celebrità',b:'Viso da celebrità'} },
+      { en:{a:'Only be able to watch cartoons',b:'Only be able to watch horror movies'}, it:{a:'Guardare solo cartoni animati',b:'Guardare solo film horror'} },
+      { en:{a:'Have the power to stop any fight',b:'Have the power to start any party'}, it:{a:'Potere di fermare ogni rissa',b:'Potere di iniziare ogni festa'} },
+      { en:{a:'Be able to breathe air underwater',b:'Be able to breathe water on land'}, it:{a:'Respirare aria sott\'acqua',b:'Respirare acqua sulla terra'} },
+      { en:{a:'Always have a balloon tied to your wrist',b:'Always have a bell tied to your ankle'}, it:{a:'Avere sempre un palloncino al polso',b:'Avere sempre un campanello alla caviglia'} },
+      { en:{a:'Be able to turn anything into a pillow',b:'Be able to turn anything into a chair'}, it:{a:'Trasformare tutto in cuscini',b:'Trasformare tutto in sedie'} },
+      { en:{a:'Only eat food that is spicy',b:'Only eat food that is sour'}, it:{a:'Mangiare solo cibo piccante',b:'Mangiare solo cibo aspro'} },
+      { en:{a:'Have a magic mirror that gives advice',b:'Have a magic mirror that changes your outfit'}, it:{a:'Specchio magico che dà consigli',b:'Specchio magico che cambia outfit'} },
+      { en:{a:'Be able to communicate with ghosts',b:'Be able to communicate with your future kids'}, it:{a:'Comunicare con i fantasmi',b:'Comunicare con i tuoi figli futuri'} },
+      { en:{a:'Always have to run everywhere',b:'Always have to hop everywhere'}, it:{a:'Dover correre ovunque',b:'Dover saltellare ovunque'} },
+      { en:{a:'Be a master of all martial arts',b:'Be a master of all science'}, it:{a:'Maestro di arti marziali',b:'Maestro di tutte le scienze'} },
+      { en:{a:'Have a hat that makes you fly',b:'Have shoes that make you super fast'}, it:{a:'Un cappello per volare',b:'Scarpe super veloci'} },
+      { en:{a:'Never have a mosquito bite again',b:'Never have a sunburn again'}, it:{a:'Mai più punture di zanzara',b:'Mai più scottature solari'} },
+      { en:{a:'Be able to control fire',b:'Be able to control water'}, it:{a:'Poter controllare il fuoco',b:'Poter controllare l\'acqua'} },
+      { en:{a:'Always have a perfect singing voice',b:'Always be a perfect dancer'}, it:{a:'Avere sempre una voce perfetta per cantare',b:'Essere sempre un ballerino perfetto'} },
+      { en:{a:'Only be able to eat pizza',b:'Only be able to eat pasta'}, it:{a:'Poter mangiare solo pizza',b:'Poter mangiare solo pasta'} },
+      { en:{a:'Live in a world with no gravity',b:'Live in a world where everything is bouncy'}, it:{a:'Vivere in un mondo senza gravità',b:'Vivere in un mondo dove tutto rimbalza'} },
+      { en:{a:'Have a personal assistant',b:'Have a personal maid'}, it:{a:'Avere un assistente personale',b:'Avere una cameriera personale'} },
+      { en:{a:'Be able to talk to insects',b:'Be able to talk to birds'}, it:{a:'Poter parlare con gli insetti',b:'Poter parlare con gli uccelli'} },
+      { en:{a:'Always have a full fridge',b:'Always have a clean house'}, it:{a:'Avere sempre il frigo pieno',b:'Avere sempre la casa pulita'} },
+      { en:{a:'Be a famous athlete',b:'Be a famous scientist'}, it:{a:'Essere un atleta famoso',b:'Essere uno scienziato famoso'} },
+      { en:{a:'Only travel by hot air balloon',b:'Only travel by submarine'}, it:{a:'Viaggiare solo in mongolfiera',b:'Viaggiare solo in sottomarino'} },
+      { en:{a:'Have a head twice its size',b:'Have feet twice their size'}, it:{a:'Avere la testa grande il doppio',b:'Avere i piedi grandi il doppio'} },
+      { en:{a:'Be able to walk through walls',b:'Be able to walk on water'}, it:{a:'Poter camminare attraverso i muri',b:'Poter camminare sull\'acqua'} },
+      { en:{a:'Always wear a superhero costume',b:'Always wear a medieval suit of armor'}, it:{a:'Indossare sempre un costume da supereroe',b:'Indossare sempre un\'armatura medievale'} },
+      { en:{a:'Have a permanent clown face',b:'Have permanent cat ears'}, it:{a:'Avere una faccia da clown permanente',b:'Avere orecchie da gatto permanenti'} },
+      { en:{a:'Only drink fruit juice',b:'Only drink vegetable juice'}, it:{a:'Bere solo succhi di frutta',b:'Bere solo succhi di verdura'} },
+      { en:{a:'Be able to create gold from sand',b:'Be able to create diamonds from coal'}, it:{a:'Poter creare oro dalla sabbia',b:'Poter creare diamanti dal carbone'} },
+      { en:{a:'Live in a house made of glass',b:'Live in a house made of wood'}, it:{a:'Vivere in una casa di vetro',b:'Vivere in una casa di legno'} },
+      { en:{a:'Always have to skip when you walk',b:'Always have to crawl when you move'}, it:{a:'Dover sempre saltellare quando cammini',b:'Dover sempre strisciare quando ti muovi'} },
+      { en:{a:'Be able to change the weather',b:'Be able to change the time of day'}, it:{a:'Poter cambiare il meteo',b:'Poter cambiare l\'ora del giorno'} },
+      { en:{a:'Have a magic carpet',b:'Have a magic broomstick'}, it:{a:'Avere un tappeto volante',b:'Avere una scopa volante'} },
+      { en:{a:'Always smell like fresh bread',b:'Always smell like coffee'}, it:{a:'Avere sempre l\'odore di pane fresco',b:'Avere sempre l\'odore di caffè'} },
+      { en:{a:'Only be able to speak in a high-pitched voice',b:'Only be able to speak in a deep voice'}, it:{a:'Poter parlare solo con voce acuta',b:'Poter parlare solo con voce profonda'} },
+      { en:{a:'Be able to freeze anyone for 10 seconds',b:'Be able to make anyone dance for 10 seconds'}, it:{a:'Poter congelare chiunque per 10 secondi',b:'Poter far ballare chiunque per 10 secondi'} },
+      { en:{a:'Live in the mountains',b:'Live by the sea'}, it:{a:'Vivere in montagna',b:'Vivere al mare'} },
+      { en:{a:'Have a pet monkey',b:'Have a pet penguin'}, it:{a:'Avere una scimmia domestica',b:'Avere un pinguino domestico'} },
+      { en:{a:'Always have to wear sunglasses',b:'Always have to wear a scarf'}, it:{a:'Dover sempre indossare occhiali da sole',b:'Dover sempre indossare una sciarpa'} },
+      { en:{a:'Be able to read people\'s emotions',b:'Be able to read people\'s intentions'}, it:{a:'Poter leggere le emozioni delle persone',b:'Poter leggere le intenzioni delle persone'} },
+      { en:{a:'Only be able to eat cold pizza',b:'Only be able to eat warm salad'}, it:{a:'Poter mangiare solo pizza fredda',b:'Poter mangiare solo insalata calda'} },
+      { en:{a:'Have a flying bicycle',b:'Have a swimming car'}, it:{a:'Avere una bicicletta volante',b:'Avere un\'auto che nuota'} },
+      { en:{a:'Always have perfect hair',b:'Always have perfect skin'}, it:{a:'Avere sempre capelli perfetti',b:'Avere sempre una pelle perfetta'} },
+      { en:{a:'Be a famous writer',b:'Be a famous painter'}, it:{a:'Essere uno scrittore famoso',b:'Essere un pittore famoso'} },
+      { en:{a:'Only be able to sleep in a hammock',b:'Only be able to sleep on a waterbed'}, it:{a:'Dormire solo in un\'amaca',b:'Dormire solo in un letto ad acqua'} },
+      { en:{a:'Have a personal library',b:'Have a personal cinema'}, it:{a:'Avere una biblioteca personale',b:'Avere un cinema personale'} },
+      { en:{a:'Be able to see through walls',b:'Be able to see long distances'}, it:{a:'Poter vedere attraverso i muri',b:'Poter vedere a lunghe distanze'} },
+      { en:{a:'Always have to wear mismatched shoes',b:'Always have to wear mismatched socks'}, it:{a:'Dover sempre portare scarpe spaiate',b:'Dover sempre portare calzini spaiati'} },
+      { en:{a:'Be able to talk to your pets',b:'Be able to talk to your shadow'}, it:{a:'Poter parlare con i tuoi animali',b:'Poter parlare con la tua ombra'} },
+      { en:{a:'Live in a world of robots',b:'Live in a world of aliens'}, it:{a:'Vivere in un mondo di robot',b:'Vivere in un mondo di alieni'} },
+      { en:{a:'Have a magic bag with infinite space',b:'Have a magic wallet with infinite money'}, it:{a:'Avere una borsa magica infinita',b:'Avere un portafoglio magico infinito'} },
+      { en:{a:'Only eat spicy food',b:'Only eat sweet food'}, it:{a:'Mangiare solo cibo piccante',b:'Mangiare solo cibo dolce'} },
+      { en:{a:'Be able to grow plants instantly',b:'Be able to build houses instantly'}, it:{a:'Far crescere piante istantaneamente',b:'Costruire case istantaneamente'} },
+      { en:{a:'Always have a blue nose',b:'Always have red ears'}, it:{a:'Avere sempre il naso blu',b:'Avere sempre le orecchie rosse'} },
+      { en:{a:'Only be able to watch comedies',b:'Only be able to watch action movies'}, it:{a:'Poter guardare solo commedie',b:'Poter guardare solo film d\'azione'} },
+      { en:{a:'Be a world-class pianist',b:'Be a world-class violinist'}, it:{a:'Essere un pianista mondiale',b:'Essere un violinista mondiale'} },
+      { en:{a:'Have a pet dragon',b:'Have a pet phoenix'}, it:{a:'Avere un drago domestico',b:'Avere una fenice domestica'} },
+      { en:{a:'Only drink water',b:'Only drink tea'}, it:{a:'Bere solo acqua',b:'Bere solo tè'} },
+      { en:{a:'Always have to whisper',b:'Always have to shout'}, it:{a:'Dover sempre sussurrare',b:'Dover sempre urlare'} },
+      { en:{a:'Be able to breathe underwater',b:'Be able to fly in the air'}, it:{a:'Poter respirare sott\'acqua',b:'Poter volare nell\'aria'} },
+      { en:{a:'Have a magic mirror',b:'Have a magic lamp'}, it:{a:'Avere uno specchio magico',b:'Avere una lampada magica'} },
+      { en:{a:'Always wear a hat',b:'Always wear gloves'}, it:{a:'Indossare sempre un cappello',b:'Indossare sempre i guanti'} },
+      { en:{a:'Be a famous dancer',b:'Be a famous singer'}, it:{a:'Essere un ballerino famoso',b:'Essere un cantante famoso'} },
+      { en:{a:'Only eat fruit',b:'Only eat vegetables'}, it:{a:'Mangiare solo frutta',b:'Mangiare solo verdura'} },
+      { en:{a:'Be able to control gravity',b:'Be able to control time'}, it:{a:'Controllare la gravità',b:'Controllare il tempo'} },
+      { en:{a:'Live in a world of magic',b:'Live in a world of technology'}, it:{a:'Vivere nel mondo della magia',b:'Vivere nel mondo della tecnologia'} },
+      { en:{a:'Have a magic ring',b:'Have a magic necklace'}, it:{a:'Avere un anello magico',b:'Avere una collana magica'} },
+      { en:{a:'Always have a sunny day',b:'Always have a snowy day'}, it:{a:'Avere sempre il sole',b:'Avere sempre la neve'} },
+      { en:{a:'Be able to jump very high',b:'Be able to run very fast'}, it:{a:'Saltare altissimo',b:'Correre velocissimo'} },
+      { en:{a:'Only listen to jazz',b:'Only listen to pop music'}, it:{a:'Ascoltare solo jazz',b:'Ascoltare solo musica pop'} },
+      { en:{a:'Have a personal garden',b:'Have a personal pool'}, it:{a:'Avere un giardino privato',b:'Avere una piscina privata'} },
+      { en:{a:'Be able to talk to trees',b:'Be able to talk to flowers'}, it:{a:'Parlare con gli alberi',b:'Parlare con i fiori'} },
+      { en:{a:'Always have a clean car',b:'Always have a clean desk'}, it:{a:'Auto sempre pulita',b:'Scrivania sempre pulita'} },
+      { en:{a:'Only wear silk',b:'Only wear cotton'}, it:{a:'Vestire solo seta',b:'Vestire solo cotone'} },
+      { en:{a:'Be a professional surfer',b:'Be a professional skier'}, it:{a:'Essere un surfista pro',b:'Essere uno sciatore pro'} },
+      { en:{a:'Have a voice like a flute',b:'Have a voice like a drum'}, it:{a:'Voce come un flauto',b:'Voce come un tamburo'} },
+      { en:{a:'Always have a cold drink',b:'Always have a hot drink'}, it:{a:'Sempre una bibita fredda',b:'Sempre una bibita calda'} },
+      { en:{a:'Only watch black and white films',b:'Only watch animated films'}, it:{a:'Solo film in bianco e nero',b:'Solo film d\'animazione'} },
+      { en:{a:'Be able to teleport objects',b:'Be able to teleport yourself'}, it:{a:'Teletrasportare oggetti',b:'Teletrasportare se stessi'} },
+      { en:{a:'Have a house in space',b:'Have a house under the sea'}, it:{a:'Casa nello spazio',b:'Casa sotto il mare'} },
+      { en:{a:'Always have a flower in your hair',b:'Always have a pen behind your ear'}, it:{a:'Sempre un fiore tra i capelli',b:'Sempre una penna sull\'orecchio'} },
+      { en:{a:'Only eat round food',b:'Only eat square food'}, it:{a:'Mangiare solo cibo rotondo',b:'Mangiare solo cibo quadrato'} },
+      { en:{a:'Be able to see the future',b:'Be able to see the past'}, it:{a:'Vedere il futuro',b:'Vedere il passato'} },
+      { en:{a:'Have a magic pen',b:'Have a magic pencil'}, it:{a:'Avere una penna magica',b:'Avere una matita magica'} },
+      { en:{a:'Always have to dance',b:'Always have to sing'}, it:{a:'Dover sempre ballare',b:'Dover sempre cantare'} },
+      { en:{a:'Be a space explorer',b:'Be a deep sea explorer'}, it:{a:'Esploratore spaziale',b:'Esploratore marino'} },
+      { en:{a:'Only wear green',b:'Only wear red'}, it:{a:'Vestire solo di verde',b:'Vestire solo di rosso'} },
+      { en:{a:'Be able to create illusions',b:'Be able to create light'}, it:{a:'Creare illusioni',b:'Creare luce'} },
+      { en:{a:'Always have a balloon',b:'Always have a kite'}, it:{a:'Avere sempre un palloncino',b:'Avere sempre un aquilone'} },
+      { en:{a:'Only listen to radio',b:'Only watch TV'}, it:{a:'Ascoltare solo la radio',b:'Guardare solo la TV'} },
+      { en:{a:'Be a master of chess',b:'Be a master of cards'}, it:{a:'Maestro di scacchi',b:'Maestro di carte'} },
+      { en:{a:'Have a magic key',b:'Have a magic door'}, it:{a:'Avere una chiave magica',b:'Avere una porta magica'} },
+      { en:{a:'Always be in a good mood',b:'Always be very calm'}, it:{a:'Sempre di buon umore',b:'Sempre molto calmo'} },
+      { en:{a:'Only eat breakfast',b:'Only eat lunch'}, it:{a:'Mangiare solo colazione',b:'Mangiare solo pranzo'} },
+      { en:{a:'Be able to fly with wings',b:'Be able to fly with a cape'}, it:{a:'Volare con le ali',b:'Volare con un mantello'} },
+      { en:{a:'Have a house of gold',b:'Have a house of silver'}, it:{a:'Casa d\'oro',b:'Casa d\'argento'} },
+      { en:{a:'Always wear boots',b:'Always wear sneakers'}, it:{a:'Indossare sempre stivali',b:'Indossare sempre sneakers'} },
+      { en:{a:'Be able to heal people',b:'Be able to make people laugh'}, it:{a:'Guarire le persone',b:'Far ridere le persone'} },
+      { en:{a:'Only sleep in the day',b:'Only sleep at night'}, it:{a:'Dormire solo di giorno',b:'Dormire solo di notte'} },
+      { en:{a:'Have a magic clock',b:'Have a magic compass'}, it:{a:'Orologio magico',b:'Bussola magica'} },
+      { en:{a:'Always have a umbrella',b:'Always have a raincoat'}, it:{a:'Avere sempre l\'ombrello',b:'Avere sempre l\'impermeabile'} },
+      { en:{a:'Only use a bike',b:'Only use a skateboard'}, it:{a:'Usare solo la bici',b:'Usare solo lo skateboard'} },
+      { en:{a:'Be able to talk to statues',b:'Be able to talk to paintings'}, it:{a:'Parlare con le statue',b:'Parlare con i quadri'} },
+      { en:{a:'Have a giant bed',b:'Have a giant sofa'}, it:{a:'Un letto gigante',b:'Un divano gigante'} },
+      { en:{a:'Always have fresh flowers',b:'Always have fresh fruit'}, it:{a:'Sempre fiori freschi',b:'Sempre frutta fresca'} },
+      { en:{a:'Only drink milk',b:'Only drink soda'}, it:{a:'Bere solo latte',b:'Bere solo bibite gasate'} },
+      { en:{a:'Be a superhero sidekick',b:'Be a supervillain leader'}, it:{a:'Aiutante di un eroe',b:'Capo di un cattivo'} },
+      { en:{a:'Have a magic book',b:'Have a magic scroll'}, it:{a:'Libro magico',b:'Pergamena magica'} },
+      { en:{a:'Always wear a belt',b:'Always wear suspenders'}, it:{a:'Sempre la cintura',b:'Sempre le bretelle'} },
+      { en:{a:'Be able to see invisible things',b:'Be able to hear silent things'}, it:{a:'Vedere cose invisibili',b:'Sentire cose silenziose'} },
+      { en:{a:'Only eat pancakes',b:'Only eat waffles'}, it:{a:'Mangiare solo pancake',b:'Mangiare solo waffle'} },
+      { en:{a:'Have a personal fountain',b:'Have a personal waterfall'}, it:{a:'Fontana personale',b:'Cascata personale'} },
+      { en:{a:'Always have a hat on',b:'Always have a mask on'}, it:{a:'Sempre con il cappello',b:'Sempre con la maschera'} },
+      { en:{a:'Be able to swim like a fish',b:'Be able to climb like a cat'}, it:{a:'Nuotare come un pesce',b:'Arrampicarsi come un gatto'} },
+    { en:{a:'Always have to wear a heavy winter coat',b:'Always have to wear a heavy scuba suit'}, it:{a:'Dover indossare sempre un pesante cappotto invernale',b:'Dover indossare sempre una pesante muta da sub'} },
+    { en:{a:'Be able to talk to ghosts',b:'Be able to talk to your future self'}, it:{a:'Poter parlare con i fantasmi',b:'Poter parlare con il tuo io futuro'} },
+    { en:{a:'Have a flying house',b:'Have an underwater house'}, it:{a:'Avere una casa volante',b:'Avere una casa sottomarina'} },
+    { en:{a:'Never have to shower again',b:'Never have to brush your teeth again'}, it:{a:'Non doverti mai più fare la doccia',b:'Non doverti mai più lavare i denti'} },
+    { en:{a:'Only be able to eat spicy food',b:'Only be able to eat bland food'}, it:{a:'Mangiare solo cibo piccante',b:'Mangiare solo cibo insipido'} },
+    { en:{a:'Be the best singer in the world',b:'Be the best dancer in the world'}, it:{a:'Essere il miglior cantante del mondo',b:'Essere il miglior ballerino del mondo'} },
+    { en:{a:'Always have a clown nose',b:'Always have elf ears'}, it:{a:'Avere sempre un naso da clown',b:'Avere sempre orecchie da elfo'} },
+    { en:{a:'Be able to breathe underwater',b:'Be able to fly'}, it:{a:'Poter respirare sott\'acqua',b:'Poter volare'} },
+    { en:{a:'Live in a castle',b:'Live in a modern spaceship'}, it:{a:'Vivere in un castello',b:'Vivere in un\'astronave moderna'} },
+    { en:{a:'Only use a typewriter',b:'Only use a quill and ink'}, it:{a:'Usare solo la macchina da scrivere',b:'Usare solo piuma e inchiostro'} },
+    { en:{a:'Be a famous actor',b:'Be a famous director'}, it:{a:'Essere un attore famoso',b:'Essere un regista famoso'} },
+    { en:{a:'Have a pet dinosaur',b:'Have a pet dragon'}, it:{a:'Avere un dinosauro domestico',b:'Avere un drago domestico'} },
+    { en:{a:'Always have to shout',b:'Always have to whisper'}, it:{a:'Dover sempre urlare',b:'Dover sempre sussurrare'} },
+    { en:{a:'Be able to see the future',b:'Be able to see the past'}, it:{a:'Vedere il futuro',b:'Vedere il passato'} },
+    { en:{a:'Never get a headache again',b:'Never get a stomachache again'}, it:{a:'Non avere mai più mal di testa',b:'Non avere mai più mal di pancia'} },
+    { en:{a:'Always have a tiny raincloud over your head',b:'Always have a tiny sun over your head'}, it:{a:'Avere sempre una nuvoletta sopra la testa',b:'Avere sempre un piccolo sole sopra la testa'} },
+    { en:{a:'Be able to teleport anywhere',b:'Be able to pause time'}, it:{a:'Poterti teletrasportare ovunque',b:'Poter mettere in pausa il tempo'} },
+    { en:{a:'Only eat pizza for the rest of your life',b:'Only eat sushi for the rest of your life'}, it:{a:'Mangiare solo pizza per sempre',b:'Mangiare solo sushi per sempre'} },
+    { en:{a:'Have your own private island',b:'Have your own private jet'}, it:{a:'Avere un\'isola privata',b:'Avere un jet privato'} },
+    { en:{a:'Be 2 meters tall',b:'Be 1 meter tall'}, it:{a:'Essere alto 2 metri',b:'Essere alto 1 metro'} },
+    { en:{a:'Always have to hop like a kangaroo',b:'Always have to walk like a penguin'}, it:{a:'Dover sempre saltare come un canguro',b:'Dover sempre camminare come un pinguino'} },
+    { en:{a:'Be able to talk to all animals',b:'Be able to speak all human languages'}, it:{a:'Poter parlare con tutti gli animali',b:'Poter parlare tutte le lingue umane'} },
+    { en:{a:'Have a photographic memory',b:'Have a high IQ'}, it:{a:'Avere una memoria fotografica',b:'Avere un QI altissimo'} },
+    { en:{a:'Only wear neon colors',b:'Only wear black and white'}, it:{a:'Vestire solo colori neon',b:'Vestire solo in bianco e nero'} },
+    { en:{a:'Live in a world without internet',b:'Live in a world without cars'}, it:{a:'Vivere in un mondo senza internet',b:'Vivere in un mondo senza auto'} },
+    { en:{a:'Be an expert at cooking',b:'Be an expert at gardening'}, it:{a:'Essere un esperto di cucina',b:'Essere un esperto di giardinaggio'} },
+    { en:{a:'Always smell like popcorn',b:'Always smell like fresh cut grass'}, it:{a:'Avere sempre odore di popcorn',b:'Avere sempre odore di erba tagliata'} },
+    { en:{a:'Be able to run at 100 km/h',b:'Be able to jump 10 meters high'}, it:{a:'Poter correre a 100 km/h',b:'Poter saltare alto 10 metri'} },
+    { en:{a:'Have a magic wallet that always has 10 euros',b:'Have a magic fridge that always has your favorite snack'}, it:{a:'Un portafoglio con sempre 10 euro',b:'Un frigo con sempre il tuo snack preferito'} },
+    { en:{a:'Only be able to watch horror movies',b:'Only be able to watch documentaries'}, it:{a:'Guardare solo film horror',b:'Guardare solo documentari'} },
+    { en:{a:'Live in the desert',b:'Live in the Arctic'}, it:{a:'Vivere nel deserto',b:'Vivere nell\'Artico'} },
+    { en:{a:'Be a world-class pianist',b:'Be a world-class guitarist'}, it:{a:'Essere un pianista di classe mondiale',b:'Essere un chitarrista di classe mondiale'} },
+    { en:{a:'Always have blue hair',b:'Always have green skin'}, it:{a:'Avere sempre i capelli blu',b:'Avere sempre la pelle verde'} },
+    { en:{a:'Be able to create gold out of thin air',b:'Be able to heal any injury'}, it:{a:'Creare oro dal nulla',b:'Guarire qualsiasi ferita'} },
+    { en:{a:'Always have to wear a tuxedo',b:'Always have to wear pajamas'}, it:{a:'Dover sempre indossare uno smoking',b:'Dover sempre indossare il pigiama'} },
+    { en:{a:'Live in a giant treehouse',b:'Live in a luxury penthouse'}, it:{a:'Vivere in una casa sull\'albero gigante',b:'Vivere in un attico di lusso'} },
+    { en:{a:'Only drink coffee',b:'Only drink tea'}, it:{a:'Bere solo caffè',b:'Bere solo tè'} },
+    { en:{a:'Be able to read minds',b:'Be able to control minds'}, it:{a:'Poter leggere le menti',b:'Poter controllare le menti'} },
+    { en:{a:'Have a tail',b:'Have horns'}, it:{a:'Avere la coda',b:'Avere le corna'} },
+    { en:{a:'Always have to walk backwards',b:'Always have to crawl'}, it:{a:'Camminare sempre all\'indietro',b:'Dover sempre strisciare'} },
+    { en:{a:'Be the fastest swimmer',b:'Be the fastest runner'}, it:{a:'Essere il nuotatore più veloce',b:'Essere il corridore più veloce'} },
+    { en:{a:'Only eat breakfast food for every meal',b:'Only eat dinner food for every meal'}, it:{a:'Mangiare solo colazione a ogni pasto',b:'Mangiare solo cena a ogni pasto'} },
+    { en:{a:'Have a magic remote to skip boring parts of life',b:'Have a magic button to replay happy moments'}, it:{a:'Un telecomando per saltare le parti noiose',b:'Un tasto per rivivere i momenti felici'} },
+    { en:{a:'Never feel cold',b:'Never feel hot'}, it:{a:'Non sentire mai freddo',b:'Non sentire mai caldo'} },
+    { en:{a:'Be able to glow in the dark',b:'Be able to change your hair color at will'}, it:{a:'Poter brillare al buio',b:'Cambiare colore dei capelli a comando'} },
+    { en:{a:'Always have a pebble in your shoe',b:'Always have a hair in your eye'}, it:{a:'Avere sempre un sasso nella scarpa',b:'Avere sempre un capello nell\'occhio'} },
+    { en:{a:'Be a secret agent',b:'Be a famous detective'}, it:{a:'Essere un agente segreto',b:'Essere un detective famoso'} },
+    { en:{a:'Live in a world where everyone sings instead of talking',b:'Live in a world where everyone dances instead of walking'}, it:{a:'Un mondo dove tutti cantano',b:'Un mondo dove tutti ballano'} },
+    { en:{a:'Have a car that flies',b:'Have a boat that goes into space'}, it:{a:'Un\'auto che vola',b:'Una barca che va nello spazio'} },
+    { en:{a:'Only be able to sleep on the floor',b:'Only be able to sleep in a chair'}, it:{a:'Dormire solo sul pavimento',b:'Dormire solo su una sedia'} },
+    { en:{a:'Be able to talk to plants',b:'Be able to talk to machines'}, it:{a:'Parlare con le piante',b:'Parlare con le macchine'} },
+    { en:{a:'Have eyes that change color with your mood',b:'Have hair that changes length with your mood'}, it:{a:'Occhi che cambiano colore',b:'Capelli che cambiano lunghezza'} },
+    { en:{a:'Always be 10 minutes late',b:'Always be 30 minutes early'}, it:{a:'Arrivare sempre 10 minuti dopo',b:'Arrivare sempre 30 minuti prima'} },
+    { en:{a:'Be able to walk through walls',b:'Be able to walk on the ceiling'}, it:{a:'Camminare attraverso i muri',b:'Camminare sul soffitto'} },
+    { en:{a:'Only use a flip phone',b:'Never use a phone at all'}, it:{a:'Usare solo un vecchio telefono a conchiglia',b:'Non usare mai il telefono'} },
+    { en:{a:'Live in a house made of chocolate',b:'Live in a house made of cheese'}, it:{a:'Casa di cioccolato',b:'Casa di formaggio'} },
+    { en:{a:'Be a master of every musical instrument',b:'Be a master of every sport'}, it:{a:'Maestro di ogni strumento',b:'Maestro di ogni sport'} },
+    { en:{a:'Always have to wear gloves',b:'Always have to wear a hat'}, it:{a:'Dover sempre portare i guanti',b:'Dover sempre portare un cappello'} },
+    { en:{a:'Be able to shrink to the size of an ant',b:'Be able to grow to the size of a skyscraper'}, it:{a:'Diventare piccolo come una formica',b:'Diventare grande come un grattacielo'} },
+    { en:{a:'Only eat fruit',b:'Only eat vegetables'}, it:{a:'Mangiare solo frutta',b:'Mangiare solo verdura'} },
+    { en:{a:'Have a personal robot butler',b:'Have a personal assistant'}, it:{a:'Avere un maggiordomo robot',b:'Avere un assistente personale'} },
+    { en:{a:'Never have to pay for taxes',b:'Never have to pay for food'}, it:{a:'Non pagare mai le tasse',b:'Non pagare mai il cibo'} },
+    { en:{a:'Always have to tell the truth',b:'Always have to lie'}, it:{a:'Dover sempre dire la verità',b:'Dover sempre mentire'} },
+    { en:{a:'Be able to summon any object',b:'Be able to make any object disappear'}, it:{a:'Evocare qualsiasi oggetto',b:'Far sparire qualsiasi oggetto'} },
+    { en:{a:'Have a permanent unibrow',b:'Have no eyebrows at all'}, it:{a:'Avere il monociglio permanente',b:'Non avere affatto le sopracciglia'} },
+    { en:{a:'Live in a library',b:'Live in a museum'}, it:{a:'Vivere in una biblioteca',b:'Vivere in un museo'} },
+    { en:{a:'Be a vampire',b:'Be a werewolf'}, it:{a:'Essere un vampiro',b:'Essere un lupo mannaro'} },
+    { en:{a:'Only be able to watch black and white movies',b:'Only be able to listen to 8-bit music'}, it:{a:'Vedere solo film in bianco e nero',b:'Ascoltare solo musica 8-bit'} },
+    { en:{a:'Have a house that is always 18°C',b:'Have a house that is always 25°C'}, it:{a:'Casa sempre a 18°C',b:'Casa sempre a 25°C'} },
+    { en:{a:'Be able to speak with your future children',b:'Be able to speak with your ancestors'}, it:{a:'Parlare con i tuoi futuri figli',b:'Parlare con i tuoi antenati'} },
+    { en:{a:'Always have to wear your clothes inside out',b:'Always have to wear two different shoes'}, it:{a:'Vestire sempre al rovescio',b:'Mettere sempre due scarpe diverse'} },
+    { en:{a:'Be able to control shadows',b:'Be able to control reflections'}, it:{a:'Controllare le ombre',b:'Controllare i riflessi'} },
+    { en:{a:'Only eat food that is blue',b:'Only eat food that is green'}, it:{a:'Mangiare solo cibo blu',b:'Mangiare solo cibo verde'} },
+    { en:{a:'Have a magic pen that makes drawings come to life',b:'Have a magic camera that takes photos of the future'}, it:{a:'Avere una penna che dà vita ai disegni',b:'Avere una macchina fotografica che fa foto del futuro'} },
+    { en:{a:'Never have to sleep',b:'Never have to eat'}, it:{a:'Non dover mai dormire',b:'Non dover mai mangiare'} },
+    { en:{a:'Always have a squeaky voice',b:'Always have an incredibly deep voice'}, it:{a:'Avere sempre la voce stridula',b:'Avere sempre la voce bassissima'} },
+    { en:{a:'Be a world-famous chef',b:'Be a world-famous scientist'}, it:{a:'Essere uno chef famoso',b:'Essere uno scienziato famoso'} },
+    { en:{a:'Only be able to travel by bicycle',b:'Only be able to travel by boat'}, it:{a:'Viaggiare solo in bici',b:'Viaggiare solo in barca'} },
+    { en:{a:'Have a pocket full of infinite glitter',b:'Have a pocket full of infinite sand'}, it:{a:'Tasca piena di glitter infiniti',b:'Tasca piena di sabbia infinita'} },
+    { en:{a:'Be able to change your age at will',b:'Be able to change your gender at will'}, it:{a:'Cambiare età a piacimento',b:'Cambiare genere a piacimento'} },
+    { en:{a:'Always have to wear a cape',b:'Always have to wear a mask'}, it:{a:'Dover sempre portare un mantello',b:'Dover sempre portare una maschera'} },
+    { en:{a:'Live in a world with no music',b:'Live in a world with no colors'}, it:{a:'Mondo senza musica',b:'Mondo senza colori'} },
+    { en:{a:'Be able to talk to insects',b:'Be able to talk to fish'}, it:{a:'Parlare con gli insetti',b:'Parlare con i pesci'} },
+    { en:{a:'Have a gold tooth',b:'Have a silver eye'}, it:{a:'Un dente d\'oro',b:'Un occhio d\'argento'} },
+    { en:{a:'Only listen to heavy metal',b:'Only listen to opera'}, it:{a:'Ascoltare solo heavy metal',b:'Ascoltare solo opera'} },
+    { en:{a:'Be a knight in the middle ages',b:'Be a pilot in the year 3000'}, it:{a:'Cavaliere nel medioevo',b:'Pilota nell\'anno 3000'} },
+    { en:{a:'Always have wet socks',b:'Always have a itchy back'}, it:{a:'Avere sempre i calzini bagnati',b:'Avere sempre la schiena che prude'} },
+    { en:{a:'Be able to create a clone of yourself',b:'Be able to become invisible'}, it:{a:'Creare un tuo clone',b:'Diventare invisibile'} },
+    { en:{a:'Have a permanent tan',b:'Have permanent perfect skin'}, it:{a:'Abbronzatura permanente',b:'Pelle sempre perfetta'} },
+    { en:{a:'Only use a map',b:'Only use a compass'}, it:{a:'Usare solo una mappa',b:'Usare solo una bussola'} },
+    { en:{a:'Be able to understand every animal',b:'Be able to understand every baby'}, it:{a:'Capire tutti gli animali',b:'Capire tutti i neonati'} },
+    { en:{a:'Always have a tiny bell ring when you walk',b:'Always have a tiny whistle blow when you talk'}, it:{a:'Avere un campanello che suona quando cammini',b:'Avere un fischietto che fischia quando parli'} },
+    { en:{a:'Only eat crunchy food',b:'Only eat soft food'}, it:{a:'Mangiare solo cibi croccanti',b:'Mangiare solo cibi molli'} },
+    { en:{a:'Have a personal dragon for transport',b:'Have a personal giant eagle for transport'}, it:{a:'Un drago per spostarti',b:'Un\'aquila gigante per spostarti'} },
+    { en:{a:'Never have to charge your phone again',b:'Never have to pump gas again'}, it:{a:'Non caricare mai più il telefono',b:'Non fare mai più benzina'} },
+    { en:{a:'Always have to sing instead of speaking',b:'Always have to rhyme instead of speaking'}, it:{a:'Dover sempre cantare',b:'Dover sempre parlare in rima'} },
+    { en:{a:'Be the smartest person but very lonely',b:'Be the average person but very popular'}, it:{a:'Essere il più intelligente ma solo',b:'Essere nella media ma popolare'} },
+    { en:{a:'Only be able to use a spoon for everything',b:'Only be able to use a fork for everything'}, it:{a:'Usare solo il cucchiaio',b:'Usare solo la forchetta'} },
+    { en:{a:'Have a home in the clouds',b:'Have a home under the ocean'}, it:{a:'Casa tra le nuvole',b:'Casa sotto l\'oceano'} },
+    { en:{a:'Always have the smell of fresh cookies around you',b:'Always have the smell of rain around you'}, it:{a:'Odore di biscotti appena sfornati',b:'Odore di pioggia fresca'} },
+    { en:{a:'Be able to turn water into wine',b:'Be able to turn stone into bread'}, it:{a:'Trasformare l\'acqua in vino',b:'Trasformare la pietra in pane'} },
+    { en:{a:'Only wear clothes made of paper',b:'Only wear clothes made of plastic'}, it:{a:'Indossare vestiti di carta',b:'Indossare vestiti di plastica'} },
+    { en:{a:'Be a famous rockstar',b:'Be a famous opera singer'}, it:{a:'Essere una rockstar famosa',b:'Essere un cantante lirico famoso'} },
+    { en:{a:'Always have a red nose like Rudolph',b:'Always have rabbit ears'}, it:{a:'Naso rosso come Rudolph',b:'Orecchie da coniglio'} },
+    { en:{a:'Only drink sparkling water',b:'Only drink still water'}, it:{a:'Bere solo acqua frizzante',b:'Bere solo acqua naturale'} },
+    { en:{a:'Be able to grow your hair 1 meter in a second',b:'Be able to change your eye color in a second'}, it:{a:'Allungare i capelli di un metro',b:'Cambiare colore degli occhi'} },
+    { en:{a:'Never have to stand in line',b:'Never have to pay for parking'}, it:{a:'Non fare mai la fila',b:'Non pagare mai il parcheggio'} },
+    { en:{a:'Always have to wear a wet swimsuit',b:'Always have to wear a heavy winter coat'}, it:{a:'Portare sempre un costume bagnato',b:'Portare sempre un cappotto pesante'} },
+    { en:{a:'Be able to control the weather',b:'Be able to control gravity'}, it:{a:'Controllare il meteo',b:'Controllare la gravità'} },
+    { en:{a:'Only watch 10-minute videos',b:'Only watch 3-hour movies'}, it:{a:'Vedere solo video da 10 minuti',b:'Vedere solo film da 3 ore'} },
+    { en:{a:'Have a magic bag with infinite space',b:'Have magic shoes that never get dirty'}, it:{a:'Avere una borsa con spazio infinito',b:'Avere delle scarpe che non si sporcano mai'} },
+    { en:{a:'Always have a tail that wags when you are happy',b:'Always have ears that wiggle when you are surprised'}, it:{a:'Avere una coda che scodinzola',b:'Avere le orecchie che si muovono'} },
+    { en:{a:'Only eat hot food',b:'Only eat cold food'}, it:{a:'Mangiare solo cibo caldo',b:'Mangiare solo cibo freddo'} },
+    { en:{a:'Be a master of kung fu',b:'Be a master of the violin'}, it:{a:'Essere un maestro di kung fu',b:'Essere un maestro di violino'} },
+    { en:{a:'Have a permanent crown on your head',b:'Have permanent wings on your back'}, it:{a:'Avere una corona sulla testa',b:'Avere delle ali sulla schiena'} },
+    { en:{a:'Only be able to use a bicycle for transport',b:'Only be able to use a skateboard for transport'}, it:{a:'Poter usare solo la bici',b:'Poter usare solo lo skateboard'} },
+    { en:{a:'Be able to breathe fire',b:'Be able to shoot ice from your hands'}, it:{a:'Sputare fuoco',b:'Sparare ghiaccio dalle mani'} },
+    { en:{a:'Always have to wear a tuxedo to the beach',b:'Always have to wear a swimsuit to a wedding'}, it:{a:'Indossare uno smoking in spiaggia',b:'Indossare un costume da bagno a un matrimonio'} },
+    { en:{a:'Never be able to use a computer again',b:'Never be able to use a car again'}, it:{a:'Non usare mai più il computer',b:'Non usare mai più l\'auto'} },
+    { en:{a:'Have a garden that grows money',b:'Have a garden that grows magical fruit'}, it:{a:'Un giardino che fa soldi',b:'Un giardino di frutti magici'} },
+    { en:{a:'Be able to talk to the wind',b:'Be able to talk to the fire'}, it:{a:'Parlare al vento',b:'Parlare al fuoco'} },
+    { en:{a:'Only be able to speak in movies quotes',b:'Only be able to speak in song lyrics'}, it:{a:'Parlare solo con citazioni di film',b:'Parlare solo con testi di canzoni'} },
+    { en:{a:'Have a house that can move locations',b:'Have a house that can grow larger'}, it:{a:'Una casa che si sposta',b:'Una casa che si ingrandisce'} },
+    { en:{a:'Always have to carry a balloon',b:'Always have to carry an umbrella'}, it:{a:'Portare sempre un palloncino',b:'Portare sempre un ombrello'} },
+    { en:{a:'Never have a mosquito bite you again',b:'Never have a bird poop on you again'}, it:{a:'Non avere mai più morsi di zanzara',b:'Non avere mai più cacca di uccello addosso'} },
+    { en:{a:'Be a professional video gamer',b:'Be a professional athlete'}, it:{a:'Essere un gamer professionista',b:'Essere un atleta professionista'} },
+    { en:{a:'Only drink juice for the rest of your life',b:'Only drink milk for the rest of your life'}, it:{a:'Bere solo succhi per il resto della vita',b:'Bere solo latte per il resto della vita'} },
+    { en:{a:'Have a magic compass that leads to treasure',b:'Have a magic map that shows everyone\'s location'}, it:{a:'Avere una bussola che porta a tesori',b:'Avere una mappa che mostra dove sono tutti'} },
+    { en:{a:'Always have to skip when you walk',b:'Always have to run when you walk'}, it:{a:'Saltellare sempre',b:'Correre sempre'} },
+    { en:{a:'Be able to change the color of your skin',b:'Be able to change the color of your eyes'}, it:{a:'Poter cambiare colore della pelle',b:'Poter cambiare colore degli occhi'} },
+    { en:{a:'Never be able to eat candy again',b:'Never be able to eat chips again'}, it:{a:'Non poter mangiare più caramelle',b:'Non poter mangiare più patatine'} },
+    { en:{a:'Have a magic lamp with a genie',b:'Have a magic ring with powers'}, it:{a:'Avere una lampada magica con genio',b:'Avere un anello magico con poteri'} },
+    { en:{a:'Always have a parrot on your shoulder',b:'Always have a cat following you'}, it:{a:'Un pappagallo sempre sulla spalla',b:'Un gatto che ti segue sempre'} },
+    { en:{a:'Be able to jump over buildings',b:'Be able to run under water'}, it:{a:'Saltare sopra i palazzi',b:'Correre sott\'acqua'} },
+    { en:{a:'Only eat round food',b:'Only eat square food'}, it:{a:'Mangiare solo cibi tondi',b:'Mangiare solo cibi quadrati'} },
+    { en:{a:'Be a famous painter',b:'Be a famous writer'}, it:{a:'Essere un pittore famoso',b:'Essere uno scrittore famoso'} },
+    { en:{a:'Have a magic bed that gives you the best dreams',b:'Have a magic shower that makes you feel super energized'}, it:{a:'Avere un letto magico che ti da i sogni migliori',b:'Avere una doccia super energizzante'} },
+    { en:{a:'Always have to wear a tie',b:'Always have to wear a scarf'}, it:{a:'Portare sempre la cravatta',b:'Portare sempre la sciarpa'} },
+    { en:{a:'Only travel by helicopter',b:'Only travel by submarine'}, it:{a:'Spostarsi solo in elicottero',b:'Spostarsi solo in sottomarino'} },
+    { en:{a:'Never get a sunburn again',b:'Never feel tired again'}, it:{a:'Non soffrire mai più di scottature',b:'Non essere mai più stanco'} },
+    { en:{a:'Be able to talk to the ocean',b:'Be able to talk to the mountains'}, it:{a:'Parlare con l\'oceano',b:'Parlare con le montagne'} },
+    { en:{a:'Always have a pocket full of candy',b:'Always have a pocket full of coins'}, it:{a:'Avere sempre una tasca piena di caramelle',b:'Avere sempre una tasca piena di monete'} },
+    { en:{a:'Only watch animated movies',b:'Only watch live-action movies'}, it:{a:'Vedere solo film d\'animazione',b:'Vedere solo film live-action'} },
+    { en:{a:'Have a voice that sounds like a celebrity',b:'Have a face that looks like a celebrity'}, it:{a:'Avere una voce da celebrità',b:'Avere un viso da celebrità'} },
+    { en:{a:'Be able to instantly learn any language',b:'Be able to instantly learn any musical instrument'}, it:{a:'Imparare subito ogni lingua',b:'Imparare subito ogni strumento'} },
+    { en:{a:'Always have to dance when you hear music',b:'Always have to sing when you hear music'}, it:{a:'Dover ballare quando senti musica',b:'Dover cantare quando senti musica'} },
+    { en:{a:'Never have to do laundry again',b:'Never have to wash dishes again'}, it:{a:'Non dover fare mai più il bucato',b:'Non dover lavare mai più i piatti'} },
+    { en:{a:'Be able to turn into a bird',b:'Be able to turn into a dolphin'}, it:{a:'Potersi trasformare in uccello',b:'Potersi trasformare in delfino'} },
+    { en:{a:'Only wear one color for the rest of your life',b:'Only eat one food for the rest of your life'}, it:{a:'Vestire solo un colore il resto della tua vita',b:'Mangiare solo un cibo il resto della tua vita'} },
+    { en:{a:'Have a house that is 100% made of glass',b:'Have a house that is 100% made of wood'}, it:{a:'Avere una casa tutta di vetro',b:'Avere una casa tutta di legno'} },
+    { en:{a:'Always have to wear sunglasses',b:'Always have to wear a raincoat'}, it:{a:'Portare sempre occhiali da sole',b:'Portare sempre l\'impermeabile'} },
+    { en:{a:'Be able to see in the dark',b:'Be able to see through walls'}, it:{a:'Vedere al buio',b:'Vedere attraverso i muri'} },
+    { en:{a:'Never have to pay for a flight again',b:'Never have to pay for a hotel again'}, it:{a:'Avere voli gratis per sempre',b:'Avere hotel gratis per sempre'} },
+    { en:{a:'Be a world champion at chess',b:'Be a world champion at poker'}, it:{a:'Essere campione mondiale di scacchi',b:'Essere campione mondiale di poker'} },
+    { en:{a:'Only listen to music from the 80s',b:'Only listen to music from the 90s'}, it:{a:'Ascoltare solo musica anni \'80',b:'Ascoltare solo musica anni \'90'} },
+    { en:{a:'Have a magic mirror that tells you the truth',b:'Have a magic mirror that shows you the future'}, it:{a:'Avere uno specchio che ti dice la verità',b:'Avere uno specchio che ti dice il futuro'} },
+    { en:{a:'Always have to wear your shoes on the wrong feet',b:'Always have to wear your pants backwards'}, it:{a:'Avere sempre le scarpe ai piedi invertite',b:'Avere sempre i pantaloni al contrario'} },
+    { en:{a:'Be able to summon a rainstorm',b:'Be able to summon a heatwave'}, it:{a:'Poter scatenare un temporale',b:'Poter scatenare un\'ondata di caldo'} },
+    { en:{a:'Never have to use an umbrella again',b:'Never have to use a coat again'}, it:{a:'Non dover mai più usare ombrelli',b:'Non dover mai più usare cappotti'} },
+    { en:{a:'Only watch sports on TV',b:'Only watch news on TV'}, it:{a:'Poter guardare solo sport in TV',b:'Poter guardare solo notizie in TV'} },
+    { en:{a:'Have a pet tiger',b:'Have a pet polar bear'}, it:{a:'Avere una tigre domestica',b:'Avere un orso polare domestico'} },
+    { en:{a:'Be able to control birds',b:'Be able to control fish'}, it:{a:'Controllare gli uccelli',b:'Controllare i pesci'} },
+    { en:{a:'Always have a perfectly clean car',b:'Always have a perfectly clean desk'}, it:{a:'Avere un auto sempre pulita',b:'Avere una scrivania sempre pulita'} },
+    { en:{a:'Only eat spicy food for breakfast',b:'Only eat sweet food for dinner'}, it:{a:'Poter mangiare solo piccante per colazione',b:'Poter mangiare solo dolce per cena'} },
+    { en:{a:'Be able to grow flowers by touching the ground',b:'Be able to grow trees by touching the ground'}, it:{a:'Far crescere fiori toccando terra',b:'Far crescere alberi toccando terra'} },
+    { en:{a:'Have a magic clock that can slow down time',b:'Have a magic clock that can speed up time'}, it:{a:'Avere un orologio che rallenta il tempo',b:'Avere un orologio che accelera il tempo'} },
+    { en:{a:'Always have to wear a hat indoors',b:'Always have to wear shoes indoors'}, it:{a:'Dover indossare sempre un cappello in casa',b:'Dover indossare sempre le scarpe in casa'} },
+    { en:{a:'Only travel by train',b:'Only travel by plane'}, it:{a:'Viaggiare solo in treno',b:'Viaggiare solo in aereo'} },
+    { en:{a:'Be a famous YouTuber',b:'Be a famous movie star'}, it:{a:'Essere uno YouTuber famoso',b:'Essere una Star del cinema'} },
+    { en:{a:'Never have to cut your hair again',b:'Never have to cut your nails again'}, it:{a:'Non doversi mai più tagliare i capelli',b:'Non doversi mai più tagliare le unghie'} },
+    { en:{a:'Be able to breathe in space',b:'Be able to breathe in fire'}, it:{a:'Poter respirare nello spazio',b:'Poter respirare nel fuoco'} },
+    { en:{a:'Only use a bike to get to work',b:'Only walk to get to work'}, it:{a:'Usare solo la bici per andare a lavoro',b:'Andare solo a piedi a lavoro'} },
+    { en:{a:'Have a magic pen that never runs out of ink',b:'Have a magic notebook that never runs out of pages'}, it:{a:'Avere una penna che non finisce mai l\'inchiostro',b:'Avere un quaderno che non finisce mai le pagine'} }
+  ];
+
+    /* ─ DOM REFS ─ */
+    var scoreLabel      = document.getElementById('score-label');
+    var qCounter        = document.getElementById('q-counter');
+    var progressBar     = document.getElementById('progress-bar');
+    var phaseBadge      = document.getElementById('phase-badge');
+    var startMainCard   = document.getElementById('start-main-card');
+    var playArea        = document.getElementById('play-area');
+    var questionCard    = document.getElementById('question-card');
+    var qPrefix         = document.getElementById('q-prefix');
+    var optAText        = document.getElementById('opt-a-text');
+    var optBText        = document.getElementById('opt-b-text');
+    var optCardA        = document.getElementById('opt-card-a');
+    var optCardB        = document.getElementById('opt-card-b');
+    var ctrlStart       = document.getElementById('ctrl-start');
+    var ctrlBetting     = document.getElementById('ctrl-betting');
+    var ctrlChoice      = document.getElementById('ctrl-choice');
+    var ctrlScoring     = document.getElementById('ctrl-scoring');
+    var btnStart        = document.getElementById('btn-start');
+    var btnDriverChoose = document.getElementById('btn-driver-choose');
+    var btnOptA         = document.getElementById('btn-opt-a');
+    var btnOptB         = document.getElementById('btn-opt-b');
+    var btnOptAText     = document.getElementById('btn-opt-a-text');
+    var btnOptBText     = document.getElementById('btn-opt-b-text');
+    var btnAward1       = document.getElementById('btn-award1');
+    var btnAward2       = document.getElementById('btn-award2');
+    var awardT1Label    = document.getElementById('award-t1-label');
+    var awardT2Label    = document.getElementById('award-t2-label');
+    var btnNext         = document.getElementById('btn-next');
+    var roundEndOverlay = document.getElementById('round-end');
+    var endTitle        = document.getElementById('end-title');
+    var endSubtitle     = document.getElementById('end-subtitle');
+    var endT1Name       = document.getElementById('end-t1-name');
+    var endT2Name       = document.getElementById('end-t2-name');
+    var endT1Score      = document.getElementById('end-t1-score');
+    var endT2Score      = document.getElementById('end-t2-score');
+    var btnPlayAgain    = document.getElementById('btn-play-again');
+    var confettiCanvas  = document.getElementById('confetti-canvas');
+
+    /* ─ STATE ─ */
+    var questions  = [];
+    var currentIdx = 0;
+    var gameState  = 'start';   /* start | betting | choice | scoring | end */
+
+    /* ─ HELPERS ─ */
+    function hexToRgba(hex, a) {
+      if (!hex || hex.length < 7) return 'rgba(168,85,247,' + a + ')';
+      var r = parseInt(hex.slice(1,3), 16);
+      var g = parseInt(hex.slice(3,5), 16);
+      var b = parseInt(hex.slice(5,7), 16);
+      return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+    }
+
+    function shuffle(arr) {
+      var a = arr.slice();
+      for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+      }
+      return a;
+    }
+
+    function getTeams() {
+      return JSON.parse(localStorage.getItem('fotr_teams') || '{}');
+    }
+
+    function sfxEnabled() {
+      return localStorage.getItem('fotr_sfx') !== 'false';
+    }
+
+    function playSound(fn) {
+      if (sfxEnabled() && typeof AudioManager !== 'undefined') {
+        try { AudioManager[fn](); } catch(e) {}
+      }
+    }
+
+    /* ─ SCORE HEADER ─ */
+    function updateHeaderScore() {
+      var teams = getTeams();
+      if (teams.team1 && teams.team2) {
+        scoreLabel.textContent = teams.team1 + ' ' + (teams.score1 || 0) + ' – ' + (teams.score2 || 0) + ' ' + teams.team2;
+      } else {
+        scoreLabel.textContent = t.noTeams;
+      }
+    }
+
+    /* ─ CONTROLS STATE ─ */
+    function setCtrl(state) {
+      ctrlStart.style.display   = 'none';
+      ctrlBetting.style.display = 'none';
+      ctrlChoice.style.display  = 'none';
+      ctrlScoring.style.display = 'none';
+      if (state === 'start')   ctrlStart.style.display   = 'block';
+      if (state === 'betting') ctrlBetting.style.display = 'flex';
+      if (state === 'choice')  ctrlChoice.style.display  = 'flex';
+      if (state === 'scoring') ctrlScoring.style.display = 'flex';
+    }
+
+    /* ─ SHOW QUESTION ─ */
+    function showQuestion() {
+      var u = JSON.parse(localStorage.getItem('fotr_usage') || '{}');
+      u[GAME_KEY] = (u[GAME_KEY] || 0) + 1;
+      localStorage.setItem('fotr_usage', JSON.stringify(u));
+      if (u[GAME_KEY] > FREE_LIMIT && !isPurchased(GAME_KEY)) { showPaywall(); return; }
+
+      var q    = questions[currentIdx];
+      var qLoc = (lang === 'it') ? q.it : q.en;
+      var total = questions.length;
+
+      qCounter.textContent    = t.qOf(currentIdx + 1, total);
+      progressBar.style.width = Math.round(((currentIdx + 1) / total) * 100) + '%';
+
+      phaseBadge.className     = 'font-bold tracking-wide phase-bet';
+      phaseBadge.textContent   = t.phaseBet;
+
+      qPrefix.textContent      = t.qPrefix;
+      optAText.textContent     = qLoc.a;
+      optBText.textContent     = qLoc.b;
+      btnOptAText.textContent  = qLoc.a;
+      btnOptBText.textContent  = qLoc.b;
+
+      /* Reset option card states */
+      optCardA.classList.remove('chosen-a', 'chosen-b');
+      optCardB.classList.remove('chosen-a', 'chosen-b');
+
+      /* Reset award buttons */
+      btnAward1.disabled = false;
+      btnAward1.classList.remove('scored');
+      btnAward2.disabled = false;
+      btnAward2.classList.remove('scored');
+
+      /* Animate question card */
+      questionCard.style.animation = 'none';
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          questionCard.style.animation = 'fadeInUp 0.35s ease both';
+        });
+      });
+
+      gameState = 'betting';
+      setCtrl('betting');
+    }
+
+    /* ─ BETTING → CHOICE ─ */
+    function showChoicePhase() {
+      if (gameState !== 'betting') return;
+      gameState = 'choice';
+      phaseBadge.className   = 'font-bold tracking-wide phase-choose';
+      phaseBadge.textContent = t.phaseChoose;
+      setCtrl('choice');
+      playSound('click');
+    }
+
+    /* ─ DRIVER PICKS OPTION ─ */
+    function pickOption(opt) {
+      if (gameState !== 'choice') return;
+      gameState = 'scoring';
+      phaseBadge.className   = 'font-bold tracking-wide phase-score';
+      phaseBadge.textContent = t.phaseScore;
+
+      if (opt === 'a') {
+        optCardA.classList.add('chosen-a');
+        optCardB.classList.remove('chosen-a', 'chosen-b');
+      } else {
+        optCardB.classList.add('chosen-b');
+        optCardA.classList.remove('chosen-a', 'chosen-b');
+      }
+
+      setCtrl('scoring');
+      playSound('click');
+    }
+
+    /* ─ AWARD POINT (independent per team) ─ */
+    function awardPoint(teamKey) {
+      if (gameState !== 'scoring') return;
+      var btn = (teamKey === 'team1') ? btnAward1 : btnAward2;
+      if (btn.disabled) return;
+
+      var teams    = getTeams();
+      var scoreKey = (teamKey === 'team1') ? 'score1' : 'score2';
+      teams[scoreKey] = (teams[scoreKey] || 0) + 1;
+      localStorage.setItem('fotr_teams', JSON.stringify(teams));
+      updateHeaderScore();
+
+      var stats    = JSON.parse(localStorage.getItem('fotr_stats') || '{}');
+      stats.points = (stats.points || 0) + 10;
+      localStorage.setItem('fotr_stats', JSON.stringify(stats));
+
+      btn.disabled = true;
+      btn.classList.add('scored');
+
+      playSound('win');
+      var color = (teamKey === 'team1') ? teams.color1 : teams.color2;
+      triggerConfetti(color);
+    }
+
+    /* ─ NEXT QUESTION ─ */
+    function nextQuestion() {
+      if (gameState !== 'scoring') return;
+      currentIdx++;
+      if (currentIdx >= questions.length) {
+        showRoundEnd();
+        return;
+      }
+      showQuestion();
+    }
+
+    /* ─ START GAME ─ */
+    function startGame() {
+      var u = JSON.parse(localStorage.getItem('fotr_usage') || '{}');
+      if ((u[GAME_KEY] || 0) >= FREE_LIMIT && !isPurchased(GAME_KEY)) { showPaywall(); return; }
+
+      questions  = shuffle(QUESTIONS);
+      currentIdx = 0;
+
+      var games          = JSON.parse(localStorage.getItem('fotr_games') || '{}');
+      games.ratherBattle = (games.ratherBattle || 0) + 1;
+      localStorage.setItem('fotr_games', JSON.stringify(games));
+
+      startMainCard.style.display = 'none';
+      playArea.style.display      = 'flex';
+      showQuestion();
+      playSound('click');
+    }
+
+    /* ─ ROUND END ─ */
+    function showRoundEnd() {
+      gameState = 'end';
+
+      var teams = getTeams();
+      var s1    = teams.score1 || 0;
+      var s2    = teams.score2 || 0;
+
+      endT1Name.textContent  = teams.team1 || 'Team 1';
+      endT2Name.textContent  = teams.team2 || 'Team 2';
+      endT1Score.textContent = s1;
+      endT2Score.textContent = s2;
+      endTitle.textContent   = t.roundEnd;
+
+      var winner = null;
+      if (s1 > s2) winner = teams.team1;
+      else if (s2 > s1) winner = teams.team2;
+      endSubtitle.textContent = t.roundEndSub(winner);
+
+      var stats   = JSON.parse(localStorage.getItem('fotr_stats') || '{}');
+      stats.trips = (stats.trips || 0) + 1;
+      localStorage.setItem('fotr_stats', JSON.stringify(stats));
+
+      roundEndOverlay.style.display = 'flex';
+      setTimeout(function() { triggerConfetti(null, 6); }, 200);
+      if (winner) setTimeout(function() { playSound('win'); }, 400);
+    }
+
+    /* ─ CONFETTI ─ */
+    function triggerConfetti(teamColor, bursts) {
+      bursts = bursts || 3;
+      var canvas  = confettiCanvas;
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+      var ctx = canvas.getContext('2d');
+
+      var palette = teamColor
+        ? [teamColor, '#a855f7', '#0ea5e9', '#f59e0b', '#8b5cf6']
+        : ['#a855f7', '#0ea5e9', '#f59e0b', '#8b5cf6', '#f97316', '#ec4899'];
+
+      var particles = [];
+      for (var b = 0; b < bursts; b++) {
+        for (var i = 0; i < 35; i++) {
+          particles.push({
+            x    : canvas.width  * 0.3 + Math.random() * canvas.width  * 0.4,
+            y    : canvas.height * 0.35,
+            vx   : (Math.random() - 0.5) * 10,
+            vy   : -(Math.random() * 8 + 3),
+            color: palette[Math.floor(Math.random() * palette.length)],
+            size : Math.random() * 9 + 4,
+            rot  : Math.random() * 360,
+            rotV : (Math.random() - 0.5) * 10,
+            shape: Math.random() > 0.5 ? 'rect' : 'circle',
+            g    : 0.3,
+            life : 1,
+            decay: Math.random() * 0.012 + 0.007
+          });
+        }
+      }
+      (function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        var alive = false;
+        for (var p = 0; p < particles.length; p++) {
+          var pk = particles[p];
+          if (pk.life <= 0) continue;
+          alive = true;
+          pk.x   += pk.vx; pk.y += pk.vy; pk.vy += pk.g;
+          pk.rot += pk.rotV; pk.life -= pk.decay;
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, pk.life);
+          ctx.translate(pk.x, pk.y);
+          ctx.rotate(pk.rot * Math.PI / 180);
+          ctx.fillStyle = pk.color;
+          if (pk.shape === 'rect') {
+            ctx.fillRect(-pk.size / 2, -pk.size / 4, pk.size, pk.size / 2);
+          } else {
+            ctx.beginPath(); ctx.arc(0, 0, pk.size / 2, 0, Math.PI * 2); ctx.fill();
+          }
+          ctx.restore();
+        }
+        if (alive) requestAnimationFrame(animate);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      })();
+    }
+
+    /* ─ APPLY TRANSLATIONS ─ */
+    document.getElementById('start-btn-label').textContent    = t.startBtn;
+    document.getElementById('start-desc').textContent         = t.startDesc;
+    document.getElementById('start-count').textContent        = t.startCount(QUESTIONS.length);
+    document.getElementById('bet-badge-text').textContent     = t.betBadge;
+    document.getElementById('driver-choose-label').textContent= t.driverChoose;
+    document.getElementById('choice-hint').textContent        = t.choiceHint;
+    document.getElementById('next-label').textContent         = t.nextBtn;
+    document.getElementById('play-again-label').textContent   = t.playAgain;
+    document.getElementById('home-label').textContent         = t.homeBtn;
+    document.getElementById('end-title').textContent          = t.roundEnd;
+    document.getElementById('or-label').textContent           = t.orLabel;
+    document.getElementById('chosen-label-a').textContent     = t.chosenLabel;
+    document.getElementById('chosen-label-b').textContent     = t.chosenLabel;
+    qPrefix.textContent = t.qPrefix;
+    document.documentElement.lang = lang;
+
+    /* ─ TEAM INIT ─ */
+    var teams = getTeams();
+    updateHeaderScore();
+
+    if (teams.team1 && teams.team2) {
+      document.getElementById('start-teams-info').textContent = teams.team1 + ' vs ' + teams.team2;
+    } else {
+      document.getElementById('start-teams-info').textContent = t.noTeams;
+    }
+
+    awardT1Label.textContent = teams.team1 || 'Team 1';
+    awardT2Label.textContent = teams.team2 || 'Team 2';
+
+    /* Apply team colors to award buttons */
+    var c1bg = hexToRgba(teams.color1 || '#0ea5e9', 0.20);
+    var c1bo = hexToRgba(teams.color1 || '#0ea5e9', 0.48);
+    var c2bg = hexToRgba(teams.color2 || '#f59e0b', 0.20);
+    var c2bo = hexToRgba(teams.color2 || '#f59e0b', 0.48);
+    btnAward1.style.background  = c1bg;
+    btnAward1.style.borderColor = c1bo;
+    btnAward2.style.background  = c2bg;
+    btnAward2.style.borderColor = c2bo;
+
+    /* ─ EVENT LISTENERS ─ */
+    btnStart.addEventListener('click', startGame);
+    btnDriverChoose.addEventListener('click', showChoicePhase);
+    btnOptA.addEventListener('click', function() { pickOption('a'); });
+    btnOptB.addEventListener('click', function() { pickOption('b'); });
+    btnAward1.addEventListener('click', function() { awardPoint('team1'); });
+    btnAward2.addEventListener('click', function() { awardPoint('team2'); });
+    btnNext.addEventListener('click', nextQuestion);
+    document.getElementById('btn-buy-game').addEventListener('click', function() { handlePurchase('game'); });
+    document.getElementById('btn-buy-all').addEventListener('click', function() { handlePurchase('all'); });
+    btnPlayAgain.addEventListener('click', function() {
+      roundEndOverlay.style.display = 'none';
+      startGame();
+    });
+
+    /* ─ INITIAL STATE ─ */
+    setCtrl('start');
+
+  })();
+  </script>
+
+</body>
+</html>

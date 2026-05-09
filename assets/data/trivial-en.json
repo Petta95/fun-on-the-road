@@ -1,0 +1,2022 @@
+[
+  {
+    "Categoria": "Animals",
+    "Domanda": "What is the fastest animal in the world?",
+    "Opzione A": "Cheetah",
+    "Opzione B": "Peregrine Falcon",
+    "Opzione C": "Sailfish",
+    "Opzione D": "Golden Eagle",
+    "Risposta Corretta": "B",
+    "Curiosità": "It can exceed 320 km/h."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "Which animal kills the most humans every year?",
+    "Opzione A": "Shark",
+    "Opzione B": "Lion",
+    "Opzione C": "Mosquito",
+    "Opzione D": "Snake",
+    "Risposta Corretta": "C",
+    "Curiosità": "Diseases transmitted by mosquitoes kill about 725,000 people a year."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "What is the only mammal capable of true flight?",
+    "Opzione A": "Flying squirrel",
+    "Opzione B": "Bat",
+    "Opzione C": "Penguin",
+    "Opzione D": "Platypus",
+    "Risposta Corretta": "B",
+    "Curiosità": "Flying squirrels only glide, they don't truly fly."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "How many legs does an ant have?",
+    "Opzione A": "4",
+    "Opzione B": "6",
+    "Opzione C": "8",
+    "Opzione D": "10",
+    "Risposta Corretta": "B",
+    "Curiosità": "As an insect, it has six legs."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "Which animal has the most powerful venom?",
+    "Opzione A": "Golden poison dart frog",
+    "Opzione B": "Blue-ringed octopus",
+    "Opzione C": "Pufferfish",
+    "Opzione D": "Tarantula",
+    "Risposta Corretta": "A",
+    "Curiosità": "The venom of a single specimen can kill several humans."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "Which animal can regenerate lost limbs?",
+    "Opzione A": "Starfish",
+    "Opzione B": "Jellyfish",
+    "Opzione C": "Crab",
+    "Opzione D": "Octopus",
+    "Risposta Corretta": "A",
+    "Curiosità": "It can completely regenerate an arm and part of its body."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "Which land animal has the longest tongue relative to its body?",
+    "Opzione A": "Chameleon",
+    "Opzione B": "Giant anteater",
+    "Opzione C": "Giraffe",
+    "Opzione D": "Frog",
+    "Risposta Corretta": "A",
+    "Curiosità": "Its tongue can exceed the length of its own body."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "What can an eel do?",
+    "Opzione A": "It can emit howls.",
+    "Opzione B": "It can fly for short distances.",
+    "Opzione C": "It can move on land.",
+    "Opzione D": "It can reproduce asexually.",
+    "Risposta Corretta": "C",
+    "Curiosità": "It can move on land, even for many kilometres."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "Where do sloths live?",
+    "Opzione A": "Europe",
+    "Opzione B": "Asia",
+    "Opzione C": "Africa",
+    "Opzione D": "South America",
+    "Risposta Corretta": "D",
+    "Curiosità": "Sloths live in the rainforests and tropical forests of Central and South America."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "What is the beaver's tail also called?",
+    "Opzione A": "Spoon",
+    "Opzione B": "Paddle",
+    "Opzione C": "Tree",
+    "Opzione D": "Shovel",
+    "Risposta Corretta": "B",
+    "Curiosità": "Named so because it resembles a rowing paddle."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "Who leads the elephant herd?",
+    "Opzione A": "The oldest female",
+    "Opzione B": "The strongest male",
+    "Opzione C": "No one leads the herd",
+    "Opzione D": "All elephants take turns leading the herd",
+    "Risposta Corretta": "A",
+    "Curiosità": "The elephant herd is led by the matriarch, the oldest and most experienced female in the group."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "How long can the metamorphosis from caterpillar to butterfly last?",
+    "Opzione A": "A few days",
+    "Opzione B": "A few weeks",
+    "Opzione C": "Up to one year",
+    "Opzione D": "Up to eight years",
+    "Risposta Corretta": "D",
+    "Curiosità": "The metamorphosis can last up to eight years! As in the case of Eriogaster lanestris."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "Which statement is false?",
+    "Opzione A": "Gorillas barely need to drink water",
+    "Opzione B": "Gorillas feed almost exclusively on plants",
+    "Opzione C": "Gorillas mainly eat bananas",
+    "Opzione D": "Gorillas only live in Africa",
+    "Risposta Corretta": "C",
+    "Curiosità": "Cultivated bananas are too sweet for their natural diet."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "Where are lion cubs born?",
+    "Opzione A": "In a hospital",
+    "Opzione B": "Near a river",
+    "Opzione C": "At the centre of the pride",
+    "Opzione D": "In a hiding place, far from the pride",
+    "Risposta Corretta": "D",
+    "Curiosità": "Only after about six weeks does the mother bring the cubs back to the pride."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "Which of these animals does not view humans as prey?",
+    "Opzione A": "Tigers",
+    "Opzione B": "Orcas",
+    "Opzione C": "Crocodiles",
+    "Opzione D": "Polar bears",
+    "Risposta Corretta": "B",
+    "Curiosità": "Even though they are at the top of the food chain, orcas do not consider humans a food source."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "How big are giant pandas at birth?",
+    "Opzione A": "About the size of a cat",
+    "Opzione B": "About the size of a dog",
+    "Opzione C": "About the size of a hamster",
+    "Opzione D": "About the size of a pig",
+    "Risposta Corretta": "C",
+    "Curiosità": "At birth, panda cubs are tiny. They are barely the size of a hamster."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "Where do penguins live?",
+    "Opzione A": "At the South Pole",
+    "Opzione B": "At the North Pole",
+    "Opzione C": "At both the South Pole and the North Pole",
+    "Opzione D": "In Maranello",
+    "Risposta Corretta": "A",
+    "Curiosità": "Penguins live exclusively in the Southern Hemisphere, mainly at the South Pole."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "What do hedgehogs NOT eat?",
+    "Opzione A": "Grass",
+    "Opzione B": "Eggs",
+    "Opzione C": "Dead animal remains",
+    "Opzione D": "Earthworms",
+    "Risposta Corretta": "A",
+    "Curiosità": "Hedgehogs eat insects, earthworms, eggs, and dead animal remains, but not grass."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "Why do snakes stick out their tongues?",
+    "Opzione A": "To communicate with other snakes",
+    "Opzione B": "To scare away enemies",
+    "Opzione C": "To smell",
+    "Opzione D": "To make rude gestures",
+    "Risposta Corretta": "C",
+    "Curiosità": "They don't use their tongue for taste, but as a refined sensory organ to collect scent particles."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "What does a shark NOT eat?",
+    "Opzione A": "Seals",
+    "Opzione B": "Flowers",
+    "Opzione C": "Turtles",
+    "Opzione D": "Fish",
+    "Risposta Corretta": "B",
+    "Curiosità": "Most sharks feed on all inhabitants of the sea."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "Among these animals, which is the largest?",
+    "Opzione A": "Tiger",
+    "Opzione B": "Lion",
+    "Opzione C": "Leopard",
+    "Opzione D": "Black panther",
+    "Risposta Corretta": "A",
+    "Curiosità": "The tiger is the largest living big cat, with males that can reach 300 kg."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "Which colour is particularly difficult to see in the ocean depths?",
+    "Opzione A": "Red",
+    "Opzione B": "Blue",
+    "Opzione C": "Green",
+    "Opzione D": "Yellow",
+    "Risposta Corretta": "A",
+    "Curiosità": "Only a few deep-sea animals can see red."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "What colour is a polar bear's skin?",
+    "Opzione A": "White",
+    "Opzione B": "Pink",
+    "Opzione C": "Black",
+    "Opzione D": "Grey",
+    "Risposta Corretta": "C",
+    "Curiosità": "The skin is black to absorb solar heat; the fur is transparent."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "Which animal can sleep for up to 3 years?",
+    "Opzione A": "Snail",
+    "Opzione B": "Bear",
+    "Opzione C": "Tortoise",
+    "Opzione D": "Snake",
+    "Risposta Corretta": "A",
+    "Curiosità": "Some species of snails can do so to survive drought."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "Which of these animals cannot jump?",
+    "Opzione A": "Elephant",
+    "Opzione B": "Rhinoceros",
+    "Opzione C": "Hippopotamus",
+    "Opzione D": "All three",
+    "Risposta Corretta": "A",
+    "Curiosità": "Due to its bone structure and weight, the elephant is the only mammal that cannot jump."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "Which bird lays the largest egg relative to its own body?",
+    "Opzione A": "Ostrich",
+    "Opzione B": "Kiwi",
+    "Opzione C": "Hummingbird",
+    "Opzione D": "Eagle",
+    "Risposta Corretta": "B",
+    "Curiosità": "The egg can weigh up to 25% of the female's body weight."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "What is a group of lions called?",
+    "Opzione A": "Pack",
+    "Opzione B": "Flock",
+    "Opzione C": "Pride",
+    "Opzione D": "Clan",
+    "Risposta Corretta": "C",
+    "Curiosità": "From the English word 'Pride'."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "Which animal has fingerprints similar to human ones?",
+    "Opzione A": "Chimpanzee",
+    "Opzione B": "Koala",
+    "Opzione C": "Gorilla",
+    "Opzione D": "Pig",
+    "Risposta Corretta": "B",
+    "Curiosità": "They are so similar that they can confuse forensic investigators."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "Which animal has the most powerful bite?",
+    "Opzione A": "Lion",
+    "Opzione B": "Crocodile",
+    "Opzione C": "Orca",
+    "Opzione D": "Hippopotamus",
+    "Risposta Corretta": "C",
+    "Curiosità": "With its force, nearly five times greater than that of the great white shark."
+  },
+  {
+    "Categoria": "Animals",
+    "Domanda": "What is the loudest animal in the world (can reach 188 decibels)?",
+    "Opzione A": "Lion",
+    "Opzione B": "Blue whale",
+    "Opzione C": "Howler monkey",
+    "Opzione D": "Elephant",
+    "Risposta Corretta": "B",
+    "Curiosità": "Its song can be heard by other whales up to 800 km away."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "Which country did the kiwi fruit originally come from?",
+    "Opzione A": "New Zealand",
+    "Opzione B": "Australia",
+    "Opzione C": "China",
+    "Opzione D": "Chile",
+    "Risposta Corretta": "C",
+    "Curiosità": "Originally called 'Chinese gooseberry'."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "What is the only food that never expires?",
+    "Opzione A": "Rice",
+    "Opzione B": "Honey",
+    "Opzione C": "Salt",
+    "Opzione D": "Sugar",
+    "Risposta Corretta": "B",
+    "Curiosità": "Found still edible in Egyptian tombs."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "Which spice is the most expensive in the world by weight?",
+    "Opzione A": "Vanilla",
+    "Opzione B": "Saffron",
+    "Opzione C": "Cardamom",
+    "Opzione D": "Truffle",
+    "Risposta Corretta": "B",
+    "Curiosità": "It takes about 150,000 crocus flowers to produce 1 kg."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "Which type of pasta means 'little worms'?",
+    "Opzione A": "Spaghetti",
+    "Opzione B": "Vermicelli",
+    "Opzione C": "Fusilli",
+    "Opzione D": "Linguine",
+    "Risposta Corretta": "B",
+    "Curiosità": "The name comes from their thin shape."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "Which fruit has its seeds on the outside?",
+    "Opzione A": "Blackberry",
+    "Opzione B": "Strawberry",
+    "Opzione C": "Raspberry",
+    "Opzione D": "Fig",
+    "Risposta Corretta": "B",
+    "Curiosità": "The strawberry is the only 'fruit' with its seeds on the skin."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "In which country was Hawaiian pizza (with pineapple) invented?",
+    "Opzione A": "USA",
+    "Opzione B": "Italy",
+    "Opzione C": "Canada",
+    "Opzione D": "Australia",
+    "Risposta Corretta": "C",
+    "Curiosità": "Created in Ontario in 1962 by a Greek restaurateur."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "Which vitamin is produced by the body with sun exposure?",
+    "Opzione A": "Vitamin A",
+    "Opzione B": "Vitamin C",
+    "Opzione C": "Vitamin D",
+    "Opzione D": "Vitamin K",
+    "Risposta Corretta": "C",
+    "Curiosità": "It is essential for calcium absorption."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "What is the most stolen item in supermarkets?",
+    "Opzione A": "Meat",
+    "Opzione B": "Cheese",
+    "Opzione C": "Chocolate",
+    "Opzione D": "Fruit",
+    "Risposta Corretta": "B",
+    "Curiosità": "Stolen for resale on black markets or restaurants due to its high value per kg."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "What is the most consumed food in the world?",
+    "Opzione A": "Bread",
+    "Opzione B": "Rice",
+    "Opzione C": "Potatoes",
+    "Opzione D": "Pasta",
+    "Risposta Corretta": "B",
+    "Curiosità": "It is the staple food for more than half of the world's population."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "Which food never sinks in water because it contains 25% air?",
+    "Opzione A": "Apple",
+    "Opzione B": "Pear",
+    "Opzione C": "Watermelon",
+    "Opzione D": "Orange",
+    "Risposta Corretta": "A",
+    "Curiosità": "Thanks to the air between its cells, apples float perfectly."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "Which vegetable has the highest water content (96%)?",
+    "Opzione A": "Tomato",
+    "Opzione B": "Cucumber",
+    "Opzione C": "Lettuce",
+    "Opzione D": "Courgette",
+    "Risposta Corretta": "B",
+    "Curiosità": "Eating a cucumber is almost the equivalent of drinking a glass of water."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "Which fizzy drink originally contained cocaine?",
+    "Opzione A": "Pepsi",
+    "Opzione B": "Coca Cola",
+    "Opzione C": "Dr Pepper",
+    "Opzione D": "Fanta",
+    "Risposta Corretta": "B",
+    "Curiosità": "It was completely removed from the recipe only in 1903."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "What is the hottest chilli pepper in the world?",
+    "Opzione A": "Jalapeño",
+    "Opzione B": "Ghost Pepper",
+    "Opzione C": "Carolina Reaper",
+    "Opzione D": "Habanero",
+    "Risposta Corretta": "C",
+    "Curiosità": "It exceeds 2 million Scoville units."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "What is the most expensive cheese in the world?",
+    "Opzione A": "Parmigiano",
+    "Opzione B": "Stilton",
+    "Opzione C": "Pule",
+    "Opzione D": "Blu di Bufala",
+    "Risposta Corretta": "C",
+    "Curiosità": "Made from donkey milk."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "What is the origin of the famous 'Fortune Cookie'?",
+    "Opzione A": "China",
+    "Opzione B": "Italy",
+    "Opzione C": "USA (San Francisco)",
+    "Opzione D": "South Korea",
+    "Risposta Corretta": "C",
+    "Curiosità": "They were invented in California at the beginning of the 1900s; in China they are almost unknown."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "Which country consumes the most pizza per capita in the world?",
+    "Opzione A": "USA",
+    "Opzione B": "Norway",
+    "Opzione C": "Italy",
+    "Opzione D": "Germany",
+    "Risposta Corretta": "B",
+    "Curiosità": "In relation to population, Norwegians consume more pizza than any other nation."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "What is the best-selling and most loved ice cream flavour globally?",
+    "Opzione A": "Chocolate",
+    "Opzione B": "Strawberry",
+    "Opzione C": "Vanilla",
+    "Opzione D": "Pistachio",
+    "Risposta Corretta": "C",
+    "Curiosità": "Vanilla is consistently in first place for its versatility in pairings."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "Which of these pasta shapes does not exist?",
+    "Opzione A": "Pipe",
+    "Opzione B": "Trenette",
+    "Opzione C": "Zitoni",
+    "Opzione D": "Imbutini",
+    "Risposta Corretta": "D",
+    "Curiosità": "Pipe and Zitoni are short shapes, Trenette is a long shape."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "Which of these foods has the most calories per 100g?",
+    "Opzione A": "Mortadella",
+    "Opzione B": "Buffalo mozzarella",
+    "Opzione C": "Coconut",
+    "Opzione D": "Ketchup",
+    "Risposta Corretta": "C",
+    "Curiosità": "Per 100g, coconut is by far the most caloric, with about 365 kcal."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "Which country produces the most wine in the world?",
+    "Opzione A": "France",
+    "Opzione B": "Italy",
+    "Opzione C": "Spain",
+    "Opzione D": "USA",
+    "Risposta Corretta": "B",
+    "Curiosità": "Italy is usually in first place for global wine production."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "Many believe it was born abroad, but which is a 100% Italian dish?",
+    "Opzione A": "Fettuccine Alfredo",
+    "Opzione B": "Hawaiian Pizza",
+    "Opzione C": "Caesar Salad",
+    "Opzione D": "French Toast",
+    "Risposta Corretta": "A",
+    "Curiosità": "Often mistaken for American, it was born in Rome in 1908 at the restaurant of Alfredo di Lelio."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "Among the MasterChef Italia judges, who holds the greatest number of Michelin stars?",
+    "Opzione A": "Antonino Cannavacciuolo",
+    "Opzione B": "Carlo Cracco",
+    "Opzione C": "Giorgio Locatelli",
+    "Opzione D": "Bruno Barbieri",
+    "Risposta Corretta": "D",
+    "Curiosità": "Bruno Barbieri, after Enrico Bartolini, is the second Italian with the most stars."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "Which country eats the most pizza per capita?",
+    "Opzione A": "Italy",
+    "Opzione B": "USA",
+    "Opzione C": "Norway",
+    "Opzione D": "Germany",
+    "Risposta Corretta": "C",
+    "Curiosità": "Norwegians consume extremely high quantities."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "What is the best-selling fast food in the world?",
+    "Opzione A": "Hamburger",
+    "Opzione B": "Pizza",
+    "Opzione C": "Fried chicken",
+    "Opzione D": "Tacos",
+    "Risposta Corretta": "A",
+    "Curiosità": "Billions sold every year."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "In which city was 'Cotoletta alla Milanese' invented?",
+    "Opzione A": "Milan",
+    "Opzione B": "Vienna",
+    "Opzione C": "Turin",
+    "Opzione D": "Mantua",
+    "Risposta Corretta": "A",
+    "Curiosità": "Documents from 1148 already mention the 'lombolum cum panitio' in Milan."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "What makes the famous 'Black Spaghetti' black?",
+    "Opzione A": "Liquorice",
+    "Opzione B": "Vegetable charcoal",
+    "Opzione C": "Cuttlefish ink",
+    "Opzione D": "Burnt oil",
+    "Risposta Corretta": "C",
+    "Curiosità": "The cuttlefish ink sac is burst directly into the sauce during cooking."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "Which region claims the origin of 'Nduja?",
+    "Opzione A": "Sicily",
+    "Opzione B": "Calabria",
+    "Opzione C": "Puglia",
+    "Opzione D": "Sardinia",
+    "Risposta Corretta": "B",
+    "Curiosità": "It is a spicy spreadable salami typical of Spilinga."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "Which of these is NOT an ingredient in the original Tiramisù?",
+    "Opzione A": "Marsala",
+    "Opzione B": "Mascarpone",
+    "Opzione C": "Cream",
+    "Opzione D": "Savoiardi",
+    "Risposta Corretta": "C",
+    "Curiosità": "The original Treviso recipe includes eggs, sugar, mascarpone, coffee and savoiardi (no cream!)."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "Which Emilian condiment must age at least 12 years to be 'Traditional'?",
+    "Opzione A": "Lambrusco",
+    "Opzione B": "Balsamic Vinegar",
+    "Opzione C": "Walnut oil",
+    "Opzione D": "Mostarda",
+    "Risposta Corretta": "B",
+    "Curiosità": "Traditional Balsamic Vinegar of Modena DOP requires a minimum ageing of 12 or 25 years."
+  },
+  {
+    "Categoria": "Food",
+    "Domanda": "What is 'Finocchiona'?",
+    "Opzione A": "A fennel cake",
+    "Opzione B": "A salami",
+    "Opzione C": "A soup",
+    "Opzione D": "A medicinal herb",
+    "Risposta Corretta": "B",
+    "Curiosità": "It is a typical Tuscan cured meat containing fennel seeds in the mixture."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "What is the best-selling manga of all time?",
+    "Opzione A": "Dragon Ball",
+    "Opzione B": "Naruto",
+    "Opzione C": "One Piece",
+    "Opzione D": "Doraemon",
+    "Risposta Corretta": "C",
+    "Curiosità": "One Piece by Eiichiro Oda is the best-selling manga of all time, with over 500 million copies."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "What is the highest-rated TV series according to IMDb?",
+    "Opzione A": "Game of Thrones",
+    "Opzione B": "Breaking Bad",
+    "Opzione C": "Chernobyl",
+    "Opzione D": "Avatar: The Last Airbender",
+    "Risposta Corretta": "B",
+    "Curiosità": "Breaking Bad has a rating of 9.5/10 on IMDb."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "What is the highest-rated film according to IMDb?",
+    "Opzione A": "The Shawshank Redemption",
+    "Opzione B": "The Godfather",
+    "Opzione C": "The Dark Knight",
+    "Opzione D": "Pulp Fiction",
+    "Risposta Corretta": "A",
+    "Curiosità": "The Shawshank Redemption (1994) holds first place with 9.3/10."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Which actor holds the record for the most Oscars won as Best Actor?",
+    "Opzione A": "Robert De Niro",
+    "Opzione B": "Jack Nicholson",
+    "Opzione C": "Daniel Day-Lewis",
+    "Opzione D": "Tom Hanks",
+    "Risposta Corretta": "C",
+    "Curiosità": "Daniel Day-Lewis is the only man to have won three."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "What is the longest-running anime in history, with over 7,000 episodes?",
+    "Opzione A": "Sazae-san",
+    "Opzione B": "Doraemon",
+    "Opzione C": "One Piece",
+    "Opzione D": "Detective Conan",
+    "Risposta Corretta": "A",
+    "Curiosità": "On air since 1969, Sazae-san is in the Guinness World Records."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "How many minutes does the film 'Titanic' (1997) last?",
+    "Opzione A": "120 minutes",
+    "Opzione B": "160 minutes",
+    "Opzione C": "195 minutes",
+    "Opzione D": "210 minutes",
+    "Risposta Corretta": "C",
+    "Curiosità": "The 1912 scenes last exactly 2 hours and 40 minutes, the real time of the sinking."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Which horror film holds the record for the most audience members fainting in cinemas?",
+    "Opzione A": "The Exorcist",
+    "Opzione B": "The Shining",
+    "Opzione C": "Psycho",
+    "Opzione D": "Halloween",
+    "Risposta Corretta": "A",
+    "Curiosità": "In 1973, The Exorcist caused such strong reactions that many cinemas provided vomit bags."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "What is the title of the Studio Ghibli film that won the Oscar in 2003?",
+    "Opzione A": "My Neighbour Totoro",
+    "Opzione B": "Spirited Away",
+    "Opzione C": "Howl's Moving Castle",
+    "Opzione D": "Ponyo",
+    "Risposta Corretta": "B",
+    "Curiosità": "It was the first non-English language film to win the Oscar for Best Animated Feature."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Which iconic movie villain appears on screen for only 16 minutes?",
+    "Opzione A": "Joker",
+    "Opzione B": "Hannibal Lecter",
+    "Opzione C": "Darth Vader",
+    "Opzione D": "Lord Voldemort",
+    "Risposta Corretta": "B",
+    "Curiosità": "In 'The Silence of the Lambs', Anthony Hopkins won the Oscar for Best Actor."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "In the film 'Interstellar', what does each sound tick on Miller's planet correspond to?",
+    "Opzione A": "One second on Earth",
+    "Opzione B": "One day on Earth",
+    "Opzione C": "One week on Earth",
+    "Opzione D": "One year on Earth",
+    "Risposta Corretta": "C",
+    "Curiosità": "Hans Zimmer inserted a tick every 1.25 seconds, representing one week on Earth."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "For 'The Lord of the Rings', how many pairs of Hobbit feet were made?",
+    "Opzione A": "About 100",
+    "Opzione B": "About 500",
+    "Opzione C": "Over 1,800",
+    "Opzione D": "Over 5,000",
+    "Risposta Corretta": "C",
+    "Curiosità": "Each pair was 'single-use' and had to be glued on every morning."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "In which Disney film is the phrase 'People always do crazy things when they're in love' said?",
+    "Opzione A": "Hercules",
+    "Opzione B": "Tarzan",
+    "Opzione C": "Aladdin",
+    "Opzione D": "Beauty and the Beast",
+    "Risposta Corretta": "A",
+    "Curiosità": "Megara says this line while talking to Hades."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "In the film 'The Lion King', the lions' roar is from which animal?",
+    "Opzione A": "Tiger",
+    "Opzione B": "Bear",
+    "Opzione C": "Panther",
+    "Opzione D": "Moose",
+    "Risposta Corretta": "A",
+    "Curiosità": "The lion's roar wasn't 'powerful' enough, so they used tiger roars."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Which of the following lines is NOT said in Shrek?",
+    "Opzione A": "Better out than in",
+    "Opzione B": "I don't have a problem with the world",
+    "Opzione C": "I can't forget my behind",
+    "Opzione D": "You don't meet a donkey riding a horse every day",
+    "Risposta Corretta": "D",
+    "Curiosità": "The last line is said by Aladdin."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Which of these stars never appeared in the series Friends?",
+    "Opzione A": "Robin Williams",
+    "Opzione B": "Brad Pitt",
+    "Opzione C": "Jim Carrey",
+    "Opzione D": "Julia Roberts",
+    "Risposta Corretta": "C",
+    "Curiosità": "Jim Carrey never made a cameo in Friends."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "What is the highest-grossing film in history?",
+    "Opzione A": "Titanic",
+    "Opzione B": "Avengers: Endgame",
+    "Opzione C": "Avatar",
+    "Opzione D": "Star Wars",
+    "Risposta Corretta": "C",
+    "Curiosità": "It holds the record with over 2.9 billion dollars."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "How many Oscars did 'The Return of the King' win?",
+    "Opzione A": "9",
+    "Opzione B": "11",
+    "Opzione C": "13",
+    "Opzione D": "10",
+    "Risposta Corretta": "B",
+    "Curiosità": "It won in every category in which it was nominated."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Who plays Jack Sparrow?",
+    "Opzione A": "Brad Pitt",
+    "Opzione B": "Tom Cruise",
+    "Opzione C": "Johnny Depp",
+    "Opzione D": "Orlando Bloom",
+    "Risposta Corretta": "C",
+    "Curiosità": "The role earned him an Oscar nomination."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "What is the name of the Simpsons' city?",
+    "Opzione A": "Shelbyville",
+    "Opzione B": "Quahog",
+    "Opzione C": "Springfield",
+    "Opzione D": "South Park",
+    "Risposta Corretta": "C",
+    "Curiosità": "Chosen because it is one of the most common city names in the USA."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "In The Matrix, what colour is the truth pill?",
+    "Opzione A": "Blue",
+    "Opzione B": "Green",
+    "Opzione C": "Red",
+    "Opzione D": "Yellow",
+    "Risposta Corretta": "C",
+    "Curiosità": "The blue one keeps you in the illusion."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Which actor played James Bond in 7 official films?",
+    "Opzione A": "Sean Connery",
+    "Opzione B": "Roger Moore",
+    "Opzione C": "Daniel Craig",
+    "Opzione D": "Pierce Brosnan",
+    "Risposta Corretta": "B",
+    "Curiosità": "Connery did 6 official ones and one unofficial one."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "What was the first Disney animated feature film?",
+    "Opzione A": "Pinocchio",
+    "Opzione B": "Bambi",
+    "Opzione C": "Snow White",
+    "Opzione D": "Dumbo",
+    "Risposta Corretta": "C",
+    "Curiosità": "Released in 1937."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Who directed 'Inception'?",
+    "Opzione A": "Steven Spielberg",
+    "Opzione B": "Christopher Nolan",
+    "Opzione C": "Quentin Tarantino",
+    "Opzione D": "Martin Scorsese",
+    "Risposta Corretta": "B",
+    "Curiosità": "Known for his complex and non-linear plots."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Who was named 'Most Handsome Man in the World' in 2016?",
+    "Opzione A": "Dwayne The Rock Johnson",
+    "Opzione B": "Brad Pitt",
+    "Opzione C": "Leonardo DiCaprio",
+    "Opzione D": "Ryan Gosling",
+    "Risposta Corretta": "A",
+    "Curiosità": "In 2016 the magazine People awarded him as Sexiest Man Alive."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "What is the most-watched Netflix series of all time?",
+    "Opzione A": "Stranger Things",
+    "Opzione B": "Squid Game",
+    "Opzione C": "Money Heist",
+    "Opzione D": "Wednesday",
+    "Risposta Corretta": "A",
+    "Curiosità": "Stranger Things has over 1.2 billion total views."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "What is the most-watched YouTube video of all time?",
+    "Opzione A": "Despacito",
+    "Opzione B": "Baby Shark",
+    "Opzione C": "Gangnam Style",
+    "Opzione D": "Evolution of Dance",
+    "Risposta Corretta": "B",
+    "Curiosità": "It has over 10 billion views."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Which Disney film was the first to be nominated for the Oscar for Best Picture?",
+    "Opzione A": "Snow White",
+    "Opzione B": "The Lion King",
+    "Opzione C": "Beauty and the Beast",
+    "Opzione D": "Fantasia",
+    "Risposta Corretta": "C",
+    "Curiosità": "In 1991 it was a historic milestone for animation."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Which of these actors won a posthumous Oscar?",
+    "Opzione A": "James Dean",
+    "Opzione B": "Heath Ledger",
+    "Opzione C": "Marilyn Monroe",
+    "Opzione D": "Paul Walker",
+    "Risposta Corretta": "B",
+    "Curiosità": "He won Best Supporting Actor for 'The Dark Knight'."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "What is the film that generated the most profit relative to its budget?",
+    "Opzione A": "Paranormal Activity",
+    "Opzione B": "Titanic",
+    "Opzione C": "Rocky",
+    "Opzione D": "Mad Max",
+    "Risposta Corretta": "A",
+    "Curiosità": "Made for $15,000, it grossed 193 million. It is considered the most profitable film in history."
+  },
+  {
+    "Categoria": "Cinema",
+    "Domanda": "Which film holds the record for the most profanities (over 500 F-words)?",
+    "Opzione A": "Pulp Fiction",
+    "Opzione B": "Scarface",
+    "Opzione C": "The Wolf of Wall Street",
+    "Opzione D": "Casino",
+    "Risposta Corretta": "C",
+    "Curiosità": "The word is spoken on average 3 times per minute."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the most consumed drink in the world after water?",
+    "Opzione A": "Coca-Cola",
+    "Opzione B": "Coffee",
+    "Opzione C": "Tea",
+    "Opzione D": "Beer",
+    "Risposta Corretta": "C",
+    "Curiosità": "Tea beats coffee in global consumption volume."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What colour is an aircraft's 'Black Box'?",
+    "Opzione A": "Black",
+    "Opzione B": "Red",
+    "Opzione C": "Orange",
+    "Opzione D": "Yellow",
+    "Risposta Corretta": "C",
+    "Curiosità": "It is fluorescent orange to be easily traceable."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "How many keys does a standard piano have?",
+    "Opzione A": "88",
+    "Opzione B": "76",
+    "Opzione C": "92",
+    "Opzione D": "80",
+    "Risposta Corretta": "A",
+    "Curiosità": "52 white keys and 36 black keys."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "In which language was 'The Little Prince' written?",
+    "Opzione A": "Spanish",
+    "Opzione B": "French",
+    "Opzione C": "Italian",
+    "Opzione D": "German",
+    "Risposta Corretta": "B",
+    "Curiosità": "Written by Antoine de Saint-Exupéry in 1943."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the most abundant chemical element in the universe?",
+    "Opzione A": "Oxygen",
+    "Opzione B": "Hydrogen",
+    "Opzione C": "Helium",
+    "Opzione D": "Carbon",
+    "Risposta Corretta": "B",
+    "Curiosità": "It makes up about 75% of the mass of ordinary matter."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What does the acronym 'LEGO' mean?",
+    "Opzione A": "United Bricks",
+    "Opzione B": "Play Well",
+    "Opzione C": "Light and Rubbery",
+    "Opzione D": "Build Everything",
+    "Risposta Corretta": "B",
+    "Curiosità": "From the Danish 'Leg Godt'."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the social network with the most users in the world?",
+    "Opzione A": "Instagram",
+    "Opzione B": "TikTok",
+    "Opzione C": "Facebook",
+    "Opzione D": "WhatsApp",
+    "Risposta Corretta": "C",
+    "Curiosità": "Facebook still holds the top spot with about 3 billion users."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "How many hearts does an octopus have?",
+    "Opzione A": "1",
+    "Opzione B": "2",
+    "Opzione C": "3",
+    "Opzione D": "4",
+    "Risposta Corretta": "C",
+    "Curiosità": "Two hearts pump blood to the gills, one to the rest of the body."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "In which city is the busiest airport in the world located?",
+    "Opzione A": "Dubai",
+    "Opzione B": "London",
+    "Opzione C": "Atlanta",
+    "Opzione D": "Beijing",
+    "Risposta Corretta": "C",
+    "Curiosità": "Hartsfield-Jackson Atlanta Airport almost always holds the top spot."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "How many times a day does an average adult laugh?",
+    "Opzione A": "5",
+    "Opzione B": "15",
+    "Opzione C": "50",
+    "Opzione D": "100",
+    "Risposta Corretta": "B",
+    "Curiosità": "Children laugh over 300 times."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "How much skin do we shed on average every year?",
+    "Opzione A": "100 g",
+    "Opzione B": "500 g",
+    "Opzione C": "2 kg",
+    "Opzione D": "4 kg",
+    "Risposta Corretta": "D",
+    "Curiosità": "About 4 kg of dead skin every year."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "How many people have lived on Earth in total throughout history?",
+    "Opzione A": "10 billion",
+    "Opzione B": "25 billion",
+    "Opzione C": "50 billion",
+    "Opzione D": "100 billion",
+    "Risposta Corretta": "D",
+    "Curiosità": "About 7% of all humans ever born are alive today."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "How many bones does an adult have?",
+    "Opzione A": "180",
+    "Opzione B": "206",
+    "Opzione C": "230",
+    "Opzione D": "250",
+    "Risposta Corretta": "B",
+    "Curiosità": "More than half of the bones are in the hands and feet."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "How much does an average cloud weigh?",
+    "Opzione A": "1 tonne",
+    "Opzione B": "100 kg",
+    "Opzione C": "500 tonnes",
+    "Opzione D": "50 tonnes",
+    "Risposta Corretta": "C",
+    "Curiosità": "An average-sized cloud (cumulus) weighs about 500 tonnes."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the best-selling video game in history?",
+    "Opzione A": "GTA V",
+    "Opzione B": "Tetris",
+    "Opzione C": "Minecraft",
+    "Opzione D": "Mario Kart",
+    "Risposta Corretta": "C",
+    "Curiosità": "Minecraft is the best-selling video game of all time, with over 300 million copies."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the best-selling object in the world?",
+    "Opzione A": "Smartphone",
+    "Opzione B": "Bic Pen",
+    "Opzione C": "Book",
+    "Opzione D": "Coca Cola",
+    "Risposta Corretta": "B",
+    "Curiosità": "The BIC Cristal ballpoint pen has sold over 100 billion units."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the most popular colour in the world?",
+    "Opzione A": "Red",
+    "Opzione B": "Blue",
+    "Opzione C": "Green",
+    "Opzione D": "Black",
+    "Risposta Corretta": "B",
+    "Curiosità": "Blue is the favourite colour in numerous international surveys."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the most used password in the world?",
+    "Opzione A": "123456",
+    "Opzione B": "password",
+    "Opzione C": "qwerty",
+    "Opzione D": "admin",
+    "Risposta Corretta": "A",
+    "Curiosità": "'123456' can be cracked in less than a second."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the most common fear?",
+    "Opzione A": "Spiders",
+    "Opzione B": "Heights",
+    "Opzione C": "Public speaking",
+    "Opzione D": "Darkness",
+    "Risposta Corretta": "C",
+    "Curiosità": "Glossophobia affects about 75% of the population."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "How many languages exist in the world?",
+    "Opzione A": "20",
+    "Opzione B": "100",
+    "Opzione C": "2,000",
+    "Opzione D": "7,000",
+    "Risposta Corretta": "D",
+    "Curiosità": "About 7,000 languages are spoken in the world."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the most widespread name in the world?",
+    "Opzione A": "Mauro",
+    "Opzione B": "John Adams",
+    "Opzione C": "Maria",
+    "Opzione D": "Mohammed",
+    "Risposta Corretta": "D",
+    "Curiosità": "The most widespread name is Muhammad, due to the very wide spread of Islam."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the most lasting memory in the human brain?",
+    "Opzione A": "Smells",
+    "Opzione B": "Sounds",
+    "Opzione C": "Images",
+    "Opzione D": "Numbers",
+    "Risposta Corretta": "A",
+    "Curiosità": "The sense of smell is directly connected to the emotional areas of the brain."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the most widespread profession in the world?",
+    "Opzione A": "Teacher",
+    "Opzione B": "Farmer",
+    "Opzione C": "Salesperson",
+    "Opzione D": "Factory worker",
+    "Risposta Corretta": "B",
+    "Curiosità": "Billions of people work in agriculture."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What was the original colour of carrots?",
+    "Opzione A": "Orange",
+    "Opzione B": "Yellow",
+    "Opzione C": "Purple",
+    "Opzione D": "White",
+    "Risposta Corretta": "C",
+    "Curiosità": "The orange colour was created by the Dutch in the 17th century to honour the House of Orange."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the most lost item by passengers on the London Underground?",
+    "Opzione A": "Umbrellas",
+    "Opzione B": "Mobile phones",
+    "Opzione C": "Dentures",
+    "Opzione D": "Condoms",
+    "Risposta Corretta": "C",
+    "Curiosità": "Every year, hundreds of dentures are found in the lost property offices!"
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the most used word in the world after 'Hello'?",
+    "Opzione A": "OK",
+    "Opzione B": "No",
+    "Opzione C": "Mum",
+    "Opzione D": "Pizza",
+    "Risposta Corretta": "A",
+    "Curiosità": "'OK' is universally recognised in almost every language on the planet."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the happiest country in the world according to the World Happiness Report?",
+    "Opzione A": "Switzerland",
+    "Opzione B": "Finland",
+    "Opzione C": "Denmark",
+    "Opzione D": "Canada",
+    "Risposta Corretta": "B",
+    "Curiosità": "Finland consistently wins first place for several years."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "Which Italian region has the greatest number of UNESCO World Heritage Sites?",
+    "Opzione A": "Tuscany",
+    "Opzione B": "Lombardy",
+    "Opzione C": "Sicily",
+    "Opzione D": "Veneto",
+    "Risposta Corretta": "B",
+    "Curiosità": "Lombardy holds the record with 10 recognised sites."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "Which Italian university is the oldest in the Western world?",
+    "Opzione A": "Padua",
+    "Opzione B": "Bologna",
+    "Opzione C": "Sapienza Rome",
+    "Opzione D": "Federico II Naples",
+    "Risposta Corretta": "B",
+    "Curiosità": "The University of Bologna (Alma Mater Studiorum) was founded in 1088."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "How many regions does Italy have?",
+    "Opzione A": "18",
+    "Opzione B": "20",
+    "Opzione C": "22",
+    "Opzione D": "15",
+    "Risposta Corretta": "B",
+    "Curiosità": "Of these, 5 have special autonomous status."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the best-selling technological product of all time?",
+    "Opzione A": "PlayStation 2",
+    "Opzione B": "Nokia 3310",
+    "Opzione C": "iPhone",
+    "Opzione D": "Samsung TV",
+    "Risposta Corretta": "A",
+    "Curiosità": "It surpassed 155 million units."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the best-selling car in history?",
+    "Opzione A": "Ford Fiesta",
+    "Opzione B": "Toyota Corolla",
+    "Opzione C": "Volkswagen Golf",
+    "Opzione D": "Fiat Panda",
+    "Risposta Corretta": "B",
+    "Curiosità": "Over 50 million sold."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the most stolen painting in history?",
+    "Opzione A": "The Scream",
+    "Opzione B": "Mona Lisa",
+    "Opzione C": "Rembrandt Portrait",
+    "Opzione D": "Guernica",
+    "Risposta Corretta": "A",
+    "Curiosità": "It has been stolen multiple times."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the best-selling toy of all time?",
+    "Opzione A": "LEGO",
+    "Opzione B": "Barbie",
+    "Opzione C": "Rubik's Cube",
+    "Opzione D": "Hot Wheels",
+    "Risposta Corretta": "A",
+    "Curiosità": "LEGO bricks have been produced since 1949."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "Which Italian region has the most castles?",
+    "Opzione A": "Tuscany",
+    "Opzione B": "Trentino-Alto Adige",
+    "Opzione C": "Piedmont",
+    "Opzione D": "Lazio",
+    "Risposta Corretta": "C",
+    "Curiosità": "Over 700 castles recorded."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "Which Italian region has the most municipalities?",
+    "Opzione A": "Lombardy",
+    "Opzione B": "Piedmont",
+    "Opzione C": "Campania",
+    "Opzione D": "Veneto",
+    "Risposta Corretta": "A",
+    "Curiosità": "It has over 1,500 municipalities."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "Which Italian city has the most bridges?",
+    "Opzione A": "Venice",
+    "Opzione B": "Florence",
+    "Opzione C": "Rome",
+    "Opzione D": "Milan",
+    "Risposta Corretta": "A",
+    "Curiosità": "Over 400 bridges."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "Which region produces the most wine in Italy?",
+    "Opzione A": "Sicily",
+    "Opzione B": "Veneto",
+    "Opzione C": "Tuscany",
+    "Opzione D": "Puglia",
+    "Risposta Corretta": "B",
+    "Curiosità": "Veneto is first in terms of quantity."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the most visited city in Italy?",
+    "Opzione A": "Rome",
+    "Opzione B": "Venice",
+    "Opzione C": "Milan",
+    "Opzione D": "Florence",
+    "Risposta Corretta": "A",
+    "Curiosità": "It welcomes millions of tourists every year."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "Which European country drinks the most alcohol per capita?",
+    "Opzione A": "Germany",
+    "Opzione B": "France",
+    "Opzione C": "Czech Republic",
+    "Opzione D": "Ireland",
+    "Risposta Corretta": "C",
+    "Curiosità": "Beer is part of the local culture."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "Which multinational is the world's largest toy distributor?",
+    "Opzione A": "LEGO",
+    "Opzione B": "Barbie",
+    "Opzione C": "McDonald's",
+    "Opzione D": "Hasbro",
+    "Risposta Corretta": "C",
+    "Curiosità": "With Happy Meals, McDonald's distributes over 1.5 billion toys a year."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "How many elements are currently in the periodic table?",
+    "Opzione A": "92",
+    "Opzione B": "108",
+    "Opzione C": "118",
+    "Opzione D": "124",
+    "Risposta Corretta": "C",
+    "Curiosità": "The heaviest element is Oganesson (atomic number 118)."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the largest organ in the human body?",
+    "Opzione A": "Liver",
+    "Opzione B": "Lung",
+    "Opzione C": "Intestine",
+    "Opzione D": "Skin",
+    "Risposta Corretta": "D",
+    "Curiosità": "The skin weighs on average between 3.5 and 5 kg and covers about 2 m²."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "Which tennis player has won the most Slams in history?",
+    "Opzione A": "Roger Federer",
+    "Opzione B": "Rafael Nadal",
+    "Opzione C": "Novak Djokovic",
+    "Opzione D": "Pete Sampras",
+    "Risposta Corretta": "C",
+    "Curiosità": "Novak Djokovic leads with 24 Slams."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the tallest building in the world (828 metres)?",
+    "Opzione A": "Empire State Building",
+    "Opzione B": "Shanghai Tower",
+    "Opzione C": "Burj Khalifa",
+    "Opzione D": "Eiffel Tower",
+    "Risposta Corretta": "C",
+    "Curiosità": "It is located in Dubai and has over 160 floors."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What do male penguins do to propose to a female?",
+    "Opzione A": "Bring a fish",
+    "Opzione B": "Give a pebble",
+    "Opzione C": "Sing",
+    "Opzione D": "Dance",
+    "Risposta Corretta": "B",
+    "Curiosità": "They look for the smoothest and most beautiful pebble on the beach to give to their chosen one."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "Who is the author of the painting 'Guernica'?",
+    "Opzione A": "Picasso",
+    "Opzione B": "Monet",
+    "Opzione C": "Salvador Dalí",
+    "Opzione D": "Michelangelo",
+    "Risposta Corretta": "A",
+    "Curiosità": "Pablo Picasso created the monumental work in 1937."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the most stolen car colour in the world?",
+    "Opzione A": "Red",
+    "Opzione B": "Black",
+    "Opzione C": "White",
+    "Opzione D": "Grey",
+    "Risposta Corretta": "C",
+    "Curiosità": "White cars are easier to resell or disguise."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "Which Italian province has the highest quality of life?",
+    "Opzione A": "Milan",
+    "Opzione B": "Bolzano",
+    "Opzione C": "Trento",
+    "Opzione D": "Bologna",
+    "Risposta Corretta": "D",
+    "Curiosità": "Bologna often wins the Il Sole 24 Ore ranking."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the most visited website in the world (excluding Google)?",
+    "Opzione A": "Facebook",
+    "Opzione B": "YouTube",
+    "Opzione C": "Amazon",
+    "Opzione D": "Instagram",
+    "Risposta Corretta": "B",
+    "Curiosità": "YouTube is the second most visited site and the second search engine."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the most expensive substance in the world per gram?",
+    "Opzione A": "Diamonds",
+    "Opzione B": "Plutonium",
+    "Opzione C": "Antimatter",
+    "Opzione D": "Gold",
+    "Risposta Corretta": "C",
+    "Curiosità": "Producing a single gram of antimatter would cost about 62 trillion dollars."
+  },
+  {
+    "Categoria": "General Culture",
+    "Domanda": "What is the most widespread surname on planet Earth?",
+    "Opzione A": "Smith",
+    "Opzione B": "Rossi",
+    "Opzione C": "Wang",
+    "Opzione D": "Garcia",
+    "Risposta Corretta": "C",
+    "Curiosità": "Over 100 million people in the world are called Wang."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "Which country has the most official languages?",
+    "Opzione A": "Switzerland",
+    "Opzione B": "South Africa",
+    "Opzione C": "India",
+    "Opzione D": "Canada",
+    "Risposta Corretta": "B",
+    "Curiosità": "It has 11 official languages."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "Which country has the most islands?",
+    "Opzione A": "Indonesia",
+    "Opzione B": "Norway",
+    "Opzione C": "Sweden",
+    "Opzione D": "Philippines",
+    "Risposta Corretta": "C",
+    "Curiosità": "Over 260,000 islands."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "Which is the youngest country in the world?",
+    "Opzione A": "South Sudan",
+    "Opzione B": "Kosovo",
+    "Opzione C": "Montenegro",
+    "Opzione D": "Eritrea",
+    "Risposta Corretta": "A",
+    "Curiosità": "Independent since 2011."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "Which continent has the most deserts?",
+    "Opzione A": "Africa",
+    "Opzione B": "Asia",
+    "Opzione C": "Oceania",
+    "Opzione D": "Antarctica",
+    "Risposta Corretta": "D",
+    "Curiosità": "It is technically a cold desert."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "Which is the largest country in the world by surface area?",
+    "Opzione A": "Canada",
+    "Opzione B": "China",
+    "Opzione C": "Russia",
+    "Opzione D": "United States",
+    "Risposta Corretta": "C",
+    "Curiosità": "It spans 11 different time zones."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "In which city is the 'City of the Dead' located?",
+    "Opzione A": "New Delhi",
+    "Opzione B": "Cairo",
+    "Opzione C": "Mexico City",
+    "Opzione D": "Manila",
+    "Risposta Corretta": "B",
+    "Curiosità": "It is an area of Cairo where thousands of people live among the tombs."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "Which is the largest island in the world?",
+    "Opzione A": "Australia",
+    "Opzione B": "Greenland",
+    "Opzione C": "Madagascar",
+    "Opzione D": "New Guinea",
+    "Risposta Corretta": "B",
+    "Curiosità": "Despite its immense size, it has only 56,000 inhabitants."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "Which city is divided between two continents, Europe and Asia?",
+    "Opzione A": "Moscow",
+    "Opzione B": "Istanbul",
+    "Opzione C": "Athens",
+    "Opzione D": "Cairo",
+    "Risposta Corretta": "B",
+    "Curiosità": "Divided by the Bosphorus Strait, it is the only metropolis on two continents."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "Which is the most populous country in the world?",
+    "Opzione A": "USA",
+    "Opzione B": "India",
+    "Opzione C": "China",
+    "Opzione D": "Indonesia",
+    "Risposta Corretta": "B",
+    "Curiosità": "India has surpassed the threshold of 1.4 billion people."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "'Point Nemo' in the Pacific. What is its peculiarity?",
+    "Opzione A": "It is infested by sharks",
+    "Opzione B": "The sun never sets there",
+    "Opzione C": "The nearest humans are astronauts",
+    "Opzione D": "A submerged pyramid is found there",
+    "Risposta Corretta": "C",
+    "Curiosità": "It is the point furthest from any land (2,688 km)."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "What is the only continent without deserts?",
+    "Opzione A": "Europe",
+    "Opzione B": "South America",
+    "Opzione C": "North America",
+    "Opzione D": "Oceania",
+    "Risposta Corretta": "A",
+    "Curiosità": "Europe is the only one without classic sandy deserts."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "In which sea is the island of Crete located?",
+    "Opzione A": "Ionian Sea",
+    "Opzione B": "Tyrrhenian Sea",
+    "Opzione C": "Aegean Sea",
+    "Opzione D": "Adriatic Sea",
+    "Risposta Corretta": "C",
+    "Curiosità": "It is the largest island in Greece and closes the Aegean Sea basin to the south."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "Which of the following cities is NOT in Emilia-Romagna?",
+    "Opzione A": "San Possidonio",
+    "Opzione B": "Polinago",
+    "Opzione C": "Montefiorino",
+    "Opzione D": "Asola",
+    "Risposta Corretta": "D",
+    "Curiosità": "Asola is a municipality in the province of Mantua in Lombardy."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "Which is the largest US state by surface area?",
+    "Opzione A": "Alaska",
+    "Opzione B": "Texas",
+    "Opzione C": "California",
+    "Opzione D": "Colorado",
+    "Risposta Corretta": "A",
+    "Curiosità": "Alaska covers over 20% of the entire area of the United States."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "Which mountain range separates Europe from Asia?",
+    "Opzione A": "Himalayas",
+    "Opzione B": "Ural Mountains",
+    "Opzione C": "Caucasus Mountains",
+    "Opzione D": "Alps",
+    "Risposta Corretta": "B",
+    "Curiosità": "The Ural Mountains are traditionally considered the geographical boundary."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "What is the capital of Australia?",
+    "Opzione A": "Sydney",
+    "Opzione B": "Melbourne",
+    "Opzione C": "Canberra",
+    "Opzione D": "Perth",
+    "Risposta Corretta": "C",
+    "Curiosità": "Many confuse it with Sydney, which is actually the largest city."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "What is the longest river in the world?",
+    "Opzione A": "Amazon",
+    "Opzione B": "Nile",
+    "Opzione C": "Mississippi",
+    "Opzione D": "Yangtze",
+    "Risposta Corretta": "B",
+    "Curiosità": "The Nile measures about 6,650 km, although some recent research suggests the Amazon may be longer."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "In which country is Machu Picchu located?",
+    "Opzione A": "Chile",
+    "Opzione B": "Colombia",
+    "Opzione C": "Peru",
+    "Opzione D": "Bolivia",
+    "Risposta Corretta": "C",
+    "Curiosità": "Built by the Incas in the 15th century in the Andes."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "What is the highest mountain in the world?",
+    "Opzione A": "K2",
+    "Opzione B": "Mont Blanc",
+    "Opzione C": "Kilimanjaro",
+    "Opzione D": "Everest",
+    "Risposta Corretta": "D",
+    "Curiosità": "Everest reaches 8,849 metres above sea level."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "How many stars does the US flag have?",
+    "Opzione A": "48",
+    "Opzione B": "50",
+    "Opzione C": "52",
+    "Opzione D": "45",
+    "Risposta Corretta": "B",
+    "Curiosità": "One star per state. The last added was Hawaii in 1960."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "Which is the smallest country in the world?",
+    "Opzione A": "Monaco",
+    "Opzione B": "San Marino",
+    "Opzione C": "Vatican City",
+    "Opzione D": "Liechtenstein",
+    "Risposta Corretta": "C",
+    "Curiosità": "It measures only 0.44 km² and is the smallest state in the world."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "What is the largest desert in the world?",
+    "Opzione A": "Sahara",
+    "Opzione B": "Gobi",
+    "Opzione C": "Antarctica",
+    "Opzione D": "Arabian",
+    "Risposta Corretta": "C",
+    "Curiosità": "Antarctica is technically a cold desert of 14 million km²."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "On which continent is Kilimanjaro located?",
+    "Opzione A": "Asia",
+    "Opzione B": "South America",
+    "Opzione C": "Africa",
+    "Opzione D": "Oceania",
+    "Risposta Corretta": "C",
+    "Curiosità": "Kilimanjaro is located in Tanzania and is the highest mountain in Africa (5,895 m)."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "Which language is the most spoken in the world as a mother tongue?",
+    "Opzione A": "English",
+    "Opzione B": "Spanish",
+    "Opzione C": "Mandarin",
+    "Opzione D": "Hindi",
+    "Risposta Corretta": "C",
+    "Curiosità": "Mandarin is spoken by over 900 million people as a mother tongue."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "In which country is the Parthenon located?",
+    "Opzione A": "Italy",
+    "Opzione B": "Greece",
+    "Opzione C": "Turkey",
+    "Opzione D": "Egypt",
+    "Risposta Corretta": "B",
+    "Curiosità": "The Parthenon is in Athens on the Acropolis, built in the 5th century BC."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "What is the largest ocean in the world?",
+    "Opzione A": "Atlantic",
+    "Opzione B": "Indian",
+    "Opzione C": "Arctic",
+    "Opzione D": "Pacific",
+    "Risposta Corretta": "D",
+    "Curiosità": "The Pacific covers about 46% of the total ocean surface."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "In which country are the Pyramids of Giza located?",
+    "Opzione A": "Sudan",
+    "Opzione B": "Morocco",
+    "Opzione C": "Egypt",
+    "Opzione D": "Libya",
+    "Risposta Corretta": "C",
+    "Curiosità": "The Pyramids of Giza are built on the west bank of the Nile, dating back to 2500 BC."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "How many countries share a border with Russia?",
+    "Opzione A": "10",
+    "Opzione B": "12",
+    "Opzione C": "14",
+    "Opzione D": "16",
+    "Risposta Corretta": "C",
+    "Curiosità": "Russia shares borders with 14 countries, the highest number in the world."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "In which city is the Sagrada Família located?",
+    "Opzione A": "Madrid",
+    "Opzione B": "Barcelona",
+    "Opzione C": "Seville",
+    "Opzione D": "Valencia",
+    "Risposta Corretta": "B",
+    "Curiosità": "The Sagrada Família is Antoni Gaudí's cathedral in Barcelona, still under construction."
+  },
+  {
+    "Categoria": "Geography",
+    "Domanda": "Which country has won the most Nobel Prizes per capita?",
+    "Opzione A": "USA",
+    "Opzione B": "Sweden",
+    "Opzione C": "Switzerland",
+    "Opzione D": "Iceland",
+    "Risposta Corretta": "A",
+    "Curiosità": "The USA leads the absolute ranking with over 400 Nobel Prizes."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "How long did the 'Hundred Years' War' last?",
+    "Opzione A": "100 years",
+    "Opzione B": "99 years",
+    "Opzione C": "116 years",
+    "Opzione D": "150 years",
+    "Risposta Corretta": "C",
+    "Curiosità": "Fought between France and England from 1337 to 1453."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "Who was the first US president to live in the White House?",
+    "Opzione A": "George Washington",
+    "Opzione B": "John Adams",
+    "Opzione C": "Thomas Jefferson",
+    "Opzione D": "Abraham Lincoln",
+    "Risposta Corretta": "B",
+    "Curiosità": "Washington oversaw the construction but never lived there."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "Which Roman emperor appointed his horse as a senator?",
+    "Opzione A": "Nero",
+    "Opzione B": "Caligula",
+    "Opzione C": "Commodus",
+    "Opzione D": "Tiberius",
+    "Risposta Corretta": "B",
+    "Curiosità": "The horse was named Incitatus."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "In what year did the Titanic sink?",
+    "Opzione A": "1912",
+    "Opzione B": "1905",
+    "Opzione C": "1920",
+    "Opzione D": "1898",
+    "Risposta Corretta": "A",
+    "Curiosità": "In the night between 14 and 15 April 1912."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "Which famous Egyptian queen was actually of Greek origin?",
+    "Opzione A": "Nefertiti",
+    "Opzione B": "Cleopatra",
+    "Opzione C": "Hatshepsut",
+    "Opzione D": "Isis",
+    "Risposta Corretta": "B",
+    "Curiosità": "She descended from the Ptolemaic dynasty, of Macedonian origin."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "Which European country remained neutral during both World Wars?",
+    "Opzione A": "Norway",
+    "Opzione B": "Switzerland",
+    "Opzione C": "Belgium",
+    "Opzione D": "Poland",
+    "Risposta Corretta": "B",
+    "Curiosità": "Switzerland has maintained neutrality since 1815."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "Who invented the movable type printing press?",
+    "Opzione A": "Leonardo da Vinci",
+    "Opzione B": "Galileo Galilei",
+    "Opzione C": "Johannes Gutenberg",
+    "Opzione D": "Isaac Newton",
+    "Risposta Corretta": "C",
+    "Curiosità": "Gutenberg invented the printing press around 1440, revolutionising the spread of knowledge."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "In which year did the Western Roman Empire fall?",
+    "Opzione A": "376",
+    "Opzione B": "410",
+    "Opzione C": "476",
+    "Opzione D": "565",
+    "Risposta Corretta": "C",
+    "Curiosità": "476 AD is the conventional date of the fall, with the deposition of Romulus Augustulus."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "What was the name of the first artificial satellite launched into space?",
+    "Opzione A": "Explorer",
+    "Opzione B": "Sputnik",
+    "Opzione C": "Vostok",
+    "Opzione D": "Mercury",
+    "Risposta Corretta": "B",
+    "Curiosità": "Sputnik 1 was launched by the USSR on 4 October 1957."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "Who was the first man to walk on the Moon?",
+    "Opzione A": "Buzz Aldrin",
+    "Opzione B": "Neil Armstrong",
+    "Opzione C": "Yuri Gagarin",
+    "Opzione D": "John Glenn",
+    "Risposta Corretta": "B",
+    "Curiosità": "Neil Armstrong set foot on the Moon on 20 July 1969 during the Apollo 11 mission."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "In which year was the Magna Carta signed?",
+    "Opzione A": "1066",
+    "Opzione B": "1215",
+    "Opzione C": "1348",
+    "Opzione D": "1492",
+    "Risposta Corretta": "B",
+    "Curiosità": "The Magna Carta was signed by King John of England in 1215, limiting royal power."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "Who was the leader of the Soviet Union during World War II?",
+    "Opzione A": "Lenin",
+    "Opzione B": "Khrushchev",
+    "Opzione C": "Stalin",
+    "Opzione D": "Brezhnev",
+    "Risposta Corretta": "C",
+    "Curiosità": "Stalin led the USSR from 1924 to 1953."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "In which year did Columbus reach the Americas?",
+    "Opzione A": "1488",
+    "Opzione B": "1492",
+    "Opzione C": "1500",
+    "Opzione D": "1510",
+    "Risposta Corretta": "B",
+    "Curiosità": "12 October 1492 is the official date of the discovery of the Americas."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "Which revolution took place in France in 1789?",
+    "Opzione A": "Industrial Revolution",
+    "Opzione B": "French Revolution",
+    "Opzione C": "Russian Revolution",
+    "Opzione D": "American Revolution",
+    "Risposta Corretta": "B",
+    "Curiosità": "The storming of the Bastille on 14 July 1789 is the symbol of the French Revolution."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "Who painted the Mona Lisa?",
+    "Opzione A": "Raphael",
+    "Opzione B": "Michelangelo",
+    "Opzione C": "Leonardo da Vinci",
+    "Opzione D": "Botticelli",
+    "Risposta Corretta": "C",
+    "Curiosità": "Leonardo da Vinci painted the Mona Lisa between 1503 and 1519."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "In which year was Rome founded?",
+    "Opzione A": "753 BC",
+    "Opzione B": "509 BC",
+    "Opzione C": "264 BC",
+    "Opzione D": "27 BC",
+    "Risposta Corretta": "A",
+    "Curiosità": "According to tradition, Rome was founded by Romulus on 21 April 753 BC."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "The American Civil War (1861–1865) ended with the defeat of which side?",
+    "Opzione A": "North (Union)",
+    "Opzione B": "South (Confederates)",
+    "Opzione C": "Both sides drew",
+    "Opzione D": "The war did not end",
+    "Risposta Corretta": "B",
+    "Curiosità": "The South (Confederates) surrendered on 9 April 1865 with the surrender of General Lee."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "Who was the first President of the Italian Republic?",
+    "Opzione A": "Alcide De Gasperi",
+    "Opzione B": "Luigi Einaudi",
+    "Opzione C": "Enrico De Nicola",
+    "Opzione D": "Giovanni Gronchi",
+    "Risposta Corretta": "C",
+    "Curiosità": "Enrico De Nicola was the first President of the Italian Republic from 1948."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "In which year did Italy officially become a Republic?",
+    "Opzione A": "1945",
+    "Opzione B": "1946",
+    "Opzione C": "1948",
+    "Opzione D": "1950",
+    "Risposta Corretta": "B",
+    "Curiosità": "On 2 June 1946 the institutional referendum was held."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "Which ancient city was destroyed by the eruption of Vesuvius in 79 AD?",
+    "Opzione A": "Rome",
+    "Opzione B": "Naples",
+    "Opzione C": "Pompeii",
+    "Opzione D": "Capua",
+    "Risposta Corretta": "C",
+    "Curiosità": "Pompeii was buried under 4–6 metres of volcanic ash on 24 August 79 AD."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "Who was the first emperor of Rome?",
+    "Opzione A": "Julius Caesar",
+    "Opzione B": "Octavian Augustus",
+    "Opzione C": "Nero",
+    "Opzione D": "Trajan",
+    "Risposta Corretta": "B",
+    "Curiosità": "Octavian Augustus became the first Roman emperor in 27 BC."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "Which instrument was invented by Antonio Meucci?",
+    "Opzione A": "Radio",
+    "Opzione B": "Telephone",
+    "Opzione C": "Telegraph",
+    "Opzione D": "Television",
+    "Risposta Corretta": "B",
+    "Curiosità": "Antonio Meucci invented the telephone, but it was Alexander Graham Bell who patented it in 1876."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "How many years did the Trojan War last according to Greek mythology?",
+    "Opzione A": "5 years",
+    "Opzione B": "7 years",
+    "Opzione C": "10 years",
+    "Opzione D": "12 years",
+    "Risposta Corretta": "C",
+    "Curiosità": "According to the Iliad, the Trojan War lasted 10 years."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "Who led the Russian Revolution of 1917?",
+    "Opzione A": "Stalin",
+    "Opzione B": "Lenin",
+    "Opzione C": "Trotsky",
+    "Opzione D": "Rasputin",
+    "Risposta Corretta": "B",
+    "Curiosità": "Lenin led the Bolsheviks to the seizure of power in 1917."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "In which year did World War II begin?",
+    "Opzione A": "1935",
+    "Opzione B": "1937",
+    "Opzione C": "1939",
+    "Opzione D": "1941",
+    "Risposta Corretta": "C",
+    "Curiosità": "On 1 September 1939, Germany invaded Poland."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "Which ancient people built the Pyramids of Giza?",
+    "Opzione A": "Romans",
+    "Opzione B": "Greeks",
+    "Opzione C": "Egyptians",
+    "Opzione D": "Persians",
+    "Risposta Corretta": "C",
+    "Curiosità": "The Pyramids were built by the Egyptians about 4,500 years ago as tombs for the pharaohs."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "Who was the dictator of Nazi Germany?",
+    "Opzione A": "Mussolini",
+    "Opzione B": "Stalin",
+    "Opzione C": "Franco",
+    "Opzione D": "Hitler",
+    "Risposta Corretta": "D",
+    "Curiosità": "Adolf Hitler led Germany as Führer from 1933 to 1945."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "In which year did the Normandy landings take place?",
+    "Opzione A": "1942",
+    "Opzione B": "1944",
+    "Opzione C": "1943",
+    "Opzione D": "1945",
+    "Risposta Corretta": "B",
+    "Curiosità": "D-Day, 6 June 1944, was the largest amphibious operation in history."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "Which great ancient library was burned in the 1st century BC?",
+    "Opzione A": "Library of Alexandria",
+    "Opzione B": "Library of Athens",
+    "Opzione C": "Library of Rome",
+    "Opzione D": "Library of Carthage",
+    "Risposta Corretta": "A",
+    "Curiosità": "The Library of Alexandria was the largest in the ancient world, destroyed between the 1st century BC and the 7th century AD."
+  },
+  {
+    "Categoria": "History",
+    "Domanda": "Who was the Pharaoh during the Exodus of the Jews from Egypt (according to the Bible)?",
+    "Opzione A": "Tutankhamun",
+    "Opzione B": "Ramesses II",
+    "Opzione C": "Akhenaten",
+    "Opzione D": "Cleopatra",
+    "Risposta Corretta": "B",
+    "Curiosità": "The majority of scholars identify Ramesses II as the Pharaoh of the Exodus."
+  }
+]

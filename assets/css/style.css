@@ -1,0 +1,365 @@
+/* ============================================================
+   FUN ON THE ROAD — Design System
+   Neo-Glassmorphism | Regola 60-30-10
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+/* ── 1. VARIABILI BRAND ─────────────────────────────────── */
+:root {
+  /* Palette principale (60-30-10) */
+  --color-base:        #020617;   /* 60% — Deep Slate (sfondo) */
+  --color-brand:       #0ea5e9;   /* 30% — Azure Sky (brand)   */
+  --color-accent:      #f59e0b;   /* 10% — Bright Amber (CTA)  */
+  --color-accent-alt:  #f97316;   /*       Orange (CTA alt)    */
+
+  /* Varianti tono */
+  --color-base-800:    #0f172a;   /* slate-900 – card layer    */
+  --color-base-700:    #1e293b;   /* slate-800 – bordi scuri   */
+  --color-brand-light: #38bdf8;   /* sky-400   – hover brand   */
+  --color-brand-dark:  #0284c7;   /* sky-600   – active brand  */
+  --color-accent-dark: #d97706;   /* amber-600 – hover CTA     */
+
+  /* Vetro (Glassmorphism) */
+  --glass-bg:          rgba(255, 255, 255, 0.05);
+  --glass-bg-hover:    rgba(255, 255, 255, 0.09);
+  --glass-border:      rgba(255, 255, 255, 0.10);
+  --glass-border-hover:rgba(14, 165, 233, 0.40);  /* brand glow */
+  --glass-blur:        blur(16px);
+  --glass-blur-heavy:  blur(32px);
+  --glass-shadow:      0 8px 32px rgba(0, 0, 0, 0.40);
+  --glass-shadow-brand:0 8px 32px rgba(14, 165, 233, 0.20);
+
+  /* Testo */
+  --text-primary:   #f8fafc;      /* slate-50  */
+  --text-secondary: #94a3b8;      /* slate-400 */
+  --text-muted:     #475569;      /* slate-600 */
+
+  /* Tipografia */
+  --font-main: 'Outfit', system-ui, sans-serif;
+
+  /* Raggi bordi */
+  --radius-sm:  8px;
+  --radius-md:  16px;
+  --radius-lg:  24px;
+  --radius-xl:  32px;
+
+  /* Transizioni */
+  --transition: all 0.3s ease;
+  --transition-fast: all 0.15s ease;
+}
+
+/* ── 2. RESET & BASE ────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--color-base);
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── 3. SFONDO AMBIENTALE ───────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 10%,  rgba(14, 165, 233, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%,  rgba(245, 158, 11, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 100% 80% at 50% 50%, var(--color-base-800) 0%, var(--color-base) 100%);
+  pointer-events: none;
+}
+
+/* ── 4. COMPONENTI GLASS ────────────────────────────────── */
+
+/* Card base */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  transition: var(--transition);
+}
+
+.glass-card:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-shadow-brand);
+  transform: translateY(-2px);
+}
+
+/* Card pesante (modale/hero) */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: var(--glass-blur-heavy);
+  -webkit-backdrop-filter: var(--glass-blur-heavy);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--glass-shadow);
+}
+
+/* Navbar/Bottom bar */
+.glass-nav {
+  background: rgba(2, 6, 23, 0.70);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-top: 1px solid var(--glass-border);
+}
+
+/* ── 5. PULSANTI ────────────────────────────────────────── */
+
+/* CTA principale (Amber — 10%) */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font-family: var(--font-main);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #020617;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-alt));
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.35);
+  text-decoration: none;
+}
+
+.btn-cta:hover {
+  background: linear-gradient(135deg, var(--color-accent-dark), var(--color-accent));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(245, 158, 11, 0.50);
+}
+
+.btn-cta:active {
+  transform: translateY(0);
+}
+
+/* Secondario (Brand — 30%) */
+.btn-brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font-family: var(--font-main);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-brand);
+  background: rgba(14, 165, 233, 0.12);
+  border: 1px solid rgba(14, 165, 233, 0.30);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.btn-brand:hover {
+  background: rgba(14, 165, 233, 0.22);
+  border-color: var(--color-brand);
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.25);
+}
+
+/* Ghost */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.btn-ghost:hover {
+  color: var(--text-primary);
+  border-color: var(--glass-border-hover);
+  background: var(--glass-bg);
+}
+
+/* ── 6. BADGE ───────────────────────────────────────────── */
+.badge-premium {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #020617;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-alt));
+  border-radius: 999px;
+}
+
+.badge-free {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-brand);
+  background: rgba(14, 165, 233, 0.15);
+  border: 1px solid rgba(14, 165, 233, 0.30);
+  border-radius: 999px;
+}
+
+/* ── 7. TIPOGRAFIA ──────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--font-main);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3rem); }
+h2 { font-size: clamp(1.5rem, 4vw, 2.25rem); }
+h3 { font-size: clamp(1.2rem, 3vw, 1.75rem); }
+h4 { font-size: 1.1rem; }
+
+.text-brand  { color: var(--color-brand); }
+.text-accent { color: var(--color-accent); }
+.text-muted  { color: var(--text-muted); }
+.text-secondary { color: var(--text-secondary); }
+
+/* ── 8. LAYOUT UTILITY ──────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 480px;   /* mobile-first cap */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.safe-top    { padding-top: env(safe-area-inset-top, 16px); }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 24px); }
+
+/* ── 9. TEMPLATE GIOCO ──────────────────────────────────── */
+
+/* Header punteggi (top) */
+.game-score-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: rgba(2, 6, 23, 0.60);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+/* Box centrale animato */
+.game-main-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px;
+  animation: fadeInUp 0.4s ease both;
+}
+
+/* Controlli fissi in basso */
+.game-controls {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  padding: 16px 20px;
+  padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  background: rgba(2, 6, 23, 0.80);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-top: 1px solid var(--glass-border);
+  z-index: 100;
+}
+
+/* ── 10. ANIMAZIONI ─────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes pulse-brand {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.4); }
+  50%       { box-shadow: 0 0 0 12px rgba(14, 165, 233, 0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+.animate-fade-in     { animation: fadeIn    0.3s ease both; }
+.animate-fade-in-up  { animation: fadeInUp  0.4s ease both; }
+.animate-pulse-brand { animation: pulse-brand 2s ease infinite; }
+
+/* ── 11. TRIVIA OPTION BUTTONS ──────────────────────────── */
+.opt-btn {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  cursor: pointer;
+  font-family: var(--font-main);
+  transition: opacity 0.2s ease, transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.opt-btn:disabled {
+  cursor: default;
+}
+
+/* ── 12. SCROLLBAR ──────────────────────────────────────── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-dark);
+  border-radius: 999px;
+}
+
+/* ── 13. MEDIA QUERY ────────────────────────────────────── */
+@media (min-width: 640px) {
+  .container { max-width: 560px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#0a0012" />
+  <title>Preferiresti HOT 🌶️ — Fun on the Road</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { outfit: ['Outfit','system-ui','sans-serif'] } } } };</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    /* ── DARK NIGHT THEME ─────────────────────── */
+    body {
+      background-color: #0a0012;
+    }
+    body::before {
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 10%,  rgba(239,68,68,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 80%,  rgba(168,85,247,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse 100% 80% at 50% 50%, #0f000a 0%, #0a0012 100%);
+    }
+
+    /* ── Option display cards ── */
+    .option-card {
+      position: relative;
+      border-radius: 18px;
+      padding: 16px 15px 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1.5px solid rgba(255,255,255,0.09);
+      transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .option-card.chosen-a {
+      background: rgba(239,68,68,0.14);
+      border-color: rgba(239,68,68,0.50);
+      box-shadow: 0 0 22px rgba(239,68,68,0.18);
+    }
+    .option-card.chosen-b {
+      background: rgba(245,158,11,0.14);
+      border-color: rgba(245,158,11,0.50);
+      box-shadow: 0 0 22px rgba(245,158,11,0.16);
+    }
+    .opt-label {
+      font-size: 0.60rem;
+      font-weight: 800;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .opt-label-a { color: #fca5a5; }
+    .opt-label-b { color: #fbbf24; }
+    .opt-text {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      line-height: 1.35;
+    }
+    .chosen-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 8px;
+      background: rgba(255,255,255,0.10);
+      border-radius: 7px;
+      padding: 2px 9px;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .option-card.chosen-a .chosen-badge-a,
+    .option-card.chosen-b .chosen-badge-b { opacity: 1; }
+
+    /* ── OR divider ── */
+    .or-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 2px 0;
+    }
+    .or-row::before, .or-row::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+    }
+    .or-row span {
+      font-size: 0.62rem;
+      font-weight: 800;
+      color: #475569;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ── Choice buttons ── */
+    .choice-btn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 16px 10px;
+      border-radius: 18px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      color: #fff;
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      min-height: 76px;
+      text-align: center;
+    }
+    .choice-btn:active { transform: scale(0.93); }
+    .choice-btn-a {
+      background: rgba(239,68,68,0.18);
+      border-color: rgba(239,68,68,0.45);
+    }
+    .choice-btn-b {
+      background: rgba(245,158,11,0.18);
+      border-color: rgba(245,158,11,0.45);
+    }
+    .choice-letter {
+      font-size: 0.60rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .choice-letter-a { color: #fca5a5; }
+    .choice-letter-b { color: #fcd34d; }
+
+    /* ── Award buttons ── */
+    .award-btn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      padding: 13px 8px;
+      border-radius: 18px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      color: #fff;
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      transition: transform 0.15s ease, opacity 0.25s ease;
+    }
+    .award-btn:active:not(:disabled) { transform: scale(0.93); }
+    .award-btn:disabled {
+      opacity: 0.30;
+      cursor: default;
+      transform: none;
+    }
+    .award-btn.scored { opacity: 0.38; }
+
+    /* ── Bet badge ── */
+    .bet-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: rgba(239,68,68,0.10);
+      border: 1px solid rgba(239,68,68,0.25);
+      border-radius: 14px;
+      font-size: 0.80rem;
+      font-weight: 700;
+      color: #fca5a5;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    /* ── Phase badge colours ── */
+    .phase-bet    { color: #fca5a5; }
+    .phase-choose { color: #f87171; }
+    .phase-score  { color: #34d399; }
+
+    /* ── HOT btn-cta override ── */
+    .btn-hot {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(239,68,68,0.40);
+      text-decoration: none;
+    }
+    .btn-hot:hover {
+      background: linear-gradient(135deg, #dc2626, #ef4444);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(239,68,68,0.55);
+    }
+    .btn-hot:active { transform: translateY(0); }
+  </style>
+</head>
+
+<body class="font-outfit antialiased overflow-x-hidden" style="background:#0a0012">
+
+  <div class="relative flex flex-col min-h-dvh max-w-[480px] mx-auto">
+
+    <!-- ── HEADER ─────────────────────────────── -->
+    <header class="game-score-header safe-top" style="background:rgba(10,0,18,0.70)">
+      <a href="index.html" class="w-9 h-9 glass-card flex items-center justify-center text-slate-400 rounded-xl hover:text-white flex-shrink-0 no-underline" aria-label="Back">
+        <i class="fa-solid fa-chevron-left text-sm"></i>
+      </a>
+      <div class="flex-1 text-center px-3">
+        <p class="text-white font-bold text-sm tracking-widest">PREFERIRESTI HOT 🌶️</p>
+        <p class="text-slate-400 text-xs" id="score-label">Loading...</p>
+      </div>
+      <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(239,68,68,0.15)">
+        <i class="fa-solid fa-pepper-hot text-sm" style="color:#ef4444"></i>
+      </div>
+    </header>
+
+    <!-- ── MAIN ───────────────────────────────── -->
+    <main class="flex-1 overflow-y-auto flex flex-col">
+
+      <!-- START CARD -->
+      <div id="start-main-card" class="flex-1 flex flex-col items-center justify-center px-5 py-6">
+        <div class="glass-panel p-8 text-center w-full animate-fade-in-up" style="border-color:rgba(239,68,68,0.20)">
+          <div class="w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-5" style="background:rgba(239,68,68,0.15)">
+            <i class="fa-solid fa-pepper-hot text-4xl" style="color:#ef4444"></i>
+          </div>
+          <div class="inline-flex items-center gap-2 mb-3">
+            <h2 class="text-white font-extrabold text-2xl">Preferiresti HOT</h2>
+            <span class="text-[0.65rem] font-bold px-2 py-0.5 rounded-full border" style="background:rgba(239,68,68,0.15);color:#fca5a5;border-color:rgba(239,68,68,0.30)">18+</span>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed mb-5" id="start-desc">
+            Dilemmi piccanti solo per adulti! Le squadre scommettono, il guidatore risponde.
+          </p>
+          <div class="flex items-center justify-center gap-3 text-xs text-slate-500 mb-4">
+            <span class="flex items-center gap-1">
+              <i class="fa-solid fa-pepper-hot" style="color:rgba(239,68,68,0.60)"></i>
+              <span id="start-count">domande HOT</span>
+            </span>
+            <span class="text-slate-700">·</span>
+            <span class="flex items-center gap-1">
+              <i class="fa-solid fa-users" style="color:rgba(239,68,68,0.60)"></i>
+              <span id="start-teams-info">No teams set</span>
+            </span>
+          </div>
+          <div class="flex items-center justify-center gap-2 text-xs">
+            <span class="rounded-lg px-2.5 py-1 font-bold border" style="background:rgba(239,68,68,0.12);color:#fca5a5;border-color:rgba(239,68,68,0.25)">Opzione A</span>
+            <span class="text-slate-700 font-bold">vs</span>
+            <span class="rounded-lg px-2.5 py-1 font-bold border" style="background:rgba(245,158,11,0.12);color:#fbbf24;border-color:rgba(245,158,11,0.25)">Opzione B</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLAY AREA -->
+      <div id="play-area" class="px-5 pt-4 flex flex-col gap-4" style="display:none">
+
+        <!-- Progress -->
+        <div>
+          <div class="flex justify-between items-center text-xs mb-2">
+            <span class="text-slate-500 font-semibold" id="q-counter">1 / 2</span>
+            <span class="font-bold tracking-wide" id="phase-badge">🎲 Scommetti!</span>
+          </div>
+          <div class="h-1.5 rounded-full overflow-hidden border" style="background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.05)">
+            <div id="progress-bar" class="h-full rounded-full transition-all duration-500"
+                 style="width:0%; background: linear-gradient(90deg, #ef4444, #f97316)"></div>
+          </div>
+        </div>
+
+        <!-- Question Card -->
+        <div id="question-card" class="glass-panel p-5 flex flex-col gap-3 animate-fade-in-up" style="border-color:rgba(239,68,68,0.15)">
+
+          <p class="text-[0.68rem] font-black tracking-[0.12em] uppercase" id="q-prefix" style="color:#f87171">Preferiresti…</p>
+
+          <!-- Option A -->
+          <div id="opt-card-a" class="option-card">
+            <p class="opt-label opt-label-a">Opzione A</p>
+            <p class="opt-text" id="opt-a-text">—</p>
+            <span class="chosen-badge chosen-badge-a" style="color:#fca5a5">
+              <i class="fa-solid fa-check text-[0.55rem]"></i>
+              <span id="chosen-label-a">Scelto</span>
+            </span>
+          </div>
+
+          <!-- OR -->
+          <div class="or-row"><span id="or-label">o</span></div>
+
+          <!-- Option B -->
+          <div id="opt-card-b" class="option-card">
+            <p class="opt-label opt-label-b">Opzione B</p>
+            <p class="opt-text" id="opt-b-text">—</p>
+            <span class="chosen-badge chosen-badge-b" style="color:#fcd34d">
+              <i class="fa-solid fa-check text-[0.55rem]"></i>
+              <span id="chosen-label-b">Scelto</span>
+            </span>
+          </div>
+
+        </div>
+
+        <div class="h-52 flex-shrink-0"></div>
+      </div>
+
+    </main>
+
+    <!-- ── GAME CONTROLS (fixed bottom) ─────── -->
+    <div class="game-controls" style="background:rgba(10,0,18,0.88)">
+
+      <!-- START -->
+      <div id="ctrl-start">
+        <button id="btn-start" class="btn-hot w-full py-4 rounded-2xl text-[0.95rem] tracking-widest">
+          <i class="fa-solid fa-play"></i>
+          <span id="start-btn-label">Inizia Gioco</span>
+        </button>
+      </div>
+
+      <!-- BETTING -->
+      <div id="ctrl-betting" style="display:none" class="flex flex-col gap-3">
+        <div class="bet-badge" id="bet-badge">
+          <i class="fa-solid fa-comments text-sm"></i>
+          <span id="bet-badge-text">Squadre, fate le vostre scommesse!</span>
+        </div>
+        <button id="btn-driver-choose" class="btn-hot w-full py-4 rounded-2xl text-[0.95rem] tracking-widest">
+          <i class="fa-solid fa-hand-point-up"></i>
+          <span id="driver-choose-label">Guidatore, scegli!</span>
+        </button>
+      </div>
+
+      <!-- CHOICE -->
+      <div id="ctrl-choice" style="display:none" class="flex flex-col gap-2">
+        <p class="text-center text-slate-400 text-xs font-semibold tracking-wide" id="choice-hint">Guidatore, tocca la tua risposta!</p>
+        <div class="flex gap-3">
+          <button id="btn-opt-a" class="choice-btn choice-btn-a">
+            <span class="choice-letter choice-letter-a">A</span>
+            <span class="text-[0.82rem] font-bold leading-tight text-center" id="btn-opt-a-text">—</span>
+          </button>
+          <button id="btn-opt-b" class="choice-btn choice-btn-b">
+            <span class="choice-letter choice-letter-b">B</span>
+            <span class="text-[0.82rem] font-bold leading-tight text-center" id="btn-opt-b-text">—</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- SCORING -->
+      <div id="ctrl-scoring" style="display:none" class="flex flex-col gap-2">
+        <div class="flex gap-3">
+          <button id="btn-award1" class="award-btn" style="background:rgba(239,68,68,0.18);border-color:rgba(239,68,68,0.45)">
+            <i class="fa-solid fa-plus text-xs opacity-70"></i>
+            <span class="text-xs font-bold" id="award-t1-label">Team 1</span>
+          </button>
+          <button id="btn-award2" class="award-btn" style="background:rgba(245,158,11,0.18);border-color:rgba(245,158,11,0.45)">
+            <i class="fa-solid fa-plus text-xs opacity-70"></i>
+            <span class="text-xs font-bold" id="award-t2-label">Team 2</span>
+          </button>
+        </div>
+        <button id="btn-next" class="btn-hot w-full py-4 rounded-2xl text-[0.95rem] tracking-widest">
+          <i class="fa-solid fa-arrow-right"></i>
+          <span id="next-label">Prossimo Dilemma</span>
+        </button>
+      </div>
+
+    </div>
+
+    <div class="h-28 flex-shrink-0"></div>
+  </div>
+
+  <!-- ── BOTTOM NAV ─────────────────────────── -->
+  <nav class="glass-nav fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 safe-bottom" style="background:rgba(10,0,18,0.80)" role="navigation">
+    <div class="flex items-center justify-around px-2 pt-3 pb-2">
+      <a href="index.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Home">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-house text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500">Home</span>
+      </a>
+      <a href="ranking.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Ranking">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-trophy text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500">Ranking</span>
+      </a>
+      <a href="settings.html" class="flex flex-col items-center gap-1 flex-1 py-1 no-underline" aria-label="Settings">
+        <div class="w-10 h-8 flex items-center justify-center rounded-xl">
+          <i class="fa-solid fa-gear text-lg text-slate-500"></i>
+        </div>
+        <span class="text-[10px] font-semibold tracking-wide text-slate-500">Settings</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       AGE GATE MODAL (mandatory on page load)
+  ══════════════════════════════════════════ -->
+  <div id="modal-age" class="fixed inset-0 z-[300] flex items-center justify-center" role="dialog" aria-modal="true" aria-labelledby="age-title"
+       style="background:rgba(10,0,18,0.94);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)">
+    <div class="glass-panel w-full max-w-sm mx-5 p-7 rounded-[28px] animate-fade-in-up text-center" style="border-color:rgba(239,68,68,0.25)">
+      <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4" style="background:rgba(239,68,68,0.15)">
+        <i class="fa-solid fa-shield-heart text-3xl" style="color:#ef4444"></i>
+      </div>
+      <div class="inline-flex items-center gap-2 mb-2">
+        <h2 id="age-title" class="text-white font-extrabold text-lg">Contenuto Adulti</h2>
+        <span class="text-[0.65rem] font-bold px-2 py-0.5 rounded-full border" style="background:rgba(239,68,68,0.15);color:#fca5a5;border-color:rgba(239,68,68,0.30)">18+</span>
+      </div>
+      <p class="text-slate-400 text-sm mb-7 leading-relaxed">Confermi di avere più di 18 anni?</p>
+      <div class="flex gap-3">
+        <a href="index.html" class="btn-ghost flex-1 py-3 rounded-xl text-sm no-underline flex items-center justify-center">
+          No, torna indietro
+        </a>
+        <button id="btn-age-yes" class="btn-hot flex-1 py-3 rounded-xl text-sm">
+          Sì, ho 18+ anni
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PREMIUM PAYWALL MODAL
+  ══════════════════════════════════════════ -->
+  <div id="modal-paywall" class="fixed inset-0 z-[200] flex items-end justify-center hidden" role="dialog" aria-modal="true">
+    <div id="paywall-backdrop" class="absolute inset-0" style="background:rgba(10,0,18,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)"></div>
+    <div class="relative glass-panel w-full max-w-[480px] p-6 pb-12 rounded-t-[32px] animate-fade-in-up" style="border-color:rgba(239,68,68,0.20)">
+      <div class="w-10 h-1 bg-white/20 rounded-full mx-auto mb-5"></div>
+      <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4" style="background:rgba(239,68,68,0.15)">
+        <i class="fa-solid fa-crown text-3xl" style="color:#ef4444"></i>
+      </div>
+      <h2 class="text-white font-extrabold text-xl text-center mb-1">Sblocca il Pacchetto Premium!</h2>
+      <p class="text-slate-400 text-sm text-center mb-5 leading-relaxed">
+        Accedi a tutti i giochi HOT e alle modalità speciali<br>per soli <strong class="text-white">3,49€</strong> — acquisto unico.
+      </p>
+      <ul class="space-y-2.5 mb-6">
+        <li class="flex items-center gap-3 text-slate-300 text-sm">
+          <i class="fa-solid fa-check text-emerald-400 text-xs w-4 flex-shrink-0"></i>
+          Preferiresti HOT 🌶️
+        </li>
+        <li class="flex items-center gap-3 text-slate-300 text-sm">
+          <i class="fa-solid fa-check text-emerald-400 text-xs w-4 flex-shrink-0"></i>
+          Film Quiz &amp; Music Buzz
+        </li>
+        <li class="flex items-center gap-3 text-slate-300 text-sm">
+          <i class="fa-solid fa-check text-emerald-400 text-xs w-4 flex-shrink-0"></i>
+          Trivia HOT (Prossimamente)
+        </li>
+        <li class="flex items-center gap-3 text-slate-300 text-sm">
+          <i class="fa-solid fa-check text-emerald-400 text-xs w-4 flex-shrink-0"></i>
+          Viaggio Infinito — Modalità senza fine
+        </li>
+      </ul>
+      <button id="btn-buy-now" class="btn-hot w-full py-4 rounded-2xl text-base mb-3">
+        <i class="fa-solid fa-lock-open"></i>
+        Acquista Ora • €3.49
+      </button>
+      <button id="btn-close-paywall" class="btn-ghost w-full py-3 rounded-2xl text-sm">Chiudi</button>
+    </div>
+  </div>
+
+  <!-- ── ROUND END OVERLAY ───────────────────── -->
+  <div id="round-end" class="fixed inset-0 z-[200] flex flex-col items-center justify-center px-5" style="display:none;background:rgba(10,0,18,0.95);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)">
+    <div class="glass-panel p-8 text-center w-full max-w-sm animate-fade-in-up" style="border-color:rgba(239,68,68,0.20)">
+      <div class="w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-5" style="background:rgba(239,68,68,0.15)">
+        <i class="fa-solid fa-trophy text-4xl" style="color:#ef4444"></i>
+      </div>
+      <h2 class="text-white font-extrabold text-2xl mb-1" id="end-title">Round Completato!</h2>
+      <p class="text-slate-400 text-sm mb-7" id="end-subtitle"></p>
+
+      <div class="flex justify-center items-center gap-6 mb-8">
+        <div class="text-center">
+          <p class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2" id="end-t1-name">Team 1</p>
+          <p class="text-white font-extrabold leading-none" id="end-t1-score" style="font-size:3rem">0</p>
+        </div>
+        <div class="text-slate-700 font-bold text-3xl leading-none pb-1">—</div>
+        <div class="text-center">
+          <p class="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-2" id="end-t2-name">Team 2</p>
+          <p class="text-white font-extrabold leading-none" id="end-t2-score" style="font-size:3rem">0</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <button id="btn-play-again" class="btn-hot w-full py-4 rounded-2xl">
+          <i class="fa-solid fa-rotate-right"></i>
+          <span id="play-again-label">Gioca Ancora</span>
+        </button>
+        <a href="index.html" class="btn-ghost w-full py-3 rounded-2xl text-sm text-center no-underline flex items-center justify-center gap-2">
+          <i class="fa-solid fa-house"></i>
+          <span id="home-label">Torna alla Home</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CONFETTI CANVAS ─────────────────────── -->
+  <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-[150]" style="width:100%;height:100%"></canvas>
+
+  <!-- ── SCRIPTS ────────────────────────────── -->
+  <script src="assets/js/audio-manager.js"></script>
+
+  <script>
+  (function () {
+
+    /* ─ FAMILY FILTER: redirect if Safe Mode is active ─ */
+    if (localStorage.getItem('fotr_safe_mode') !== 'false') {
+      window.location.replace('index.html');
+      return;
+    }
+
+    var lang = localStorage.getItem('fotr_lang') || 'it';
+
+    /* ─ TRANSLATIONS ─ */
+    var T = {
+      en: {
+        startBtn      : 'Start Game',
+        startDesc     : 'Spicy dilemmas for adults only! Teams bet on the driver\'s answer.',
+        startCount    : function(n){ return n + ' HOT dilemmas'; },
+        nextBtn       : 'Next Dilemma',
+        roundEnd      : 'Round Complete!',
+        roundEndSub   : function(w){ return w ? w + ' wins this round!' : 'It\'s a tie!'; },
+        playAgain     : 'Play Again',
+        homeBtn       : 'Back to Home',
+        noTeams       : 'Set up teams first',
+        qOf           : function(n,t){ return n + ' / ' + t; },
+        qPrefix       : 'Would you rather…',
+        orLabel       : 'or',
+        betBadge      : 'Teams, place your bets!',
+        driverChoose  : 'Driver, choose!',
+        choiceHint    : 'Driver, tap your answer!',
+        chosenLabel   : 'Chosen',
+        phaseBet      : '🎲 Bet!',
+        phaseChoose   : '👆 Choose!',
+        phaseScore    : '🌶️ Score!',
+      },
+      it: {
+        startBtn      : 'Inizia Gioco',
+        startDesc     : 'Dilemmi piccanti solo per adulti! Le squadre scommettono, il guidatore risponde.',
+        startCount    : function(n){ return n + ' dilemmi HOT'; },
+        nextBtn       : 'Prossimo Dilemma',
+        roundEnd      : 'Round Completato!',
+        roundEndSub   : function(w){ return w ? w + ' vince questo round!' : 'Pareggio!'; },
+        playAgain     : 'Gioca Ancora',
+        homeBtn       : 'Torna alla Home',
+        noTeams       : 'Imposta le squadre prima',
+        qOf           : function(n,tot){ return n + ' / ' + tot; },
+        qPrefix       : 'Preferiresti…',
+        orLabel       : 'o',
+        betBadge      : 'Squadre, fate le vostre scommesse!',
+        driverChoose  : 'Guidatore, scegli!',
+        choiceHint    : 'Guidatore, tocca la tua risposta!',
+        chosenLabel   : 'Scelto',
+        phaseBet      : '🎲 Scommetti!',
+        phaseChoose   : '👆 Scegli!',
+        phaseScore    : '🌶️ Punteggio!',
+      }
+    };
+    var t = T[lang] || T.it;
+
+    /* ─ AGE GATE ─ */
+    document.getElementById('btn-age-yes').addEventListener('click', function () {
+      document.getElementById('modal-age').style.display = 'none';
+    });
+
+    /* ─ PREMIUM CHECK ─ */
+    function isPremium() {
+      return localStorage.getItem('isPremium') === 'true';
+    }
+
+    function showPaywall() {
+      document.getElementById('modal-paywall').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    function closePaywall() {
+      document.getElementById('modal-paywall').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('btn-close-paywall').addEventListener('click', closePaywall);
+    document.getElementById('paywall-backdrop').addEventListener('click', closePaywall);
+
+    document.getElementById('btn-buy-now').addEventListener('click', function () {
+      localStorage.setItem('isPremium', 'true');
+      closePaywall();
+      startGame();
+    });
+
+    /* ─ HOT QUESTIONS ─ */
+    var QUESTIONS_HOT = [
+      // SESSIONI E PREFERENZE
+      { en:{a:'Sex always in the morning',b:'Sex always at night'}, it:{a:'Sesso sempre al mattino',b:'Sesso sempre la sera'} },
+      { en:{a:'Total silence during sex',b:'Constant dirty talk'}, it:{a:'Silenzio totale durante il sesso',b:'Dirty talk costante durante il sesso'} },
+      { en:{a:'Lights fully on',b:'Total darkness'}, it:{a:'Farlo con la luce accesa',b:'Farlo nel buio totale'} },
+      { en:{a:'Always slow and romantic',b:'Always fast and rough'}, it:{a:'Farlo sempre lento e romantico',b:'Farlo sempre veloce e selvaggio'} },
+      { en:{a:'Be the one on top',b:'Be the one on bottom'}, it:{a:'Stare sopra',b:'Stare sotto'} },
+      { en:{a:'Give a massage first',b:'Receive a massage first'}, it:{a:'Fare un massaggio',b:'Ricevere un massaggio'} },
+      { en:{a:'Only quickies for a month',b:'Only 2-hour sessions'}, it:{a:'Solo sesso veloce',b:'Solo sessioni di 2 ore'} },
+      { en:{a:'Sex every day but boring',b:'Sex once a month but amazing'}, it:{a:'Sesso ogni giorno ma noioso',b:'Sesso una volta al mese ma incredibile'} },
+      { en:{a:'Only basic positions',b:'Only complicated positions'}, it:{a:'Solo posizioni base',b:'Solo posizioni complicate'} },
+      { en:{a:'Shower together before',b:'Breakfast in bed after'}, it:{a:'Doccia insieme prima',b:'Colazione a letto dopo'} },
+      // LUOGHI E AUDACIA
+      { en:{a:'In a moving car',b:'In a public bathroom'}, it:{a:'In auto in movimento',b:'In un bagno pubblico'} },
+      { en:{a:'On a crowded beach at night',b:'In a cinema during a movie'}, it:{a:'In spiaggia affollata di notte',b:'Al cinema durante un film'} },
+      { en:{a:'In a hotel elevator',b:'In a clothing fitting room'}, it:{a:'In un ascensore',b:'In un camerino'} },
+      { en:{a:'On the kitchen counter',b:'In the shower'}, it:{a:'Sul bancone in cucina',b:'Sotto la doccia'} },
+      { en:{a:'In a tent in the woods',b:'In a luxury hotel suite'}, it:{a:'In tenda nei boschi',b:'In una suite di lusso'} },
+      { en:{a:'On a balcony',b:'In a swimming pool'}, it:{a:'Su un balcone',b:'In piscina'} },
+      { en:{a:"In your parents' house",b:"In your boss's office"}, it:{a:'A casa dei tuoi',b:"Nell'ufficio del capo"} },
+      { en:{a:'Outside in the rain',b:'In front of a fireplace'}, it:{a:'Fuori sotto la pioggia',b:'Davanti al camino'} },
+      { en:{a:'In a plane bathroom',b:'In a train cabin'}, it:{a:'In bagno in aereo',b:'In una cabina in treno'} },
+      { en:{a:'In a photo booth',b:'On a rooftop'}, it:{a:'In una cabina fotografica',b:'Su un tetto'} },
+      // FANTASIE E GIOCHI
+      { en:{a:'Try a threesome once',b:'Try roleplaying every week'}, it:{a:'Un threesome una volta',b:'Roleplay ogni settimana'} },
+      { en:{a:'Use ice cubes',b:'Use hot wax'}, it:{a:'Usare cubetti di ghiaccio',b:'Usare cera calda'} },
+      { en:{a:'Film your sessions',b:'Do it in front of a mirror'}, it:{a:'Riprendere tutto',b:'Farlo davanti allo specchio'} },
+      { en:{a:'Wear sexy lingerie',b:"Partner wears sexy lingerie"}, it:{a:'Indossare intimo sexy',b:'Partner in intimo sexy'} },
+      { en:{a:'Night with a stranger',b:'Night with a celebrity'}, it:{a:'Con uno sconosciuto',b:'Con una celebrità'} },
+      { en:{a:'Be blindfolded',b:'Have your hands tied'}, it:{a:'Essere bendati',b:'Avere le mani legate'} },
+      { en:{a:'Use sex toys',b:'Only natural body contact'}, it:{a:'Usare sex toys',b:'Solo contatto naturale'} },
+      { en:{a:'Roleplay: Doctor/Patient',b:'Roleplay: Teacher/Student'}, it:{a:'Roleplay medico e paziente',b:'Roleplay insegnante e studente'} },
+      { en:{a:'Receive a lap dance',b:'Give a lap dance'}, it:{a:'Ricevere una lap dance',b:'Fare una lap dance'} },
+      { en:{a:'One long night of passion',b:'Three quickies in a row'}, it:{a:'Una notte intera',b:'Tre "mordi e fuggi" di fila'} },
+      // COMPORTAMENTO E SENSAZIONI
+      { en:{a:'Loud moaning',b:'Biting and scratching'}, it:{a:'Gemiti rumorosi',b:'Morsi e graffi'} },
+      { en:{a:'Sexting all day',b:'Deep talk after sex'}, it:{a:'Sexting tutto il giorno',b:'Parlare dopo il sesso'} },
+      { en:{a:'Send a spicy photo',b:'Receive a spicy photo'}, it:{a:'Mandare una foto osé',b:'Ricevere una foto osé'} },
+      { en:{a:'Partner is naked under clothes',b:'You are naked under clothes'}, it:{a:'Partner nudo sotto i vestiti',b:'Tu nudo sotto i vestiti'} },
+      { en:{a:'Spanking',b:'Hair pulling'}, it:{a:'Schiaffi sul sedere',b:'Tirare i capelli'} },
+      { en:{a:'No sex for 3 months',b:'No internet for 1 month'}, it:{a:'Niente sesso per 3 mesi',b:'Niente internet per 1 mese'} },
+      { en:{a:"Confess a fetish",b:"Listen to partner's fetish"}, it:{a:'Confessare un fetish',b:'Ascoltare un fetish altrui'} },
+      { en:{a:'Kissing only',b:'Everything but kissing'}, it:{a:'Solo baci',b:'Tutto tranne i baci'} },
+      { en:{a:'Be dominant',b:'Be submissive'}, it:{a:'Essere dominante',b:'Essere sottomesso'} },
+      { en:{a:'Use food during sex',b:'Use costumes during sex'}, it:{a:'Usare il cibo',b:'Usare i costumi'} },
+      // RELAZIONI E SITUAZIONI
+      { en:{a:'Sex with an ex',b:'Sex with a best friend'}, it:{a:'Sesso con un ex',b:'Sesso con il migliore amico'} },
+      { en:{a:'First date sex',b:'Wait 1 month for sex'}, it:{a:'Sesso al primo appuntamento',b:'Aspettare un mese'} },
+      { en:{a:'Do it in a crowded park',b:'Do it in a library'}, it:{a:'In un parco affollato',b:'In biblioteca'} },
+      { en:{a:'Unexpected quickie',b:'Planned romantic night'}, it:{a:'Rapporto improvviso',b:'Notte pianificata'} },
+      { en:{a:'Outdoor hot tub',b:'Sauna'}, it:{a:"Idromassaggio all'aperto",b:'Sauna'} },
+      { en:{a:'Do it while someone is home',b:'Empty house but no bed'}, it:{a:'Farlo con qualcuno in casa',b:'Casa vuota ma senza letto'} },
+      { en:{a:'Body chocolate',b:'Whipped cream'}, it:{a:'Cioccolato sul corpo',b:'Panna montata'} },
+      { en:{a:'Stay awake all night',b:'Wake up at 4 AM for it'}, it:{a:'Svegli tutta la notte',b:'Sveglia alle 4 del mattino per farlo'} },
+      { en:{a:'Whisper in the ear',b:'Gentle neck biting'}, it:{a:"Sussurri all'orecchio",b:'Morsi leggeri sul collo'} },
+      { en:{a:'Total body shave',b:'Natural look'}, it:{a:'Completamente depilati',b:'Look naturale'} },
+      // SECONDA PARTE (51-100)
+      { en:{a:'Sex in a hammock',b:'Sex on a trampoline'}, it:{a:"Sull'amaca",b:'Sul tappeto elastico'} },
+      { en:{a:'Handcuffs',b:'Blindfold'}, it:{a:'Manette',b:'Benda sugli occhi'} },
+      { en:{a:'Do it at a music festival',b:'Do it at a wedding'}, it:{a:'A un festival musicale',b:'A un matrimonio'} },
+      { en:{a:'Only morning sex forever',b:'Only midnight sex forever'}, it:{a:'Solo sesso mattutino',b:'Solo sesso di mezzanotte'} },
+      { en:{a:'Stolen kisses in public',b:'Holding hands under the table'}, it:{a:'Baci rubati in pubblico',b:'Tenersi per mano sotto il tavolo'} },
+      { en:{a:'A partner who is too loud',b:'A partner who is too quiet'}, it:{a:'Partner troppo rumoroso',b:'Partner troppo silenzioso'} },
+      { en:{a:'Share a fantasy with a stranger',b:'Never tell your fantasies'}, it:{a:'Dire una fantasia a un estraneo',b:'Non dirla mai a nessuno'} },
+      { en:{a:'Spicy roleplay with costumes',b:'Body painting session'}, it:{a:'Roleplay con costumi',b:'Body painting'} },
+      { en:{a:'In a shared hostel room',b:'In a glass house'}, it:{a:'In ostello condiviso',b:'In una casa di vetro'} },
+      { en:{a:'Use silk scarves',b:'Use feathers'}, it:{a:'Usare sciarpe di seta',b:'Usare piume'} },
+      { en:{a:'Massage with essential oils',b:'Bubble bath together'}, it:{a:'Massaggio con oli',b:'Bagno di schiuma insieme'} },
+      { en:{a:'Sex on the beach (sand)',b:'Sex in the ocean (water)'}, it:{a:'Sulla spiaggia',b:'In acqua'} },
+      { en:{a:'With the same person forever',b:'Different person every time'}, it:{a:'Stessa persona per sempre',b:'Persona diversa ogni volta'} },
+      { en:{a:'Morning breath sex',b:'Sweaty post-gym sex'}, it:{a:'Sesso appena svegli',b:'Sesso post-palestra'} },
+      { en:{a:'Read an erotic story together',b:'Watch an erotic movie together'}, it:{a:'Leggere un racconto erotico',b:'Guardare un film erotico'} },
+      { en:{a:'Forbidden attraction',b:'Total soulmates'}, it:{a:'Attrazione proibita',b:'Anime gemelle'} },
+      { en:{a:'Unexpected touch in public',b:'Intentional eye contact'}, it:{a:'Tocchi furtivi in pubblico',b:'Contatto visivo intenso'} },
+      { en:{a:"Partner chooses your outfit",b:"You choose partner's outfit"}, it:{a:'Partner sceglie i tuoi vestiti',b:'Tu scegli i vestiti del partner'} },
+      { en:{a:'No underwear at work',b:'No underwear on a date'}, it:{a:'Senza intimo a lavoro',b:'Senza intimo a un date'} },
+      { en:{a:'Strip poker',b:'Truth or dare (Hot)'}, it:{a:'Strip poker',b:'Obbligo o Verità (Hot)'} },
+      { en:{a:'Hot yoga together',b:'Dancing grindingly close'}, it:{a:'Hot yoga insieme',b:'Ballare molto vicini'} },
+      { en:{a:'On a balcony at a party',b:"In the host's bedroom"}, it:{a:'Sul balcone a una festa',b:'Nella camera dei padroni di casa'} },
+      { en:{a:'One night of wild passion',b:'A weekend of constant intimacy'}, it:{a:'Una notte selvaggia',b:'Un weekend di coccole e sesso'} },
+      { en:{a:'Body shots',b:'Feeding each other fruit'}, it:{a:'Body shots',b:'Imbeccarsi con la frutta'} },
+      { en:{a:'Wearing only an apron',b:'Wearing only a tie'}, it:{a:'Solo col grembiule',b:'Solo con la cravatta'} },
+      { en:{a:'Sucking on fingers',b:'Sucking on toes'}, it:{a:'Succhiare le dita delle mani',b:'Succhiare le dita dei piedi'} },
+      { en:{a:'A quickie in the office',b:'A quickie in a park'}, it:{a:'Veloce in ufficio',b:'Veloce al parco'} },
+      { en:{a:'Bitten lip',b:'Pulled hair'}, it:{a:'Labbro morso',b:'Capelli tirati'} },
+      { en:{a:'Sex on a billiard table',b:'Sex on a washing machine'}, it:{a:'Sul tavolo da biliardo',b:'Sulla lavatrice in funzione'} },
+      { en:{a:'Be recorded (audio only)',b:'Be photographed'}, it:{a:'Registrazione audio',b:'Essere fotografati'} },
+      { en:{a:'A partner with a lot of experience',b:'A partner who is a beginner'}, it:{a:'Partner esperto',b:'Partner principiante'} },
+      { en:{a:'Rough hand play',b:'Gentle feather touch'}, it:{a:'Gioco di mani deciso',b:'Tocco leggero con piume'} },
+      { en:{a:'Do it in a museum',b:'Do it in a church'}, it:{a:'In un museo',b:'In una chiesa'} },
+      { en:{a:'Dirty talk in another language',b:'Dirty talk in a whisper'}, it:{a:"In un'altra lingua",b:'Sussurrato'} },
+      { en:{a:'Partner is blindfolded',b:'You are blindfolded'}, it:{a:'Partner bendato',b:'Tu bendato'} },
+      { en:{a:'Sex on a pile of money',b:'Sex on a bed of roses'}, it:{a:'Su un mucchio di soldi',b:'Su un letto di rose'} },
+      { en:{a:'Tell a secret fantasy',b:'Act out a secret fantasy'}, it:{a:'Dire una fantasia',b:'Realizzare una fantasia'} },
+      { en:{a:'Spontaneous sex in a car',b:'Planned sex in a car'}, it:{a:'Sesso in auto spontaneo',b:'Sesso in auto pianificato'} },
+      { en:{a:'Mirror on the ceiling',b:'Mirror on the wall'}, it:{a:'Specchio sul soffitto',b:'Specchio sulla parete'} },
+      { en:{a:'Late night swim skinny dipping',b:'Late night walk naked'}, it:{a:'Bagno di notte nudi',b:'Passeggiata di notte nudi'} },
+      { en:{a:'Kissing with ice in mouth',b:'Kissing with hot coffee'}, it:{a:'Bacio con ghiaccio in bocca',b:'Bacio dopo caffè caldo'} },
+      { en:{a:'Be the one to initiate',b:'Always be seduced'}, it:{a:'Iniziare tu',b:'Farti sedurre'} },
+      { en:{a:'Sex in a library',b:'Sex in a forest'}, it:{a:'In biblioteca',b:'Nella foresta'} },
+      { en:{a:'Shower sex',b:'Bathtub sex'}, it:{a:'Sotto la doccia',b:'Nella vasca'} },
+      { en:{a:'Use honey',b:'Use chocolate syrup'}, it:{a:'Usare il miele',b:'Usare lo sciroppo al cioccolato'} },
+      { en:{a:'Wear a collar',b:"Partner wears a collar"}, it:{a:'Indossare un collare',b:'Partner con collare'} },
+      { en:{a:'A quickie before work',b:'A session after midnight'}, it:{a:'Veloce prima di lavoro',b:'Sessione dopo mezzanotte'} },
+      { en:{a:'Licking or sucking?',b:'Biting or scratching?'}, it:{a:'Leccare o succhiare?',b:'Mordere o graffiare?'} },
+      { en:{a:'Stuck in an elevator with a crush',b:'Stuck in a cabin with an ex'}, it:{a:'In ascensore con la crush',b:'In baita con un ex'} },
+      { en:{a:'Never have sex again',b:'Never be touched again'}, it:{a:'Mai più sesso',b:'Mai più essere toccati'} },
+      // CLASSICI E POSIZIONI
+    { en:{a:'Missionary position',b:'Doggy style'}, it:{a:'Posizione del missionario',b:'Pecorina'} },
+    { en:{a:'Cowgirl (you on top)',b:'Reverse cowgirl'}, it:{a:'Cowgirl (sopra di lui)',b:'Reverse cowgirl'} },
+    { en:{a:'Sex standing up',b:'Sex on the edge of the bed'}, it:{a:'Sesso in piedi',b:'Sesso sul bordo del letto'} },
+    { en:{a:'Spooning sex',b:'Legs on shoulders'}, it:{a:'Posizione a cucchiaio',b:'Gambe sulle spalle'} },
+    { en:{a:'Focus on the chest',b:'Focus on the back'}, it:{a:'Focus sul petto',b:'Focus sulla schiena'} },
+    { en:{a:'Oral sex only',b:'Penetration only'}, it:{a:'Solo sesso orale',b:'Solo penetrazione'} },
+    { en:{a:'Deep kissing',b:'Neck and ear biting'}, it:{a:'Baci profondi',b:'Morsi su collo e orecchie'} },
+    { en:{a:'Fast and rhythmic',b:'Slow and deep'}, it:{a:'Veloce e ritmato',b:'Lento e profondo'} },
+    { en:{a:'Hands held down',b:'Hands wandering everywhere'}, it:{a:'Mani bloccate',b:'Mani ovunque'} },
+    { en:{a:'Finish together',b:'Finish one at a time'}, it:{a:'Venire insieme',b:'Venire uno alla volta'} },
+
+    // ESPERIENZA E PARTNER
+    { en:{a:'Sex with someone very experienced',b:'Sex with an absolute beginner'}, it:{a:'Con qualcuno di molto esperto',b:'Con un totale principiante'} },
+    { en:{a:'A partner who takes the lead',b:'A partner who follows your lead'}, it:{a:'Partner che guida il gioco',b:'Partner che si fa guidare'} },
+    { en:{a:'A partner who is very vocal',b:'A partner who is completely quiet'}, it:{a:'Partner molto rumoroso',b:'Partner del tutto silenzioso'} },
+    { en:{a:'Sex with a long-term partner',b:'Sex with a fresh new flame'}, it:{a:'Sesso con partner storico',b:'Sesso con una nuova fiamma'} },
+    { en:{a:'A quickie in a car',b:'A whole night in a hotel'}, it:{a:'Un "mordi e fuggi" in auto',b:'Una notte intera in hotel'} },
+
+    // MEDIA E FANTASIE
+    { en:{a:'Watch a porn movie together',b:'Read erotic literature together'}, it:{a:'Guardare un porno insieme',b:'Leggere un’opera erotica insieme'} },
+    { en:{a:'Listen to erotic audios',b:'Watch your partner through a mirror'}, it:{a:'Ascoltare audio erotici',b:'Guardare il partner allo specchio'} },
+    { en:{a:'Film your sex tape',b:'Take spicy photos of each other'}, it:{a:'Girare un sex tape',b:'Farvi foto osé a vicenda'} },
+    { en:{a:'Talk about your past experiences',b:'Keep your past a secret'}, it:{a:'Parlare delle esperienze passate',b:'Tenere il passato segreto'} },
+    { en:{a:'Describe what you want to do',b:'Just do it without speaking'}, it:{a:'Descrivere cosa vuoi fare',b:'Farlo e basta senza parlare'} },
+
+    // STIMOLAZIONE E GIOCHI
+    { en:{a:'Using a vibrator',b:'Using a suction toy'}, it:{a:'Usare un vibratore',b:'Usare un succhiatore'} },
+    { en:{a:'Anal play',b:'Shower play'}, it:{a:'Gioco anale',b:'Gioco sotto la doccia'} },
+    { en:{a:'Use lubes with flavor',b:'Use lubes with heat effect'}, it:{a:'Lubrificanti aromatizzati',b:'Lubrificanti effetto calore'} },
+    { en:{a:'Foreplay for 1 hour',b:'No foreplay at all'}, it:{a:'Preliminari per un’ora',b:'Niente preliminari'} },
+    { en:{a:'Blindfolded sex',b:'Sex with hands tied'}, it:{a:'Sesso bendati',b:'Sesso con le mani legate'} },
+
+    // SITUAZIONI "RISCHIO"
+    { en:{a:'Do it in a tent',b:'Do it in a pool'}, it:{a:'Farlo in tenda',b:'Farlo in piscina'} },
+    { en:{a:'Spontaneous sex in public',b:'Carefully planned night'}, it:{a:'Sesso spontaneo in pubblico',b:'Notte pianificata nei dettagli'} },
+    { en:{a:'Do it with the door unlocked',b:'Do it in the backyard'}, it:{a:'Con la porta aperta',b:'In giardino'} },
+    { en:{a:'Underwear on',b:'Completely naked'}, it:{a:'Con l’intimo addosso',b:'Completamente nudi'} },
+    { en:{a:'Morning sex with messy hair',b:'Midnight sex after a party'}, it:{a:'Al mattino spettinati',b:'A mezzanotte dopo una festa'} },
+
+    // PREFERENZE FISICHE E ATTEGGIAMENTO
+    { en:{a:'Kissing with lots of tongue',b:'Gentle lip nibbling'}, it:{a:'Baci con molta lingua',b:'Morsetti sulle labbra'} },
+    { en:{a:'Being dominated',b:'Being the dominant one'}, it:{a:'Essere dominato/a',b:'Essere dominante'} },
+    { en:{a:'Dirty talk in a whisper',b:'Dirty talk shouted out'}, it:{a:'Dirty talk sussurrato',b:'Dirty talk gridato'} },
+    { en:{a:'Focus on the neck',b:'Focus on the inner thighs'}, it:{a:'Focus sul collo',b:'Focus sull’interno coscia'} },
+    { en:{a:'A partner who is "wild"',b:'A partner who is "sensual"'}, it:{a:'Partner "selvaggio"',b:'Partner "sensuale"'} },
+
+    // EXTRA MIX
+    { en:{a:'Sex during a movie',b:'Sex during a rainstorm'}, it:{a:'Sesso durante un film',b:'Sesso durante un temporale'} },
+    { en:{a:'Shower together first',b:'Bathe together after'}, it:{a:'Doccia insieme prima',b:'Bagno insieme dopo'} },
+    { en:{a:'Wearing a blindfold',b:'Wearing silk stockings'}, it:{a:'Indossare una benda',b:'Indossare calze di seta'} },
+    { en:{a:'Using ice on your partner',b:'Using hot breath on your partner'}, it:{a:'Usare ghiaccio sul partner',b:'Usare il respiro caldo'} },
+    { en:{a:'Multiple quick rounds',b:'One long marathon'}, it:{a:'Tanti rapporti brevi',b:'Una lunga maratona'} },
+    { en:{a:'69 position',b:'Face to face'}, it:{a:'Posizione 69',b:'Faccia a faccia'} },
+    { en:{a:'Naked cooking',b:'Naked sleeping'}, it:{a:'Cucinare nudi',b:'Dormire nudi'} },
+    { en:{a:'Unexpected touch in a crowd',b:'Intentional teasing at dinner'}, it:{a:'Tocco furtivo tra la folla',b:'Provocazione a cena'} },
+    { en:{a:'Sexting while at work',b:'Sexting while in the same bed'}, it:{a:'Sexting a lavoro',b:'Sexting nello stesso letto'} },
+    { en:{a:'Biting the lip',b:'Pulling the hair'}, it:{a:'Mordere il labbro',b:'Tirare i capelli'} },
+    { en:{a:'Gentle spanking',b:'Hard scratches'}, it:{a:'Schiaffi leggeri',b:'Graffi decisi'} },
+    { en:{a:'Using chocolate syrup',b:'Using whipped cream'}, it:{a:'Usare sciroppo al cioccolato',b:'Usare panna montata'} },
+    { en:{a:'Sex on the floor',b:'Sex on a table'}, it:{a:'Sesso a terra',b:'Sesso sul tavolo'} },
+    { en:{a:'Partner in a suit/dress',b:'Partner in sportswear'}, it:{a:'Partner in abito elegante',b:'Partner in abiti sportivi'} },
+    { en:{a:'Tell a secret fetish',b:'Keep it for yourself'}, it:{a:'Rivelare un fetish segreto',b:'Tenerlo per te'} },
+    ];
+
+    /* ─ DOM REFS ─ */
+    var scoreLabel      = document.getElementById('score-label');
+    var qCounter        = document.getElementById('q-counter');
+    var progressBar     = document.getElementById('progress-bar');
+    var phaseBadge      = document.getElementById('phase-badge');
+    var startMainCard   = document.getElementById('start-main-card');
+    var playArea        = document.getElementById('play-area');
+    var questionCard    = document.getElementById('question-card');
+    var qPrefix         = document.getElementById('q-prefix');
+    var optAText        = document.getElementById('opt-a-text');
+    var optBText        = document.getElementById('opt-b-text');
+    var optCardA        = document.getElementById('opt-card-a');
+    var optCardB        = document.getElementById('opt-card-b');
+    var ctrlStart       = document.getElementById('ctrl-start');
+    var ctrlBetting     = document.getElementById('ctrl-betting');
+    var ctrlChoice      = document.getElementById('ctrl-choice');
+    var ctrlScoring     = document.getElementById('ctrl-scoring');
+    var btnStart        = document.getElementById('btn-start');
+    var btnDriverChoose = document.getElementById('btn-driver-choose');
+    var btnOptA         = document.getElementById('btn-opt-a');
+    var btnOptB         = document.getElementById('btn-opt-b');
+    var btnOptAText     = document.getElementById('btn-opt-a-text');
+    var btnOptBText     = document.getElementById('btn-opt-b-text');
+    var btnAward1       = document.getElementById('btn-award1');
+    var btnAward2       = document.getElementById('btn-award2');
+    var awardT1Label    = document.getElementById('award-t1-label');
+    var awardT2Label    = document.getElementById('award-t2-label');
+    var btnNext         = document.getElementById('btn-next');
+    var roundEndOverlay = document.getElementById('round-end');
+    var endTitle        = document.getElementById('end-title');
+    var endSubtitle     = document.getElementById('end-subtitle');
+    var endT1Name       = document.getElementById('end-t1-name');
+    var endT2Name       = document.getElementById('end-t2-name');
+    var endT1Score      = document.getElementById('end-t1-score');
+    var endT2Score      = document.getElementById('end-t2-score');
+    var btnPlayAgain    = document.getElementById('btn-play-again');
+    var confettiCanvas  = document.getElementById('confetti-canvas');
+
+    /* ─ STATE ─ */
+    var questions  = [];
+    var currentIdx = 0;
+    var gameState  = 'start';
+
+    /* ─ HELPERS ─ */
+    function shuffle(arr) {
+      var a = arr.slice();
+      for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+      }
+      return a;
+    }
+
+    function getTeams() {
+      return JSON.parse(localStorage.getItem('fotr_teams') || '{}');
+    }
+
+    function sfxEnabled() {
+      return localStorage.getItem('fotr_sfx') !== 'false';
+    }
+
+    function playSound(fn) {
+      if (sfxEnabled() && typeof AudioManager !== 'undefined') {
+        try { AudioManager[fn](); } catch(e) {}
+      }
+    }
+
+    /* ─ INIT PAGE TEXTS ─ */
+    document.getElementById('start-desc').textContent = t.startDesc;
+    document.getElementById('start-count').textContent = t.startCount(QUESTIONS_HOT.length);
+    document.getElementById('start-btn-label').textContent = t.startBtn;
+    document.getElementById('driver-choose-label').textContent = t.driverChoose;
+    document.getElementById('choice-hint').textContent = t.choiceHint;
+    document.getElementById('next-label').textContent = t.nextBtn;
+    document.getElementById('play-again-label').textContent = t.playAgain;
+    document.getElementById('home-label').textContent = t.homeBtn;
+
+    /* ─ SCORE HEADER ─ */
+    function updateHeaderScore() {
+      var teams = getTeams();
+      if (teams.team1 && teams.team2) {
+        scoreLabel.textContent = teams.team1 + ' ' + (teams.score1 || 0) + ' – ' + (teams.score2 || 0) + ' ' + teams.team2;
+      } else {
+        scoreLabel.textContent = t.noTeams;
+      }
+    }
+
+    /* ─ TEAMS IN START CARD ─ */
+    function initStartCard() {
+      var teams = getTeams();
+      var info  = document.getElementById('start-teams-info');
+      if (teams.team1 && teams.team2) {
+        info.textContent = teams.team1 + ' vs ' + teams.team2;
+        awardT1Label.textContent = teams.team1;
+        awardT2Label.textContent = teams.team2;
+        if (teams.color1) { awardT1Label.style.color = teams.color1; }
+        if (teams.color2) { awardT2Label.style.color = teams.color2; }
+      } else {
+        info.textContent = t.noTeams;
+      }
+      updateHeaderScore();
+    }
+
+    /* ─ CONTROLS STATE ─ */
+    function setCtrl(state) {
+      ctrlStart.style.display   = 'none';
+      ctrlBetting.style.display = 'none';
+      ctrlChoice.style.display  = 'none';
+      ctrlScoring.style.display = 'none';
+      if (state === 'start')   ctrlStart.style.display   = 'block';
+      if (state === 'betting') ctrlBetting.style.display = 'flex';
+      if (state === 'choice')  ctrlChoice.style.display  = 'flex';
+      if (state === 'scoring') ctrlScoring.style.display = 'flex';
+    }
+
+    /* ─ SHOW QUESTION ─ */
+    function showQuestion() {
+      var q    = questions[currentIdx];
+      var qLoc = (lang === 'it') ? q.it : q.en;
+      var total = questions.length;
+
+      qCounter.textContent    = t.qOf(currentIdx + 1, total);
+      progressBar.style.width = Math.round(((currentIdx + 1) / total) * 100) + '%';
+
+      phaseBadge.className     = 'font-bold tracking-wide phase-bet';
+      phaseBadge.textContent   = t.phaseBet;
+
+      qPrefix.textContent      = t.qPrefix;
+      optAText.textContent     = qLoc.a;
+      optBText.textContent     = qLoc.b;
+      btnOptAText.textContent  = qLoc.a;
+      btnOptBText.textContent  = qLoc.b;
+
+      optCardA.classList.remove('chosen-a', 'chosen-b');
+      optCardB.classList.remove('chosen-a', 'chosen-b');
+
+      btnAward1.disabled = false; btnAward1.classList.remove('scored');
+      btnAward2.disabled = false; btnAward2.classList.remove('scored');
+
+      questionCard.style.animation = 'none';
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          questionCard.style.animation = 'fadeInUp 0.35s ease both';
+        });
+      });
+
+      gameState = 'betting';
+      setCtrl('betting');
+    }
+
+    /* ─ BETTING → CHOICE ─ */
+    function showChoicePhase() {
+      if (gameState !== 'betting') return;
+      gameState = 'choice';
+      phaseBadge.className   = 'font-bold tracking-wide phase-choose';
+      phaseBadge.textContent = t.phaseChoose;
+      setCtrl('choice');
+      playSound('click');
+    }
+
+    /* ─ DRIVER PICKS OPTION ─ */
+    function pickOption(opt) {
+      if (gameState !== 'choice') return;
+      gameState = 'scoring';
+      phaseBadge.className   = 'font-bold tracking-wide phase-score';
+      phaseBadge.textContent = t.phaseScore;
+      if (opt === 'a') {
+        optCardA.classList.add('chosen-a');
+        optCardB.classList.remove('chosen-a', 'chosen-b');
+      } else {
+        optCardB.classList.add('chosen-b');
+        optCardA.classList.remove('chosen-a', 'chosen-b');
+      }
+      setCtrl('scoring');
+      playSound('click');
+    }
+
+    /* ─ AWARD POINT ─ */
+    function awardPoint(teamKey) {
+      if (gameState !== 'scoring') return;
+      var btn = (teamKey === 'team1') ? btnAward1 : btnAward2;
+      if (btn.disabled) return;
+
+      var teams    = getTeams();
+      var scoreKey = (teamKey === 'team1') ? 'score1' : 'score2';
+      teams[scoreKey] = (teams[scoreKey] || 0) + 1;
+      localStorage.setItem('fotr_teams', JSON.stringify(teams));
+      updateHeaderScore();
+
+      btn.disabled = true;
+      btn.classList.add('scored');
+      playSound('win');
+      var color = (teamKey === 'team1') ? teams.color1 : teams.color2;
+      triggerConfetti(color);
+    }
+
+    /* ─ NEXT QUESTION ─ */
+    function nextQuestion() {
+      if (gameState !== 'scoring') return;
+      currentIdx++;
+      if (currentIdx >= questions.length) { showRoundEnd(); return; }
+      showQuestion();
+    }
+
+    /* ─ START GAME ─ */
+    function startGame() {
+      questions  = shuffle(QUESTIONS_HOT);
+      currentIdx = 0;
+      startMainCard.style.display = 'none';
+      playArea.style.display      = 'flex';
+      showQuestion();
+      playSound('click');
+    }
+
+    /* ─ ROUND END ─ */
+    function showRoundEnd() {
+      gameState = 'end';
+      var teams = getTeams();
+      var s1 = teams.score1 || 0;
+      var s2 = teams.score2 || 0;
+      endT1Name.textContent  = teams.team1 || 'Team 1';
+      endT2Name.textContent  = teams.team2 || 'Team 2';
+      endT1Score.textContent = s1;
+      endT2Score.textContent = s2;
+      endTitle.textContent   = t.roundEnd;
+      var winner = null;
+      if (s1 > s2) winner = teams.team1;
+      else if (s2 > s1) winner = teams.team2;
+      endSubtitle.textContent = t.roundEndSub(winner);
+      roundEndOverlay.style.display = 'flex';
+      setTimeout(function() { triggerConfetti(null, 6); }, 200);
+      if (winner) setTimeout(function() { playSound('win'); }, 400);
+    }
+
+    /* ─ CONFETTI (red/crimson palette) ─ */
+    function triggerConfetti(teamColor, bursts) {
+      bursts = bursts || 3;
+      var canvas = confettiCanvas;
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+      var ctx = canvas.getContext('2d');
+      var palette = teamColor
+        ? [teamColor, '#ef4444', '#f97316', '#dc2626', '#f43f5e']
+        : ['#ef4444', '#f97316', '#dc2626', '#f43f5e', '#fbbf24', '#a855f7'];
+      var particles = [];
+      for (var b = 0; b < bursts; b++) {
+        for (var i = 0; i < 35; i++) {
+          particles.push({
+            x: canvas.width * 0.3 + Math.random() * canvas.width * 0.4,
+            y: canvas.height * 0.35,
+            vx: (Math.random() - 0.5) * 10,
+            vy: -(Math.random() * 8 + 3),
+            color: palette[Math.floor(Math.random() * palette.length)],
+            size: Math.random() * 9 + 4,
+            rot: Math.random() * 360,
+            rotV: (Math.random() - 0.5) * 10,
+            shape: Math.random() > 0.5 ? 'rect' : 'circle',
+            g: 0.3, life: 1,
+            decay: Math.random() * 0.012 + 0.007
+          });
+        }
+      }
+      (function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        var alive = false;
+        for (var p = 0; p < particles.length; p++) {
+          var pk = particles[p];
+          if (pk.life <= 0) continue;
+          alive = true;
+          pk.x += pk.vx; pk.y += pk.vy; pk.vy += pk.g;
+          pk.rot += pk.rotV; pk.life -= pk.decay;
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, pk.life);
+          ctx.fillStyle = pk.color;
+          ctx.translate(pk.x, pk.y);
+          ctx.rotate(pk.rot * Math.PI / 180);
+          if (pk.shape === 'rect') {
+            ctx.fillRect(-pk.size / 2, -pk.size / 4, pk.size, pk.size / 2);
+          } else {
+            ctx.beginPath();
+            ctx.arc(0, 0, pk.size / 2, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.restore();
+        }
+        if (alive) requestAnimationFrame(animate);
+      })();
+    }
+
+    /* ─ EVENT LISTENERS ─ */
+    btnStart.addEventListener('click', function () {
+      if (!isPremium()) { showPaywall(); return; }
+      startGame();
+    });
+
+    btnDriverChoose.addEventListener('click', showChoicePhase);
+    btnOptA.addEventListener('click', function () { pickOption('a'); });
+    btnOptB.addEventListener('click', function () { pickOption('b'); });
+
+    btnAward1.addEventListener('click', function () { awardPoint('team1'); });
+    btnAward2.addEventListener('click', function () { awardPoint('team2'); });
+
+    btnNext.addEventListener('click', nextQuestion);
+
+    btnPlayAgain.addEventListener('click', function () {
+      roundEndOverlay.style.display = 'none';
+      startMainCard.style.display   = 'flex';
+      playArea.style.display        = 'none';
+      setCtrl('start');
+      gameState = 'start';
+    });
+
+    /* ─ BET BADGE (update with team names) ─ */
+    document.getElementById('bet-badge').addEventListener('click', function () {});
+
+    /* ─ INIT ─ */
+    initStartCard();
+    setCtrl('start');
+
+  })();
+  </script>
+
+</body>
+</html>
