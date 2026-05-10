@@ -36,7 +36,9 @@
       background: rgba(255,255,255,0.04);
       border: 1.5px solid rgba(255,255,255,0.09);
       transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+      cursor: pointer;
     }
+    .option-card:active { transform: scale(0.97); }
     .option-card.chosen-a {
       background: rgba(239,68,68,0.14);
       border-color: rgba(239,68,68,0.50);
@@ -1063,6 +1065,8 @@
     btnDriverChoose.addEventListener('click', showChoicePhase);
     btnOptA.addEventListener('click', function () { pickOption('a'); });
     btnOptB.addEventListener('click', function () { pickOption('b'); });
+    optCardA.addEventListener('click', function () { pickOption('a'); });
+    optCardB.addEventListener('click', function () { pickOption('b'); });
 
     btnAward1.addEventListener('click', function () { awardPoint('team1'); });
     btnAward2.addEventListener('click', function () { awardPoint('team2'); });

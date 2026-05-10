@@ -49,19 +49,25 @@
       align-items: center;
       justify-content: center;
       gap: 5px;
-      padding: 18px 8px;
+      padding: 18px 6px;
       border-radius: 20px;
       font-family: 'Outfit', sans-serif;
       font-weight: 800;
       color: #fff;
       cursor: pointer;
       border: 1.5px solid transparent;
-      transition: transform 0.12s ease;
+      transition: transform 0.12s ease, opacity 0.2s ease;
       -webkit-tap-highlight-color: transparent;
     }
     .action-btn:active { transform: scale(0.91); }
+    .action-btn:disabled { opacity: 0.30; cursor: default; transform: none; }
     .btn-guessed  { background: rgba(34,197,94,0.18);  border-color: rgba(34,197,94,0.42); }
     .btn-taboo    { background: rgba(239,68,68,0.18);  border-color: rgba(239,68,68,0.42); }
+    .btn-passo    { background: rgba(245,158,11,0.18); border-color: rgba(245,158,11,0.42); }
+    .passo-count  {
+      font-size: 0.58rem; font-weight: 900; letter-spacing: 0.05em;
+      background: rgba(255,255,255,0.18); border-radius: 5px; padding: 1px 5px;
+    }
 
     #timer-text { font-family: 'Outfit', sans-serif; }
 
@@ -191,11 +197,16 @@
         </button>
       </div>
 
-      <!-- PLAYING: TABOO | GUESSED -->
-      <div id="ctrl-playing" style="display:none" class="flex gap-3">
+      <!-- PLAYING: TABOO | PASSO | GUESSED -->
+      <div id="ctrl-playing" style="display:none" class="flex gap-2">
         <button id="btn-taboo" class="action-btn btn-taboo">
           <i class="fa-solid fa-ban text-xl"></i>
           <span class="text-sm font-black tracking-wide" id="taboo-label">TABOO</span>
+        </button>
+        <button id="btn-passo" class="action-btn btn-passo">
+          <span class="passo-count" id="passo-remaining">3</span>
+          <i class="fa-solid fa-forward text-xl"></i>
+          <span class="text-sm font-black tracking-wide" id="passo-label">PASSO</span>
         </button>
         <button id="btn-guessed" class="action-btn btn-guessed">
           <i class="fa-solid fa-check text-xl"></i>
@@ -345,6 +356,7 @@
         turnPill       : function(name){ return name + '\'s Turn'; },
         doNotSay       : 'DO NOT SAY:',
         tabooBtn       : 'TABOO',
+        passoBtn       : 'SKIP',
         guessedBtn     : 'GUESSED',
         ptsThisTurn    : 'pts this turn',
         turnEndTitle   : 'Time\'s up!',
@@ -373,6 +385,7 @@
         turnPill       : function(name){ return 'Turno di ' + name; },
         doNotSay       : 'NON DIRE:',
         tabooBtn       : 'TABOO',
+        passoBtn       : 'PASSO',
         guessedBtn     : 'INDOVINATA',
         ptsThisTurn    : 'punti questo turno',
         turnEndTitle   : 'Tempo scaduto!',
@@ -749,6 +762,7 @@
     var ctrlPlaying      = document.getElementById('ctrl-playing');
     var btnStartTurn     = document.getElementById('btn-start-turn');
     var btnTaboo         = document.getElementById('btn-taboo');
+    var btnPasso         = document.getElementById('btn-passo');
     var btnGuessed       = document.getElementById('btn-guessed');
     var turnEndOverlay   = document.getElementById('turn-end-overlay');
     var roundEndOverlay  = document.getElementById('round-end');
@@ -759,6 +773,7 @@
     var cardIdx      = 0;
     var currentTeam  = 'team1';
     var turnScore    = 0;
+    var passiTurn    = 0;
     var timerSeconds = TIMER_DURATION;
     var timerInterval= null;
     var gameState    = 'idle';   /* idle | playing | turn-end | end */
@@ -929,6 +944,8 @@
 
       turnScore                      = 0;
       turnScoreDisplay.textContent   = '0';
+      passiTurn                      = 0;
+      updatePassoBtn();
       gameState                      = 'playing';
       startPanel.style.display       = 'none';
       playArea.style.display         = 'flex';
@@ -957,6 +974,24 @@
     /* ─ TABOO ─ */
     function onTaboo() {
       if (gameState !== 'playing') return;
+      turnScore = Math.max(0, turnScore - 1);
+      turnScoreDisplay.textContent = turnScore;
+      playSound('click');
+      cardIdx++;
+      showCard();
+    }
+
+    /* ─ PASSO (skip, max 3 per turn) ─ */
+    function updatePassoBtn() {
+      var remaining = 3 - passiTurn;
+      btnPasso.disabled = (remaining <= 0);
+      document.getElementById('passo-remaining').textContent = remaining;
+    }
+
+    function onPasso() {
+      if (gameState !== 'playing' || passiTurn >= 3) return;
+      passiTurn++;
+      updatePassoBtn();
       playSound('click');
       cardIdx++;
       showCard();
@@ -1098,6 +1133,7 @@
     document.getElementById('start-timer-info').textContent= t.startTimerInfo;
     document.getElementById('do-not-say-label').textContent= t.doNotSay;
     document.getElementById('taboo-label').textContent     = t.tabooBtn;
+    document.getElementById('passo-label').textContent     = t.passoBtn;
     document.getElementById('guessed-label').textContent   = t.guessedBtn;
     document.getElementById('pts-this-turn-label').textContent = t.ptsThisTurn;
     document.getElementById('this-turn-label').textContent = t.thisTurn;
@@ -1113,6 +1149,7 @@
     btnStartTurn.addEventListener('click', startTurn);
     btnGuessed.addEventListener('click', onGuessed);
     btnTaboo.addEventListener('click', onTaboo);
+    btnPasso.addEventListener('click', onPasso);
     document.getElementById('btn-next-turn').addEventListener('click', nextTurn);
     document.getElementById('btn-end-game').addEventListener('click', endGame);
     document.getElementById('btn-buy-game').addEventListener('click', function() { handlePurchase('game'); });
