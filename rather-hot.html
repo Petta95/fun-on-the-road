@@ -187,6 +187,49 @@
     .phase-choose { color: #f87171; }
     .phase-score  { color: #34d399; }
 
+    /* ── Driver info label (non-clickable) ── */
+    .driver-info-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.02);
+      border: 1.5px dashed rgba(255,255,255,0.09);
+      color: #475569;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: default;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* ── Tap hint inside option cards (shows when selectable) ── */
+    .tap-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 7px;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #475569;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+    .option-card.is-selectable .tap-hint { opacity: 1; }
+    .option-card.is-selectable:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.22);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.20);
+    }
+
     /* ── HOT btn-cta override ── */
     .btn-hot {
       display: inline-flex;
@@ -296,6 +339,7 @@
               <i class="fa-solid fa-check text-[0.55rem]"></i>
               <span id="chosen-label-a">Scelto</span>
             </span>
+            <span class="tap-hint"><i class="fa-solid fa-hand-pointer"></i> <span id="tap-a-label">Tocca per scegliere</span></span>
           </div>
 
           <!-- OR -->
@@ -309,6 +353,7 @@
               <i class="fa-solid fa-check text-[0.55rem]"></i>
               <span id="chosen-label-b">Scelto</span>
             </span>
+            <span class="tap-hint"><i class="fa-solid fa-hand-pointer"></i> <span id="tap-b-label">Tocca per scegliere</span></span>
           </div>
 
         </div>
@@ -335,10 +380,10 @@
           <i class="fa-solid fa-comments text-sm"></i>
           <span id="bet-badge-text">Squadre, fate le vostre scommesse!</span>
         </div>
-        <button id="btn-driver-choose" class="btn-hot w-full py-4 rounded-2xl text-[0.95rem] tracking-widest">
-          <i class="fa-solid fa-hand-point-up"></i>
+        <div id="btn-driver-choose" class="driver-info-label">
+          <i class="fa-solid fa-hand-pointer text-sm"></i>
           <span id="driver-choose-label">Guidatore, scegli!</span>
-        </button>
+        </div>
       </div>
 
       <!-- CHOICE -->
@@ -537,6 +582,7 @@
         betBadge      : 'Teams, place your bets!',
         driverChoose  : 'Driver, choose!',
         choiceHint    : 'Driver, tap your answer!',
+        tapHint       : 'Tap to choose',
         chosenLabel   : 'Chosen',
         phaseBet      : '🎲 Bet!',
         phaseChoose   : '👆 Choose!',
@@ -558,6 +604,7 @@
         betBadge      : 'Squadre, fate le vostre scommesse!',
         driverChoose  : 'Guidatore, scegli!',
         choiceHint    : 'Guidatore, tocca la tua risposta!',
+        tapHint       : 'Tocca per scegliere',
         chosenLabel   : 'Scelto',
         phaseBet      : '🎲 Scommetti!',
         phaseChoose   : '👆 Scegli!',
@@ -840,6 +887,8 @@
     document.getElementById('start-btn-label').textContent = t.startBtn;
     document.getElementById('driver-choose-label').textContent = t.driverChoose;
     document.getElementById('choice-hint').textContent = t.choiceHint;
+    document.getElementById('tap-a-label').textContent = t.tapHint;
+    document.getElementById('tap-b-label').textContent = t.tapHint;
     document.getElementById('next-label').textContent = t.nextBtn;
     document.getElementById('play-again-label').textContent = t.playAgain;
     document.getElementById('home-label').textContent = t.homeBtn;
@@ -902,6 +951,8 @@
 
       optCardA.classList.remove('chosen-a', 'chosen-b');
       optCardB.classList.remove('chosen-a', 'chosen-b');
+      optCardA.classList.add('is-selectable');
+      optCardB.classList.add('is-selectable');
 
       btnAward1.disabled = false; btnAward1.classList.remove('scored');
       btnAward2.disabled = false; btnAward2.classList.remove('scored');
@@ -929,10 +980,12 @@
 
     /* ─ DRIVER PICKS OPTION ─ */
     function pickOption(opt) {
-      if (gameState !== 'choice') return;
+      if (gameState !== 'choice' && gameState !== 'betting') return;
       gameState = 'scoring';
       phaseBadge.className   = 'font-bold tracking-wide phase-score';
       phaseBadge.textContent = t.phaseScore;
+      optCardA.classList.remove('is-selectable');
+      optCardB.classList.remove('is-selectable');
       if (opt === 'a') {
         optCardA.classList.add('chosen-a');
         optCardB.classList.remove('chosen-a', 'chosen-b');
@@ -1062,7 +1115,7 @@
       startGame();
     });
 
-    btnDriverChoose.addEventListener('click', showChoicePhase);
+    /* btnDriverChoose is now an info label — no click handler */
     btnOptA.addEventListener('click', function () { pickOption('a'); });
     btnOptB.addEventListener('click', function () { pickOption('b'); });
     optCardA.addEventListener('click', function () { pickOption('a'); });

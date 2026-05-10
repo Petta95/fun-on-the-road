@@ -129,6 +129,49 @@
     .choice-letter-a { color: #7dd3fc; }
     .choice-letter-b { color: #fcd34d; }
 
+    /* ── Driver info label (non-clickable) ── */
+    .driver-info-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.02);
+      border: 1.5px dashed rgba(255,255,255,0.09);
+      color: #475569;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: default;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* ── Tap hint inside option cards (shows when selectable) ── */
+    .tap-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 7px;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #475569;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+    .option-card.is-selectable .tap-hint { opacity: 1; }
+    .option-card.is-selectable:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.22);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.20);
+    }
+
     /* ── Award buttons ── */
     .award-btn {
       flex: 1;
@@ -255,6 +298,7 @@
               <i class="fa-solid fa-check text-[0.55rem]"></i>
               <span id="chosen-label-a">Chosen</span>
             </span>
+            <span class="tap-hint"><i class="fa-solid fa-hand-pointer"></i> <span id="tap-a-label">Tap to choose</span></span>
           </div>
 
           <!-- OR -->
@@ -268,6 +312,7 @@
               <i class="fa-solid fa-check text-[0.55rem]"></i>
               <span id="chosen-label-b">Chosen</span>
             </span>
+            <span class="tap-hint"><i class="fa-solid fa-hand-pointer"></i> <span id="tap-b-label">Tap to choose</span></span>
           </div>
 
         </div>
@@ -294,10 +339,10 @@
           <i class="fa-solid fa-comments text-sm"></i>
           <span id="bet-badge-text">Teams, place your bets!</span>
         </div>
-        <button id="btn-driver-choose" class="btn-cta w-full py-4 rounded-2xl text-[0.95rem] tracking-widest">
-          <i class="fa-solid fa-hand-point-up"></i>
+        <div id="btn-driver-choose" class="driver-info-label">
+          <i class="fa-solid fa-hand-pointer text-sm"></i>
           <span id="driver-choose-label">Driver, choose!</span>
-        </button>
+        </div>
       </div>
 
       <!-- CHOICE: driver taps A or B -->
@@ -446,6 +491,7 @@
         betBadge      : 'Teams, place your bets!',
         driverChoose  : 'Driver, choose!',
         choiceHint    : 'Driver, tap your answer!',
+        tapHint       : 'Tap to choose',
         chosenLabel   : 'Chosen',
         phaseBet      : '🎲 Bet!',
         phaseChoose   : '👆 Choose!',
@@ -472,6 +518,7 @@
         betBadge      : 'Squadre, fate le vostre scommesse!',
         driverChoose  : 'Guidatore, scegli!',
         choiceHint    : 'Guidatore, tocca la tua risposta!',
+        tapHint       : 'Tocca per scegliere',
         chosenLabel   : 'Scelto',
         phaseBet      : '🎲 Scommetti!',
         phaseChoose   : '👆 Scegli!',
@@ -1156,6 +1203,8 @@
       /* Reset option card states */
       optCardA.classList.remove('chosen-a', 'chosen-b');
       optCardB.classList.remove('chosen-a', 'chosen-b');
+      optCardA.classList.add('is-selectable');
+      optCardB.classList.add('is-selectable');
 
       /* Reset award buttons */
       btnAward1.disabled = false;
@@ -1187,10 +1236,12 @@
 
     /* ─ DRIVER PICKS OPTION ─ */
     function pickOption(opt) {
-      if (gameState !== 'choice') return;
+      if (gameState !== 'choice' && gameState !== 'betting') return;
       gameState = 'scoring';
       phaseBadge.className   = 'font-bold tracking-wide phase-score';
       phaseBadge.textContent = t.phaseScore;
+      optCardA.classList.remove('is-selectable');
+      optCardB.classList.remove('is-selectable');
 
       if (opt === 'a') {
         optCardA.classList.add('chosen-a');
@@ -1349,6 +1400,8 @@
     document.getElementById('bet-badge-text').textContent     = t.betBadge;
     document.getElementById('driver-choose-label').textContent= t.driverChoose;
     document.getElementById('choice-hint').textContent        = t.choiceHint;
+    document.getElementById('tap-a-label').textContent        = t.tapHint;
+    document.getElementById('tap-b-label').textContent        = t.tapHint;
     document.getElementById('next-label').textContent         = t.nextBtn;
     document.getElementById('play-again-label').textContent   = t.playAgain;
     document.getElementById('home-label').textContent         = t.homeBtn;
@@ -1384,7 +1437,7 @@
 
     /* ─ EVENT LISTENERS ─ */
     btnStart.addEventListener('click', startGame);
-    btnDriverChoose.addEventListener('click', showChoicePhase);
+    /* btnDriverChoose is now an info label — no click handler */
     btnOptA.addEventListener('click', function() { pickOption('a'); });
     btnOptB.addEventListener('click', function() { pickOption('b'); });
     optCardA.addEventListener('click', function() { pickOption('a'); });
