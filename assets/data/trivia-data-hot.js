@@ -115,8 +115,7 @@ window.TRIVIA_HOT_IT = [{
         "Opzione D": "100 ore",
         "Risposta Corretta": "C",
         "Curiosità": "Il record è di 58 ore, 35 minuti e 58 secondi, stabilito da una coppia thailandese."
-    },
-    {
+    }, {
         "Categoria": "HOT",
         "Domanda": "Quale ormone, oltre all'ossitocina, viene rilasciato durante il piacere per dare un senso di euforia?",
         "Opzione A": "Dopamina",
@@ -746,414 +745,610 @@ window.TRIVIA_HOT_IT = [{
         "Opzione D": "Tacere",
         "Risposta Corretta": "A",
         "Curiosità": "Il sorriso attiva neuroni specchio."
-    },
-	{
-"Categoria":"HOT",
-"Domanda":"Secondo gli studi sull'attrazione, cosa influisce DI PIÙ nel primo incontro?",
-"Opzione A":"Contatto visivo",
-"Opzione B":"Voce",
-"Opzione C":"Odore naturale",
-"Opzione D":"Sorriso",
-"Risposta Corretta":"C",
-"Curiosità":"L'olfatto influenza inconsciamente compatibilità genetica."
-},
-{
-"Categoria":"HOT",
-"Domanda":"Quale fattore aumenta statisticamente la probabilità di un bacio al primo appuntamento?",
-"Opzione A":"Ridere insieme",
-"Opzione B":"Condividere cibo",
-"Opzione C":"Passeggiare affiancati",
-"Opzione D":"Bere un drink",
-"Risposta Corretta":"A",
-"Curiosità":"La risata sincronizza chimica emotiva e abbassa difese sociali."
-},
-{
-"Categoria":"HOT",
-"Domanda":"Quale comportamento viene percepito come più seducente inconsciamente?",
-"Opzione A":"Parlare lentamente",
-"Opzione B":"Fare domande personali",
-"Opzione C":"Imitare leggermente i movimenti",
-"Opzione D":"Mantenere distanza fisica",
-"Risposta Corretta":"C",
-"Curiosità":"Il mirroring crea fiducia automatica."
-},
-{
-"Categoria":"HOT",
-"Domanda":"Quale situazione aumenta maggiormente l'attrazione secondo la psicologia sociale?",
-"Opzione A":"Musica forte",
-"Opzione B":"Ambiente nuovo",
-"Opzione C":"Conversazione profonda",
-"Opzione D":"Silenzio condiviso",
-"Risposta Corretta":"B",
-"Curiosità":"La novità attiva dopamina e associa eccitazione alla persona."
-},
-{
-"Categoria":"HOT",
-"Domanda":"Quale elemento rende qualcuno più memorabile romanticamente?",
-"Opzione A":"Aspetto fisico",
-"Opzione B":"Profumo distintivo",
-"Opzione C":"Contatto visivo intenso",
-"Opzione D":"Voce riconoscibile",
-"Risposta Corretta":"B",
-"Curiosità":"L’olfatto è il senso più legato alla memoria emotiva."
-},
-{
-    "Categoria": "HOT",
-    "Domanda": "Quale noto filosofo francese del '700 fu arrestato perché amava farsi sculacciare dalle donne in pubblico?",
-    "Opzione A": "Voltaire", "Opzione B": "Jean-Jacques Rousseau", "Opzione C": "Montesquieu", "Opzione D": "Diderot",
-    "Risposta Corretta": "B",
-    "Curiosità": "Nelle sue 'Confessioni', ammise che il suo desiderio sessuale nacque dopo essere stato sculacciato da bambino dalla sua istitutrice."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Negli anni '40, cosa veniva usato negli USA come test di gravidanza 'naturale'?",
-    "Opzione A": "Un coniglio", "Opzione B": "Una rana (Xenopus laevis)", "Opzione C": "Un topo", "Opzione D": "Un pesce rosso",
-    "Risposta Corretta": "B",
-    "Curiosità": "Se l'urina della donna conteneva l'ormone della gravidanza, la rana deponeva uova entro 24 ore."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Quale di questi animali ha un pene 'staccabile' che nuota da solo verso la femmina?",
-    "Opzione A": "Polpo Argonauta", "Opzione B": "Seppia", "Opzione C": "Granchio reale", "Opzione D": "Gambero",
-    "Risposta Corretta": "A",
-    "Curiosità": "Il maschio stacca il suo braccio riproduttivo (ectocotile) che nuota autonomamente per fecondare la femmina."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Secondo una ricerca della dottoressa Helen Fisher, l'amore romantico attiva le stesse aree del cervello di quale sostanza?",
-    "Opzione A": "Caffeina", "Opzione B": "Cocaina", "Opzione C": "Nicotina", "Opzione D": "Alcol",
-    "Risposta Corretta": "B",
-    "Curiosità": "Entrambe scatenano un'ondata di dopamina nel sistema di ricompensa cerebrale, creando 'dipendenza'."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "In quale paese è tecnicamente illegale possedere più di 6 dildo contemporaneamente?",
-    "Opzione A": "Texas (USA)", "Opzione B": "Arabia Saudita", "Opzione C": "Corea del Nord", "Opzione D": "Iran",
-    "Risposta Corretta": "A",
-    "Curiosità": "La 'Obscenity Statute' del Texas limitava il possesso di 'dispositivi osceni', anche se oggi è raramente applicata."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Cosa indica il termine giapponese 'Kanchō'?",
-    "Opzione A": "Un tipo di bondage", "Opzione B": "Infilare le dita nel sedere di qualcuno a sorpresa", "Opzione C": "Sesso con polpi", "Opzione D": "Massaggio ai piedi",
-    "Risposta Corretta": "B",
-    "Curiosità": "È uno scherzo infantile molto diffuso (e controverso) in Giappone, spesso fatto a scuola o tra amici."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Quale frutto ha un odore così simile a quello del liquido seminale maschile da essere spesso citato nei romanzi?",
-    "Opzione A": "Durian", "Opzione B": "Fiori di Castagno", "Opzione C": "Papaia", "Opzione D": "Mango",
-    "Risposta Corretta": "B",
-    "Curiosità": "L'odore acre dei fiori di castagno in primavera è chimicamente molto vicino a quello dello sperma."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Qual è stata la prima parola 'spinta' pronunciata in un film di animazione Disney (per errore o mito)?",
-    "Opzione A": "Sesso (Il Re Leone)", "Opzione B": "Nuda (Biancaneve)", "Opzione C": "Manette (Aladdin)", "Opzione D": "Amore (Bambi)",
-    "Risposta Corretta": "A",
-    "Curiosità": "Per anni si è creduto che nella polvere alzata da Simba apparisse la scritta 'SEX', anche se Disney sostiene fosse 'SFX'."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Quale di questi NON è un vero feticismo?",
-    "Opzione A": "Pogonofilia (barbe)", "Opzione B": "Lacanofilia (verdure)", "Opzione C": "Aurofilia (oro)", "Opzione D": "Biciclofilia (biciclette)",
-    "Risposta Corretta": "D",
-    "Curiosità": "Mentre barba, verdure e oro hanno seguaci documentati, la 'biciclofilia' non è un termine clinico riconosciuto."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Quale imperatrice russa morì, secondo una leggenda metropolitana falsa, mentre faceva sesso con un cavallo?",
-    "Opzione A": "Caterina la Grande", "Opzione B": "Anastasia", "Opzione C": "Elisabetta I", "Opzione D": "Alessandra",
-    "Risposta Corretta": "A",
-    "Curiosità": "È una calunnia storica inventata dai suoi nemici francesi; morì in realtà per un ictus nel suo letto."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Secondo i sondaggi, qual è il luogo fuori casa dove le persone ammettono di averlo fatto più spesso?",
-    "Opzione A": "Spiaggia", "Opzione B": "Macchina", "Opzione C": "Ascensore", "Opzione D": "Cinema",
-    "Risposta Corretta": "B",
-    "Curiosità": "L'auto resta il classico intramontabile per la privacy fuori dalle mura domestiche."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Cosa si intende per 'Ghosting' dopo una notte di passione?",
-    "Opzione A": "Fare sesso travestiti", "Opzione B": "Sparire completamente senza rispondere più", "Opzione C": "Sesso molto silenzioso", "Opzione D": "Dormire insieme senza farlo",
-    "Risposta Corretta": "B",
-    "Curiosità": "Viene considerato uno dei comportamenti più maleducati nel dating moderno."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Quale percentuale di persone ammette di aver simulato almeno una volta un orgasmo?",
-    "Opzione A": "10%", "Opzione B": "25%", "Opzione C": "Oltre il 50%", "Opzione D": "Solo il 5%",
-    "Risposta Corretta": "C",
-    "Curiosità": "Le statistiche dicono che circa il 60% delle donne e il 25% degli uomini lo hanno fatto."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Qual è l'abitudine mattutina chiamata in inglese 'Morning Glory'?",
-    "Opzione A": "La colazione a letto", "Opzione B": "L'erezione mattutina", "Opzione C": "Fare sesso sotto la doccia", "Opzione D": "Lavarsi i denti insieme",
-    "Risposta Corretta": "B",
-    "Curiosità": "È un fenomeno naturale causato dai picchi di testosterone durante il sonno REM."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "In quale stanza della casa, dopo la camera da letto, è più comune fare sesso?",
-    "Opzione A": "Cucina", "Opzione B": "Salotto (Divano)", "Opzione C": "Bagno", "Opzione D": "Lavanderia",
-    "Risposta Corretta": "B",
-    "Curiosità": "Il divano è il secondo 'campo di battaglia' preferito dalle coppie di tutto il mondo."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Cos'è un 'Quickie'?",
-    "Opzione A": "Un cocktail afrodisiaco", "Opzione B": "Un rapporto sessuale veloce", "Opzione C": "Un vibratore tascabile", "Opzione D": "Un appuntamento al buio",
-    "Risposta Corretta": "B",
-    "Curiosità": "La brevità e l'improvvisazione sono gli elementi che lo rendono eccitante."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Cosa significa l'emoji della 'Melanzana' nelle chat piccanti?",
-    "Opzione A": "Ho fame", "Opzione B": "Il membro maschile", "Opzione C": "Sei una persona noiosa", "Opzione D": "Vediamoci a cena",
-    "Risposta Corretta": "B",
-    "Curiosità": "È diventata l'emoji più censurata e iconica del sexting mondiale."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Qual è il principale vantaggio scientifico del sesso prima di dormire?",
-    "Opzione A": "Brucia 1000 calorie", "Opzione B": "Aiuta a prendere sonno grazie alle endorfine", "Opzione C": "Migliora la vista", "Opzione D": "Fa passare la fame",
-    "Risposta Corretta": "B",
-    "Curiosità": "L'ossitocina e la prolattina rilasciate inducono un rilassamento profondo."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Cosa si intende per 'Sexting'?",
-    "Opzione A": "Sesso in un taxi", "Opzione B": "Scambio di messaggi e foto esplicite", "Opzione C": "Sesso tra sei persone", "Opzione D": "Dormire dopo il sesso",
-    "Risposta Corretta": "B",
-    "Curiosità": "Oltre l'80% dei giovani adulti dichiara di averlo praticato almeno una volta."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Quale indumento è considerato statisticamente il più erotico dagli uomini su una donna?",
-    "Opzione A": "Pigiama di flanella", "Opzione B": "Calze autoreggenti", "Opzione C": "Tuta da ginnastica", "Opzione D": "Grembiule da cucina",
-    "Risposta Corretta": "B",
-    "Curiosità": "Il pizzo e la trasparenza delle calze rimangono in cima alle fantasie maschili."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Cos'è la 'Petofilia' (da non confondere con altro)?",
-    "Opzione A": "Attrazione per gli animali", "Opzione B": "Eccitazione per i gas intestinali", "Opzione C": "Attrazione per i piedi", "Opzione D": "Attrazione per il marmo",
-    "Risposta Corretta": "B",
-    "Curiosità": "È una parafilia basata sugli odori e i rumori del corpo, meno rara di quanto si pensi."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Secondo gli esperti, quanto tempo durano mediamente i preliminari in una coppia stabile?",
-    "Opzione A": "2 minuti", "Opzione B": "Tra 10 e 15 minuti", "Opzione C": "Oltre un'ora", "Opzione D": "Non si fanno",
-    "Risposta Corretta": "B",
-    "Curiosità": "I preliminari sono fondamentali per la lubrificazione e l'eccitazione femminile."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Cosa significa l'acronimo 'MILF'?",
-    "Opzione A": "Music Is Life Forever", "Opzione B": "Mother I'd Like to Fuck", "Opzione C": "Mom In Lingerie Fucking", "Opzione D": "Most Intense Love Feeling",
-    "Risposta Corretta": "B",
-    "Curiosità": "Il termine è diventato di uso comune dopo il film 'American Pie' del 1999."
-  },
-  {
-  "Categoria": "HOT",
-  "Domanda": "Qual è l'ora di punta in cui si registra il maggior numero di messaggi sulle app di dating?",
-  "Opzione A": "8:00 del mattino", "Opzione B": "13:00", "Opzione C": "21:00", "Opzione D": "3:00 di notte",
-  "Risposta Corretta": "C",
-  "Curiosità": "Il 'Tinder prime time' è tra le 21 e le 22, quando le persone si rilassano a casa."
-},
-{
-  "Categoria": "HOT",
-  "Domanda": "Cosa si intende per 'Breadcrumbing'?",
-  "Opzione A": "Sesso in cucina", "Opzione B": "Inviare messaggi sporadici per tenere qualcuno 'al gancio' senza intenzioni serie", "Opzione C": "Un tipo di massaggio", "Opzione D": "Sexting con emoji di cibo",
-  "Risposta Corretta": "B",
-  "Curiosità": "Deriva dal lasciare 'briciole di pane' come Pollicino."
-},
-{
-  "Categoria": "HOT",
-  "Domanda": "Qual è il record mondiale per il maggior numero di orgasmi maschili in un'ora?",
-  "Opzione A": "5", "Opzione B": "16", "Opzione C": "30", "Opzione D": "50",
-  "Risposta Corretta": "B",
-  "Curiosità": "In uno studio clinico, il record maschile è stato di 16, molto inferiore a quello femminile."
-},
-{
-  "Categoria": "HOT",
-  "Domanda": "Secondo la scienza, fare sesso equivale a quanti minuti di jogging?",
-  "Opzione A": "1 minuto", "Opzione B": "15 minuti", "Opzione C": "30 minuti", "Opzione D": "60 minuti",
-  "Risposta Corretta": "B",
-  "Curiosità": "Un rapporto medio brucia circa 4 calorie al minuto per gli uomini e 3 per le donne."
-},
-{
-  "Categoria": "HOT",
-  "Domanda": "Quale vitamina è nota per aumentare la produzione di testosterone e migliorare la libido?",
-  "Opzione A": "Vitamina C", "Opzione B": "Vitamina D", "Opzione C": "Vitamina B12", "Opzione D": "Vitamina K",
-  "Risposta Corretta": "B",
-  "Curiosità": "L'esposizione al sole (che produce Vitamina D) è legata a una maggiore pulsione sessuale."
-},
-{
-  "Categoria": "HOT",
-  "Domanda": "Qual è il termine medico per la 'paura del sesso'?",
-  "Opzione A": "Genofobia", "Opzione B": "Aracnofobia", "Opzione C": "Idrofobia", "Opzione D": "Claustrofobia",
-  "Risposta Corretta": "A",
-  "Curiosità": "Può derivare da traumi o da un'educazione estremamente repressiva."
-},
-{
-  "Categoria": "HOT",
-  "Domanda": "Perché si dice 'fare cilecca'?",
-  "Opzione A": "Dal rumore di un bacio", "Opzione B": "Dall'inceppamento di un'arma da fuoco", "Opzione C": "Da un tipo di dolce", "Opzione D": "Da un antico ballo",
-  "Risposta Corretta": "B",
-  "Curiosità": "Si riferisce al colpo che non parte nonostante si sia premuto il grilletto."
-},
-{
-  "Categoria": "HOT",
-  "Domanda": "In quale paese è stato inventato il primo preservativo in lattice?",
-  "Opzione A": "USA", "Opzione B": "Germania", "Opzione C": "Regno Unito", "Opzione D": "Giappone",
-  "Risposta Corretta": "C",
-  "Curiosità": "Fu inventato nel 1912 da Julius Fromm, ma il primo in lattice moderno arrivò in UK nel 1929."
-},
-{
-    "Categoria": "HOT",
-    "Domanda": "Quale famoso scrittore francese portava sempre con sé una ciocca di peli pubici di ogni sua amante?",
-    "Opzione A": "Guy de Maupassant", "Opzione B": "Victor Hugo", "Opzione C": "Gustave Flaubert", "Opzione D": "Emile Zola",
-    "Risposta Corretta": "B",
-    "Curiosità": "Victor Hugo era noto per il suo appetito sessuale insaziabile; alla sua morte ne trovarono una collezione enorme."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "In quale posizione sessuale si consumano più calorie in assoluto secondo il 'Kamasutra Workout'?",
-    "Opzione A": "Missionario", "Opzione B": "In piedi (Sollevati)", "Opzione C": "Pecorina", "Opzione D": "Cucchiaio",
-    "Risposta Corretta": "B",
-    "Curiosità": "Sostenere il peso del partner mentre si è in piedi richiede uno sforzo muscolare immenso."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Cos'è la 'Melofilia'?",
-    "Opzione A": "Attrazione per il miele", "Opzione B": "Eccitazione sessuale derivante dalla musica", "Opzione C": "Sesso con le mele", "Opzione D": "Attrazione per il canto",
-    "Risposta Corretta": "B",
-    "Curiosità": "Alcune persone raggiungono il climax o un'eccitazione profonda semplicemente ascoltando determinate armonie."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Quale animale ha il pene 'spinato' per impedire alla femmina di fuggire durante l'atto?",
-    "Opzione A": "Cane", "Opzione B": "Gatto", "Opzione C": "Coniglio", "Opzione D": "Leone",
-    "Risposta Corretta": "B",
-    "Curiosità": "Le spine sul pene del gatto servono anche a stimolare l'ovulazione nella femmina."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "In quale anno è stato lanciato il primo vibratore elettrico della storia?",
-    "Opzione A": "1880", "Opzione B": "1920", "Opzione C": "1950", "Opzione D": "1970",
-    "Risposta Corretta": "A",
-    "Curiosità": "Fu inventato dal medico Joseph Mortimer Granville per curare l'isteria femminile."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Cosa si intende per 'Sesso Vaniglia'?",
-    "Opzione A": "Sesso con aromi", "Opzione B": "Sesso convenzionale e senza pratiche BDSM", "Opzione C": "Sesso solo orale", "Opzione D": "Sesso molto lento",
-    "Risposta Corretta": "B",
-    "Curiosità": "Il termine deriva dal gusto di gelato considerato il più semplice e standard."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Quale parte del cervello si attiva maggiormente durante un orgasmo, simile a un attacco epilettico?",
-    "Opzione A": "Ipotalamo", "Opzione B": "Corteccia prefrontale", "Opzione C": "Cervelletto", "Opzione D": "Talamo",
-    "Risposta Corretta": "C",
-    "Curiosità": "L'attività muscolare e sensoriale durante l'orgasmo è così intensa da 'accendere' quasi tutto il cervello."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Cos'è il 'Squirting' femminile dal punto di vista chimico?",
-    "Opzione A": "Pura urina", "Opzione B": "Fluido prodotto dalle ghiandole di Skene", "Opzione C": "Acqua", "Opzione D": "Sudore",
-    "Risposta Corretta": "B",
-    "Curiosità": "Sebbene contenga tracce di urea, è un fluido diverso dall'urina, simile alla secrezione prostatica maschile."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Quale di questi cibi era considerato 'proibito' in alcuni monasteri perché eccitava troppo i sensi?",
-    "Opzione A": "Cioccolato", "Opzione B": "Peperoncino", "Opzione C": "Patate", "Opzione D": "Cipolle",
-    "Risposta Corretta": "A",
-    "Curiosità": "Il cioccolato contiene feniletilamina, la stessa sostanza prodotta dal cervello quando ci si innamora."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Cosa significa il termine 'Sub' nel linguaggio erotico?",
-    "Opzione A": "Subacqueo", "Opzione B": "Subalterno/Sottomesso", "Opzione C": "Sostituto", "Opzione D": "Veloce",
-    "Risposta Corretta": "B",
-    "Curiosità": "Indica la persona che accetta volontariamente di cedere il controllo al partner (Dom)."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Perché il sesso nello spazio è complicato dalla 'Terza Legge di Newton'?",
-    "Opzione A": "Perché manca l'ossigeno", "Opzione B": "Perché a ogni azione corrisponde una reazione uguale e contraria (ci si allontana)", "Opzione C": "Perché il sangue non scorre", "Opzione D": "Perché fa troppo freddo",
-    "Risposta Corretta": "B",
-    "Curiosità": "In assenza di gravità, ogni spinta allontana i partner a meno che non siano ancorati o usino una 'tuta 2-Me' progettata apposta."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Quale di questi è il nome di una reale posizione del Kamasutra?",
-    "Opzione A": "Il Canguro Saltellante", "Opzione B": "L'Unione dell'Elefante", "Opzione C": "Il Tostapane", "Opzione D": "Il Salto del Granchio",
-    "Risposta Corretta": "B",
-    "Curiosità": "Il Kamasutra usa molti nomi di animali per descrivere la dinamica e la forza del rapporto."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Mito o Realtà: Mangiare ostriche aumenta istantaneamente il desiderio sessuale?",
-    "Opzione A": "Realtà", "Opzione B": "Mito", "Opzione C": "Solo se sono cotte", "Opzione D": "Solo per le donne",
-    "Risposta Corretta": "B",
-    "Curiosità": "Sebbene contengano zinco (ottimo per lo sperma), non esiste prova che abbiano un effetto afrodisiaco immediato."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "In futuro, cos'è la 'Digisessualità'?",
-    "Opzione A": "Sesso con le dita", "Opzione B": "Identità sessuale legata all'uso di robot o realtà virtuale", "Opzione C": "Sesso via webcam", "Opzione D": "Sesso con computer",
-    "Risposta Corretta": "B",
-    "Curiosità": "Indica persone che scelgono la tecnologia (AI, VR, Androidi) come partner principale o esclusivo."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Quale di questi è un nome buffo usato per la posizione in cui entrambi sono seduti e si guardano?",
-    "Opzione A": "Il Loto", "Opzione B": "La Forbice", "Opzione C": "La Sedia a Dondolo", "Opzione D": "Il Tandem",
-    "Risposta Corretta": "A",
-    "Curiosità": "È una delle posizioni più intime, derivata dalla meditazione orientale."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Vero o Falso: Le dimensioni del naso o dei piedi sono proporzionali a quelle del pene?",
-    "Opzione A": "Vero", "Opzione B": "Falso", "Opzione C": "Solo per il naso", "Opzione D": "Solo dopo i 20 anni",
-    "Risposta Corretta": "B",
-    "Curiosità": "Numerosi studi urologici hanno confermato che non esiste correlazione tra arti/naso e dimensioni genitali."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Qual è il rischio principale di un orgasmo in condizioni di microgravità (spazio)?",
-    "Opzione A": "Perdere i sensi", "Opzione B": "I liquidi (sudore/secrezioni) che fluttuano e finiscono negli occhi o macchinari", "Opzione C": "Crampi alle gambe", "Opzione D": "Esplosione dei capillari",
-    "Risposta Corretta": "B",
-    "Curiosità": "Senza gravità, i liquidi formano sfere fluttuanti che possono essere pericolose per la strumentazione della navetta."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Cosa si intende per 'Sesso Bio-Hacking'?",
-    "Opzione A": "Sesso tra hacker", "Opzione B": "L'uso di chip o integratori per potenziare le prestazioni oltre i limiti umani", "Opzione C": "Sesso in laboratorio", "Opzione D": "Sesso con alieni",
-    "Risposta Corretta": "B",
-    "Curiosità": "Include l'uso di impianti sottocutanei vibranti o cocktail chimici sperimentali."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Qual è il mito sulla 'Sindrome del giorno dopo' (Post-Coital Tristesse)?",
-    "Opzione A": "Che colpisca solo le donne", "Opzione B": "Che sia un segno di mancanza d'amore", "Opzione C": "Entrambe le precedenti", "Opzione D": "Che non esista",
-    "Risposta Corretta": "C",
-    "Curiosità": "È una reazione ormonale che può colpire chiunque, portando tristezza o ansia subito dopo il piacere."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "La posizione del 'Sogno della Farfalla' coinvolge principalmente:",
-    "Opzione A": "Il bordo del letto", "Opzione B": "Una sedia", "Opzione C": "La doccia", "Opzione D": "Un'altalena",
-    "Risposta Corretta": "A",
-    "Curiosità": "Prevede che la donna sia sdraiata sul bordo del letto con le gambe sollevate."
-  }
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Secondo gli studi sull'attrazione, cosa influisce DI PIÙ nel primo incontro?",
+        "Opzione A": "Contatto visivo",
+        "Opzione B": "Voce",
+        "Opzione C": "Odore naturale",
+        "Opzione D": "Sorriso",
+        "Risposta Corretta": "C",
+        "Curiosità": "L'olfatto influenza inconsciamente compatibilità genetica."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Quale fattore aumenta statisticamente la probabilità di un bacio al primo appuntamento?",
+        "Opzione A": "Ridere insieme",
+        "Opzione B": "Condividere cibo",
+        "Opzione C": "Passeggiare affiancati",
+        "Opzione D": "Bere un drink",
+        "Risposta Corretta": "A",
+        "Curiosità": "La risata sincronizza chimica emotiva e abbassa difese sociali."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Quale comportamento viene percepito come più seducente inconsciamente?",
+        "Opzione A": "Parlare lentamente",
+        "Opzione B": "Fare domande personali",
+        "Opzione C": "Imitare leggermente i movimenti",
+        "Opzione D": "Mantenere distanza fisica",
+        "Risposta Corretta": "C",
+        "Curiosità": "Il mirroring crea fiducia automatica."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Quale situazione aumenta maggiormente l'attrazione secondo la psicologia sociale?",
+        "Opzione A": "Musica forte",
+        "Opzione B": "Ambiente nuovo",
+        "Opzione C": "Conversazione profonda",
+        "Opzione D": "Silenzio condiviso",
+        "Risposta Corretta": "B",
+        "Curiosità": "La novità attiva dopamina e associa eccitazione alla persona."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Quale elemento rende qualcuno più memorabile romanticamente?",
+        "Opzione A": "Aspetto fisico",
+        "Opzione B": "Profumo distintivo",
+        "Opzione C": "Contatto visivo intenso",
+        "Opzione D": "Voce riconoscibile",
+        "Risposta Corretta": "B",
+        "Curiosità": "L’olfatto è il senso più legato alla memoria emotiva."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Quale noto filosofo francese del '700 fu arrestato perché amava farsi sculacciare dalle donne in pubblico?",
+        "Opzione A": "Voltaire",
+        "Opzione B": "Jean-Jacques Rousseau",
+        "Opzione C": "Montesquieu",
+        "Opzione D": "Diderot",
+        "Risposta Corretta": "B",
+        "Curiosità": "Nelle sue 'Confessioni', ammise che il suo desiderio sessuale nacque dopo essere stato sculacciato da bambino dalla sua istitutrice."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Negli anni '40, cosa veniva usato negli USA come test di gravidanza 'naturale'?",
+        "Opzione A": "Un coniglio",
+        "Opzione B": "Una rana (Xenopus laevis)",
+        "Opzione C": "Un topo",
+        "Opzione D": "Un pesce rosso",
+        "Risposta Corretta": "B",
+        "Curiosità": "Se l'urina della donna conteneva l'ormone della gravidanza, la rana deponeva uova entro 24 ore."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Quale di questi animali ha un pene 'staccabile' che nuota da solo verso la femmina?",
+        "Opzione A": "Polpo Argonauta",
+        "Opzione B": "Seppia",
+        "Opzione C": "Granchio reale",
+        "Opzione D": "Gambero",
+        "Risposta Corretta": "A",
+        "Curiosità": "Il maschio stacca il suo braccio riproduttivo (ectocotile) che nuota autonomamente per fecondare la femmina."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Secondo una ricerca della dottoressa Helen Fisher, l'amore romantico attiva le stesse aree del cervello di quale sostanza?",
+        "Opzione A": "Caffeina",
+        "Opzione B": "Cocaina",
+        "Opzione C": "Nicotina",
+        "Opzione D": "Alcol",
+        "Risposta Corretta": "B",
+        "Curiosità": "Entrambe scatenano un'ondata di dopamina nel sistema di ricompensa cerebrale, creando 'dipendenza'."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "In quale paese è tecnicamente illegale possedere più di 6 dildo contemporaneamente?",
+        "Opzione A": "Texas (USA)",
+        "Opzione B": "Arabia Saudita",
+        "Opzione C": "Corea del Nord",
+        "Opzione D": "Iran",
+        "Risposta Corretta": "A",
+        "Curiosità": "La 'Obscenity Statute' del Texas limitava il possesso di 'dispositivi osceni', anche se oggi è raramente applicata."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Cosa indica il termine giapponese 'Kanchō'?",
+        "Opzione A": "Un tipo di bondage",
+        "Opzione B": "Infilare le dita nel sedere di qualcuno a sorpresa",
+        "Opzione C": "Sesso con polpi",
+        "Opzione D": "Massaggio ai piedi",
+        "Risposta Corretta": "B",
+        "Curiosità": "È uno scherzo infantile molto diffuso (e controverso) in Giappone, spesso fatto a scuola o tra amici."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Quale frutto ha un odore così simile a quello del liquido seminale maschile da essere spesso citato nei romanzi?",
+        "Opzione A": "Durian",
+        "Opzione B": "Fiori di Castagno",
+        "Opzione C": "Papaia",
+        "Opzione D": "Mango",
+        "Risposta Corretta": "B",
+        "Curiosità": "L'odore acre dei fiori di castagno in primavera è chimicamente molto vicino a quello dello sperma."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Qual è stata la prima parola 'spinta' pronunciata in un film di animazione Disney (per errore o mito)?",
+        "Opzione A": "Sesso (Il Re Leone)",
+        "Opzione B": "Nuda (Biancaneve)",
+        "Opzione C": "Manette (Aladdin)",
+        "Opzione D": "Amore (Bambi)",
+        "Risposta Corretta": "A",
+        "Curiosità": "Per anni si è creduto che nella polvere alzata da Simba apparisse la scritta 'SEX', anche se Disney sostiene fosse 'SFX'."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Quale di questi NON è un vero feticismo?",
+        "Opzione A": "Pogonofilia (barbe)",
+        "Opzione B": "Lacanofilia (verdure)",
+        "Opzione C": "Aurofilia (oro)",
+        "Opzione D": "Biciclofilia (biciclette)",
+        "Risposta Corretta": "D",
+        "Curiosità": "Mentre barba, verdure e oro hanno seguaci documentati, la 'biciclofilia' non è un termine clinico riconosciuto."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Quale imperatrice russa morì, secondo una leggenda metropolitana falsa, mentre faceva sesso con un cavallo?",
+        "Opzione A": "Caterina la Grande",
+        "Opzione B": "Anastasia",
+        "Opzione C": "Elisabetta I",
+        "Opzione D": "Alessandra",
+        "Risposta Corretta": "A",
+        "Curiosità": "È una calunnia storica inventata dai suoi nemici francesi; morì in realtà per un ictus nel suo letto."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Secondo i sondaggi, qual è il luogo fuori casa dove le persone ammettono di averlo fatto più spesso?",
+        "Opzione A": "Spiaggia",
+        "Opzione B": "Macchina",
+        "Opzione C": "Ascensore",
+        "Opzione D": "Cinema",
+        "Risposta Corretta": "B",
+        "Curiosità": "L'auto resta il classico intramontabile per la privacy fuori dalle mura domestiche."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Cosa si intende per 'Ghosting' dopo una notte di passione?",
+        "Opzione A": "Fare sesso travestiti",
+        "Opzione B": "Sparire completamente senza rispondere più",
+        "Opzione C": "Sesso molto silenzioso",
+        "Opzione D": "Dormire insieme senza farlo",
+        "Risposta Corretta": "B",
+        "Curiosità": "Viene considerato uno dei comportamenti più maleducati nel dating moderno."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Quale percentuale di persone ammette di aver simulato almeno una volta un orgasmo?",
+        "Opzione A": "10%",
+        "Opzione B": "25%",
+        "Opzione C": "Oltre il 50%",
+        "Opzione D": "Solo il 5%",
+        "Risposta Corretta": "C",
+        "Curiosità": "Le statistiche dicono che circa il 60% delle donne e il 25% degli uomini lo hanno fatto."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Qual è l'abitudine mattutina chiamata in inglese 'Morning Glory'?",
+        "Opzione A": "La colazione a letto",
+        "Opzione B": "L'erezione mattutina",
+        "Opzione C": "Fare sesso sotto la doccia",
+        "Opzione D": "Lavarsi i denti insieme",
+        "Risposta Corretta": "B",
+        "Curiosità": "È un fenomeno naturale causato dai picchi di testosterone durante il sonno REM."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "In quale stanza della casa, dopo la camera da letto, è più comune fare sesso?",
+        "Opzione A": "Cucina",
+        "Opzione B": "Salotto (Divano)",
+        "Opzione C": "Bagno",
+        "Opzione D": "Lavanderia",
+        "Risposta Corretta": "B",
+        "Curiosità": "Il divano è il secondo 'campo di battaglia' preferito dalle coppie di tutto il mondo."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Cos'è un 'Quickie'?",
+        "Opzione A": "Un cocktail afrodisiaco",
+        "Opzione B": "Un rapporto sessuale veloce",
+        "Opzione C": "Un vibratore tascabile",
+        "Opzione D": "Un appuntamento al buio",
+        "Risposta Corretta": "B",
+        "Curiosità": "La brevità e l'improvvisazione sono gli elementi che lo rendono eccitante."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Cosa significa l'emoji della 'Melanzana' nelle chat piccanti?",
+        "Opzione A": "Ho fame",
+        "Opzione B": "Il membro maschile",
+        "Opzione C": "Sei una persona noiosa",
+        "Opzione D": "Vediamoci a cena",
+        "Risposta Corretta": "B",
+        "Curiosità": "È diventata l'emoji più censurata e iconica del sexting mondiale."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Qual è il principale vantaggio scientifico del sesso prima di dormire?",
+        "Opzione A": "Brucia 1000 calorie",
+        "Opzione B": "Aiuta a prendere sonno grazie alle endorfine",
+        "Opzione C": "Migliora la vista",
+        "Opzione D": "Fa passare la fame",
+        "Risposta Corretta": "B",
+        "Curiosità": "L'ossitocina e la prolattina rilasciate inducono un rilassamento profondo."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Cosa si intende per 'Sexting'?",
+        "Opzione A": "Sesso in un taxi",
+        "Opzione B": "Scambio di messaggi e foto esplicite",
+        "Opzione C": "Sesso tra sei persone",
+        "Opzione D": "Dormire dopo il sesso",
+        "Risposta Corretta": "B",
+        "Curiosità": "Oltre l'80% dei giovani adulti dichiara di averlo praticato almeno una volta."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Quale indumento è considerato statisticamente il più erotico dagli uomini su una donna?",
+        "Opzione A": "Pigiama di flanella",
+        "Opzione B": "Calze autoreggenti",
+        "Opzione C": "Tuta da ginnastica",
+        "Opzione D": "Grembiule da cucina",
+        "Risposta Corretta": "B",
+        "Curiosità": "Il pizzo e la trasparenza delle calze rimangono in cima alle fantasie maschili."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Cos'è la 'Petofilia' (da non confondere con altro)?",
+        "Opzione A": "Attrazione per gli animali",
+        "Opzione B": "Eccitazione per i gas intestinali",
+        "Opzione C": "Attrazione per i piedi",
+        "Opzione D": "Attrazione per il marmo",
+        "Risposta Corretta": "B",
+        "Curiosità": "È una parafilia basata sugli odori e i rumori del corpo, meno rara di quanto si pensi."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Secondo gli esperti, quanto tempo durano mediamente i preliminari in una coppia stabile?",
+        "Opzione A": "2 minuti",
+        "Opzione B": "Tra 10 e 15 minuti",
+        "Opzione C": "Oltre un'ora",
+        "Opzione D": "Non si fanno",
+        "Risposta Corretta": "B",
+        "Curiosità": "I preliminari sono fondamentali per la lubrificazione e l'eccitazione femminile."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Cosa significa l'acronimo 'MILF'?",
+        "Opzione A": "Music Is Life Forever",
+        "Opzione B": "Mother I'd Like to Fuck",
+        "Opzione C": "Mom In Lingerie Fucking",
+        "Opzione D": "Most Intense Love Feeling",
+        "Risposta Corretta": "B",
+        "Curiosità": "Il termine è diventato di uso comune dopo il film 'American Pie' del 1999."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Qual è l'ora di punta in cui si registra il maggior numero di messaggi sulle app di dating?",
+        "Opzione A": "8:00 del mattino",
+        "Opzione B": "13:00",
+        "Opzione C": "21:00",
+        "Opzione D": "3:00 di notte",
+        "Risposta Corretta": "C",
+        "Curiosità": "Il 'Tinder prime time' è tra le 21 e le 22, quando le persone si rilassano a casa."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Cosa si intende per 'Breadcrumbing'?",
+        "Opzione A": "Sesso in cucina",
+        "Opzione B": "Inviare messaggi sporadici per tenere qualcuno 'al gancio' senza intenzioni serie",
+        "Opzione C": "Un tipo di massaggio",
+        "Opzione D": "Sexting con emoji di cibo",
+        "Risposta Corretta": "B",
+        "Curiosità": "Deriva dal lasciare 'briciole di pane' come Pollicino."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Qual è il record mondiale per il maggior numero di orgasmi maschili in un'ora?",
+        "Opzione A": "5",
+        "Opzione B": "16",
+        "Opzione C": "30",
+        "Opzione D": "50",
+        "Risposta Corretta": "B",
+        "Curiosità": "In uno studio clinico, il record maschile è stato di 16, molto inferiore a quello femminile."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Secondo la scienza, fare sesso equivale a quanti minuti di jogging?",
+        "Opzione A": "1 minuto",
+        "Opzione B": "15 minuti",
+        "Opzione C": "30 minuti",
+        "Opzione D": "60 minuti",
+        "Risposta Corretta": "B",
+        "Curiosità": "Un rapporto medio brucia circa 4 calorie al minuto per gli uomini e 3 per le donne."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Quale vitamina è nota per aumentare la produzione di testosterone e migliorare la libido?",
+        "Opzione A": "Vitamina C",
+        "Opzione B": "Vitamina D",
+        "Opzione C": "Vitamina B12",
+        "Opzione D": "Vitamina K",
+        "Risposta Corretta": "B",
+        "Curiosità": "L'esposizione al sole (che produce Vitamina D) è legata a una maggiore pulsione sessuale."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Qual è il termine medico per la 'paura del sesso'?",
+        "Opzione A": "Genofobia",
+        "Opzione B": "Aracnofobia",
+        "Opzione C": "Idrofobia",
+        "Opzione D": "Claustrofobia",
+        "Risposta Corretta": "A",
+        "Curiosità": "Può derivare da traumi o da un'educazione estremamente repressiva."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Perché si dice 'fare cilecca'?",
+        "Opzione A": "Dal rumore di un bacio",
+        "Opzione B": "Dall'inceppamento di un'arma da fuoco",
+        "Opzione C": "Da un tipo di dolce",
+        "Opzione D": "Da un antico ballo",
+        "Risposta Corretta": "B",
+        "Curiosità": "Si riferisce al colpo che non parte nonostante si sia premuto il grilletto."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "In quale paese è stato inventato il primo preservativo in lattice?",
+        "Opzione A": "USA",
+        "Opzione B": "Germania",
+        "Opzione C": "Regno Unito",
+        "Opzione D": "Giappone",
+        "Risposta Corretta": "C",
+        "Curiosità": "Fu inventato nel 1912 da Julius Fromm, ma il primo in lattice moderno arrivò in UK nel 1929."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Quale famoso scrittore francese portava sempre con sé una ciocca di peli pubici di ogni sua amante?",
+        "Opzione A": "Guy de Maupassant",
+        "Opzione B": "Victor Hugo",
+        "Opzione C": "Gustave Flaubert",
+        "Opzione D": "Emile Zola",
+        "Risposta Corretta": "B",
+        "Curiosità": "Victor Hugo era noto per il suo appetito sessuale insaziabile; alla sua morte ne trovarono una collezione enorme."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "In quale posizione sessuale si consumano più calorie in assoluto secondo il 'Kamasutra Workout'?",
+        "Opzione A": "Missionario",
+        "Opzione B": "In piedi (Sollevati)",
+        "Opzione C": "Pecorina",
+        "Opzione D": "Cucchiaio",
+        "Risposta Corretta": "B",
+        "Curiosità": "Sostenere il peso del partner mentre si è in piedi richiede uno sforzo muscolare immenso."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Cos'è la 'Melofilia'?",
+        "Opzione A": "Attrazione per il miele",
+        "Opzione B": "Eccitazione sessuale derivante dalla musica",
+        "Opzione C": "Sesso con le mele",
+        "Opzione D": "Attrazione per il canto",
+        "Risposta Corretta": "B",
+        "Curiosità": "Alcune persone raggiungono il climax o un'eccitazione profonda semplicemente ascoltando determinate armonie."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Quale animale ha il pene 'spinato' per impedire alla femmina di fuggire durante l'atto?",
+        "Opzione A": "Cane",
+        "Opzione B": "Gatto",
+        "Opzione C": "Coniglio",
+        "Opzione D": "Leone",
+        "Risposta Corretta": "B",
+        "Curiosità": "Le spine sul pene del gatto servono anche a stimolare l'ovulazione nella femmina."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "In quale anno è stato lanciato il primo vibratore elettrico della storia?",
+        "Opzione A": "1880",
+        "Opzione B": "1920",
+        "Opzione C": "1950",
+        "Opzione D": "1970",
+        "Risposta Corretta": "A",
+        "Curiosità": "Fu inventato dal medico Joseph Mortimer Granville per curare l'isteria femminile."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Cosa si intende per 'Sesso Vaniglia'?",
+        "Opzione A": "Sesso con aromi",
+        "Opzione B": "Sesso convenzionale e senza pratiche BDSM",
+        "Opzione C": "Sesso solo orale",
+        "Opzione D": "Sesso molto lento",
+        "Risposta Corretta": "B",
+        "Curiosità": "Il termine deriva dal gusto di gelato considerato il più semplice e standard."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Quale parte del cervello si attiva maggiormente durante un orgasmo, simile a un attacco epilettico?",
+        "Opzione A": "Ipotalamo",
+        "Opzione B": "Corteccia prefrontale",
+        "Opzione C": "Cervelletto",
+        "Opzione D": "Talamo",
+        "Risposta Corretta": "C",
+        "Curiosità": "L'attività muscolare e sensoriale durante l'orgasmo è così intensa da 'accendere' quasi tutto il cervello."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Cos'è il 'Squirting' femminile dal punto di vista chimico?",
+        "Opzione A": "Pura urina",
+        "Opzione B": "Fluido prodotto dalle ghiandole di Skene",
+        "Opzione C": "Acqua",
+        "Opzione D": "Sudore",
+        "Risposta Corretta": "B",
+        "Curiosità": "Sebbene contenga tracce di urea, è un fluido diverso dall'urina, simile alla secrezione prostatica maschile."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Quale di questi cibi era considerato 'proibito' in alcuni monasteri perché eccitava troppo i sensi?",
+        "Opzione A": "Cioccolato",
+        "Opzione B": "Peperoncino",
+        "Opzione C": "Patate",
+        "Opzione D": "Cipolle",
+        "Risposta Corretta": "A",
+        "Curiosità": "Il cioccolato contiene feniletilamina, la stessa sostanza prodotta dal cervello quando ci si innamora."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Cosa significa il termine 'Sub' nel linguaggio erotico?",
+        "Opzione A": "Subacqueo",
+        "Opzione B": "Subalterno/Sottomesso",
+        "Opzione C": "Sostituto",
+        "Opzione D": "Veloce",
+        "Risposta Corretta": "B",
+        "Curiosità": "Indica la persona che accetta volontariamente di cedere il controllo al partner (Dom)."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Perché il sesso nello spazio è complicato dalla 'Terza Legge di Newton'?",
+        "Opzione A": "Perché manca l'ossigeno",
+        "Opzione B": "Perché a ogni azione corrisponde una reazione uguale e contraria (ci si allontana)",
+        "Opzione C": "Perché il sangue non scorre",
+        "Opzione D": "Perché fa troppo freddo",
+        "Risposta Corretta": "B",
+        "Curiosità": "In assenza di gravità, ogni spinta allontana i partner a meno che non siano ancorati o usino una 'tuta 2-Me' progettata apposta."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Quale di questi è il nome di una reale posizione del Kamasutra?",
+        "Opzione A": "Il Canguro Saltellante",
+        "Opzione B": "L'Unione dell'Elefante",
+        "Opzione C": "Il Tostapane",
+        "Opzione D": "Il Salto del Granchio",
+        "Risposta Corretta": "B",
+        "Curiosità": "Il Kamasutra usa molti nomi di animali per descrivere la dinamica e la forza del rapporto."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Mito o Realtà: Mangiare ostriche aumenta istantaneamente il desiderio sessuale?",
+        "Opzione A": "Realtà",
+        "Opzione B": "Mito",
+        "Opzione C": "Solo se sono cotte",
+        "Opzione D": "Solo per le donne",
+        "Risposta Corretta": "B",
+        "Curiosità": "Sebbene contengano zinco (ottimo per lo sperma), non esiste prova che abbiano un effetto afrodisiaco immediato."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "In futuro, cos'è la 'Digisessualità'?",
+        "Opzione A": "Sesso con le dita",
+        "Opzione B": "Identità sessuale legata all'uso di robot o realtà virtuale",
+        "Opzione C": "Sesso via webcam",
+        "Opzione D": "Sesso con computer",
+        "Risposta Corretta": "B",
+        "Curiosità": "Indica persone che scelgono la tecnologia (AI, VR, Androidi) come partner principale o esclusivo."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Quale di questi è un nome buffo usato per la posizione in cui entrambi sono seduti e si guardano?",
+        "Opzione A": "Il Loto",
+        "Opzione B": "La Forbice",
+        "Opzione C": "La Sedia a Dondolo",
+        "Opzione D": "Il Tandem",
+        "Risposta Corretta": "A",
+        "Curiosità": "È una delle posizioni più intime, derivata dalla meditazione orientale."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Vero o Falso: Le dimensioni del naso o dei piedi sono proporzionali a quelle del pene?",
+        "Opzione A": "Vero",
+        "Opzione B": "Falso",
+        "Opzione C": "Solo per il naso",
+        "Opzione D": "Solo dopo i 20 anni",
+        "Risposta Corretta": "B",
+        "Curiosità": "Numerosi studi urologici hanno confermato che non esiste correlazione tra arti/naso e dimensioni genitali."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Qual è il rischio principale di un orgasmo in condizioni di microgravità (spazio)?",
+        "Opzione A": "Perdere i sensi",
+        "Opzione B": "I liquidi (sudore/secrezioni) che fluttuano e finiscono negli occhi o macchinari",
+        "Opzione C": "Crampi alle gambe",
+        "Opzione D": "Esplosione dei capillari",
+        "Risposta Corretta": "B",
+        "Curiosità": "Senza gravità, i liquidi formano sfere fluttuanti che possono essere pericolose per la strumentazione della navetta."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Cosa si intende per 'Sesso Bio-Hacking'?",
+        "Opzione A": "Sesso tra hacker",
+        "Opzione B": "L'uso di chip o integratori per potenziare le prestazioni oltre i limiti umani",
+        "Opzione C": "Sesso in laboratorio",
+        "Opzione D": "Sesso con alieni",
+        "Risposta Corretta": "B",
+        "Curiosità": "Include l'uso di impianti sottocutanei vibranti o cocktail chimici sperimentali."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Qual è il mito sulla 'Sindrome del giorno dopo' (Post-Coital Tristesse)?",
+        "Opzione A": "Che colpisca solo le donne",
+        "Opzione B": "Che sia un segno di mancanza d'amore",
+        "Opzione C": "Entrambe le precedenti",
+        "Opzione D": "Che non esista",
+        "Risposta Corretta": "C",
+        "Curiosità": "È una reazione ormonale che può colpire chiunque, portando tristezza o ansia subito dopo il piacere."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "La posizione del 'Sogno della Farfalla' coinvolge principalmente:",
+        "Opzione A": "Il bordo del letto",
+        "Opzione B": "Una sedia",
+        "Opzione C": "La doccia",
+        "Opzione D": "Un'altalena",
+        "Risposta Corretta": "A",
+        "Curiosità": "Prevede che la donna sia sdraiata sul bordo del letto con le gambe sollevate."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Qual è il nome della posizione in cui i partner sono schiena contro schiena, spesso considerata puramente intima e meditativa?",
+        "Opzione A": "Il Ponte",
+        "Opzione B": "La Posizione del Cane",
+        "Opzione C": "Yab-Yum inverso",
+        "Opzione D": "La Conchiglia",
+        "Risposta Corretta": "C",
+        "Curiosità": "Viene usata nel sesso tantrico per sentire il respiro e il battito cardiaco del partner senza contatto visivo."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Mito o Realtà: L'ananas cambia davvero il sapore dei fluidi corporei?",
+        "Opzione A": "Mito totale",
+        "Opzione B": "Realtà",
+        "Opzione C": "Solo per gli uomini",
+        "Opzione D": "Solo se mangiato crudo",
+        "Risposta Corretta": "B",
+        "Curiosità": "L'alto contenuto di zuccheri e acidi può rendere il sapore più dolce, ma l'effetto non è istantaneo: servono circa 12-24 ore."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Nello spazio, quale problema fisico impedisce spesso l'erezione maschile ottimale?",
+        "Opzione A": "Il troppo ossigeno",
+        "Opzione B": "La pressione sanguigna che si sposta verso la testa e il petto",
+        "Opzione C": "Il freddo siderale",
+        "Opzione D": "La mancanza di privacy",
+        "Risposta Corretta": "B",
+        "Curiosità": "In microgravità, il sangue tende ad accumularsi nella parte superiore del corpo, rendendo difficile il mantenimento della pressione nelle estremità."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "La posizione 'L'incrocio magico' è una variante di quale posizione classica?",
+        "Opzione A": "Missionario",
+        "Opzione B": "Pecorina",
+        "Opzione C": "Andromaca (lei sopra)",
+        "Opzione D": "In piedi",
+        "Risposta Corretta": "A",
+        "Curiosità": "È un missionario dove le gambe della donna sono incrociate dietro la schiena dell'uomo per aumentare l'attrito."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Vero o Falso: È possibile avere un orgasmo solo attraverso la stimolazione dei capezzoli?",
+        "Opzione A": "Vero",
+        "Opzione B": "Falso",
+        "Opzione C": "Solo per le donne",
+        "Opzione D": "Solo durante la gravidanza",
+        "Risposta Corretta": "A",
+        "Curiosità": "La stimolazione dei capezzoli attiva la stessa area del cervello (la corteccia sensoriale genitale) della stimolazione clitoridea."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Cosa si intende per 'Erotica AI' nel futuro del porno?",
+        "Opzione A": "Robot che puliscono casa",
+        "Opzione B": "Contenuti generati da intelligenza artificiale personalizzati sui gusti dell'utente",
+        "Opzione C": "Sesso con computer",
+        "Opzione D": "Film degli anni '80",
+        "Risposta Corretta": "B",
+        "Curiosità": "Permette di creare scenari e partner virtuali unici che interagiscono in tempo reale."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Qual è il nome 'culinario' della posizione in cui i partner sono incastrati lateralmente?",
+        "Opzione A": "La Forchetta",
+        "Opzione B": "Il Cucchiaio (Spoonig)",
+        "Opzione C": "Il Coltello",
+        "Opzione D": "La Padella",
+        "Risposta Corretta": "B",
+        "Curiosità": "È considerata una delle posizioni più rilassanti e favorisce il rilascio di ossitocina, l'ormone delle coccole."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "In futuro, il sesso 'Holographic' permetterà di:",
+        "Opzione A": "Cambiare colore della pelle",
+        "Opzione B": "Avere un partner virtuale proiettato nella stanza",
+        "Opzione C": "Diventare invisibili",
+        "Opzione D": "Volare",
+        "Risposta Corretta": "B",
+        "Curiosità": "Le proiezioni 3D interattive sono il prossimo passo dopo i visori VR per un'esperienza meno isolante."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Qual è il nome della posizione che prende il nome da un famoso monumento di Parigi?",
+        "Opzione A": "Il Louvre",
+        "Opzione B": "La Tour Eiffel",
+        "Opzione C": "L'Arco di Trionfo",
+        "Opzione D": "Il Notre Dame",
+        "Risposta Corretta": "B",
+        "Curiosità": "È un termine gergale per una posizione a tre che forma una sagoma simile alla torre parigina."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Perché si dice che fare sesso nello spazio possa causare il 'mal di mare'?",
+        "Opzione A": "Per l'odore della navicella",
+        "Opzione B": "Perché i fluidi dell'orecchio interno fluttuano, causando vertigini durante il movimento",
+        "Opzione C": "Perché la vista si appanna",
+        "Opzione D": "Perché manca la gravità sulle lenzuola",
+        "Risposta Corretta": "B",
+        "Curiosità": "In assenza di gravità, il sistema vestibolare è confuso: i movimenti ritmici possono scatenare nausea immediata negli astronauti."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Mito o Realtà: Fare pipì subito dopo il rapporto riduce drasticamente il rischio di infezioni urinarie (cistite)?",
+        "Opzione A": "Mito",
+        "Opzione B": "Realtà",
+        "Opzione C": "Solo per gli uomini",
+        "Opzione D": "Solo se si beve acqua gasata",
+        "Risposta Corretta": "B",
+        "Curiosità": "È una delle poche verità scientifiche: il flusso di urina aiuta a espellere i batteri spinti verso l'uretra durante l'atto."
+    }
 ];
 
 window.TRIVIA_HOT_EN = [{
@@ -1831,399 +2026,591 @@ window.TRIVIA_HOT_EN = [{
         "Opzione D": "Silence",
         "Risposta Corretta": "A",
         "Curiosità": "Smiles activate mirror neurons."
-    },
-	{
-"Categoria":"HOT",
-"Domanda":"According to attraction studies, what influences first attraction the MOST?",
-"Opzione A":"Eye contact",
-"Opzione B":"Voice tone",
-"Opzione C":"Natural scent",
-"Opzione D":"Smile",
-"Risposta Corretta":"C",
-"Curiosità":"Smell unconsciously signals genetic compatibility."
-},
-{
-"Categoria":"HOT",
-"Domanda":"Which factor statistically increases the chance of a first-date kiss?",
-"Opzione A":"Laughing together",
-"Opzione B":"Sharing food",
-"Opzione C":"Walking side by side",
-"Opzione D":"Having drinks",
-"Risposta Corretta":"A",
-"Curiosità":"Shared laughter lowers social defenses."
-},
-{
-"Categoria":"HOT",
-"Domanda":"Which behavior is subconsciously perceived as seductive?",
-"Opzione A":"Speaking slowly",
-"Opzione B":"Asking personal questions",
-"Opzione C":"Mirroring movements",
-"Opzione D":"Keeping distance",
-"Risposta Corretta":"C",
-"Curiosità":"Mirroring builds instant trust."
-},
-{
-"Categoria":"HOT",
-"Domanda":"Which situation increases attraction psychologically?",
-"Opzione A":"Loud music",
-"Opzione B":"New environment",
-"Opzione C":"Deep conversation",
-"Opzione D":"Shared silence",
-"Risposta Corretta":"B",
-"Curiosità":"Novelty releases dopamine."
-},
-{
-"Categoria":"HOT",
-"Domanda":"What makes someone romantically memorable?",
-"Opzione A":"Physical appearance",
-"Opzione B":"Distinct scent",
-"Opzione C":"Strong eye contact",
-"Opzione D":"Unique voice",
-"Risposta Corretta":"B",
-"Curiosità":"Smell connects directly to emotional memory."
-},
-{
-    "Categoria": "HOT",
-    "Domanda": "Which famous scientist wrote an essay on 'The Science of Farting' for a friend?",
-    "Opzione A": "Albert Einstein", "Opzione B": "Benjamin Franklin", "Opzione C": "Isaac Newton", "Opzione D": "Charles Darwin",
-    "Risposta Corretta": "B",
-    "Curiosità": "He wrote 'Fart Proudly', suggesting that scientists should find a way to make flatulence smell like perfume."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "In 18th century London, what was a 'Molly House'?",
-    "Opzione A": "A brothel for dolls", "Opzione B": "A meeting place for gay men", "Opzione C": "A hospital for STDs", "Opzione D": "A women-only club",
-    "Risposta Corretta": "B",
-    "Curiosità": "These were clandestine pubs where men could meet, dance, and dress in drag."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is 'Formicophilia'?",
-    "Opzione A": "Fetish for uniforms", "Opzione B": "Arousal from small insects crawling on the body", "Opzione C": "Sex in a car", "Opzione D": "Attraction to foam",
-    "Risposta Corretta": "B",
-    "Curiosità": "It involves the sensation of ants or other small creatures crawling over the skin or genitals."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Which animal has a brain that 'shuts down' during mating to focus all energy on the act?",
-    "Opzione A": "Honeybee (Drone)", "Opzione B": "Great White Shark", "Opzione C": "Salmon", "Opzione D": "Slug",
-    "Risposta Corretta": "A",
-    "Curiosità": "The male bee's endophallus explodes inside the queen, and he dies shortly after."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is the 'Golden Ratio' of the perfect penis according to a 2015 study?",
-    "Opzione A": "There isn't one", "Opzione B": "Varies by culture", "Opzione C": "1.618", "Opzione D": "Depends on the height",
-    "Risposta Corretta": "B",
-    "Curiosità": "The study showed that women's preferences vary based on whether they seek a long-term or short-term partner."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "In ancient Greece, what was the 'Satyriasis' condition?",
-    "Opzione A": "Fear of goats", "Opzione B": "Excessive sexual desire in men", "Opzione C": "Infertility", "Opzione D": "A type of dance",
-    "Risposta Corretta": "B",
-    "Curiosità": "It is the male equivalent of Nymphomania, named after the lustful Satyrs."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Which country consumes the most pornography per capita according to yearly statistics?",
-    "Opzione A": "USA", "Opzione B": "Pakistan", "Opzione C": "Japan", "Opzione D": "United Kingdom",
-    "Risposta Corretta": "B",
-    "Curiosità": "Google Trends consistently shows Pakistan at the top of the list for adult-related searches."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is 'Dacryphilia'?",
-    "Opzione A": "Arousal from tears or crying", "Opzione B": "Fetish for doctors", "Opzione C": "Sex in the rain", "Opzione D": "Love for jewelry",
-    "Risposta Corretta": "A",
-    "Curiosità": "People with this fetish find the act of seeing someone cry or being comforted while crying arousing."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is the 'Erotic Blue' in French cinema history?",
-    "Opzione A": "A specific lens filter", "Opzione B": "A category of softcore films", "Opzione C": "The color of the law", "Opzione D": "A famous actress",
-    "Risposta Corretta": "B",
-    "Curiosità": "In France, pornographic films used to be marked with a blue square, hence the term 'film bleu'."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Which vegetable was once banned in some nunneries because its shape was 'too suggestive'?",
-    "Opzione A": "Eggplant", "Opzione B": "Cucumber", "Opzione C": "Carrot", "Opzione D": "Zucchini",
-    "Risposta Corretta": "C",
-    "Curiosità": "In some strict medieval convents, certain phallic-shaped vegetables were chopped before being served to avoid 'temptation'."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What does 'Netflix and Chill' actually mean in modern dating?",
-    "Opzione A": "Watching a movie and sleeping", "Opzione B": "Hooking up or having sex", "Opzione C": "Ordering pizza", "Opzione D": "A movie marathon",
-    "Risposta Corretta": "B",
-    "Curiosità": "It started as a meme but became a universal code for a sexual invitation."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is a 'Friend with Benefits'?",
-    "Opzione A": "A rich friend", "Opzione B": "A friend you have casual sex with", "Opzione C": "A gym partner", "Opzione D": "A colleague who helps you",
-    "Risposta Corretta": "B",
-    "Curiosità": "It describes a relationship that is sexual but lacks romantic commitment."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Which day of the year sees the highest sales of adult toys and lingerie?",
-    "Opzione A": "Christmas", "Opzione B": "Valentine's Day", "Opzione C": "Halloween", "Opzione D": "Black Friday",
-    "Risposta Corretta": "B",
-    "Curiosità": "February 14th is the peak for the entire adult industry worldwide."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is the 'Walk of Shame'?",
-    "Opzione A": "Walking home in last night's clothes after a hookup", "Opzione B": "Failing a test", "Opzione C": "Getting caught naked", "Opzione D": "A fashion show mistake",
-    "Risposta Corretta": "A",
-    "Curiosità": "Many now prefer to call it the 'Stride of Pride' to remove the stigma."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is a 'Safe Word' mostly used for?",
-    "Opzione A": "Online banking", "Opzione B": "Stopping BDSM or intense play", "Opzione C": "Hide and seek", "Opzione D": "Ordering food",
-    "Risposta Corretta": "B",
-    "Curiosità": "It ensures that both partners remain comfortable and can stop at any time."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What does 'Switch' mean in a sexual context?",
-    "Opzione A": "Turning off the lights", "Opzione B": "Someone who can be both dominant and submissive", "Opzione C": "Changing partners", "Opzione D": "A type of position",
-    "Risposta Corretta": "B",
-    "Curiosità": "Switches enjoy exploring both roles depending on their mood or partner."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is 'Crumpling'?",
-    "Opzione A": "Folding clothes", "Opzione B": "The involuntary tensing of muscles during orgasm", "Opzione C": "A type of massage", "Opzione D": "Bad sex",
-    "Risposta Corretta": "B",
-    "Curiosità": "It refers to how the body reacts physically to intense pleasure."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Which scent was found to be the most arousing for men in a famous study?",
-    "Opzione A": "Expensive perfume", "Opzione B": "Pumpkin Pie and Lavender", "Opzione C": "Freshly cut grass", "Opzione D": "Bleach",
-    "Risposta Corretta": "B",
-    "Curiosità": "Food-based scents often score higher than floral perfumes in arousal tests."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is 'One-Night Stand'?",
-    "Opzione A": "A bedside table", "Opzione B": "A single sexual encounter with no future plans", "Opzione C": "A solo performance", "Opzione D": "A short date",
-    "Risposta Corretta": "B",
-    "Curiosità": "It's the most common form of casual sexual encounter in urban areas."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is a 'Love Bite' commonly called in the US?",
-    "Opzione A": "Hickey", "Opzione B": "Bruise", "Opzione C": "Mark", "Opzione D": "Stamp",
-    "Risposta Corretta": "A",
-    "Curiosità": "It's a temporary bruise caused by suction on the skin."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is 'Edging'?",
-    "Opzione A": "Cutting hair", "Opzione B": "Maintaining arousal at the brink of orgasm for a long time", "Opzione C": "Sleeping on the edge of the bed", "Opzione D": "A gardening technique",
-    "Risposta Corretta": "B",
-    "Curiosità": "It is used to make the final climax much more intense."
-  },
-  {
-  "Categoria": "HOT",
-  "Domanda": "What is the peak time for messaging on dating apps?",
-  "Opzione A": "8:00 AM", "Opzione B": "1:00 PM", "Opzione C": "9:00 PM", "Opzione D": "3:00 AM",
-  "Risposta Corretta": "C",
-  "Curiosità": "Tinder 'prime time' is usually between 9 and 10 PM, when people are winding down at home."
-},
-{
-  "Categoria": "HOT",
-  "Domanda": "What does 'Breadcrumbing' mean?",
-  "Opzione A": "Sex in the kitchen", "Opzione B": "Sending sporadic messages to keep someone interested without serious intent", "Opzione C": "A type of massage", "Opzione D": "Sexting with food emojis",
-  "Risposta Corretta": "B",
-  "Curiosità": "It refers to leaving 'breadcrumbs' to keep someone following without ever reaching a destination."
-},
-{
-  "Categoria": "HOT",
-  "Domanda": "What is the world record for the most male orgasms in one hour?",
-  "Opzione A": "5", "Opzione B": "16", "Opzione C": "30", "Opzione D": "50",
-  "Risposta Corretta": "B",
-  "Curiosità": "In a clinical study, the male record was 16, significantly lower than the female record."
-},
-{
-  "Categoria": "HOT",
-  "Domanda": "According to science, having sex is equivalent to how many minutes of jogging?",
-  "Opzione A": "1 minute", "Opzione B": "15 minutes", "Opzione C": "30 minutes", "Opzione D": "60 minutes",
-  "Risposta Corretta": "B",
-  "Curiosità": "An average session burns about 4 calories per minute for men and 3 for women."
-},
-{
-  "Categoria": "HOT",
-  "Domanda": "Which vitamin is known to increase testosterone production and improve libido?",
-  "Opzione A": "Vitamin C", "Opzione B": "Vitamin D", "Opzione C": "Vitamin B12", "Opzione D": "Vitamin K",
-  "Risposta Corretta": "B",
-  "Curiosità": "Sun exposure (which produces Vitamin D) is linked to higher sexual drive."
-},
-{
-  "Categoria": "HOT",
-  "Domanda": "What is the medical term for 'fear of sex'?",
-  "Opzione A": "Genophobia", "Opzione B": "Arachnophobia", "Opzione C": "Hydrophobia", "Opzione D": "Claustrophobia",
-  "Risposta Corretta": "A",
-  "Curiosità": "It can stem from trauma or an extremely repressive upbringing."
-},
-{
-  "Categoria": "HOT",
-  "Domanda": "What does the term 'to misfire' (fare cilecca) refer to in sex?",
-  "Opzione A": "A loud kiss", "Opzione B": "A firearm failing to fire", "Opzione C": "A type of cake", "Opzione D": "An ancient dance",
-  "Risposta Corretta": "B",
-  "Curiosità": "It refers to the hammer of a gun hitting the primer without causing an explosion."
-},
-{
-  "Categoria": "HOT",
-  "Domanda": "In which country was the first latex condom invented?",
-  "Opzione A": "USA", "Opzione B": "Germany", "Opzione C": "United Kingdom", "Opzione D": "Japan",
-  "Risposta Corretta": "C",
-  "Curiosità": "The modern latex condom was developed in the UK in 1929."
-},
-{
-    "Categoria": "HOT",
-    "Domanda": "Which animal has a four-headed penis?",
-    "Opzione A": "Echidna", "Opzione B": "Kangaroo", "Opzione C": "Platypus", "Opzione D": "Koala",
-    "Risposta Corretta": "A",
-    "Curiosità": "The echidna uses two heads at a time while the other two 'rest' during mating."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is the name of the sexual practice where people dress up as animals (usually dogs)?",
-    "Opzione A": "Furries", "Opzione B": "Puppy Play", "Opzione C": "Animalism", "Opzione D": "Petting",
-    "Risposta Corretta": "B",
-    "Curiosità": "It is a popular roleplay in the BDSM community focusing on the dynamic between owner and pet."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "In which city was the first ever 'Sex Shop' opened in 1962?",
-    "Opzione A": "Amsterdam", "Opzione B": "Flensburg (Germany)", "Opzione C": "New York", "Opzione D": "London",
-    "Risposta Corretta": "B",
-    "Curiosità": "Beate Uhse, a former pilot, opened the world's first 'Specialist store for marital hygiene'."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is 'Cunilingus'?",
-    "Opzione A": "Oral sex performed on a woman", "Opzione B": "Anal sex", "Opzione C": "A type of condom", "Opzione D": "A position",
-    "Risposta Corretta": "A",
-    "Curiosità": "The word comes from the Latin 'cunnus' (vulva) and 'lingere' (to lick)."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is the average speed of sperm during ejaculation?",
-    "Opzione A": "1 km/h", "Opzione B": "17 km/h", "Opzione C": "45 km/h", "Opzione D": "100 km/h",
-    "Risposta Corretta": "B",
-    "Curiosità": "They travel at about 5 meters per second, which is quite fast for their microscopic size."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is 'Climacophilia'?",
-    "Opzione A": "Fetish for climbing mountains", "Opzione B": "Arousal from falling down stairs", "Opzione C": "Fear of orgasms", "Opzione D": "Fetish for heights",
-    "Risposta Corretta": "B",
-    "Curiosità": "It's a rare paraphilia where the individual gets sexual pleasure from the act of falling."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Which US president was rumored to have a very 'active' sex life in the Oval Office?",
-    "Opzione A": "J.F. Kennedy", "Opzione B": "Abraham Lincoln", "Opzione C": "George Washington", "Opzione D": "Barack Obama",
-    "Risposta Corretta": "A",
-    "Curiosità": "Kennedy was famous for his numerous affairs, including with Marilyn Monroe."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is 'Snowballing'?",
-    "Opzione A": "Sesso in the snow", "Opzione B": "Passing semen from one partner's mouth to another", "Opzione C": "A winter position", "Opzione D": "Massaging with ice",
-    "Risposta Corretta": "B",
-    "Curiosità": "It is a practice often seen in adult movies involving the exchange of fluids."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is the 'Blue Room' in some adult clubs?",
-    "Opzione A": "A room for crying", "Opzione B": "A room for voyeurism", "Opzione C": "A VIP area", "Opzione D": "The exit",
-    "Risposta Corretta": "B",
-    "Curiosità": "Often used for rooms where people can watch others without being seen."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is 'Somnophilia'?",
-    "Opzione A": "Attraction to sleep", "Opzione B": "Arousal from touching a sleeping person", "Opzione C": "Fear of dreams", "Opzione D": "Sex while walking",
-    "Risposta Corretta": "B",
-    "Curiosità": "Consent is the key issue here, as it involves an unconscious partner."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is the '2-Me' suit designed for?",
-    "Opzione A": "Diving", "Opzione B": "Having sex in zero gravity", "Opzione C": "BDSM play", "Opzione D": "Radiation protection",
-    "Risposta Corretta": "B",
-    "Curiosità": "It's a theoretical garment that allows two people to stay attached while floating in space."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Myth or Fact: Men can have multiple orgasms without a refractory period.",
-    "Opzione A": "Myth", "Opzione B": "Fact (but rare)", "Opzione C": "Only with surgery", "Opzione D": "Only teenagers",
-    "Risposta Corretta": "B",
-    "Curiosità": "Through training or specific techniques, some men can experience multiple peaks without losing erection."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is a 'Teledildonic' device?",
-    "Opzione A": "A phone for sex", "Opzione B": "A sex toy controlled remotely via the internet", "Opzione C": "An old Victorian toy", "Opzione D": "A satellite",
-    "Risposta Corretta": "B",
-    "Curiosità": "It allows partners to interact physically from different continents in real-time."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "The position known as 'The Amazon' involves:",
-    "Opzione A": "The man on top", "Opzione B": "The woman squatting over the man", "Opzione C": "Standing up", "Opzione D": "Using a hammock",
-    "Risposta Corretta": "B",
-    "Curiosità": "It's a power position where the woman has full control over depth and speed."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Which planet in our solar system is often the subject of 'erotic' space jokes due to its name?",
-    "Opzione A": "Mars", "Opzione B": "Uranus", "Opzione C": "Jupiter", "Opzione D": "Venus",
-    "Risposta Corretta": "B",
-    "Curiosità": "The phonetic similarity to 'Your Anus' has made it a staple of adult humor."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "Myth: Can a woman get pregnant from sex in a swimming pool?",
-    "Opzione A": "No, chlorine kills sperm", "Opzione B": "Yes, it is possible", "Opzione C": "Only in salt water", "Opzione D": "Only if the water is hot",
-    "Risposta Corretta": "B",
-    "Curiosità": "While difficult, chlorine doesn't kill sperm instantly, and pregnancy can still occur."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What does 'Sapiosexuality' mean?",
-    "Opzione A": "Attraction to monkeys", "Opzione B": "Attraction to intelligence", "Opzione C": "Attraction to wisdom", "Opzione D": "Attraction to power",
-    "Risposta Corretta": "B",
-    "Curiosità": "For sapiosexuals, the brain is considered the most erotic organ."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "The 'Eiffel Tower' position requires how many people?",
-    "Opzione A": "2", "Opzione B": "3", "Opzione C": "4", "Opzione D": "5",
-    "Risposta Corretta": "B",
-    "Curiosità": "It's a famous slang term for a specific threesome involving a high-five over the partner."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "What is the biggest myth about the 'G-Spot'?",
-    "Opzione A": "That it's a separate organ", "Opzione B": "That everyone has one", "Opzione C": "That it doesn't exist", "Opzione D": "That it's on the outside",
-    "Risposta Corretta": "A",
-    "Curiosità": "It is actually an extension of the clit structures inside the vaginal wall, not a stand-alone spot."
-  },
-  {
-    "Categoria": "HOT",
-    "Domanda": "In the future, 'VR Porn' is expected to include 'Haptic' feedback. What is it?",
-    "Opzione A": "Better sound", "Opzione B": "Simulated sense of touch and pressure", "Opzione C": "Smell-o-vision", "Opzione D": "Eye tracking",
-    "Risposta Corretta": "B",
-    "Curiosità": "Haptic suits allow users to feel the physical sensations of the virtual world on their skin."
-  }
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "According to attraction studies, what influences first attraction the MOST?",
+        "Opzione A": "Eye contact",
+        "Opzione B": "Voice tone",
+        "Opzione C": "Natural scent",
+        "Opzione D": "Smile",
+        "Risposta Corretta": "C",
+        "Curiosità": "Smell unconsciously signals genetic compatibility."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Which factor statistically increases the chance of a first-date kiss?",
+        "Opzione A": "Laughing together",
+        "Opzione B": "Sharing food",
+        "Opzione C": "Walking side by side",
+        "Opzione D": "Having drinks",
+        "Risposta Corretta": "A",
+        "Curiosità": "Shared laughter lowers social defenses."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Which behavior is subconsciously perceived as seductive?",
+        "Opzione A": "Speaking slowly",
+        "Opzione B": "Asking personal questions",
+        "Opzione C": "Mirroring movements",
+        "Opzione D": "Keeping distance",
+        "Risposta Corretta": "C",
+        "Curiosità": "Mirroring builds instant trust."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Which situation increases attraction psychologically?",
+        "Opzione A": "Loud music",
+        "Opzione B": "New environment",
+        "Opzione C": "Deep conversation",
+        "Opzione D": "Shared silence",
+        "Risposta Corretta": "B",
+        "Curiosità": "Novelty releases dopamine."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What makes someone romantically memorable?",
+        "Opzione A": "Physical appearance",
+        "Opzione B": "Distinct scent",
+        "Opzione C": "Strong eye contact",
+        "Opzione D": "Unique voice",
+        "Risposta Corretta": "B",
+        "Curiosità": "Smell connects directly to emotional memory."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Which famous scientist wrote an essay on 'The Science of Farting' for a friend?",
+        "Opzione A": "Albert Einstein",
+        "Opzione B": "Benjamin Franklin",
+        "Opzione C": "Isaac Newton",
+        "Opzione D": "Charles Darwin",
+        "Risposta Corretta": "B",
+        "Curiosità": "He wrote 'Fart Proudly', suggesting that scientists should find a way to make flatulence smell like perfume."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "In 18th century London, what was a 'Molly House'?",
+        "Opzione A": "A brothel for dolls",
+        "Opzione B": "A meeting place for gay men",
+        "Opzione C": "A hospital for STDs",
+        "Opzione D": "A women-only club",
+        "Risposta Corretta": "B",
+        "Curiosità": "These were clandestine pubs where men could meet, dance, and dress in drag."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is 'Formicophilia'?",
+        "Opzione A": "Fetish for uniforms",
+        "Opzione B": "Arousal from small insects crawling on the body",
+        "Opzione C": "Sex in a car",
+        "Opzione D": "Attraction to foam",
+        "Risposta Corretta": "B",
+        "Curiosità": "It involves the sensation of ants or other small creatures crawling over the skin or genitals."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Which animal has a brain that 'shuts down' during mating to focus all energy on the act?",
+        "Opzione A": "Honeybee (Drone)",
+        "Opzione B": "Great White Shark",
+        "Opzione C": "Salmon",
+        "Opzione D": "Slug",
+        "Risposta Corretta": "A",
+        "Curiosità": "The male bee's endophallus explodes inside the queen, and he dies shortly after."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is the 'Golden Ratio' of the perfect penis according to a 2015 study?",
+        "Opzione A": "There isn't one",
+        "Opzione B": "Varies by culture",
+        "Opzione C": "1.618",
+        "Opzione D": "Depends on the height",
+        "Risposta Corretta": "B",
+        "Curiosità": "The study showed that women's preferences vary based on whether they seek a long-term or short-term partner."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "In ancient Greece, what was the 'Satyriasis' condition?",
+        "Opzione A": "Fear of goats",
+        "Opzione B": "Excessive sexual desire in men",
+        "Opzione C": "Infertility",
+        "Opzione D": "A type of dance",
+        "Risposta Corretta": "B",
+        "Curiosità": "It is the male equivalent of Nymphomania, named after the lustful Satyrs."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Which country consumes the most pornography per capita according to yearly statistics?",
+        "Opzione A": "USA",
+        "Opzione B": "Pakistan",
+        "Opzione C": "Japan",
+        "Opzione D": "United Kingdom",
+        "Risposta Corretta": "B",
+        "Curiosità": "Google Trends consistently shows Pakistan at the top of the list for adult-related searches."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is 'Dacryphilia'?",
+        "Opzione A": "Arousal from tears or crying",
+        "Opzione B": "Fetish for doctors",
+        "Opzione C": "Sex in the rain",
+        "Opzione D": "Love for jewelry",
+        "Risposta Corretta": "A",
+        "Curiosità": "People with this fetish find the act of seeing someone cry or being comforted while crying arousing."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is the 'Erotic Blue' in French cinema history?",
+        "Opzione A": "A specific lens filter",
+        "Opzione B": "A category of softcore films",
+        "Opzione C": "The color of the law",
+        "Opzione D": "A famous actress",
+        "Risposta Corretta": "B",
+        "Curiosità": "In France, pornographic films used to be marked with a blue square, hence the term 'film bleu'."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Which vegetable was once banned in some nunneries because its shape was 'too suggestive'?",
+        "Opzione A": "Eggplant",
+        "Opzione B": "Cucumber",
+        "Opzione C": "Carrot",
+        "Opzione D": "Zucchini",
+        "Risposta Corretta": "C",
+        "Curiosità": "In some strict medieval convents, certain phallic-shaped vegetables were chopped before being served to avoid 'temptation'."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What does 'Netflix and Chill' actually mean in modern dating?",
+        "Opzione A": "Watching a movie and sleeping",
+        "Opzione B": "Hooking up or having sex",
+        "Opzione C": "Ordering pizza",
+        "Opzione D": "A movie marathon",
+        "Risposta Corretta": "B",
+        "Curiosità": "It started as a meme but became a universal code for a sexual invitation."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is a 'Friend with Benefits'?",
+        "Opzione A": "A rich friend",
+        "Opzione B": "A friend you have casual sex with",
+        "Opzione C": "A gym partner",
+        "Opzione D": "A colleague who helps you",
+        "Risposta Corretta": "B",
+        "Curiosità": "It describes a relationship that is sexual but lacks romantic commitment."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Which day of the year sees the highest sales of adult toys and lingerie?",
+        "Opzione A": "Christmas",
+        "Opzione B": "Valentine's Day",
+        "Opzione C": "Halloween",
+        "Opzione D": "Black Friday",
+        "Risposta Corretta": "B",
+        "Curiosità": "February 14th is the peak for the entire adult industry worldwide."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is the 'Walk of Shame'?",
+        "Opzione A": "Walking home in last night's clothes after a hookup",
+        "Opzione B": "Failing a test",
+        "Opzione C": "Getting caught naked",
+        "Opzione D": "A fashion show mistake",
+        "Risposta Corretta": "A",
+        "Curiosità": "Many now prefer to call it the 'Stride of Pride' to remove the stigma."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is a 'Safe Word' mostly used for?",
+        "Opzione A": "Online banking",
+        "Opzione B": "Stopping BDSM or intense play",
+        "Opzione C": "Hide and seek",
+        "Opzione D": "Ordering food",
+        "Risposta Corretta": "B",
+        "Curiosità": "It ensures that both partners remain comfortable and can stop at any time."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What does 'Switch' mean in a sexual context?",
+        "Opzione A": "Turning off the lights",
+        "Opzione B": "Someone who can be both dominant and submissive",
+        "Opzione C": "Changing partners",
+        "Opzione D": "A type of position",
+        "Risposta Corretta": "B",
+        "Curiosità": "Switches enjoy exploring both roles depending on their mood or partner."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is 'Crumpling'?",
+        "Opzione A": "Folding clothes",
+        "Opzione B": "The involuntary tensing of muscles during orgasm",
+        "Opzione C": "A type of massage",
+        "Opzione D": "Bad sex",
+        "Risposta Corretta": "B",
+        "Curiosità": "It refers to how the body reacts physically to intense pleasure."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Which scent was found to be the most arousing for men in a famous study?",
+        "Opzione A": "Expensive perfume",
+        "Opzione B": "Pumpkin Pie and Lavender",
+        "Opzione C": "Freshly cut grass",
+        "Opzione D": "Bleach",
+        "Risposta Corretta": "B",
+        "Curiosità": "Food-based scents often score higher than floral perfumes in arousal tests."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is 'One-Night Stand'?",
+        "Opzione A": "A bedside table",
+        "Opzione B": "A single sexual encounter with no future plans",
+        "Opzione C": "A solo performance",
+        "Opzione D": "A short date",
+        "Risposta Corretta": "B",
+        "Curiosità": "It's the most common form of casual sexual encounter in urban areas."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is a 'Love Bite' commonly called in the US?",
+        "Opzione A": "Hickey",
+        "Opzione B": "Bruise",
+        "Opzione C": "Mark",
+        "Opzione D": "Stamp",
+        "Risposta Corretta": "A",
+        "Curiosità": "It's a temporary bruise caused by suction on the skin."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is 'Edging'?",
+        "Opzione A": "Cutting hair",
+        "Opzione B": "Maintaining arousal at the brink of orgasm for a long time",
+        "Opzione C": "Sleeping on the edge of the bed",
+        "Opzione D": "A gardening technique",
+        "Risposta Corretta": "B",
+        "Curiosità": "It is used to make the final climax much more intense."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is the peak time for messaging on dating apps?",
+        "Opzione A": "8:00 AM",
+        "Opzione B": "1:00 PM",
+        "Opzione C": "9:00 PM",
+        "Opzione D": "3:00 AM",
+        "Risposta Corretta": "C",
+        "Curiosità": "Tinder 'prime time' is usually between 9 and 10 PM, when people are winding down at home."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What does 'Breadcrumbing' mean?",
+        "Opzione A": "Sex in the kitchen",
+        "Opzione B": "Sending sporadic messages to keep someone interested without serious intent",
+        "Opzione C": "A type of massage",
+        "Opzione D": "Sexting with food emojis",
+        "Risposta Corretta": "B",
+        "Curiosità": "It refers to leaving 'breadcrumbs' to keep someone following without ever reaching a destination."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is the world record for the most male orgasms in one hour?",
+        "Opzione A": "5",
+        "Opzione B": "16",
+        "Opzione C": "30",
+        "Opzione D": "50",
+        "Risposta Corretta": "B",
+        "Curiosità": "In a clinical study, the male record was 16, significantly lower than the female record."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "According to science, having sex is equivalent to how many minutes of jogging?",
+        "Opzione A": "1 minute",
+        "Opzione B": "15 minutes",
+        "Opzione C": "30 minutes",
+        "Opzione D": "60 minutes",
+        "Risposta Corretta": "B",
+        "Curiosità": "An average session burns about 4 calories per minute for men and 3 for women."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Which vitamin is known to increase testosterone production and improve libido?",
+        "Opzione A": "Vitamin C",
+        "Opzione B": "Vitamin D",
+        "Opzione C": "Vitamin B12",
+        "Opzione D": "Vitamin K",
+        "Risposta Corretta": "B",
+        "Curiosità": "Sun exposure (which produces Vitamin D) is linked to higher sexual drive."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is the medical term for 'fear of sex'?",
+        "Opzione A": "Genophobia",
+        "Opzione B": "Arachnophobia",
+        "Opzione C": "Hydrophobia",
+        "Opzione D": "Claustrophobia",
+        "Risposta Corretta": "A",
+        "Curiosità": "It can stem from trauma or an extremely repressive upbringing."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What does the term 'to misfire' (fare cilecca) refer to in sex?",
+        "Opzione A": "A loud kiss",
+        "Opzione B": "A firearm failing to fire",
+        "Opzione C": "A type of cake",
+        "Opzione D": "An ancient dance",
+        "Risposta Corretta": "B",
+        "Curiosità": "It refers to the hammer of a gun hitting the primer without causing an explosion."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "In which country was the first latex condom invented?",
+        "Opzione A": "USA",
+        "Opzione B": "Germany",
+        "Opzione C": "United Kingdom",
+        "Opzione D": "Japan",
+        "Risposta Corretta": "C",
+        "Curiosità": "The modern latex condom was developed in the UK in 1929."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Which animal has a four-headed penis?",
+        "Opzione A": "Echidna",
+        "Opzione B": "Kangaroo",
+        "Opzione C": "Platypus",
+        "Opzione D": "Koala",
+        "Risposta Corretta": "A",
+        "Curiosità": "The echidna uses two heads at a time while the other two 'rest' during mating."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is the name of the sexual practice where people dress up as animals (usually dogs)?",
+        "Opzione A": "Furries",
+        "Opzione B": "Puppy Play",
+        "Opzione C": "Animalism",
+        "Opzione D": "Petting",
+        "Risposta Corretta": "B",
+        "Curiosità": "It is a popular roleplay in the BDSM community focusing on the dynamic between owner and pet."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "In which city was the first ever 'Sex Shop' opened in 1962?",
+        "Opzione A": "Amsterdam",
+        "Opzione B": "Flensburg (Germany)",
+        "Opzione C": "New York",
+        "Opzione D": "London",
+        "Risposta Corretta": "B",
+        "Curiosità": "Beate Uhse, a former pilot, opened the world's first 'Specialist store for marital hygiene'."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is 'Cunilingus'?",
+        "Opzione A": "Oral sex performed on a woman",
+        "Opzione B": "Anal sex",
+        "Opzione C": "A type of condom",
+        "Opzione D": "A position",
+        "Risposta Corretta": "A",
+        "Curiosità": "The word comes from the Latin 'cunnus' (vulva) and 'lingere' (to lick)."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is the average speed of sperm during ejaculation?",
+        "Opzione A": "1 km/h",
+        "Opzione B": "17 km/h",
+        "Opzione C": "45 km/h",
+        "Opzione D": "100 km/h",
+        "Risposta Corretta": "B",
+        "Curiosità": "They travel at about 5 meters per second, which is quite fast for their microscopic size."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is 'Climacophilia'?",
+        "Opzione A": "Fetish for climbing mountains",
+        "Opzione B": "Arousal from falling down stairs",
+        "Opzione C": "Fear of orgasms",
+        "Opzione D": "Fetish for heights",
+        "Risposta Corretta": "B",
+        "Curiosità": "It's a rare paraphilia where the individual gets sexual pleasure from the act of falling."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Which US president was rumored to have a very 'active' sex life in the Oval Office?",
+        "Opzione A": "J.F. Kennedy",
+        "Opzione B": "Abraham Lincoln",
+        "Opzione C": "George Washington",
+        "Opzione D": "Barack Obama",
+        "Risposta Corretta": "A",
+        "Curiosità": "Kennedy was famous for his numerous affairs, including with Marilyn Monroe."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is 'Snowballing'?",
+        "Opzione A": "Sesso in the snow",
+        "Opzione B": "Passing semen from one partner's mouth to another",
+        "Opzione C": "A winter position",
+        "Opzione D": "Massaging with ice",
+        "Risposta Corretta": "B",
+        "Curiosità": "It is a practice often seen in adult movies involving the exchange of fluids."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is the 'Blue Room' in some adult clubs?",
+        "Opzione A": "A room for crying",
+        "Opzione B": "A room for voyeurism",
+        "Opzione C": "A VIP area",
+        "Opzione D": "The exit",
+        "Risposta Corretta": "B",
+        "Curiosità": "Often used for rooms where people can watch others without being seen."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is 'Somnophilia'?",
+        "Opzione A": "Attraction to sleep",
+        "Opzione B": "Arousal from touching a sleeping person",
+        "Opzione C": "Fear of dreams",
+        "Opzione D": "Sex while walking",
+        "Risposta Corretta": "B",
+        "Curiosità": "Consent is the key issue here, as it involves an unconscious partner."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is the '2-Me' suit designed for?",
+        "Opzione A": "Diving",
+        "Opzione B": "Having sex in zero gravity",
+        "Opzione C": "BDSM play",
+        "Opzione D": "Radiation protection",
+        "Risposta Corretta": "B",
+        "Curiosità": "It's a theoretical garment that allows two people to stay attached while floating in space."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Myth or Fact: Men can have multiple orgasms without a refractory period.",
+        "Opzione A": "Myth",
+        "Opzione B": "Fact (but rare)",
+        "Opzione C": "Only with surgery",
+        "Opzione D": "Only teenagers",
+        "Risposta Corretta": "B",
+        "Curiosità": "Through training or specific techniques, some men can experience multiple peaks without losing erection."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is a 'Teledildonic' device?",
+        "Opzione A": "A phone for sex",
+        "Opzione B": "A sex toy controlled remotely via the internet",
+        "Opzione C": "An old Victorian toy",
+        "Opzione D": "A satellite",
+        "Risposta Corretta": "B",
+        "Curiosità": "It allows partners to interact physically from different continents in real-time."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "The position known as 'The Amazon' involves:",
+        "Opzione A": "The man on top",
+        "Opzione B": "The woman squatting over the man",
+        "Opzione C": "Standing up",
+        "Opzione D": "Using a hammock",
+        "Risposta Corretta": "B",
+        "Curiosità": "It's a power position where the woman has full control over depth and speed."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Which planet in our solar system is often the subject of 'erotic' space jokes due to its name?",
+        "Opzione A": "Mars",
+        "Opzione B": "Uranus",
+        "Opzione C": "Jupiter",
+        "Opzione D": "Venus",
+        "Risposta Corretta": "B",
+        "Curiosità": "The phonetic similarity to 'Your Anus' has made it a staple of adult humor."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Myth: Can a woman get pregnant from sex in a swimming pool?",
+        "Opzione A": "No, chlorine kills sperm",
+        "Opzione B": "Yes, it is possible",
+        "Opzione C": "Only in salt water",
+        "Opzione D": "Only if the water is hot",
+        "Risposta Corretta": "B",
+        "Curiosità": "While difficult, chlorine doesn't kill sperm instantly, and pregnancy can still occur."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What does 'Sapiosexuality' mean?",
+        "Opzione A": "Attraction to monkeys",
+        "Opzione B": "Attraction to intelligence",
+        "Opzione C": "Attraction to wisdom",
+        "Opzione D": "Attraction to power",
+        "Risposta Corretta": "B",
+        "Curiosità": "For sapiosexuals, the brain is considered the most erotic organ."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "The 'Eiffel Tower' position requires how many people?",
+        "Opzione A": "2",
+        "Opzione B": "3",
+        "Opzione C": "4",
+        "Opzione D": "5",
+        "Risposta Corretta": "B",
+        "Curiosità": "It's a famous slang term for a specific threesome involving a high-five over the partner."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is the biggest myth about the 'G-Spot'?",
+        "Opzione A": "That it's a separate organ",
+        "Opzione B": "That everyone has one",
+        "Opzione C": "That it doesn't exist",
+        "Opzione D": "That it's on the outside",
+        "Risposta Corretta": "A",
+        "Curiosità": "It is actually an extension of the clit structures inside the vaginal wall, not a stand-alone spot."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "In the future, 'VR Porn' is expected to include 'Haptic' feedback. What is it?",
+        "Opzione A": "Better sound",
+        "Opzione B": "Simulated sense of touch and pressure",
+        "Opzione C": "Smell-o-vision",
+        "Opzione D": "Eye tracking",
+        "Risposta Corretta": "B",
+        "Curiosità": "Haptic suits allow users to feel the physical sensations of the virtual world on their skin."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is the 'Coital Alignment Technique' (CAT)?",
+        "Opzione A": "A yoga stretch",
+        "Opzione B": "A variation of missionary for better clitoral stimulation",
+        "Opzione C": "A way to sleep together",
+        "Opzione D": "A medical procedure",
+        "Risposta Corretta": "B",
+        "Curiosità": "It focuses on grinding movements rather than thrusting to maximize contact."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Myth or Fact: Can humans get 'stuck' together like dogs during sex?",
+        "Opzione A": "Myth",
+        "Opzione B": "Fact (Penis Captivus)",
+        "Opzione C": "Only in cold water",
+        "Opzione D": "Only if they are giants",
+        "Risposta Corretta": "B",
+        "Curiosità": "It's extremely rare and caused by involuntary vaginal muscle contractions, usually requiring medical relaxation."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is 'Cybersex' in the age of Neuralink?",
+        "Opzione A": "Typing in chat",
+        "Opzione B": "Direct brain-to-brain sexual stimulation via implants",
+        "Opzione C": "Watching robots",
+        "Opzione D": "Coding while naked",
+        "Risposta Corretta": "B",
+        "Curiosità": "Future brain interfaces could theoretically bypass physical touch to trigger pleasure centers directly."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "The 'Suspended Greyhound' position is best performed:",
+        "Opzione A": "On a sofa",
+        "Opzione B": "Against a wall",
+        "Opzione C": "In a swimming pool",
+        "Opzione D": "On the floor",
+        "Risposta Corretta": "B",
+        "Curiosità": "It is a standing position where the partner is lifted, requiring significant strength."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Which chemical released during sex is responsible for the 'sleepy' feeling in men?",
+        "Opzione A": "Adrenaline",
+        "Opzione B": "Prolactin",
+        "Opzione C": "Caffeine",
+        "Opzione D": "Estrogen",
+        "Risposta Corretta": "B",
+        "Curiosità": "Prolactin levels rise significantly after ejaculation, signaling the body to relax and recover."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is 'Astronaut Sex' biggest physical challenge according to NASA researchers?",
+        "Opzione A": "Lack of mood lighting",
+        "Opzione B": "Heat dissipation (sweat sticks to the body in blobs)",
+        "Opzione C": "Alien interference",
+        "Opzione D": "Lack of vitamins",
+        "Risposta Corretta": "B",
+        "Curiosità": "Without convection, sweat doesn't evaporate or drip; it stays on the skin, making things very slippery and messy."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "The position 'The Piledriver' is named after a move from which sport?",
+        "Opzione A": "Football",
+        "Opzione B": "Wrestling",
+        "Opzione C": "Tennis",
+        "Opzione D": "Golf",
+        "Risposta Corretta": "B",
+        "Curiosità": "It involves one partner lying on their back with legs held high, resembling the wrestling move."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Myth or Fact: Do aphrodisiacs like Spanish Fly actually work safely?",
+        "Opzione A": "Fact",
+        "Opzione B": "Myth (and they are dangerous)",
+        "Opzione C": "Only for flies",
+        "Opzione D": "Only in small doses",
+        "Risposta Corretta": "B",
+        "Curiosità": "Spanish Fly is actually a toxic beetle extract that causes irritation, not true arousal, and can be deadly."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "What is the bizarre name of the position where one partner is folded like a piece of office stationery?",
+        "Opzione A": "The Stapler",
+        "Opzione B": "The Paperclip",
+        "Opzione C": "The Hole Puncher",
+        "Opzione D": "The Post-it",
+        "Risposta Corretta": "B",
+        "Curiosità": "The 'Paperclip' position requires high flexibility as it involves deep folding of the legs towards the chest."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "In the future of 'Teledildonics', what does the technology allow?",
+        "Opzione A": "Watching TV while having sex",
+        "Opzione B": "Remote physical touch via internet-connected devices",
+        "Opzione C": "Sex with holograms only",
+        "Opzione D": "Telepathic communication",
+        "Risposta Corretta": "B",
+        "Curiosità": "Teledildonics allows partners to control each other's toys from anywhere in the world in real-time."
+    }, {
+        "Categoria": "HOT",
+        "Domanda": "Myth or Fact: Can a broken heart (Takotsubo Syndrome) actually be triggered by extreme sexual climax?",
+        "Opzione A": "Myth",
+        "Opzione B": "Fact (but very rare)",
+        "Opzione C": "Only in movies",
+        "Opzione D": "Only if you are under 20",
+        "Risposta Corretta": "B",
+        "Curiosità": "Extreme emotional or physical stress, even from intense pleasure, can temporarily stun the heart muscle."
+    }
 
 ];

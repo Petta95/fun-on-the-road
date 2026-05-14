@@ -116,7 +116,7 @@
           <div class="flex items-center justify-center gap-3 text-xs text-slate-500 mb-2">
             <span class="flex items-center gap-1">
               <i class="fa-solid fa-circle-question" style="color:rgba(239,68,68,0.6)"></i>
-              <span id="start-count">13 domande</span>
+              <span id="start-count">150 domande</span>
             </span>
             <span class="text-slate-700">·</span>
             <span class="flex items-center gap-1">
@@ -137,7 +137,7 @@
         <!-- Progress -->
         <div>
           <div class="flex justify-between items-center text-xs mb-2">
-            <span class="text-slate-500 font-semibold" id="q-counter">1 / 13</span>
+            <span class="text-slate-500 font-semibold" id="q-counter">1 / 150</span>
             <span class="font-bold tracking-wide text-xs px-2.5 py-0.5 rounded-full" id="q-category-badge" style="background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.25)"></span>
           </div>
           <div class="h-1.5 rounded-full overflow-hidden" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.05)">
@@ -255,12 +255,12 @@
   <!-- ══════════════════════════════════════════
        AGE GATE MODAL (blocks on load)
   ══════════════════════════════════════════ -->
-  <div id="modal-age" class="fixed inset-0 z-[300] flex items-center justify-center px-5" role="dialog" aria-modal="true" aria-labelledby="age-title" style="background:rgba(10,0,18,0.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)">
+  <div id="modal-age" class="fixed inset-0 z-[300] flex items-center justify-center px-5" role="dialog" aria-modal="true" aria-labelledby="age-modal-title" style="background:rgba(10,0,18,0.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)">
     <div class="glass-panel p-8 text-center w-full max-w-sm animate-fade-in-up" style="border-color:rgba(239,68,68,0.30)">
       <div class="w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-5" style="background:rgba(239,68,68,0.15)">
         <i class="fa-solid fa-shield-heart text-4xl" style="color:#ef4444"></i>
       </div>
-      <h2 id="age-title" class="text-white font-extrabold text-xl mb-2" id="age-modal-title">Contenuto per Adulti</h2>
+      <h2 id="age-modal-title" class="text-white font-extrabold text-xl mb-2">Contenuto per Adulti</h2>
       <p class="text-slate-400 text-sm leading-relaxed mb-7" id="age-modal-text">
         Questo gioco contiene domande per adulti (18+). Confermi di avere almeno 18 anni?
       </p>
@@ -347,7 +347,7 @@
 
     /* ─ LANGUAGE & DATA ─ */
     var lang = localStorage.getItem('fotr_lang') || 'en';
-    var RAW  = (lang === 'it') ? window.TRIVIA_HOT_IT : window.TRIVIA_HOT_EN;
+    var RAW  = (lang === 'it') ? window.TRIVIA_HOT_IT : (window.TRIVIA_HOT_EN || window.TRIVIA_HOT_IT);
 
     /* ─ TRANSLATIONS ─ */
     var T = {
@@ -766,6 +766,7 @@
     /* ─ AGE GATE ─ */
     document.getElementById('age-btn-yes').addEventListener('click', function() {
       document.getElementById('modal-age').style.display = 'none';
+      initTeamUI();
       if (!isPremium()) showPaywall();
     });
 

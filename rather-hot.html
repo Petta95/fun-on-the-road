@@ -616,6 +616,7 @@
     /* ─ AGE GATE ─ */
     document.getElementById('btn-age-yes').addEventListener('click', function () {
       document.getElementById('modal-age').style.display = 'none';
+      initStartCard();
     });
 
     /* ─ PREMIUM CHECK ─ */
@@ -1132,6 +1133,7 @@
       playArea.style.display        = 'none';
       setCtrl('start');
       gameState = 'start';
+      initStartCard();
     });
 
     /* ─ BET BADGE (update with team names) ─ */
