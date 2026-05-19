@@ -56,11 +56,64 @@
             <p class="text-white font-semibold text-sm" data-i18n="langLabel">App Language</p>
             <p class="text-slate-400 text-xs" data-i18n="langHint">Changes all text in the app</p>
           </div>
-          <!-- Language toggle EN / IT -->
-          <div class="flex items-center gap-1 glass-card px-1 py-1 rounded-xl">
-            <button id="lang-en" class="px-3 py-1.5 rounded-lg text-xs font-bold tracking-wide transition-all duration-200">EN</button>
-            <button id="lang-it" class="px-3 py-1.5 rounded-lg text-xs font-bold tracking-wide transition-all duration-200">IT</button>
+        </div>
+        <!-- Language selector with CSS flags -->
+        <div class="flex flex-col gap-2 mt-2">
+          <div class="flex gap-2">
+            <button id="lang-en" class="flex-1 flex items-center gap-2.5 px-3 py-2.5 rounded-xl glass-card transition-all duration-200">
+              <!-- UK flag (Union Jack SVG) -->
+              <svg class="w-9 h-6 rounded flex-shrink-0" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+                <rect width="60" height="40" fill="#012169"/>
+                <line x1="0" y1="0" x2="60" y2="40" stroke="#fff" stroke-width="9"/>
+                <line x1="60" y1="0" x2="0" y2="40" stroke="#fff" stroke-width="9"/>
+                <line x1="0" y1="0" x2="60" y2="40" stroke="#C8102E" stroke-width="5"/>
+                <line x1="60" y1="0" x2="0" y2="40" stroke="#C8102E" stroke-width="5"/>
+                <rect x="24" y="0" width="12" height="40" fill="#fff"/>
+                <rect x="0" y="14" width="60" height="12" fill="#fff"/>
+                <rect x="26" y="0" width="8" height="40" fill="#C8102E"/>
+                <rect x="0" y="16" width="60" height="8" fill="#C8102E"/>
+              </svg>
+              <span class="text-sm font-semibold">English</span>
+            </button>
+            <button id="lang-it" class="flex-1 flex items-center gap-2.5 px-3 py-2.5 rounded-xl glass-card transition-all duration-200">
+              <!-- IT flag: green / white / red vertical -->
+              <div class="w-9 h-6 rounded overflow-hidden flex flex-shrink-0">
+                <div class="flex-1" style="background:#009246"></div>
+                <div class="flex-1 bg-white"></div>
+                <div class="flex-1" style="background:#ce2b37"></div>
+              </div>
+              <span class="text-sm font-semibold">Italiano</span>
+            </button>
           </div>
+          <div class="flex gap-2">
+            <button id="lang-fr" class="flex-1 flex items-center gap-2.5 px-3 py-2.5 rounded-xl glass-card transition-all duration-200">
+              <!-- FR flag: blue / white / red vertical -->
+              <div class="w-9 h-6 rounded overflow-hidden flex flex-shrink-0">
+                <div class="flex-1" style="background:#002395"></div>
+                <div class="flex-1 bg-white"></div>
+                <div class="flex-1" style="background:#ed2939"></div>
+              </div>
+              <span class="text-sm font-semibold">Français</span>
+            </button>
+            <button id="lang-de" class="flex-1 flex items-center gap-2.5 px-3 py-2.5 rounded-xl glass-card transition-all duration-200">
+              <!-- DE flag: black / red / gold horizontal -->
+              <div class="w-9 h-6 rounded overflow-hidden flex flex-col flex-shrink-0">
+                <div class="flex-1" style="background:#000"></div>
+                <div class="flex-1" style="background:#dd0000"></div>
+                <div class="flex-1" style="background:#ffce00"></div>
+              </div>
+              <span class="text-sm font-semibold">Deutsch</span>
+            </button>
+          </div>
+          <button id="lang-es" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl glass-card transition-all duration-200">
+            <!-- ES flag: red / yellow(×2) / red horizontal -->
+            <div class="w-9 h-6 rounded overflow-hidden flex flex-col flex-shrink-0">
+              <div style="flex:1;background:#c60b1e"></div>
+              <div style="flex:2;background:#ffc400"></div>
+              <div style="flex:1;background:#c60b1e"></div>
+            </div>
+            <span class="text-sm font-semibold">Español</span>
+          </button>
         </div>
       </section>
 
@@ -237,6 +290,51 @@
         aboutText: 'Il compagno di viaggio definitivo. Trasforma ogni km in divertimento.',
         navHome: 'Home', navLeaderboard: 'Classifica', navSettings: 'Impostazioni',
       },
+      fr: {
+        pageTitle: 'Paramètres', pageSubtitle: 'Préférences de l\'app',
+        sectionLanguage: 'Langue', langLabel: 'Langue de l\'app', langHint: 'Modifie tous les textes',
+        sectionAudio: 'Audio',
+        sfxLabel: 'Effets Sonores', sfxHint: 'Tapotements, résultats, compte à rebours',
+        musicLabel: 'Musique de Fond', musicHint: 'Ambiance pour les voyages',
+        sectionContent: 'Contenu',
+        safeLabel: 'Filtre Famille', safeHint: 'Masquer le contenu adulte (18+)',
+        sectionGame: 'Jeu',
+        teamsLink: 'Gérer les Équipes',
+        resetLabel: 'Réinitialiser les Scores', resetHint: 'Efface les points, conserve les noms', resetBtn: 'Réinitialiser',
+        sectionAbout: 'À propos',
+        aboutText: 'Le compagnon de voyage ultime. Transformez chaque km en plaisir.',
+        navHome: 'Accueil', navLeaderboard: 'Classement', navSettings: 'Paramètres',
+      },
+      de: {
+        pageTitle: 'Einstellungen', pageSubtitle: 'App-Einstellungen',
+        sectionLanguage: 'Sprache', langLabel: 'App-Sprache', langHint: 'Ändert alle Texte',
+        sectionAudio: 'Audio',
+        sfxLabel: 'Soundeffekte', sfxHint: 'Tippen, Ergebnisse, Countdown',
+        musicLabel: 'Hintergrundmusik', musicHint: 'Atmosphärische Reisemusik',
+        sectionContent: 'Inhalt',
+        safeLabel: 'Familienfilter', safeHint: 'Inhalte für Erwachsene ausblenden (18+)',
+        sectionGame: 'Spiel',
+        teamsLink: 'Teams verwalten',
+        resetLabel: 'Punkte zurücksetzen', resetHint: 'Löscht Punkte, behält Teamnamen', resetBtn: 'Zurücksetzen',
+        sectionAbout: 'Über',
+        aboutText: 'Das ultimative Reisespiel für Freunde und Familien. Jeder km wird zum Spaß.',
+        navHome: 'Startseite', navLeaderboard: 'Rangliste', navSettings: 'Einstellungen',
+      },
+      es: {
+        pageTitle: 'Ajustes', pageSubtitle: 'Preferencias de la app',
+        sectionLanguage: 'Idioma', langLabel: 'Idioma de la app', langHint: 'Cambia todos los textos',
+        sectionAudio: 'Audio',
+        sfxLabel: 'Efectos de Sonido', sfxHint: 'Toques, resultados, cuenta atrás',
+        musicLabel: 'Música de Fondo', musicHint: 'Música ambiente para el viaje',
+        sectionContent: 'Contenido',
+        safeLabel: 'Filtro Familiar', safeHint: 'Ocultar contenido adulto (18+)',
+        sectionGame: 'Juego',
+        teamsLink: 'Gestionar Equipos',
+        resetLabel: 'Reiniciar Puntuaciones', resetHint: 'Borra puntos, mantiene nombres', resetBtn: 'Reiniciar',
+        sectionAbout: 'Acerca de',
+        aboutText: 'El compañero de viaje definitivo. Convierte cada km en diversión.',
+        navHome: 'Inicio', navLeaderboard: 'Clasificación', navSettings: 'Ajustes',
+      },
     };
 
     let lang = localStorage.getItem('fotr_lang') || 'en';
@@ -250,28 +348,27 @@
     }
 
     /* ── Language buttons ── */
+    const LANG_CODES = ['en', 'it', 'fr', 'de', 'es'];
+
     function updateLangButtons(l) {
-      document.getElementById('lang-en').className =
-        l === 'en'
-          ? 'px-3 py-1.5 rounded-lg text-xs font-bold tracking-wide bg-sky-500 text-white'
-          : 'px-3 py-1.5 rounded-lg text-xs font-bold tracking-wide text-slate-400 hover:text-white transition-colors';
-      document.getElementById('lang-it').className =
-        l === 'it'
-          ? 'px-3 py-1.5 rounded-lg text-xs font-bold tracking-wide bg-sky-500 text-white'
-          : 'px-3 py-1.5 rounded-lg text-xs font-bold tracking-wide text-slate-400 hover:text-white transition-colors';
+      LANG_CODES.forEach(code => {
+        const btn = document.getElementById('lang-' + code);
+        if (!btn) return;
+        const isEs = code === 'es';
+        const base = (isEs ? 'flex' : 'flex-1 flex') + ' items-center gap-2.5 px-3 py-2.5 rounded-xl transition-all duration-200';
+        btn.className = code === l
+          ? base + ' bg-sky-500 text-white'
+          : base + ' glass-card text-slate-300 hover:text-white';
+      });
     }
 
-    document.getElementById('lang-en').addEventListener('click', () => {
-      lang = 'en';
-      localStorage.setItem('fotr_lang', 'en');
-      applyTranslations('en');
-      updateLangButtons('en');
-    });
-    document.getElementById('lang-it').addEventListener('click', () => {
-      lang = 'it';
-      localStorage.setItem('fotr_lang', 'it');
-      applyTranslations('it');
-      updateLangButtons('it');
+    LANG_CODES.forEach(code => {
+      document.getElementById('lang-' + code).addEventListener('click', () => {
+        lang = code;
+        localStorage.setItem('fotr_lang', code);
+        applyTranslations(code);
+        updateLangButtons(code);
+      });
     });
 
     /* ── Audio toggles ── */

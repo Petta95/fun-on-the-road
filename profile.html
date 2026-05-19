@@ -53,69 +53,31 @@
 
         <p class="text-white font-extrabold text-xl mt-3" id="profile-name">Traveller</p>
         <p class="text-slate-400 text-sm mt-0.5" id="level-title">Novice Explorer</p>
-
-        <!-- XP bar -->
-        <div class="w-full mt-4">
-          <div class="flex justify-between text-xs text-slate-500 mb-1.5">
-            <span data-i18n="xpLabel">XP Progress</span>
-            <span id="xp-text">0 / 100</span>
-          </div>
-          <div class="h-2 bg-white/5 rounded-full overflow-hidden border border-white/10">
-            <div id="xp-bar" class="h-full rounded-full transition-all duration-700"
-                 style="width:0%; background: linear-gradient(90deg, #0ea5e9, #8b5cf6)"></div>
-          </div>
-        </div>
       </div>
 
-      <!-- ─ STAT CARDS (grandi, gamification) ─ -->
+      <!-- ─ GIOCHI EFFETTUATI ─ -->
       <p class="text-slate-500 text-[10px] font-bold tracking-[0.18em] uppercase px-1" data-i18n="statsSection">Your Statistics</p>
 
-      <!-- Viaggi Completati -->
       <div class="glass-card p-6 flex items-center gap-5 animate-fade-in-up">
         <div class="w-16 h-16 rounded-2xl bg-sky-500/15 flex items-center justify-center flex-shrink-0">
-          <i class="fa-solid fa-road text-sky-400 text-3xl"></i>
+          <i class="fa-solid fa-gamepad text-sky-400 text-3xl"></i>
         </div>
         <div class="flex-1">
-          <p class="text-slate-400 text-xs font-semibold uppercase tracking-widest mb-1" data-i18n="statTrips">Completed Trips</p>
-          <p class="text-white font-extrabold leading-none" id="stat-trips" style="font-size:2.5rem">0</p>
-        </div>
-        <div class="flex-shrink-0 text-right">
-          <span class="bg-sky-500/15 text-sky-400 text-[10px] font-bold px-2 py-1 rounded-lg border border-sky-500/20" data-i18n="statTripsUnit">trips</span>
-        </div>
-      </div>
-
-      <!-- Punti Totali -->
-      <div class="glass-card p-6 flex items-center gap-5 animate-fade-in-up" style="animation-delay:0.07s">
-        <div class="w-16 h-16 rounded-2xl bg-amber-500/15 flex items-center justify-center flex-shrink-0">
-          <i class="fa-solid fa-star text-amber-400 text-3xl"></i>
-        </div>
-        <div class="flex-1">
-          <p class="text-slate-400 text-xs font-semibold uppercase tracking-widest mb-1" data-i18n="statPoints">Total Points</p>
-          <p class="text-white font-extrabold leading-none" id="stat-points" style="font-size:2.5rem">0</p>
-        </div>
-        <div class="flex-shrink-0 text-right">
-          <span class="bg-amber-500/15 text-amber-400 text-[10px] font-bold px-2 py-1 rounded-lg border border-amber-500/20" data-i18n="statPointsUnit">pts</span>
-        </div>
-      </div>
-
-      <!-- Livello -->
-      <div class="glass-card p-6 flex items-center gap-5 animate-fade-in-up" style="animation-delay:0.14s">
-        <div class="w-16 h-16 rounded-2xl bg-violet-500/15 flex items-center justify-center flex-shrink-0">
-          <i class="fa-solid fa-trophy text-violet-400 text-3xl"></i>
-        </div>
-        <div class="flex-1">
-          <p class="text-slate-400 text-xs font-semibold uppercase tracking-widest mb-1" data-i18n="statLevel">Level</p>
-          <p class="text-white font-extrabold text-4xl leading-none" id="stat-level">1</p>
-          <p class="text-violet-400 text-xs font-semibold mt-1" id="stat-title">Novice Explorer</p>
+          <p class="text-slate-400 text-xs font-semibold uppercase tracking-widest mb-1" data-i18n="statGames">Games Played</p>
+          <p class="text-white font-extrabold leading-none" id="stat-games" style="font-size:2.5rem">0</p>
         </div>
         <div class="flex-shrink-0">
-          <div class="w-12 h-12 rounded-xl bg-violet-500/20 flex items-center justify-center">
-            <i class="fa-solid fa-medal text-violet-400 text-xl"></i>
-          </div>
+          <span class="bg-sky-500/15 text-sky-400 text-[10px] font-bold px-2 py-1 rounded-lg border border-sky-500/20" data-i18n="statGamesUnit">games</span>
         </div>
       </div>
 
-      <!-- Games played grid -->
+      <!-- ─ TEAM MIGLIORE (classifica persistente) ─ -->
+      <div class="glass-card p-5 animate-fade-in-up" style="animation-delay:0.07s">
+        <p class="text-slate-400 text-xs font-semibold uppercase tracking-widest mb-3" data-i18n="statBestTeam">Best Team</p>
+        <ol id="team-ranking" class="flex flex-col gap-2"></ol>
+      </div>
+
+      <!-- ─ GIOCHI PER TIPO ─ -->
       <p class="text-slate-500 text-[10px] font-bold tracking-[0.18em] uppercase px-1 mt-1" data-i18n="gamesSection">Games Played</p>
       <div class="grid grid-cols-2 gap-3">
         <div class="glass-card p-4 text-center animate-fade-in-up">
@@ -171,91 +133,88 @@
 
   <!-- ── SCRIPTS ────────────────────────────── -->
   <script>
-    /* Level system */
-    const LEVELS = [
-      { min: 0,    title: 'Novice Explorer',    label: 'Lv 1' },
-      { min: 50,   title: 'Road Wanderer',       label: 'Lv 2' },
-      { min: 150,  title: 'Highway Champion',    label: 'Lv 3' },
-      { min: 350,  title: 'Road Trip Master',    label: 'Lv 4' },
-      { min: 700,  title: 'Legendary Traveller', label: 'Lv 5' },
-    ];
+    const lang  = localStorage.getItem('fotr_lang') || 'en';
+    const teams = JSON.parse(localStorage.getItem('fotr_teams') || '{}');
+    const games = JSON.parse(localStorage.getItem('fotr_games') || '{}');
 
-    function getLevel(points) {
-      let lv = LEVELS[0];
-      for (const l of LEVELS) {
-        if (points >= l.min) lv = l;
-        else break;
-      }
-      return lv;
-    }
-
-    function getXpProgress(points) {
-      let idx = 0;
-      for (let i = 0; i < LEVELS.length; i++) {
-        if (points >= LEVELS[i].min) idx = i;
-        else break;
-      }
-      const current = LEVELS[idx].min;
-      const next    = LEVELS[idx + 1] ? LEVELS[idx + 1].min : current + 500;
-      return Math.min(100, Math.round(((points - current) / (next - current)) * 100));
-    }
-
-    /* Load stats */
-    const stats  = JSON.parse(localStorage.getItem('fotr_stats')  || '{}');
-    const teams  = JSON.parse(localStorage.getItem('fotr_teams')  || '{}');
-    const games  = JSON.parse(localStorage.getItem('fotr_games')  || '{}');
-
-    const trips  = stats.trips  ?? 0;
-    const points = stats.points ?? 0;
-    const lv     = getLevel(points);
-    const xp     = getXpProgress(points);
-
-    /* Avatar initials from team name or default */
+    /* ── Avatar ── */
     const playerName = teams.team1 || 'Traveller';
-    document.getElementById('avatar-initials').textContent =
-      playerName.slice(0, 2).toUpperCase();
-    document.getElementById('profile-name').textContent = playerName;
+    document.getElementById('avatar-initials').textContent = playerName.slice(0,2).toUpperCase();
+    document.getElementById('profile-name').textContent    = playerName;
+    document.getElementById('level-badge').textContent     = '⭐';
+    document.getElementById('level-title').textContent     = playerName;
 
-    /* Stats */
-    document.getElementById('stat-trips').textContent  = trips;
-    document.getElementById('stat-points').textContent = points;
-    document.getElementById('stat-level').textContent  = LEVELS.indexOf(lv) + 1;
-    document.getElementById('stat-title').textContent  = lv.title;
-    document.getElementById('level-badge').textContent = lv.label;
-    document.getElementById('level-title').textContent = lv.title;
+    /* ── Total games played ── */
+    const totalGames = (games.filmQuiz || 0) + (games.musicBuzz || 0) +
+                       (games.trivia   || 0) + (games.cityQuiz  || 0) +
+                       (games.rather   || 0) + (games.taboo     || 0) +
+                       (games.triviaHot|| 0) + (games.ratherHot || 0);
+    document.getElementById('stat-games').textContent = totalGames;
 
-    /* XP bar */
-    const lvIdx = LEVELS.indexOf(lv);
-    const isMaxLv = lvIdx >= LEVELS.length - 1;
-    const nextThreshold = isMaxLv ? null : LEVELS[lvIdx + 1].min;
-    document.getElementById('xp-text').textContent = isMaxLv
-      ? points + ' pts (MAX)'
-      : points + ' / ' + nextThreshold;
-    setTimeout(() => {
-      document.getElementById('xp-bar').style.width = (isMaxLv ? 100 : xp) + '%';
-    }, 300);
+    /* ── Team ranking (persistent across resets) ── */
+    /* fotr_all_scores = { "TeamName": totalPoints, ... } — saved by ranking.html on reset */
+    const allScores = JSON.parse(localStorage.getItem('fotr_all_scores') || '{}');
 
-    /* Per-game counters */
+    /* Merge current live session scores so they appear even before reset */
+    const liveScores = Object.assign({}, allScores);
+    if (teams.team1 && (teams.score1 || 0) > 0) {
+      liveScores[teams.team1] = (liveScores[teams.team1] || 0) + (teams.score1 || 0);
+    }
+    if (teams.team2 && (teams.score2 || 0) > 0) {
+      liveScores[teams.team2] = (liveScores[teams.team2] || 0) + (teams.score2 || 0);
+    }
+
+    const T = {
+      en: { noTeams:'No team data yet — play a game and reset scores!', ptsUnit:'pts',
+            pageTitle:'My Profile', pageSubtitle:'Your travel stats',
+            statsSection:'Your Statistics', statGames:'Games Played', statGamesUnit:'games',
+            statBestTeam:'Team Rankings', gamesSection:'Games by Type',
+            gFilm:'Film Quiz', gMusic:'Music Buzz', gTrivia:'Trivia', gCity:'City Quiz' },
+      it: { noTeams:'Nessun dato — gioca e resetta per registrare!', ptsUnit:'pt',
+            pageTitle:'Profilo', pageSubtitle:'Le tue statistiche di viaggio',
+            statsSection:'Le Tue Statistiche', statGames:'Giochi Effettuati', statGamesUnit:'partite',
+            statBestTeam:'Classifica Team', gamesSection:'Giochi per Tipo',
+            gFilm:'Film Quiz', gMusic:'Musica', gTrivia:'Trivia', gCity:'City Quiz' },
+      fr: { noTeams:'Aucune donnée — jouez et réinitialisez pour enregistrer !', ptsUnit:'pts',
+            pageTitle:'Mon Profil', pageSubtitle:'Tes stats de voyage',
+            statsSection:'Tes Statistiques', statGames:'Parties Jouées', statGamesUnit:'parties',
+            statBestTeam:'Classement Équipes', gamesSection:'Jeux par Type',
+            gFilm:'Film Quiz', gMusic:'Music Buzz', gTrivia:'Trivia', gCity:'City Quiz' },
+      de: { noTeams:'Noch keine Daten — spielen und zurücksetzen!', ptsUnit:'Pkt',
+            pageTitle:'Mein Profil', pageSubtitle:'Deine Reisestatistiken',
+            statsSection:'Deine Statistiken', statGames:'Gespielte Partien', statGamesUnit:'Partien',
+            statBestTeam:'Team-Rangliste', gamesSection:'Spiele nach Typ',
+            gFilm:'Film Quiz', gMusic:'Music Buzz', gTrivia:'Trivia', gCity:'City Quiz' },
+      es: { noTeams:'Sin datos — ¡juega y reinicia para registrar!', ptsUnit:'pts',
+            pageTitle:'Mi Perfil', pageSubtitle:'Tus estadísticas de viaje',
+            statsSection:'Tus Estadísticas', statGames:'Partidas Jugadas', statGamesUnit:'partidas',
+            statBestTeam:'Clasificación Equipos', gamesSection:'Juegos por Tipo',
+            gFilm:'Film Quiz', gMusic:'Music Buzz', gTrivia:'Trivia', gCity:'City Quiz' },
+    };
+    const t = T[lang] || T.en;
+
+    const medals = ['🥇','🥈','🥉','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
+    const ranking = document.getElementById('team-ranking');
+    const sorted  = Object.entries(liveScores).sort((a,b) => b[1] - a[1]);
+    if (sorted.length === 0) {
+      ranking.innerHTML = '<li class="text-slate-500 text-sm text-center py-3">' + t.noTeams + '</li>';
+    } else {
+      ranking.innerHTML = sorted.map(([name, pts], i) =>
+        '<li class="flex items-center gap-3 py-2 ' + (i < sorted.length-1 ? 'border-b border-white/5' : '') + '">' +
+          '<span class="text-lg w-7 text-center flex-shrink-0">' + (medals[i] || '·') + '</span>' +
+          '<span class="flex-1 text-white font-semibold text-sm">' + name + '</span>' +
+          '<span class="text-amber-400 font-bold text-sm">' + pts + ' ' + t.ptsUnit + '</span>' +
+        '</li>'
+      ).join('');
+    }
+
+    /* ── Per-game counters ── */
     document.getElementById('g-film').textContent   = games.filmQuiz  || 0;
     document.getElementById('g-music').textContent  = games.musicBuzz || 0;
     document.getElementById('g-trivia').textContent = games.trivia    || 0;
     document.getElementById('g-city').textContent   = games.cityQuiz  || 0;
 
-    /* i18n (basic) */
-    const lang = localStorage.getItem('fotr_lang') || 'en';
-    const T = {
-      en: { pageTitle:'My Profile', pageSubtitle:'Your travel stats', xpLabel:'XP Progress',
-            statsSection:'Your Statistics', statTrips:'Completed Trips', statTripsUnit:'trips',
-            statPoints:'Total Points', statPointsUnit:'pts', statLevel:'Level',
-            gamesSection:'Games Played', gFilm:'Film Quiz', gMusic:'Music Buzz',
-            gTrivia:'Trivia', gCity:'City Quiz' },
-      it: { pageTitle:'Profilo', pageSubtitle:'Le tue statistiche di viaggio', xpLabel:'Progresso XP',
-            statsSection:'Le Tue Statistiche', statTrips:'Viaggi Completati', statTripsUnit:'viaggi',
-            statPoints:'Punti Totali', statPointsUnit:'punti', statLevel:'Livello',
-            gamesSection:'Giochi Effettuati', gFilm:'Film Quiz', gMusic:'Musica',
-            gTrivia:'Trivia', gCity:'City Quiz' },
-    };
-    const t = T[lang] || T.en;
+    /* ── i18n ── */
     document.querySelectorAll('[data-i18n]').forEach(el => {
       if (t[el.dataset.i18n]) el.textContent = t[el.dataset.i18n];
     });

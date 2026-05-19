@@ -257,7 +257,11 @@
   (function () {
     /* ─ LANGUAGE & DATA ─ */
     var lang = localStorage.getItem('fotr_lang') || 'en';
-    var RAW  = (lang === 'it') ? window.TRIVIA_IT : window.TRIVIA_EN;
+    var RAW  = lang === 'it' ? window.TRIVIA_IT
+             : lang === 'fr' ? (window.TRIVIA_FR || window.TRIVIA_EN)
+             : lang === 'de' ? (window.TRIVIA_DE || window.TRIVIA_EN)
+             : lang === 'es' ? (window.TRIVIA_ES || window.TRIVIA_EN)
+             : window.TRIVIA_EN;
 
     /* ─ TRANSLATIONS ─ */
     var T = {
@@ -300,6 +304,66 @@
         paywallSub2  : 'Sblocca per continuare a giocare!',
         paywallGame  : 'Sblocca questo gioco — €1,99',
         paywallAll   : 'Sblocca TUTTI i giochi — €4,99',
+      },
+      fr: {
+        revealBtn   : 'Voir la Réponse',
+        nextBtn     : 'Question Suivante',
+        startBtn    : 'Commencer',
+        startDesc   : 'Répondez à des questions de toutes les catégories : sciences, histoire, culture pop et plus.',
+        startCount  : function(n){ return n + ' questions'; },
+        pointTo     : function(n){ return 'Point vers ' + n; },
+        roundEnd    : 'Manche Terminée !',
+        roundEndSub : function(w){ return w ? w + ' gagne cette manche !' : 'Égalité !'; },
+        playAgain   : 'Rejouer',
+        homeBtn     : 'Retour à l\'Accueil',
+        noTeams     : 'Configurez d\'abord les équipes',
+        curiosita   : 'Le saviez-vous ?',
+        qOf         : function(n,t){ return n + ' / ' + t; },
+        paywallTitle : 'Limite gratuit atteint',
+        paywallSub   : 'Vous avez joué 80 manches gratuites de ce jeu.',
+        paywallSub2  : 'Déverrouillez pour continuer !',
+        paywallGame  : 'Débloquer ce jeu — €1.99',
+        paywallAll   : 'Débloquer TOUS les jeux — €4.99',
+      },
+      de: {
+        revealBtn   : 'Antwort Zeigen',
+        nextBtn     : 'Nächste Frage',
+        startBtn    : 'Spiel Starten',
+        startDesc   : 'Beantworte Fragen aus allen Kategorien: Wissenschaft, Geschichte, Popkultur und mehr.',
+        startCount  : function(n){ return n + ' Fragen'; },
+        pointTo     : function(n){ return 'Punkt an ' + n; },
+        roundEnd    : 'Runde Abgeschlossen!',
+        roundEndSub : function(w){ return w ? w + ' gewinnt diese Runde!' : 'Unentschieden!'; },
+        playAgain   : 'Nochmal Spielen',
+        homeBtn     : 'Zurück zur Startseite',
+        noTeams     : 'Teams zuerst einrichten',
+        curiosita   : 'Wusstest du das?',
+        qOf         : function(n,t){ return n + ' / ' + t; },
+        paywallTitle : 'Kostenloses Limit erreicht',
+        paywallSub   : 'Du hast 80 kostenlose Runden dieses Spiels gespielt.',
+        paywallSub2  : 'Freischalten um weiterzuspielen!',
+        paywallGame  : 'Dieses Spiel freischalten — €1.99',
+        paywallAll   : 'ALLE Spiele freischalten — €4.99',
+      },
+      es: {
+        revealBtn   : 'Ver Respuesta',
+        nextBtn     : 'Siguiente Pregunta',
+        startBtn    : 'Empezar Juego',
+        startDesc   : 'Responde preguntas de todas las categorías: ciencia, historia, cultura pop y más.',
+        startCount  : function(n){ return n + ' preguntas'; },
+        pointTo     : function(n){ return 'Punto a ' + n; },
+        roundEnd    : '¡Ronda Completada!',
+        roundEndSub : function(w){ return w ? '¡' + w + ' gana esta ronda!' : '¡Empate!'; },
+        playAgain   : 'Jugar de Nuevo',
+        homeBtn     : 'Volver al Inicio',
+        noTeams     : 'Configura los equipos primero',
+        curiosita   : '¿Sabías que…?',
+        qOf         : function(n,t){ return n + ' / ' + t; },
+        paywallTitle : 'Límite gratuito alcanzado',
+        paywallSub   : 'Has jugado 80 rondas gratuitas de este juego.',
+        paywallSub2  : '¡Desbloquea para seguir jugando!',
+        paywallGame  : 'Desbloquear este juego — €1.99',
+        paywallAll   : 'Desbloquear TODOS los juegos — €4.99',
       }
     };
     var t = T[lang] || T.en;

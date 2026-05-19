@@ -22,15 +22,16 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transform: scale(1.10);
-      filter: blur(24px);
+      object-position: center center;
+      transform: scale(1.08);
+      filter: blur(20px) contrast(1.05) saturate(1.1);
       transition: filter 0.75s ease, transform 0.75s ease, opacity 0.4s ease;
       opacity: 0;
       position: absolute;
       inset: 0;
     }
     #film-img.loaded   { opacity: 1; }
-    #film-img.revealed { filter: blur(0px); transform: scale(1); }
+    #film-img.revealed { filter: blur(0px) contrast(1) saturate(1); transform: scale(1); }
 
     /* ── Answer title overlay on image ── */
     #answer-overlay {
@@ -69,6 +70,37 @@
     #btn-hint:active   { transform: scale(0.94); }
     #btn-hint:disabled { opacity: 0.35; cursor: default; transform: none; }
     #btn-hint.used-all { color: #64748b; background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+
+    /* ── Buzz buttons ── */
+    .buzz-btn {
+      flex: 1;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      padding: 14px 8px;
+      border-radius: 18px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      border: 1.5px solid transparent;
+    }
+    .buzz-btn:active { transform: scale(0.93); }
+    .buzz-btn .pts-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      background: rgba(255,255,255,0.18);
+      border-radius: 6px;
+      padding: 1px 5px;
+      letter-spacing: 0.02em;
+    }
 
     /* ── Loading spinner ── */
     @keyframes spinAnim { to { transform: rotate(360deg); } }
@@ -181,27 +213,41 @@
         </button>
       </div>
 
-      <!-- PLAYING state -->
-      <div id="ctrl-playing" style="display:none">
-        <button id="btn-reveal" class="btn-brand w-full py-4 rounded-2xl text-[0.95rem] tracking-widest">
+      <!-- PLAYING state: buzz-in + show film fallback -->
+      <div id="ctrl-playing" style="display:none" class="flex flex-col gap-2">
+        <div class="flex gap-3">
+          <button id="btn-buzz1" class="buzz-btn">
+            <span class="pts-badge" id="buzz-pts1">+3</span>
+            <i class="fa-solid fa-hand text-xs opacity-60 mb-0.5"></i>
+            <span class="text-sm font-bold" id="pt1-label">Team 1</span>
+          </button>
+          <button id="btn-buzz2" class="buzz-btn">
+            <span class="pts-badge" id="buzz-pts2">+3</span>
+            <i class="fa-solid fa-hand text-xs opacity-60 mb-0.5"></i>
+            <span class="text-sm font-bold" id="pt2-label">Team 2</span>
+          </button>
+        </div>
+        <button id="btn-reveal" class="btn-ghost w-full py-3 rounded-2xl text-sm flex items-center justify-center gap-2">
           <i class="fa-solid fa-eye"></i>
-          <span id="reveal-label">Show Answer</span>
+          <span id="reveal-label">Show Film</span>
         </button>
       </div>
 
-      <!-- REVEALED state -->
-      <div id="ctrl-revealed" class="flex flex-col gap-3" style="display:none">
+      <!-- REVEALED state: award point or skip -->
+      <div id="ctrl-revealed" style="display:none" class="flex flex-col gap-2">
         <div class="flex gap-3">
-          <button id="btn-pt1" class="flex-1 py-3 rounded-2xl font-bold text-sm text-white tracking-wide transition-all active:scale-95 flex items-center justify-center gap-1.5">
-            <i class="fa-solid fa-plus text-xs"></i>
-            <span id="pt1-label">Team 1</span>
+          <button id="btn-award1" class="buzz-btn" disabled>
+            <span class="pts-badge" id="award-pts1">+1</span>
+            <i class="fa-solid fa-check text-xs opacity-60 mb-0.5"></i>
+            <span class="text-sm font-bold" id="award-t1-label">Team 1</span>
           </button>
-          <button id="btn-pt2" class="flex-1 py-3 rounded-2xl font-bold text-sm text-white tracking-wide transition-all active:scale-95 flex items-center justify-center gap-1.5">
-            <i class="fa-solid fa-plus text-xs"></i>
-            <span id="pt2-label">Team 2</span>
+          <button id="btn-award2" class="buzz-btn" disabled>
+            <span class="pts-badge" id="award-pts2">+1</span>
+            <i class="fa-solid fa-check text-xs opacity-60 mb-0.5"></i>
+            <span class="text-sm font-bold" id="award-t2-label">Team 2</span>
           </button>
         </div>
-        <button id="btn-next" class="btn-ghost w-full py-3 rounded-2xl text-sm flex items-center justify-center gap-2">
+        <button id="btn-next" class="btn-cta w-full py-4 rounded-2xl text-[0.95rem] tracking-widest">
           <i class="fa-solid fa-arrow-right"></i>
           <span id="next-label">Next Film</span>
         </button>
@@ -351,6 +397,78 @@
         paywallSub2    : 'Sblocca per continuare a giocare!',
         paywallGame    : 'Sblocca questo gioco — €1,99',
         paywallAll     : 'Sblocca TUTTI i giochi — €4,99',
+      },
+      fr: {
+        revealBtn      : 'Afficher la Réponse',
+        nextBtn        : 'Film Suivant',
+        startBtn       : 'Commencer',
+        startDesc      : 'Devine le film d\'après l\'affiche floue. Utilise les indices pour le révéler !',
+        startCount     : function(n){ return n + ' films'; },
+        roundEnd       : 'Round Terminé !',
+        roundEndSub    : function(w){ return w ? w + ' remporte ce round !' : 'Égalité !'; },
+        playAgain      : 'Rejouer',
+        homeBtn        : 'Retour à l\'Accueil',
+        noTeams        : 'Configurez les équipes d\'abord',
+        qOf            : function(n,t){ return n + ' / ' + t; },
+        answerLabel    : 'Réponse',
+        hintBtn        : 'Difficulté',
+        hintBtnUsedAll : 'Indices épuisés',
+        hintRemaining  : function(n){ return n === 1 ? '1 indice restant' : n + ' indices restants'; },
+        hintNone       : 'Plus d\'indices',
+        loading        : 'Chargement...',
+        paywallTitle   : 'Limite gratuite atteinte',
+        paywallSub     : 'Vous avez joué 80 rounds gratuits de ce jeu.',
+        paywallSub2    : 'Débloquez pour continuer à jouer !',
+        paywallGame    : 'Débloquer ce jeu — €1,99',
+        paywallAll     : 'Débloquer TOUS les jeux — €4,99',
+      },
+      de: {
+        revealBtn      : 'Antwort zeigen',
+        nextBtn        : 'Nächster Film',
+        startBtn       : 'Spiel starten',
+        startDesc      : 'Errate den Film anhand des unscharfen Posters. Nutze Hinweise zum Enthüllen!',
+        startCount     : function(n){ return n + ' Filme'; },
+        roundEnd       : 'Runde abgeschlossen!',
+        roundEndSub    : function(w){ return w ? w + ' gewinnt diese Runde!' : 'Unentschieden!'; },
+        playAgain      : 'Nochmal spielen',
+        homeBtn        : 'Zurück zur Startseite',
+        noTeams        : 'Teams zuerst einrichten',
+        qOf            : function(n,t){ return n + ' / ' + t; },
+        answerLabel    : 'Antwort',
+        hintBtn        : 'Schwierigkeit',
+        hintBtnUsedAll : 'Hinweise aufgebraucht',
+        hintRemaining  : function(n){ return n === 1 ? '1 Hinweis übrig' : n + ' Hinweise übrig'; },
+        hintNone       : 'Keine Hinweise mehr',
+        loading        : 'Laden...',
+        paywallTitle   : 'Freies Limit erreicht',
+        paywallSub     : 'Du hast 80 kostenlose Runden gespielt.',
+        paywallSub2    : 'Freischalten, um weiterzuspielen!',
+        paywallGame    : 'Dieses Spiel freischalten — €1,99',
+        paywallAll     : 'ALLE Spiele freischalten — €4,99',
+      },
+      es: {
+        revealBtn      : 'Mostrar Respuesta',
+        nextBtn        : 'Siguiente Película',
+        startBtn       : 'Empezar',
+        startDesc      : 'Adivina la película por el póster borroso. ¡Usa las pistas para revelarlo!',
+        startCount     : function(n){ return n + ' películas'; },
+        roundEnd       : '¡Ronda Completa!',
+        roundEndSub    : function(w){ return w ? '¡' + w + ' gana esta ronda!' : '¡Empate!'; },
+        playAgain      : 'Jugar de Nuevo',
+        homeBtn        : 'Volver al Inicio',
+        noTeams        : 'Configura los equipos primero',
+        qOf            : function(n,t){ return n + ' / ' + t; },
+        answerLabel    : 'Respuesta',
+        hintBtn        : 'Dificultad',
+        hintBtnUsedAll : 'Pistas agotadas',
+        hintRemaining  : function(n){ return n === 1 ? '1 pista restante' : n + ' pistas restantes'; },
+        hintNone       : 'Sin pistas',
+        loading        : 'Cargando...',
+        paywallTitle   : 'Límite gratuito alcanzado',
+        paywallSub     : 'Has jugado 80 rondas gratuitas de este juego.',
+        paywallSub2    : '¡Desbloquea para seguir jugando!',
+        paywallGame    : 'Desbloquear este juego — €1,99',
+        paywallAll     : 'Desbloquear TODOS los juegos — €4,99',
       }
     };
     var t = T[lang] || T.en;
@@ -587,9 +705,14 @@
       "Zoolander.jpg"
     ];
 
-    /* ─ BLUR STEPS (px) ─ */
-    var BLUR_STEPS   = [24, 12, 5, 1.5];
-    var MAX_HINTS    = BLUR_STEPS.length - 1; /* 3 hints reduce blur, last step = 1.5px */
+    /* ─ BLUR STEPS ─ */
+    var BLUR_STEPS = [
+      'blur(20px) contrast(1.05) saturate(1.1)',
+      'blur(8px)',
+      'blur(3px)',
+      'blur(0px)'
+    ];
+    var MAX_HINTS = BLUR_STEPS.length - 1; /* 3 hints, al 3° click immagine perfettamente nitida */
 
     /* ─ DOM REFS ─ */
     var scoreLabel      = document.getElementById('score-label');
@@ -612,10 +735,18 @@
     var ctrlPlaying     = document.getElementById('ctrl-playing');
     var ctrlRevealed    = document.getElementById('ctrl-revealed');
     var btnStart        = document.getElementById('btn-start');
+    var btnBuzz1        = document.getElementById('btn-buzz1');
+    var btnBuzz2        = document.getElementById('btn-buzz2');
+    var buzzPts1        = document.getElementById('buzz-pts1');
+    var buzzPts2        = document.getElementById('buzz-pts2');
     var btnReveal       = document.getElementById('btn-reveal');
-    var btnPt1          = document.getElementById('btn-pt1');
-    var btnPt2          = document.getElementById('btn-pt2');
     var btnNext         = document.getElementById('btn-next');
+    var btnAward1       = document.getElementById('btn-award1');
+    var btnAward2       = document.getElementById('btn-award2');
+    var awardPts1       = document.getElementById('award-pts1');
+    var awardPts2       = document.getElementById('award-pts2');
+    var awardT1Label    = document.getElementById('award-t1-label');
+    var awardT2Label    = document.getElementById('award-t2-label');
     var pt1Label        = document.getElementById('pt1-label');
     var pt2Label        = document.getElementById('pt2-label');
     var roundEndOverlay = document.getElementById('round-end');
@@ -631,8 +762,7 @@
     /* ─ STATE ─ */
     var films         = [];
     var currentIdx    = 0;
-    var hintStep      = 0;   /* current index into BLUR_STEPS */
-    var pointAssigned = false;
+    var hintStep      = 0;
     var gameState     = 'start';
     var advanceTimer  = null;
 
@@ -880,6 +1010,18 @@
       return itTitle;
     }
 
+    function getCurrentPoints() {
+      if (hintStep === 0) return 3;
+      if (hintStep === 1) return 2;
+      return 1;
+    }
+
+    function updatePtsDisplay() {
+      var pts = getCurrentPoints();
+      buzzPts1.textContent = '+' + pts;
+      buzzPts2.textContent = '+' + pts;
+    }
+
     /* ─ SCORE HEADER ─ */
     function updateHeaderScore() {
       var teams = getTeams();
@@ -896,8 +1038,12 @@
       ctrlPlaying.style.display  = 'none';
       ctrlRevealed.style.display = 'none';
       if (state === 'start')    ctrlStart.style.display    = 'block';
-      if (state === 'playing')  ctrlPlaying.style.display  = 'block';
-      if (state === 'revealed') ctrlRevealed.style.display = 'flex';
+      if (state === 'playing')  ctrlPlaying.style.display  = 'flex';
+      if (state === 'revealed') {
+        ctrlRevealed.style.display = 'flex';
+        btnAward1.disabled = true;
+        btnAward2.disabled = true;
+      }
     }
 
     /* ─ UPDATE HINT UI ─ */
@@ -918,7 +1064,7 @@
 
     /* ─ APPLY BLUR ─ */
     function applyBlur(step) {
-      filmImg.style.filter = 'blur(' + BLUR_STEPS[step] + 'px)';
+      filmImg.style.filter = BLUR_STEPS[step];
     }
 
     /* ─ HINT CLICK ─ */
@@ -928,6 +1074,7 @@
       hintStep++;
       applyBlur(hintStep);
       updateHintUI();
+      updatePtsDisplay();
       playSound('click');
     }
 
@@ -935,8 +1082,8 @@
     function loadFilm(filename) {
       /* Reset image state */
       filmImg.classList.remove('loaded', 'revealed');
-      filmImg.style.filter = 'blur(' + BLUR_STEPS[0] + 'px)';
-      filmImg.style.transform = 'scale(1.10)';
+      filmImg.style.filter = BLUR_STEPS[0];
+      filmImg.style.transform = 'scale(1.08)';
       filmLoading.style.display = 'flex';
       loadingText.textContent = t.loading;
 
@@ -964,8 +1111,7 @@
       if (u[GAME_KEY] > FREE_LIMIT && !isPurchased(GAME_KEY)) { showPaywall(); return; }
 
       var filename = films[currentIdx];
-      hintStep      = 0;
-      pointAssigned = false;
+      hintStep = 0;
 
       var total = films.length;
       qCounter.textContent    = t.qOf(currentIdx + 1, total);
@@ -973,12 +1119,9 @@
 
       answerOverlay.classList.remove('visible');
       answerTitle.textContent = '';
-      btnPt1.disabled = false;
-      btnPt2.disabled = false;
-      btnPt1.style.opacity = '1';
-      btnPt2.style.opacity = '1';
 
       updateHintUI();
+      updatePtsDisplay();
       loadFilm(filename);
 
       /* Card entrance animation */
@@ -1010,54 +1153,78 @@
       playSound('click');
     }
 
-    /* ─ REVEAL ANSWER ─ */
-    function revealAnswer() {
-      if (gameState !== 'playing') return;
-      gameState = 'revealed';
-
-      /* Full reveal: remove blur */
-      filmImg.style.filter    = 'blur(0px)';
+    /* ─ REVEAL IMAGE ─ */
+    function revealImage() {
+      filmImg.style.filter    = 'blur(0px) contrast(1) saturate(1)';
       filmImg.style.transform = 'scale(1)';
       filmImg.classList.add('revealed');
-
-      /* Disable hint since image is fully clear */
       btnHint.disabled = true;
       btnHint.classList.add('used-all');
-
-      /* Show answer overlay */
       answerLabel.textContent = t.answerLabel;
       answerTitle.textContent = titleFromFile(films[currentIdx]);
       answerOverlay.classList.add('visible');
-
-      setCtrl('revealed');
     }
 
-    /* ─ ASSIGN POINT ─ */
-    function assignPoint(teamKey) {
-      if (pointAssigned) return;
-      pointAssigned = true;
+    /* ─ BUZZ IN (team scores immediately and reveals) ─ */
+    function buzzTeam(teamKey) {
+      if (gameState !== 'playing') return;
+      gameState = 'revealed';
 
+      var pts      = getCurrentPoints();
       var teams    = getTeams();
       var scoreKey = (teamKey === 'team1') ? 'score1' : 'score2';
-      teams[scoreKey] = (teams[scoreKey] || 0) + 1;
+      teams[scoreKey] = (teams[scoreKey] || 0) + pts;
       localStorage.setItem('fotr_teams', JSON.stringify(teams));
       updateHeaderScore();
 
-      if (teamKey === 'team1') {
-        btnPt2.disabled = true; btnPt2.style.opacity = '0.4';
-      } else {
-        btnPt1.disabled = true; btnPt1.style.opacity = '0.4';
-      }
+      var stats    = JSON.parse(localStorage.getItem('fotr_stats') || '{}');
+      stats.points = (stats.points || 0) + pts * 10;
+      localStorage.setItem('fotr_stats', JSON.stringify(stats));
+
+      revealImage();
+      setCtrl('revealed');
+      playSound('win');
+      var color = (teamKey === 'team1') ? teams.color1 : teams.color2;
+      triggerConfetti(color);
+
+      clearTimeout(advanceTimer);
+      advanceTimer = setTimeout(nextFilm, 2000);
+    }
+
+    /* ─ SHOW ANSWER WITHOUT SCORING ─ */
+    function showAnswer() {
+      if (gameState !== 'playing') return;
+      gameState = 'revealed';
+      var pts = getCurrentPoints();
+      awardPts1.textContent = '+' + pts;
+      awardPts2.textContent = '+' + pts;
+      revealImage();
+      setCtrl('revealed');
+      btnAward1.disabled = false;
+      btnAward2.disabled = false;
+    }
+
+    /* ─ AWARD POINT AFTER REVEAL ─ */
+    function awardPoint(teamKey) {
+      if (gameState !== 'revealed' || btnAward1.disabled) return;
+      var pts      = getCurrentPoints();
+      var teams    = getTeams();
+      var scoreKey = (teamKey === 'team1') ? 'score1' : 'score2';
+      teams[scoreKey] = (teams[scoreKey] || 0) + pts;
+      localStorage.setItem('fotr_teams', JSON.stringify(teams));
+      updateHeaderScore();
+
+      btnAward1.disabled = true;
+      btnAward2.disabled = true;
 
       var stats    = JSON.parse(localStorage.getItem('fotr_stats') || '{}');
-      stats.points = (stats.points || 0) + 10;
+      stats.points = (stats.points || 0) + pts * 10;
       localStorage.setItem('fotr_stats', JSON.stringify(stats));
 
       playSound('win');
       var color = (teamKey === 'team1') ? teams.color1 : teams.color2;
       triggerConfetti(color);
 
-      /* Auto-advance after 2 seconds */
       clearTimeout(advanceTimer);
       advanceTimer = setTimeout(nextFilm, 2000);
     }
@@ -1192,25 +1359,33 @@
     document.getElementById('start-count').textContent = t.startCount(FILMS.length);
     document.getElementById('hint-remaining-label').textContent = t.hintRemaining(MAX_HINTS);
 
-    pt1Label.textContent = teams.team1 || 'Team 1';
-    pt2Label.textContent = teams.team2 || 'Team 2';
+    pt1Label.textContent     = teams.team1 || 'Team 1';
+    pt2Label.textContent     = teams.team2 || 'Team 2';
+    awardT1Label.textContent = teams.team1 || 'Team 1';
+    awardT2Label.textContent = teams.team2 || 'Team 2';
 
     var c1bg = hexToRgba(teams.color1 || '#f59e0b', 0.22);
     var c1bo = hexToRgba(teams.color1 || '#f59e0b', 0.50);
     var c2bg = hexToRgba(teams.color2 || '#0ea5e9', 0.22);
     var c2bo = hexToRgba(teams.color2 || '#0ea5e9', 0.50);
-    btnPt1.style.background = c1bg;
-    btnPt1.style.border     = '1px solid ' + c1bo;
-    btnPt2.style.background = c2bg;
-    btnPt2.style.border     = '1px solid ' + c2bo;
+    btnBuzz1.style.background   = c1bg;
+    btnBuzz1.style.borderColor  = c1bo;
+    btnBuzz2.style.background   = c2bg;
+    btnBuzz2.style.borderColor  = c2bo;
+    btnAward1.style.background  = c1bg;
+    btnAward1.style.borderColor = c1bo;
+    btnAward2.style.background  = c2bg;
+    btnAward2.style.borderColor = c2bo;
 
     /* ─ EVENT LISTENERS ─ */
     btnStart.addEventListener('click', startGame);
-    btnReveal.addEventListener('click', revealAnswer);
+    btnBuzz1.addEventListener('click', function() { buzzTeam('team1'); });
+    btnBuzz2.addEventListener('click', function() { buzzTeam('team2'); });
+    btnReveal.addEventListener('click', showAnswer);
     btnHint.addEventListener('click', useHint);
     btnNext.addEventListener('click', nextFilm);
-    btnPt1.addEventListener('click', function() { assignPoint('team1'); });
-    btnPt2.addEventListener('click', function() { assignPoint('team2'); });
+    btnAward1.addEventListener('click', function() { awardPoint('team1'); });
+    btnAward2.addEventListener('click', function() { awardPoint('team2'); });
     document.getElementById('btn-buy-game').addEventListener('click', function() { handlePurchase('game'); });
     document.getElementById('btn-buy-all').addEventListener('click', function() { handlePurchase('all'); });
     btnPlayAgain.addEventListener('click', function() {

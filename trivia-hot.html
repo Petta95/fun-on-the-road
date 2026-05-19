@@ -347,7 +347,11 @@
 
     /* ─ LANGUAGE & DATA ─ */
     var lang = localStorage.getItem('fotr_lang') || 'en';
-    var RAW  = (lang === 'it') ? window.TRIVIA_HOT_IT : (window.TRIVIA_HOT_EN || window.TRIVIA_HOT_IT);
+    var RAW  = lang === 'it' ? window.TRIVIA_HOT_IT
+             : lang === 'fr' ? (window.TRIVIA_HOT_FR || window.TRIVIA_HOT_EN)
+             : lang === 'de' ? (window.TRIVIA_HOT_DE || window.TRIVIA_HOT_EN)
+             : lang === 'es' ? (window.TRIVIA_HOT_ES || window.TRIVIA_HOT_EN)
+             : (window.TRIVIA_HOT_EN || window.TRIVIA_HOT_IT);
 
     /* ─ TRANSLATIONS ─ */
     var T = {
@@ -400,6 +404,81 @@
         navHome      : 'Home',
         navRanking   : 'Classifica',
         navSettings  : 'Impostazioni',
+      },
+      fr: {
+        revealBtn    : 'Voir la Réponse',
+        nextBtn      : 'Question Suivante',
+        startBtn     : 'Commencer',
+        startDesc    : 'Questions épicées sur le sexe, les relations et les curiosités pour adultes.',
+        startCount   : function(n){ return n + ' questions'; },
+        roundEnd     : 'Manche Terminée !',
+        roundEndSub  : function(w){ return w ? w + ' gagne cette manche !' : 'Égalité !'; },
+        playAgain    : 'Rejouer',
+        homeBtn      : 'Retour à l\'Accueil',
+        noTeams      : 'Configurez d\'abord les équipes',
+        curiosita    : 'Le saviez-vous ?',
+        qOf          : function(n,t){ return n + ' / ' + t; },
+        ageTitle     : 'Contenu Adulte',
+        ageText      : 'Ce jeu contient des questions pour adultes (18+). Confirmez-vous avoir au moins 18 ans ?',
+        ageNo        : 'Non, retour',
+        ageYes       : 'Oui, j\'ai 18 ans+',
+        paywallTitle : 'Débloquez le Pack Premium !',
+        paywallSub   : 'Accédez à tous les jeux HOT et modes spéciaux pour seulement €3.49 — achat unique.',
+        paywallBuy   : 'Acheter maintenant · €3.49',
+        paywallBack  : '← Retour à l\'Accueil',
+        navHome      : 'Accueil',
+        navRanking   : 'Classement',
+        navSettings  : 'Paramètres',
+      },
+      de: {
+        revealBtn    : 'Antwort Zeigen',
+        nextBtn      : 'Nächste Frage',
+        startBtn     : 'Spiel Starten',
+        startDesc    : 'Pikante Fragen über Sex, Beziehungen und Neugierde für Erwachsene.',
+        startCount   : function(n){ return n + ' Fragen'; },
+        roundEnd     : 'Runde Abgeschlossen!',
+        roundEndSub  : function(w){ return w ? w + ' gewinnt diese Runde!' : 'Unentschieden!'; },
+        playAgain    : 'Nochmal Spielen',
+        homeBtn      : 'Zurück zur Startseite',
+        noTeams      : 'Teams zuerst einrichten',
+        curiosita    : 'Wusstest du das?',
+        qOf          : function(n,t){ return n + ' / ' + t; },
+        ageTitle     : 'Erwachseneninhalt',
+        ageText      : 'Dieses Spiel enthält Fragen für Erwachsene (18+). Bestätigst du, dass du mindestens 18 Jahre alt bist?',
+        ageNo        : 'Nein, zurück',
+        ageYes       : 'Ja, ich bin 18+',
+        paywallTitle : 'Premium-Paket freischalten!',
+        paywallSub   : 'Zugang zu allen HOT-Spielen und Spezialmodi für nur €3.49 — einmaliger Kauf.',
+        paywallBuy   : 'Jetzt kaufen · €3.49',
+        paywallBack  : '← Zurück zur Startseite',
+        navHome      : 'Startseite',
+        navRanking   : 'Rangliste',
+        navSettings  : 'Einstellungen',
+      },
+      es: {
+        revealBtn    : 'Ver Respuesta',
+        nextBtn      : 'Siguiente Pregunta',
+        startBtn     : 'Empezar Juego',
+        startDesc    : 'Preguntas picantes sobre sexo, relaciones y curiosidades para adultos.',
+        startCount   : function(n){ return n + ' preguntas'; },
+        roundEnd     : '¡Ronda Completada!',
+        roundEndSub  : function(w){ return w ? '¡' + w + ' gana esta ronda!' : '¡Empate!'; },
+        playAgain    : 'Jugar de Nuevo',
+        homeBtn      : 'Volver al Inicio',
+        noTeams      : 'Configura los equipos primero',
+        curiosita    : '¿Sabías que…?',
+        qOf          : function(n,t){ return n + ' / ' + t; },
+        ageTitle     : 'Contenido para Adultos',
+        ageText      : 'Este juego contiene preguntas para adultos (18+). ¿Confirmas que tienes al menos 18 años?',
+        ageNo        : 'No, volver',
+        ageYes       : 'Sí, tengo 18+ años',
+        paywallTitle : '¡Desbloquea el Paquete Premium!',
+        paywallSub   : 'Accede a todos los juegos HOT y modos especiales por solo €3.49 — compra única.',
+        paywallBuy   : 'Comprar ahora · €3.49',
+        paywallBack  : '← Volver al Inicio',
+        navHome      : 'Inicio',
+        navRanking   : 'Clasificación',
+        navSettings  : 'Ajustes',
       }
     };
     var t = T[lang] || T.en;

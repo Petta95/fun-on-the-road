@@ -161,7 +161,7 @@
       en: {
         tagline: 'Leaderboard', pageTitle: 'Ranking',
         currentMatch: 'Current Match', ptsLabel: 'pts',
-        winnerLabel: '🏆 is winning!',
+        tieGame: '🤝 Tie game!', isWinning: 'is winning!',
         adjustLabel: 'Adjust score',
         emptyTitle: 'No teams yet', emptyHint: 'Set up your teams first, then scores will appear here.',
         goTeams: 'Go to Teams',
@@ -170,11 +170,38 @@
       it: {
         tagline: 'Classifica', pageTitle: 'Classifica',
         currentMatch: 'Partita in corso', ptsLabel: 'punti',
-        winnerLabel: '🏆 sta vincendo!',
+        tieGame: '🤝 Pareggio!', isWinning: 'sta vincendo!',
         adjustLabel: 'Modifica punteggio',
         emptyTitle: 'Nessuna squadra', emptyHint: 'Configura le squadre prima di vedere i punteggi.',
         goTeams: 'Vai alle Squadre',
         navHome: 'Home', navLeaderboard: 'Classifica', navSettings: 'Impostazioni',
+      },
+      fr: {
+        tagline: 'Classement', pageTitle: 'Classement',
+        currentMatch: 'Match en cours', ptsLabel: 'pts',
+        tieGame: '🤝 Égalité !', isWinning: 'est en tête !',
+        adjustLabel: 'Modifier le score',
+        emptyTitle: 'Aucune équipe', emptyHint: 'Configurez d\'abord vos équipes pour voir les scores.',
+        goTeams: 'Aller aux Équipes',
+        navHome: 'Accueil', navLeaderboard: 'Classement', navSettings: 'Paramètres',
+      },
+      de: {
+        tagline: 'Rangliste', pageTitle: 'Rangliste',
+        currentMatch: 'Aktuelles Spiel', ptsLabel: 'Pkt',
+        tieGame: '🤝 Unentschieden!', isWinning: 'liegt vorne!',
+        adjustLabel: 'Punktzahl anpassen',
+        emptyTitle: 'Keine Teams', emptyHint: 'Richte zuerst deine Teams ein, dann erscheinen die Punkte hier.',
+        goTeams: 'Zu den Teams',
+        navHome: 'Startseite', navLeaderboard: 'Rangliste', navSettings: 'Einstellungen',
+      },
+      es: {
+        tagline: 'Clasificación', pageTitle: 'Clasificación',
+        currentMatch: 'Partida actual', ptsLabel: 'pts',
+        tieGame: '🤝 ¡Empate!', isWinning: '¡está ganando!',
+        adjustLabel: 'Ajustar puntuación',
+        emptyTitle: 'Sin equipos', emptyHint: 'Configura primero tus equipos para ver las puntuaciones.',
+        goTeams: 'Ir a Equipos',
+        navHome: 'Inicio', navLeaderboard: 'Clasificación', navSettings: 'Ajustes',
       },
     };
 
@@ -230,17 +257,16 @@
 
       const banner     = document.getElementById('winner-banner');
       const winnerText = document.getElementById('winner-text');
+      const T = TRANSLATIONS[lang] || TRANSLATIONS.en;
       if (s1 === 0 && s2 === 0) {
         banner.classList.add('hidden');
       } else if (s1 === s2) {
-        winnerText.textContent = lang === 'it' ? '🤝 Pareggio!' : '🤝 Tie game!';
+        winnerText.textContent = T.tieGame;
         winnerText.className   = 'text-sky-400 font-bold text-sm';
         banner.classList.remove('hidden');
       } else {
         const winner = s1 > s2 ? state.team1 : state.team2;
-        winnerText.textContent = lang === 'it'
-          ? `🏆 ${winner} sta vincendo!`
-          : `🏆 ${winner} is winning!`;
+        winnerText.textContent = `🏆 ${winner} ${T.isWinning}`;
         winnerText.className   = 'text-amber-400 font-bold text-sm';
         banner.classList.remove('hidden');
       }
@@ -262,6 +288,15 @@
     /* ── Reset all ── */
     document.getElementById('btn-reset-all').addEventListener('click', () => {
       const state = loadState();
+      /* Persist scores to cumulative log before zeroing */
+      const allScores = JSON.parse(localStorage.getItem('fotr_all_scores') || '{}');
+      if (state.team1 && (state.score1 || 0) > 0) {
+        allScores[state.team1] = (allScores[state.team1] || 0) + (state.score1 || 0);
+      }
+      if (state.team2 && (state.score2 || 0) > 0) {
+        allScores[state.team2] = (allScores[state.team2] || 0) + (state.score2 || 0);
+      }
+      localStorage.setItem('fotr_all_scores', JSON.stringify(allScores));
       state.score1 = 0;
       state.score2 = 0;
       saveScore(state);
