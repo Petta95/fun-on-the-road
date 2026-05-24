@@ -3,7 +3,13 @@
     "allow": [
       "Bash(node --input-type=module)",
       "Bash(node -e ' *)",
-      "Bash(node *)"
+      "Bash(node *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\95pet\\\\Documents\\\\App\\\\Fun on the Road\" -Recurse -Force)",
+      "Bash(Select-Object -Property FullName)",
+      "Bash(ConvertTo-Csv -NoTypeInformation)",
+      "Bash(Select-Object -Skip 1)",
+      "Bash(Sort-Object)",
+      "Bash(grep \"\\\\.html$\")"
     ]
   }
 }

@@ -509,6 +509,7 @@
         <i class="fa-solid fa-lock-open"></i>
         Acquista Ora • €3.49
       </button>
+      <button id="btn-restore-rather-hot" class="block w-full text-center text-slate-500 text-xs font-medium hover:text-slate-400 transition-colors mb-2 bg-transparent border-0 cursor-pointer py-1">Ripristina acquisti</button>
       <button id="btn-close-paywall" class="btn-ghost w-full py-3 rounded-2xl text-sm">Chiudi</button>
     </div>
   </div>
@@ -551,6 +552,7 @@
   <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-[150]" style="width:100%;height:100%"></canvas>
 
   <!-- ── SCRIPTS ────────────────────────────── -->
+  <script src="assets/js/iap.js"></script>
   <script src="assets/js/audio-manager.js"></script>
 
   <script>
@@ -703,9 +705,14 @@
     document.getElementById('paywall-backdrop').addEventListener('click', closePaywall);
 
     document.getElementById('btn-buy-now').addEventListener('click', function () {
-      localStorage.setItem('isPremium', 'true');
-      closePaywall();
-      startGame();
+      IAP.purchase('HOT_PACK', this).then(function(result) {
+        if (!result.success) { return; }
+        closePaywall();
+        startGame();
+      }).catch(function(err) { console.error('IAP error', err); });
+    });
+    document.getElementById('btn-restore-rather-hot').addEventListener('click', function() {
+      IAP.restore(this).then(function(r) { if (r && r.restored) { location.reload(); } });
     });
 
     /* ─ HOT QUESTIONS ─ */

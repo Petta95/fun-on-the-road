@@ -276,7 +276,8 @@
         <i class="fa-solid fa-crown text-xs"></i>
         <span id="paywall-all-label">Unlock ALL games — €4.99</span>
       </button>
-      <a href="index.html" class="mt-5 block text-slate-500 text-xs font-medium hover:text-slate-400 transition-colors no-underline">← Back to Home</a>
+      <button id="btn-restore-music" class="block w-full text-center text-slate-500 text-xs font-medium hover:text-slate-400 transition-colors mt-3 bg-transparent border-0 cursor-pointer py-1">Restore purchases</button>
+      <a href="index.html" class="mt-2 block text-slate-500 text-xs font-medium hover:text-slate-400 transition-colors no-underline">← Back to Home</a>
     </div>
   </div>
 
@@ -285,6 +286,7 @@
           style="width:100%; height:100%"></canvas>
 
   <!-- ── AUDIO + LOGIC ──────────────────────── -->
+  <script src="assets/js/iap.js"></script>
   <script src="assets/js/audio-manager.js"></script>
 
   <script>
@@ -414,13 +416,13 @@
       document.getElementById('paywall').style.display = 'flex';
     }
 
-    function handlePurchase(type) {
-      var p = JSON.parse(localStorage.getItem('fotr_purchases') || '{}');
-      if (type === 'game') p[GAME_KEY] = true;
-      else p.all = true;
-      localStorage.setItem('fotr_purchases', JSON.stringify(p));
-      document.getElementById('paywall').style.display = 'none';
-      startGame();
+    function handlePurchase(type, btn) {
+      var productKey = (type === 'game') ? 'MUSIC_BUZZ' : 'UNLOCK_ALL';
+      IAP.purchase(productKey, btn).then(function (result) {
+        if (!result.success) { return; }
+        document.getElementById('paywall').style.display = 'none';
+        startGame();
+      }).catch(function (err) { console.error('IAP error', err); });
     }
 
     /* ─ SONG DATA ─ */
@@ -965,8 +967,11 @@
     btnPt1.addEventListener('click', function() { assignPoint('team1'); });
     btnPt2.addEventListener('click', function() { assignPoint('team2'); });
     btnPlaySong.addEventListener('click', togglePlay);
-    document.getElementById('btn-buy-game').addEventListener('click', function() { handlePurchase('game'); });
-    document.getElementById('btn-buy-all').addEventListener('click', function() { handlePurchase('all'); });
+    document.getElementById('btn-buy-game').addEventListener('click', function() { handlePurchase('game', this); });
+    document.getElementById('btn-buy-all').addEventListener('click', function() { handlePurchase('all', this); });
+    document.getElementById('btn-restore-music').addEventListener('click', function() {
+      IAP.restore(this).then(function(r) { if (r && r.restored) { location.reload(); } });
+    });
     btnPlayAgain.addEventListener('click', function() {
       roundEndOverlay.style.display = 'none';
       startGame();

@@ -271,6 +271,7 @@
         <span data-i18n="proModalBuy">Buy now · €3.49</span>
       </button>
       <button id="btn-close-pro" class="btn-ghost w-full py-3 rounded-2xl text-sm" data-i18n="proModalClose">Not now</button>
+      <button id="btn-restore-pro" class="block w-full text-center text-slate-500 text-xs font-medium hover:text-slate-400 transition-colors mt-3 bg-transparent border-0 cursor-pointer py-1" data-i18n="restorePurchases">Restore purchases</button>
     </div>
   </div>
 
@@ -293,6 +294,7 @@
   </div>
 
   <!-- ── SCRIPTS ────────────────────────────────────────────── -->
+  <script src="assets/js/iap.js"></script>
   <script src="assets/js/app.js"></script>
   <script>
     /* ── i18n ──────────────────────────────────────────────── */
@@ -650,10 +652,15 @@
     document.getElementById('btn-unlock-pro').addEventListener('click', openProModal);
     document.getElementById('btn-close-pro').addEventListener('click', closeProModal);
     document.getElementById('modal-pro-backdrop').addEventListener('click', closeProModal);
-    document.getElementById('btn-buy-pro').addEventListener('click', () => {
-      localStorage.setItem('isPremium', 'true');
-      applyProState();
-      closeProModal();
+    document.getElementById('btn-buy-pro').addEventListener('click', function () {
+      IAP.purchase('HOT_PACK', this).then(function (result) {
+        if (!result.success) { return; }
+        applyProState();
+        closeProModal();
+      }).catch(function (err) { console.error('IAP error', err); });
+    });
+    document.getElementById('btn-restore-pro').addEventListener('click', function () {
+      IAP.restore(this).then(function (r) { if (r && r.restored) { applyProState(); closeProModal(); } });
     });
 
     /* Age Gate Modal */

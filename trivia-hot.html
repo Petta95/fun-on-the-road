@@ -290,6 +290,7 @@
         <i class="fa-solid fa-lock-open"></i>
         <span id="paywall-buy-label">Acquista ora · €3.49</span>
       </button>
+      <button id="btn-restore-trivia-hot" class="block w-full text-center text-slate-500 text-xs font-medium hover:text-slate-400 transition-colors mt-1 mb-3 bg-transparent border-0 cursor-pointer py-1">Ripristina acquisti</button>
       <a href="index.html" class="block text-slate-500 text-xs font-medium hover:text-slate-400 transition-colors no-underline" id="paywall-back-label">← Torna alla Home</a>
     </div>
   </div>
@@ -333,6 +334,7 @@
 
   <!-- ── DATA ────────────────────────────────── -->
   <script src="assets/data/trivia-data-hot.js"></script>
+  <script src="assets/js/iap.js"></script>
   <script src="assets/js/audio-manager.js"></script>
 
   <!-- ── GAME LOGIC ─────────────────────────── -->
@@ -851,8 +853,13 @@
 
     /* ─ PAYWALL BUY ─ */
     document.getElementById('btn-buy-now').addEventListener('click', function() {
-      localStorage.setItem('isPremium', 'true');
-      hidePaywall();
+      IAP.purchase('HOT_PACK', this).then(function(result) {
+        if (!result.success) { return; }
+        hidePaywall();
+      }).catch(function(err) { console.error('IAP error', err); });
+    });
+    document.getElementById('btn-restore-trivia-hot').addEventListener('click', function() {
+      IAP.restore(this).then(function(r) { if (r && r.restored) { location.reload(); } });
     });
 
     /* ─ EVENT LISTENERS ─ */
