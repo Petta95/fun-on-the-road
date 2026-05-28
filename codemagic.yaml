@@ -12,6 +12,8 @@ workflows:
           include: true
 
     environment:
+      groups:
+        - ios_credentials
       ios_signing:
         distribution_type: app_store
         bundle_identifier: com.francesco.funontheroad
@@ -40,6 +42,12 @@ workflows:
             echo "No build script detected — skipping web build step"
           fi
 
+      - name: Add iOS platform
+        ▎   script: |
+        ▎     if [ ! -d "ios" ]; then
+        ▎       npx cap add ios
+        ▎     fi
+
       - name: Sync Capacitor iOS project
         script: npx cap sync ios
 
@@ -66,6 +74,8 @@ workflows:
 
     publishing:
       app_store_connect:
-        auth: integration
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
         submit_to_testflight: true
         submit_to_app_store: false
