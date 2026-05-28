@@ -16,11 +16,10 @@ workflows:
         - ios_credentials
       vars:
         APP_ID: com.francesco.funontheroad
-        XCODE_WORKSPACE: ios/App/App.xcworkspace
+        XCODE_PROJECT: ios/App/App.xcodeproj
         XCODE_SCHEME: App
       node: latest
       xcode: latest
-      cocoapods: default
 
     scripts:
       - name: Install npm dependencies
@@ -30,20 +29,10 @@ workflows:
         script: npm install -g @capacitor/cli
 
       - name: Add iOS platform
-        script: |
-          npx cap add ios
-          echo "--- Contents of ios/App after cap add ios ---"
-          ls -la ios/App/ || echo "ios/App not found!"
+        script: npx cap add ios
 
       - name: Sync Capacitor iOS project
         script: npx cap sync ios
-
-      - name: Install CocoaPods
-        script: |
-          echo "--- Checking for Podfile ---"
-          ls -la ios/App/Podfile || echo "Podfile NOT found"
-          cd ios/App
-          pod install
 
       - name: Set up code signing
         script: |
@@ -61,7 +50,7 @@ workflows:
       - name: Build and archive for App Store
         script: |
           xcode-project build-ipa \
-            --workspace "$XCODE_WORKSPACE" \
+            --project "$XCODE_PROJECT" \
             --scheme "$XCODE_SCHEME"
 
     artifacts:
