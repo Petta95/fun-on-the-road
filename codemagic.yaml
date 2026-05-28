@@ -39,8 +39,9 @@ workflows:
           keychain initialize
           echo $CM_CERTIFICATE | base64 --decode > /tmp/certificate.p12
           keychain add-certificates --certificate /tmp/certificate.p12 --certificate-password $CM_CERTIFICATE_PASSWORD
-          echo $CM_PROVISIONING_PROFILE | base64 --decode > /tmp/profile.mobileprovision
-          keychain use-provisioning-profile --path /tmp/profile.mobileprovision
+          PROFILES_DIR="$HOME/Library/MobileDevice/Provisioning Profiles"
+          mkdir -p "$PROFILES_DIR"
+          echo $CM_PROVISIONING_PROFILE | base64 --decode > "$PROFILES_DIR/profile.mobileprovision"
 
       - name: Set build number from Codemagic build number
         script: |
