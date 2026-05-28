@@ -50,6 +50,7 @@ workflows:
 
       - name: Build and archive for App Store
         script: |
+          xcode-project use-profiles
           xcode-project build-ipa \
             --project "$XCODE_PROJECT" \
             --scheme "$XCODE_SCHEME"
