@@ -30,13 +30,18 @@ workflows:
         script: npm install -g @capacitor/cli
 
       - name: Add iOS platform
-        script: npx cap add ios
+        script: |
+          npx cap add ios
+          echo "--- Contents of ios/App after cap add ios ---"
+          ls -la ios/App/ || echo "ios/App not found!"
 
       - name: Sync Capacitor iOS project
         script: npx cap sync ios
 
       - name: Install CocoaPods
         script: |
+          echo "--- Checking for Podfile ---"
+          ls -la ios/App/Podfile || echo "Podfile NOT found"
           cd ios/App
           pod install
 
