@@ -32,22 +32,6 @@ workflows:
       - name: Install Capacitor CLI globally
         script: npm install -g @capacitor/cli
 
-      - name: Build web assets
-        script: |
-          if [ -f "node_modules/.bin/vite" ]; then
-            npm run build
-          elif [ -f "node_modules/.bin/react-scripts" ]; then
-            npm run build
-          else
-            echo "No build script detected — skipping web build step"
-          fi
-
-      - name: Add iOS platform
-        ▎   script: |
-        ▎     if [ ! -d "ios" ]; then
-        ▎       npx cap add ios
-        ▎     fi
-
       - name: Sync Capacitor iOS project
         script: npx cap sync ios
 
