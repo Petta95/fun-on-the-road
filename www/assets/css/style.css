@@ -260,8 +260,11 @@ h4 { font-size: 1.1rem; }
   padding: 0 20px;
 }
 
-.safe-top    { padding-top: env(safe-area-inset-top, 16px); }
-.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 24px); }
+/* calc() adds 12px breathing room on top of the OS-reported safe area.
+   !important ensures this beats both Tailwind pt-* utilities and
+   .game-score-header's padding shorthand (which appears later in the sheet). */
+.safe-top    { padding-top: calc(env(safe-area-inset-top, 0px) + 12px) !important; }
+.safe-bottom { padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 16px) !important; }
 
 /* ── 9. TEMPLATE GIOCO ──────────────────────────────────── */
 

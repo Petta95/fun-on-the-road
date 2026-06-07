@@ -221,6 +221,35 @@
         </div>
       </section>
 
+      <!-- ─ SECTION: Community ─ -->
+      <section class="animate-fade-in-up" style="animation-delay:0.15s">
+        <p class="text-slate-500 text-[10px] font-bold tracking-[0.18em] uppercase px-1 mb-2" data-i18n="sectionCommunity">Community</p>
+
+        <!-- Share with Friends -->
+        <button id="btn-share" class="glass-card p-4 flex items-center gap-4 w-full text-left mb-2">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-share-nodes text-amber-400"></i>
+          </div>
+          <div class="flex-1">
+            <p class="text-white font-semibold text-sm" data-i18n="shareLabel">Share with Friends</p>
+            <p class="text-slate-400 text-xs" data-i18n="shareHint">Invite others to join the fun</p>
+          </div>
+          <i class="fa-solid fa-chevron-right text-slate-600 text-xs"></i>
+        </button>
+
+        <!-- Rate the App -->
+        <button id="btn-rate" class="glass-card p-4 flex items-center gap-4 w-full text-left">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-star text-amber-400"></i>
+          </div>
+          <div class="flex-1">
+            <p class="text-white font-semibold text-sm" data-i18n="rateLabel">Rate the App</p>
+            <p class="text-slate-400 text-xs" data-i18n="rateHint">Love the game? Leave us a review!</p>
+          </div>
+          <i class="fa-solid fa-chevron-right text-slate-600 text-xs"></i>
+        </button>
+      </section>
+
     </main>
 
     <div class="h-24 flex-shrink-0"></div>
@@ -257,6 +286,8 @@
   </nav>
 
   <!-- ── SCRIPTS ────────────────────────────── -->
+  <script src="assets/js/amplitude.umd.min.js"></script>
+  <script src="assets/js/analytics.js"></script>
   <script src="assets/js/app.js"></script>
   <script>
     const TRANSLATIONS = {
@@ -273,6 +304,10 @@
         resetLabel: 'Reset Scores', resetHint: 'Clears all points, keeps team names', resetBtn: 'Reset',
         sectionAbout: 'About',
         aboutText: 'The ultimate travel companion game for friends and families. Turn every km into fun.',
+        sectionCommunity: 'Community',
+        shareLabel: 'Share with Friends', shareHint: 'Invite others to join the fun',
+        shareMsg: '🚗 Try "Fun on the Road" — the best travel game for groups!', shareCopied: 'Link copied!',
+        rateLabel: 'Rate the App', rateHint: 'Love the game? Leave us a review!',
         navHome: 'Home', navLeaderboard: 'Ranking', navSettings: 'Settings',
       },
       it: {
@@ -288,6 +323,10 @@
         resetLabel: 'Azzera Punteggi', resetHint: 'Cancella i punti, mantiene i nomi', resetBtn: 'Azzera',
         sectionAbout: 'Info',
         aboutText: 'Il compagno di viaggio definitivo. Trasforma ogni km in divertimento.',
+        sectionCommunity: 'Comunità',
+        shareLabel: 'Condividi con gli Amici', shareHint: 'Invita altri passeggeri a giocare',
+        shareMsg: '🚗 Prova "Fun on the Road" — il miglior gioco di gruppo per i viaggi!', shareCopied: 'Link copiato!',
+        rateLabel: 'Valuta l\'App', rateHint: 'Ti piace il gioco? Lascia una recensione!',
         navHome: 'Home', navLeaderboard: 'Classifica', navSettings: 'Impostazioni',
       },
       fr: {
@@ -303,6 +342,10 @@
         resetLabel: 'Réinitialiser les Scores', resetHint: 'Efface les points, conserve les noms', resetBtn: 'Réinitialiser',
         sectionAbout: 'À propos',
         aboutText: 'Le compagnon de voyage ultime. Transformez chaque km en plaisir.',
+        sectionCommunity: 'Communauté',
+        shareLabel: 'Partager avec des Amis', shareHint: 'Invite d\'autres passagers à jouer',
+        shareMsg: '🚗 Essaie "Fun on the Road" — le meilleur jeu de voyage en groupe!', shareCopied: 'Lien copié!',
+        rateLabel: 'Évaluer l\'App', rateHint: 'Tu aimes le jeu? Laisse un avis!',
         navHome: 'Accueil', navLeaderboard: 'Classement', navSettings: 'Paramètres',
       },
       de: {
@@ -318,6 +361,10 @@
         resetLabel: 'Punkte zurücksetzen', resetHint: 'Löscht Punkte, behält Teamnamen', resetBtn: 'Zurücksetzen',
         sectionAbout: 'Über',
         aboutText: 'Das ultimative Reisespiel für Freunde und Familien. Jeder km wird zum Spaß.',
+        sectionCommunity: 'Community',
+        shareLabel: 'Mit Freunden teilen', shareHint: 'Andere Mitreisende einladen',
+        shareMsg: '🚗 Probiere "Fun on the Road" — das beste Gruppenreisespiel!', shareCopied: 'Link kopiert!',
+        rateLabel: 'App bewerten', rateHint: 'Gefällt dir das Spiel? Hinterlasse eine Bewertung!',
         navHome: 'Startseite', navLeaderboard: 'Rangliste', navSettings: 'Einstellungen',
       },
       es: {
@@ -333,6 +380,10 @@
         resetLabel: 'Reiniciar Puntuaciones', resetHint: 'Borra puntos, mantiene nombres', resetBtn: 'Reiniciar',
         sectionAbout: 'Acerca de',
         aboutText: 'El compañero de viaje definitivo. Convierte cada km en diversión.',
+        sectionCommunity: 'Comunidad',
+        shareLabel: 'Compartir con Amigos', shareHint: 'Invita a otros pasajeros a jugar',
+        shareMsg: '🚗 Prueba "Fun on the Road" — ¡el mejor juego grupal para viajes!', shareCopied: '¡Enlace copiado!',
+        rateLabel: 'Valorar la App', rateHint: '¿Te gusta el juego? ¡Déjanos una reseña!',
         navHome: 'Inicio', navLeaderboard: 'Clasificación', navSettings: 'Ajustes',
       },
     };
@@ -413,6 +464,60 @@
     /* ── Init ── */
     applyTranslations(lang);
     updateLangButtons(lang);
+
+    /* ── Share ─────────────────────────────────────────────── */
+    const STORE_URL = 'https://apps.apple.com/app/id000000000';
+
+    document.getElementById('btn-share').addEventListener('click', async () => {
+      const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
+      const teams = JSON.parse(localStorage.getItem('fotr_teams') || '{}');
+      let scoreText = '';
+      if (teams.team1 && teams.team2 && (teams.score1 || teams.score2)) {
+        scoreText = '\n' + teams.team1 + ' ' + (teams.score1 || 0) + ' – ' + (teams.score2 || 0) + ' ' + teams.team2;
+      }
+      const payload = { title: 'Fun on the Road', text: t.shareMsg + scoreText, url: STORE_URL };
+      try {
+        if (navigator.share) {
+          await navigator.share(payload);
+          /* Analytics — Event 2: App_Shared */
+          fotrTrack('App_Shared', { method: 'native_share', lang: lang, has_score: !!scoreText });
+        } else {
+          throw new Error('no-api');
+        }
+      } catch (err) {
+        if (err.name === 'AbortError') return;
+        try {
+          await navigator.clipboard.writeText(payload.text + '\n' + STORE_URL);
+          showSettingsToast(t.shareCopied);
+          /* Analytics — Event 2: App_Shared (clipboard fallback) */
+          fotrTrack('App_Shared', { method: 'clipboard', lang: lang, has_score: !!scoreText });
+        } catch (_) {}
+      }
+    });
+
+    /* ── Rate ──────────────────────────────────────────────── */
+    const IOS_REVIEW   = 'itms-apps://itunes.apple.com/app/id000000000?action=write-review';
+    const DROID_REVIEW = 'market://details?id=com.francesco.funontheroad&showAllReviews=true';
+
+    document.getElementById('btn-rate').addEventListener('click', () => {
+      const ua = navigator.userAgent.toLowerCase();
+      const url = /iphone|ipad|ipod/.test(ua) ? IOS_REVIEW
+                : /android/.test(ua) ? DROID_REVIEW
+                : STORE_URL + '?action=write-review';
+      /* Analytics — Event 3: Rate_App_Clicked */
+      fotrTrack('Rate_App_Clicked', { source: 'settings', lang: lang });
+      window.open(url, '_system');
+      localStorage.setItem('fotr_rated', 'true');
+    });
+
+    /* ── Toast helper ───────────────────────────────────────── */
+    function showSettingsToast(msg) {
+      const el = document.createElement('div');
+      el.textContent = msg;
+      el.style.cssText = 'position:fixed;bottom:7rem;left:50%;transform:translateX(-50%);background:#1e293b;color:#f8fafc;font-size:.875rem;font-weight:600;padding:.75rem 1.25rem;border-radius:1rem;box-shadow:0 8px 32px rgba(0,0,0,.4);z-index:300;white-space:nowrap';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 2500);
+    }
   </script>
 
 </body>

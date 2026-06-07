@@ -293,7 +293,30 @@
     </div>
   </div>
 
+  <!-- ══════════════════════════════════════════════════════════
+       RATE APP PROMPT
+  ══════════════════════════════════════════════════════════ -->
+  <div id="modal-rate" class="fixed inset-0 z-[200] flex items-end justify-center hidden" role="dialog" aria-modal="true" aria-labelledby="modal-rate-title">
+    <div id="modal-rate-backdrop" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
+    <div class="relative glass-panel w-full max-w-[480px] p-6 pb-12 rounded-t-[32px] animate-fade-in-up">
+      <div class="w-10 h-1 bg-white/20 rounded-full mx-auto mb-5"></div>
+      <div class="flex gap-1.5 justify-center mb-4">
+        <i class="fa-solid fa-star text-amber-400 text-2xl"></i>
+        <i class="fa-solid fa-star text-amber-400 text-2xl"></i>
+        <i class="fa-solid fa-star text-amber-400 text-2xl"></i>
+        <i class="fa-solid fa-star text-amber-400 text-2xl"></i>
+        <i class="fa-solid fa-star text-amber-400 text-2xl"></i>
+      </div>
+      <h2 id="modal-rate-title" class="text-white font-extrabold text-xl text-center mb-2" data-i18n="ratePromptTitle">Loving Fun on the Road?</h2>
+      <p class="text-slate-400 text-sm text-center mb-6" data-i18n="ratePromptBody">A quick review helps us grow and add new games for your trips!</p>
+      <button id="btn-rate-yes" class="btn-cta w-full py-4 rounded-2xl text-base mb-3" data-i18n="ratePromptYes">⭐ Rate Now</button>
+      <button id="btn-rate-later" class="btn-ghost w-full py-3 rounded-2xl text-sm" data-i18n="ratePromptLater">Maybe Later</button>
+    </div>
+  </div>
+
   <!-- ── SCRIPTS ────────────────────────────────────────────── -->
+  <script src="assets/js/amplitude.umd.min.js"></script>
+  <script src="assets/js/analytics.js"></script>
   <script src="assets/js/iap.js"></script>
   <script src="assets/js/app.js"></script>
   <script>
@@ -328,7 +351,7 @@
         proFeature1:         'Film Quiz — Guess the movie',
         proFeature2:         'Music Buzz — Name that tune',
         proFeature3:         'Would You Rather HOT & Trivia HOT',
-        proFeature4:         'Viaggio Infinito — Endless mode',
+        proFeature4:         'Infinite Journey — Endless mode',
         proModalBuy:         'Buy now · €2,99',
         proModalClose:       'Not now',
         ageTitle:            'Adult Content',
@@ -347,6 +370,10 @@
         navHome:             'Home',
         navLeaderboard:      'Ranking',
         navSettings:         'Settings',
+        ratePromptTitle:     'Loving Fun on the Road?',
+        ratePromptBody:      'A quick review helps us grow and add new games for your trips!',
+        ratePromptYes:       '⭐ Rate Now',
+        ratePromptLater:     'Maybe Later',
       },
       it: {
         pageTitle:           'Fun on the Road',
@@ -377,7 +404,7 @@
         proFeature1:         'Film Quiz — Indovina il film',
         proFeature2:         'Musica — Indovina la canzone',
         proFeature3:         'Preferiresti HOT & Trivia HOT',
-        proFeature4:         'Viaggio Infinito — Modalità senza fine',
+        proFeature4:         'Viaggio Infinito — Modalità senza fine',   /* IT: brand name kept */
         proModalBuy:         'Acquista ora · €2,99',
         proModalClose:       'Non ora',
         ageTitle:            'Contenuto per adulti',
@@ -396,6 +423,10 @@
         navHome:             'Home',
         navLeaderboard:      'Classifica',
         navSettings:         'Impostazioni',
+        ratePromptTitle:     'Ti piace Fun on the Road?',
+        ratePromptBody:      'Una recensione veloce ci aiuta a crescere e aggiungere nuovi giochi!',
+        ratePromptYes:       '⭐ Valuta Ora',
+        ratePromptLater:     'Forse Dopo',
       },
       fr: {
         pageTitle:           'Fun on the Road',
@@ -426,7 +457,7 @@
         proFeature1:         'Film Quiz — Devine le film',
         proFeature2:         'Music Buzz — Retrouve la chanson',
         proFeature3:         'Tu préférerais HOT & Trivia HOT',
-        proFeature4:         'Viaggio Infinito — Mode sans fin',
+        proFeature4:         'Voyage Infini — Mode sans fin',
         proModalBuy:         'Acheter maintenant · €2,99',
         proModalClose:       'Pas maintenant',
         ageTitle:            'Contenu pour adultes',
@@ -445,6 +476,10 @@
         navHome:             'Accueil',
         navLeaderboard:      'Classement',
         navSettings:         'Paramètres',
+        ratePromptTitle:     'Tu aimes Fun on the Road?',
+        ratePromptBody:      'Un avis rapide nous aide à grandir et ajouter de nouveaux jeux!',
+        ratePromptYes:       '⭐ Évaluer Maintenant',
+        ratePromptLater:     'Peut-être Plus Tard',
       },
       de: {
         pageTitle:           'Fun on the Road',
@@ -475,7 +510,7 @@
         proFeature1:         'Film Quiz — Errate den Film',
         proFeature2:         'Music Buzz — Erkenne den Song',
         proFeature3:         'Würdest du lieber HOT & Trivia HOT',
-        proFeature4:         'Viaggio Infinito — Endlosmodus',
+        proFeature4:         'Unendliche Reise — Endlosmodus',
         proModalBuy:         'Jetzt kaufen · €2,99',
         proModalClose:       'Nicht jetzt',
         ageTitle:            'Inhalt für Erwachsene',
@@ -494,6 +529,10 @@
         navHome:             'Startseite',
         navLeaderboard:      'Rangliste',
         navSettings:         'Einstellungen',
+        ratePromptTitle:     'Gefällt dir Fun on the Road?',
+        ratePromptBody:      'Eine kurze Bewertung hilft uns zu wachsen und neue Spiele hinzuzufügen!',
+        ratePromptYes:       '⭐ Jetzt Bewerten',
+        ratePromptLater:     'Vielleicht Später',
       },
       es: {
         pageTitle:           'Fun on the Road',
@@ -524,7 +563,7 @@
         proFeature1:         'Film Quiz — Adivina la película',
         proFeature2:         'Music Buzz — Adivina la canción',
         proFeature3:         '¿Preferirías HOT? & Trivia HOT',
-        proFeature4:         'Viaggio Infinito — Modo infinito',
+        proFeature4:         'Viaje Infinito — Modo infinito',
         proModalBuy:         'Comprar ahora · €2,99',
         proModalClose:       'Ahora no',
         ageTitle:            'Contenido adulto',
@@ -543,6 +582,10 @@
         navHome:             'Inicio',
         navLeaderboard:      'Clasificación',
         navSettings:         'Ajustes',
+        ratePromptTitle:     '¿Te gusta Fun on the Road?',
+        ratePromptBody:      '¡Una reseña rápida nos ayuda a crecer y añadir nuevos juegos!',
+        ratePromptYes:       '⭐ Valorar Ahora',
+        ratePromptLater:     'Quizás Después',
       },
     };
 
@@ -694,11 +737,87 @@
       setTimeout(() => el.remove(), 2500);
     }
 
+    /* ── Rate Prompt ─────────────────────────────────────────── */
+    const STORE_URL   = 'https://apps.apple.com/app/id000000000';
+    const IOS_REVIEW  = 'itms-apps://itunes.apple.com/app/id000000000?action=write-review';
+    const DROID_REVIEW = 'market://details?id=com.francesco.funontheroad&showAllReviews=true';
+
+    function openRateStore() {
+      const ua = navigator.userAgent.toLowerCase();
+      const url = /iphone|ipad|ipod/.test(ua) ? IOS_REVIEW
+                : /android/.test(ua) ? DROID_REVIEW
+                : STORE_URL + '?action=write-review';
+      window.open(url, '_system');
+      localStorage.setItem('fotr_rated', 'true');
+    }
+
+    function openRateModal() {
+      document.getElementById('modal-rate').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeRateModal() {
+      document.getElementById('modal-rate').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('btn-rate-yes').addEventListener('click', () => {
+      closeRateModal();
+      /* Analytics — Event 3: Rate_App_Clicked */
+      fotrTrack('Rate_App_Clicked', { source: 'smart_prompt', lang: currentLang, visit_count: _homeVisits });
+      openRateStore();
+    });
+    document.getElementById('btn-rate-later').addEventListener('click', () => {
+      closeRateModal();
+      localStorage.setItem('fotr_rate_deferred', Date.now().toString());
+    });
+    document.getElementById('modal-rate-backdrop').addEventListener('click', () => {
+      closeRateModal();
+      localStorage.setItem('fotr_rate_deferred', Date.now().toString());
+    });
+
+    /* ── Smart trigger: show after 5 home visits ─────────────── */
+    const _homeVisits = parseInt(localStorage.getItem('fotr_home_visits') || '0', 10) + 1;
+    localStorage.setItem('fotr_home_visits', _homeVisits.toString());
+
+    (function checkRatePrompt() {
+      if (localStorage.getItem('fotr_rated') === 'true') return;
+      if (_homeVisits < 5) return;
+      if (sessionStorage.getItem('fotr_rate_shown') === '1') return;
+      const deferred = parseInt(localStorage.getItem('fotr_rate_deferred') || '0', 10);
+      if (deferred && (Date.now() - deferred) < 3 * 24 * 60 * 60 * 1000) return;
+      sessionStorage.setItem('fotr_rate_shown', '1');
+      setTimeout(openRateModal, 2000);
+    })();
+
     /* ── Init ───────────────────────────────────────────────── */
     applyTranslations(currentLang);
     renderHomeScores();
     applyProState();
     applyAdultVisibility();
+
+    /* ── Analytics: Event 1 — Game_Started ──────────────────── *
+     * Delegated listener (capture phase) fires before navigation.
+     * Matches free game <a class="glass-card"> and .pro-card divs.
+     * ─────────────────────────────────────────────────────────── */
+    document.addEventListener('click', function (e) {
+      const freeCard = e.target.closest('a.glass-card[href][aria-label]');
+      const proCard  = e.target.closest('.pro-card[aria-label]');
+      if (freeCard && freeCard.getAttribute('aria-label') !== 'Profile') {
+        fotrTrack('Game_Started', {
+          game_name:   freeCard.getAttribute('aria-label'),
+          is_pro:      false,
+          lang:        currentLang,
+        });
+      } else if (proCard) {
+        fotrTrack('Game_Started', {
+          game_name:   proCard.getAttribute('aria-label'),
+          is_pro:      true,
+          is_unlocked: isProUnlocked(),
+          lang:        currentLang,
+        });
+      }
+    }, true);
   </script>
 
 </body>
