@@ -415,10 +415,12 @@
 
     LANG_CODES.forEach(code => {
       document.getElementById('lang-' + code).addEventListener('click', () => {
+        const prevLang = lang;
         lang = code;
         localStorage.setItem('fotr_lang', code);
         applyTranslations(code);
         updateLangButtons(code);
+        fotrTrack('Language_Changed', { from: prevLang, to: code });
       });
     });
 

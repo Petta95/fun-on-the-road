@@ -314,6 +314,33 @@
     </div>
   </div>
 
+  <!-- ── WELCOME OVERLAY ──────────────────────────────────── -->
+  <div id="modal-welcome" class="fixed inset-0 z-50 flex flex-col items-center justify-end hidden">
+    <div class="absolute inset-0 bg-slate-950/90 backdrop-blur-sm"></div>
+    <div class="relative glass-panel w-full max-w-[480px] p-6 pb-12 rounded-t-[32px] animate-fade-in-up">
+      <div class="w-10 h-1 bg-white/20 rounded-full mx-auto mb-6"></div>
+      <div class="flex justify-center gap-3 mb-5">
+        <div class="w-14 h-14 rounded-2xl bg-sky-500/15 flex items-center justify-center">
+          <i class="fa-solid fa-users text-sky-400 text-2xl"></i>
+        </div>
+        <div class="w-14 h-14 rounded-2xl bg-amber-500/15 flex items-center justify-center">
+          <i class="fa-solid fa-car text-amber-400 text-2xl"></i>
+        </div>
+        <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 flex items-center justify-center">
+          <i class="fa-solid fa-gamepad text-emerald-400 text-2xl"></i>
+        </div>
+      </div>
+      <h2 class="text-white font-extrabold text-2xl text-center mb-3 leading-tight" data-i18n="welcomeTitle">Better with friends!</h2>
+      <p class="text-slate-300 text-sm text-center mb-5 leading-relaxed px-2" data-i18n="welcomeBody">Hey! This game needs at least 2 players — pick your teams, don't forget the driver, and play out loud! Share the fun, not just the road.</p>
+      <div class="flex gap-2 justify-center mb-6 flex-wrap">
+        <span class="px-3 py-1.5 rounded-full bg-sky-500/15 text-sky-300 text-xs font-semibold border border-sky-500/20" data-i18n="welcomePill1">👥 2+ Players</span>
+        <span class="px-3 py-1.5 rounded-full bg-purple-500/15 text-purple-300 text-xs font-semibold border border-purple-500/20" data-i18n="welcomePill2">🎯 Take Turns</span>
+        <span class="px-3 py-1.5 rounded-full bg-amber-500/15 text-amber-300 text-xs font-semibold border border-amber-500/20" data-i18n="welcomePill3">🔊 Play Out Loud</span>
+      </div>
+      <button id="btn-welcome-close" class="btn-cta w-full py-4 rounded-2xl text-base font-bold" data-i18n="welcomeCta">Let's Roll! 🎉</button>
+    </div>
+  </div>
+
   <!-- ── SCRIPTS ────────────────────────────────────────────── -->
   <script src="assets/js/amplitude.umd.min.js"></script>
   <script src="assets/js/analytics.js"></script>
@@ -374,6 +401,12 @@
         ratePromptBody:      'A quick review helps us grow and add new games for your trips!',
         ratePromptYes:       '⭐ Rate Now',
         ratePromptLater:     'Maybe Later',
+        welcomeTitle:        'Better with friends!',
+        welcomeBody:         "Hey! This game needs at least 2 players — pick your teams, don't forget the driver, and play out loud! Share the fun, not just the road.",
+        welcomePill1:        '👥 2+ Players',
+        welcomePill2:        '🎯 Take Turns',
+        welcomePill3:        '🔊 Play Out Loud',
+        welcomeCta:          "Let's Roll! 🎉",
       },
       it: {
         pageTitle:           'Fun on the Road',
@@ -427,6 +460,12 @@
         ratePromptBody:      'Una recensione veloce ci aiuta a crescere e aggiungere nuovi giochi!',
         ratePromptYes:       '⭐ Valuta Ora',
         ratePromptLater:     'Forse Dopo',
+        welcomeTitle:        'Meglio in compagnia!',
+        welcomeBody:         'Ehi! Per giocare servono almeno 2 persone — scegliete le squadre, includete il guidatore e giocate ad alta voce! Il divertimento si condivide, non solo la strada.',
+        welcomePill1:        '👥 2+ Persone',
+        welcomePill2:        '🎯 A Turno',
+        welcomePill3:        '🔊 Ad Alta Voce',
+        welcomeCta:          'Si parte! 🎉',
       },
       fr: {
         pageTitle:           'Fun on the Road',
@@ -480,6 +519,12 @@
         ratePromptBody:      'Un avis rapide nous aide à grandir et ajouter de nouveaux jeux!',
         ratePromptYes:       '⭐ Évaluer Maintenant',
         ratePromptLater:     'Peut-être Plus Tard',
+        welcomeTitle:        'Meilleur à plusieurs !',
+        welcomeBody:         "Hey ! Ce jeu nécessite au moins 2 joueurs — formez vos équipes, n'oubliez pas le conducteur et jouez à voix haute ! Partagez le fun, pas seulement la route.",
+        welcomePill1:        '👥 2+ Joueurs',
+        welcomePill2:        '🎯 Chacun son Tour',
+        welcomePill3:        '🔊 À Voix Haute',
+        welcomeCta:          "C'est parti ! 🎉",
       },
       de: {
         pageTitle:           'Fun on the Road',
@@ -533,6 +578,12 @@
         ratePromptBody:      'Eine kurze Bewertung hilft uns zu wachsen und neue Spiele hinzuzufügen!',
         ratePromptYes:       '⭐ Jetzt Bewerten',
         ratePromptLater:     'Vielleicht Später',
+        welcomeTitle:        'Besser mit Freunden!',
+        welcomeBody:         'Hey! Dieses Spiel braucht mindestens 2 Spieler — wählt eure Teams, vergesst den Fahrer nicht und spielt laut mit! Teilt den Spaß, nicht nur die Straße.',
+        welcomePill1:        '👥 2+ Spieler',
+        welcomePill2:        '🎯 Abwechselnd',
+        welcomePill3:        '🔊 Laut Spielen',
+        welcomeCta:          'Los geht\'s! 🎉',
       },
       es: {
         pageTitle:           'Fun on the Road',
@@ -586,6 +637,12 @@
         ratePromptBody:      '¡Una reseña rápida nos ayuda a crecer y añadir nuevos juegos!',
         ratePromptYes:       '⭐ Valorar Ahora',
         ratePromptLater:     'Quizás Después',
+        welcomeTitle:        '¡Mejor en compañía!',
+        welcomeBody:         '¡Hola! Este juego necesita al menos 2 jugadores — elige tus equipos, ¡no olvides al conductor y jugad en voz alta! Comparte la diversión, no solo la carretera.',
+        welcomePill1:        '👥 2+ Jugadores',
+        welcomePill2:        '🎯 Por Turnos',
+        welcomePill3:        '🔊 En Voz Alta',
+        welcomeCta:          '¡Vamos! 🎉',
       },
     };
 
@@ -700,6 +757,7 @@
         if (!result.success) { return; }
         applyProState();
         closeProModal();
+        fotrTrack('Pro_Purchased', { product: result.productKey || 'HOT_PACK', lang: currentLang });
       }).catch(function (err) { console.error('IAP error', err); });
     });
     document.getElementById('btn-restore-pro').addEventListener('click', function () {
@@ -790,11 +848,30 @@
       setTimeout(openRateModal, 2000);
     })();
 
+    /* ── Welcome overlay (first launch) ────────────────────── */
+    function openWelcomeModal() {
+      document.getElementById('modal-welcome').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeWelcomeModal() {
+      document.getElementById('modal-welcome').classList.add('hidden');
+      document.body.style.overflow = '';
+      localStorage.setItem('fotr_welcome_seen', '1');
+    }
+    document.getElementById('btn-welcome-close').addEventListener('click', function () {
+      closeWelcomeModal();
+      fotrTrack('Welcome_Screen_Dismissed', { lang: currentLang });
+    });
+
     /* ── Init ───────────────────────────────────────────────── */
     applyTranslations(currentLang);
     renderHomeScores();
     applyProState();
     applyAdultVisibility();
+    if (!localStorage.getItem('fotr_welcome_seen')) {
+      fotrTrack('Welcome_Screen_Shown', { lang: currentLang });
+      openWelcomeModal();
+    }
 
     /* ── Analytics: Event 1 — Game_Started ──────────────────── *
      * Delegated listener (capture phase) fires before navigation.

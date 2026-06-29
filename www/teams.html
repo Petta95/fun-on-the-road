@@ -299,6 +299,7 @@
         score1: existing.score1 ?? 0,
         score2: existing.score2 ?? 0,
       }));
+      fotrTrack('Teams_Configured', { team1_name: n1, team2_name: n2, lang: lang });
       window.location.href = 'index.html';
     });
 

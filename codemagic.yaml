@@ -31,6 +31,10 @@ workflows:
       - name: Add iOS platform
         script: npx cap add ios
 
+      - name: Set app icon
+        script: |
+          cp store-assets/AppIcon-1024.png ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-512@2x.png
+
       - name: Sync Capacitor iOS project
         script: npx cap sync ios
 
