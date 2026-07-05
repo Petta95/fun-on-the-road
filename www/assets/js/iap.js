@@ -114,34 +114,42 @@ var IAP = {
   /* ── Flusso acquisto nativo (cordova-plugin-purchase v13) ── */
   _native: function (key, btn) {
     return new Promise(function (resolve, reject) {
-      var store = IAP._store;
-      var pid   = PRODUCT_ID[key];
+      var store   = IAP._store;
+      var pid     = PRODUCT_ID[key];
+      var settled = false;
+
+      function done(result) {
+        if (settled) { return; }
+        settled = true;
+        clearTimeout(safetyTimer);
+        if (unsub) { try { unsub(); } catch (_) {} }
+        IAP._btnLoading(btn, false);
+        if (result instanceof Error) { reject(result); } else { resolve(result); }
+      }
+
       IAP._btnLoading(btn, true);
+
+      // Sblocca il bottone dopo 60s se nessun evento arriva
+      var safetyTimer = setTimeout(function () {
+        done({ success: false, reason: 'timeout' });
+      }, 60000);
 
       // Ascolta ownership del prodotto specifico
       var unsub = store.when().productUpdated(function (p) {
         if (p.id !== pid || !p.owned) { return; }
-        unsub();
         _markPurchased(key);
-        IAP._btnLoading(btn, false);
-        resolve({ success: true, productKey: key });
+        done({ success: true, productKey: key });
       });
 
       // Avvia l'ordine sullo store
       store.order(pid)
         .then(function (res) {
-          if (!res || !res.isError) { return; }
-          IAP._btnLoading(btn, false);
+          if (!res || !res.isError) { return; } // attende productUpdated
           var cancelled = (typeof CdvPurchase !== 'undefined') &&
                           (res.code === CdvPurchase.ErrorCode.PAYMENT_CANCELLED);
-          cancelled
-            ? resolve({ success: false, reason: 'cancelled' })
-            : reject(res);
+          done(cancelled ? { success: false, reason: 'cancelled' } : Object.assign(new Error('IAP error'), res));
         })
-        .catch(function (e) {
-          IAP._btnLoading(btn, false);
-          reject(e);
-        });
+        .catch(function (e) { done(e instanceof Error ? e : new Error(String(e))); });
     });
   },
 

@@ -1,5 +1,8 @@
 {
   "appId": "com.francesco.funontheroad",
   "appName": "Fun on the Road",
-  "webDir": "www"
+  "webDir": "www",
+  "ios": {
+    "backgroundColor": "#020617"
+  }
 }
