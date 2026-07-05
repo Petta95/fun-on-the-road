@@ -244,36 +244,64 @@
   <div id="modal-pro" class="fixed inset-0 z-[200] flex items-end justify-center hidden" role="dialog" aria-modal="true" aria-labelledby="modal-pro-title">
     <div id="modal-pro-backdrop" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
     <div class="relative glass-panel w-full max-w-[480px] p-6 pb-12 rounded-t-[32px] animate-fade-in-up">
-      <div class="w-10 h-1 bg-white/20 rounded-full mx-auto mb-5"></div>
-      <div class="w-16 h-16 rounded-2xl bg-amber-500/20 flex items-center justify-center mx-auto mb-4">
-        <i class="fa-solid fa-crown text-amber-400 text-3xl"></i>
+      <div class="w-10 h-1 bg-white/20 rounded-full mx-auto mb-4"></div>
+      <h2 id="modal-pro-title" class="text-white font-extrabold text-xl text-center mb-1" data-i18n="unlockTitle">Sblocca i Giochi</h2>
+      <p class="text-slate-400 text-sm text-center mb-5" data-i18n="unlockSubtitle">Acquisto unico — valido per sempre</p>
+
+      <div class="flex flex-col gap-2 mb-4">
+
+        <!-- Film Quiz -->
+        <div class="glass-card p-3.5 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-sky-500/15 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-film text-sky-400 text-sm"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="text-white font-semibold text-sm">Film Quiz</p>
+            <p class="text-slate-400 text-xs" data-i18n="unlockFilmDesc">Guess the movie</p>
+          </div>
+          <button id="btn-buy-film" class="btn-cta px-3 py-1.5 rounded-xl text-xs flex-shrink-0">€1,99</button>
+        </div>
+
+        <!-- Music Buzz -->
+        <div class="glass-card p-3.5 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-sky-500/15 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-music text-sky-400 text-sm"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="text-white font-semibold text-sm">Music Buzz</p>
+            <p class="text-slate-400 text-xs" data-i18n="unlockMusicDesc">Name that tune</p>
+          </div>
+          <button id="btn-buy-music" class="btn-cta px-3 py-1.5 rounded-xl text-xs flex-shrink-0">€1,99</button>
+        </div>
+
+        <!-- HOT Pack -->
+        <div class="glass-card p-3.5 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-rose-500/15 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-pepper-hot text-rose-400 text-sm"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="text-white font-semibold text-sm" data-i18n="unlockHotTitle">Pack HOT</p>
+            <p class="text-slate-400 text-xs" data-i18n="unlockHotDesc">Preferiresti HOT + Trivia HOT</p>
+          </div>
+          <button id="btn-buy-hot" class="btn-cta px-3 py-1.5 rounded-xl text-xs flex-shrink-0">€2,99</button>
+        </div>
+
+        <!-- Unlock All -->
+        <div class="glass-card p-3.5 flex items-center gap-3 border border-amber-500/40">
+          <div class="w-9 h-9 rounded-xl bg-amber-500/15 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-crown text-amber-400 text-sm"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="text-white font-semibold text-sm" data-i18n="unlockAllTitle">Sblocca Tutto</p>
+            <p class="text-slate-400 text-xs" data-i18n="unlockAllDesc">Tutti i giochi PRO</p>
+          </div>
+          <button id="btn-buy-all-home" class="px-3 py-1.5 rounded-xl text-xs flex-shrink-0 font-bold bg-amber-500 text-slate-950 active:scale-95 transition-all">€4,99</button>
+        </div>
+
       </div>
-      <h2 id="modal-pro-title" class="text-white font-extrabold text-xl text-center mb-1" data-i18n="proModalTitle">Sblocca il Pack HOT!</h2>
-      <p class="text-slate-400 text-sm text-center mb-5" data-i18n="proModalSubtitle">Accedi ai giochi HOT per adulti per soli 2,99€. Film Quiz e Music Buzz si acquistano separatamente.</p>
-      <ul class="space-y-2.5 mb-6">
-        <li class="flex items-center gap-3 text-slate-300 text-sm">
-          <i class="fa-solid fa-check text-emerald-400 text-xs w-4 flex-shrink-0"></i>
-          <span data-i18n="proFeature1">Film Quiz — Guess the movie</span>
-        </li>
-        <li class="flex items-center gap-3 text-slate-300 text-sm">
-          <i class="fa-solid fa-check text-emerald-400 text-xs w-4 flex-shrink-0"></i>
-          <span data-i18n="proFeature2">Music Buzz — Name that tune</span>
-        </li>
-        <li class="flex items-center gap-3 text-slate-300 text-sm">
-          <i class="fa-solid fa-check text-emerald-400 text-xs w-4 flex-shrink-0"></i>
-          <span data-i18n="proFeature3">Preferiresti HOT &amp; Trivia HOT</span>
-        </li>
-        <li class="flex items-center gap-3 text-slate-300 text-sm">
-          <i class="fa-solid fa-check text-emerald-400 text-xs w-4 flex-shrink-0"></i>
-          <span data-i18n="proFeature4">Viaggio Infinito — Endless mode</span>
-        </li>
-      </ul>
-      <button id="btn-buy-pro" class="btn-cta w-full py-4 rounded-2xl text-base mb-3">
-        <i class="fa-solid fa-lock-open"></i>
-        <span data-i18n="proModalBuy">Acquista Pack HOT · €2,99</span>
-      </button>
-      <button id="btn-close-pro" class="btn-ghost w-full py-3 rounded-2xl text-sm" data-i18n="proModalClose">Not now</button>
-      <button id="btn-restore-pro" class="block w-full text-center text-slate-500 text-xs font-medium hover:text-slate-400 transition-colors mt-3 bg-transparent border-0 cursor-pointer py-1" data-i18n="restorePurchases">Restore purchases</button>
+
+      <button id="btn-close-pro" class="btn-ghost w-full py-3 rounded-2xl text-sm" data-i18n="proModalClose">Non ora</button>
+      <button id="btn-restore-pro" class="block w-full text-center text-slate-500 text-xs font-medium hover:text-slate-400 transition-colors mt-3 bg-transparent border-0 cursor-pointer py-1" data-i18n="restorePurchases">Ripristina acquisti</button>
     </div>
   </div>
 
@@ -381,8 +409,17 @@
         proFeature2:         '🔥 Trivia HOT — Adults only questions',
         proFeature3:         '👥 Unlimited plays — No round limit',
         proFeature4:         '🔓 One-time purchase — No subscription',
-        proModalBuy:         'Buy HOT Pack · €2,99',
         proModalClose:       'Not now',
+        unlockTitle:         'Unlock Games',
+        unlockSubtitle:      'One-time purchase — yours forever',
+        unlockFilmDesc:      'Guess the movie',
+        unlockMusicDesc:     'Name that tune',
+        unlockHotTitle:      'HOT Pack',
+        unlockHotDesc:       'Would You Rather HOT + Trivia HOT',
+        unlockAllTitle:      'Unlock Everything',
+        unlockAllDesc:       'All PRO games forever',
+        alreadyUnlocked:     '✓ Unlocked',
+        restorePurchases:    'Restore purchases',
         ageTitle:            'Adult Content',
         ageText:             'Confirm you are over 18 years old?',
         ageNo:               'No, go back',
@@ -440,8 +477,17 @@
         proFeature2:         '🔥 Trivia HOT — Domande solo adulti',
         proFeature3:         '👥 Giocate illimitate — Nessun limite di round',
         proFeature4:         '🔓 Acquisto unico — Nessun abbonamento',
-        proModalBuy:         'Acquista Pack HOT · €2,99',
         proModalClose:       'Non ora',
+        unlockTitle:         'Sblocca i Giochi',
+        unlockSubtitle:      'Acquisto unico — valido per sempre',
+        unlockFilmDesc:      'Indovina il film',
+        unlockMusicDesc:     'Indovina la canzone',
+        unlockHotTitle:      'Pack HOT',
+        unlockHotDesc:       'Preferiresti HOT + Trivia HOT',
+        unlockAllTitle:      'Sblocca Tutto',
+        unlockAllDesc:       'Tutti i giochi PRO per sempre',
+        alreadyUnlocked:     '✓ Sbloccato',
+        restorePurchases:    'Ripristina acquisti',
         ageTitle:            'Contenuto per adulti',
         ageText:             'Confermi di avere più di 18 anni?',
         ageNo:               'No, torna indietro',
@@ -499,8 +545,17 @@
         proFeature2:         '🔥 Trivia HOT — Questions adultes',
         proFeature3:         '👥 Parties illimitées — Sans limite de rounds',
         proFeature4:         '🔓 Achat unique — Sans abonnement',
-        proModalBuy:         'Acheter le Pack HOT · €2,99',
         proModalClose:       'Pas maintenant',
+        unlockTitle:         'Débloquer les Jeux',
+        unlockSubtitle:      'Achat unique — pour toujours',
+        unlockFilmDesc:      'Devine le film',
+        unlockMusicDesc:     'Retrouve la chanson',
+        unlockHotTitle:      'Pack HOT',
+        unlockHotDesc:       'Tu préférerais HOT + Trivia HOT',
+        unlockAllTitle:      'Tout Débloquer',
+        unlockAllDesc:       'Tous les jeux PRO pour toujours',
+        alreadyUnlocked:     '✓ Débloqué',
+        restorePurchases:    'Restaurer les achats',
         ageTitle:            'Contenu pour adultes',
         ageText:             'Confirmez-vous avoir plus de 18 ans ?',
         ageNo:               'Non, retourner',
@@ -558,8 +613,17 @@
         proFeature2:         '🔥 Trivia HOT — Nur für Erwachsene',
         proFeature3:         '👥 Unbegrenzte Spiele — Kein Rundenlimit',
         proFeature4:         '🔓 Einmaliger Kauf — Kein Abo',
-        proModalBuy:         'HOT-Pack kaufen · €2,99',
         proModalClose:       'Nicht jetzt',
+        unlockTitle:         'Spiele freischalten',
+        unlockSubtitle:      'Einmaliger Kauf — für immer',
+        unlockFilmDesc:      'Errate den Film',
+        unlockMusicDesc:     'Erkenne den Song',
+        unlockHotTitle:      'HOT-Pack',
+        unlockHotDesc:       'Würdest du lieber HOT + Trivia HOT',
+        unlockAllTitle:      'Alles freischalten',
+        unlockAllDesc:       'Alle PRO-Spiele für immer',
+        alreadyUnlocked:     '✓ Freigeschaltet',
+        restorePurchases:    'Käufe wiederherstellen',
         ageTitle:            'Inhalt für Erwachsene',
         ageText:             'Bestätigen Sie, dass Sie über 18 Jahre alt sind?',
         ageNo:               'Nein, zurück',
@@ -617,8 +681,17 @@
         proFeature2:         '🔥 Trivia HOT — Solo adultos',
         proFeature3:         '👥 Partidas ilimitadas — Sin límite de rondas',
         proFeature4:         '🔓 Compra única — Sin suscripción',
-        proModalBuy:         'Comprar Pack HOT · €2,99',
         proModalClose:       'Ahora no',
+        unlockTitle:         'Desbloquear Juegos',
+        unlockSubtitle:      'Compra única — para siempre',
+        unlockFilmDesc:      'Adivina la película',
+        unlockMusicDesc:     'Adivina la canción',
+        unlockHotTitle:      'Pack HOT',
+        unlockHotDesc:       '¿Preferirías HOT? + Trivia HOT',
+        unlockAllTitle:      'Desbloquear Todo',
+        unlockAllDesc:       'Todos los juegos PRO para siempre',
+        alreadyUnlocked:     '✓ Desbloqueado',
+        restorePurchases:    'Restaurar compras',
         ageTitle:            'Contenido adulto',
         ageText:             '¿Confirmas que tienes más de 18 años?',
         ageNo:               'No, volver',
@@ -694,18 +767,42 @@
     }
 
     function applyProState() {
-      const hotUnlocked = isProUnlocked(); // hotPack || all — controls Trivia HOT & Rather HOT
-      document.getElementById('btn-unlock-pro').classList.toggle('hidden', hotUnlocked);
-      document.getElementById('badge-pro-unlocked').classList.toggle('hidden', !hotUnlocked);
+      const hotUnlocked  = isProUnlocked();
+      const p            = JSON.parse(localStorage.getItem('fotr_purchases') || '{}');
+      const filmUnlocked = !!(p.filmQuiz || p.all);
+      const musicUnlocked= !!(p.musicBuzz || p.all);
+      const allUnlocked  = !!p.all;
+
+      // Header badge: hide "Sblocca" only when everything is unlocked
+      const everythingUnlocked = hotUnlocked && filmUnlocked && musicUnlocked;
+      document.getElementById('btn-unlock-pro').classList.toggle('hidden', everythingUnlocked);
+      document.getElementById('badge-pro-unlocked').classList.toggle('hidden', !everythingUnlocked);
+
+      // Trivia HOT & Rather HOT overlays
       document.querySelectorAll('.pro-lock-overlay').forEach(el => {
         el.style.display = hotUnlocked ? 'none' : '';
       });
-      // Film Quiz & Music Buzz have independent purchase states
-      const p = JSON.parse(localStorage.getItem('fotr_purchases') || '{}');
+
+      // Film Quiz & Music Buzz individual overlays
       const lf = document.getElementById('lock-film');
       const lm = document.getElementById('lock-music');
-      if (lf) lf.style.display = (p.filmQuiz || p.all) ? 'none' : '';
-      if (lm) lm.style.display = (p.musicBuzz || p.all) ? 'none' : '';
+      if (lf) lf.style.display = filmUnlocked  ? 'none' : '';
+      if (lm) lm.style.display = musicUnlocked ? 'none' : '';
+
+      // Update modal button states
+      const t = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+      const done = t.alreadyUnlocked || '✓';
+      function setBtn(id, unlocked, price) {
+        const b = document.getElementById(id);
+        if (!b) return;
+        b.textContent = unlocked ? done : price;
+        b.disabled    = unlocked;
+        b.style.opacity = unlocked ? '0.5' : '';
+      }
+      setBtn('btn-buy-film',     filmUnlocked,  '€1,99');
+      setBtn('btn-buy-music',    musicUnlocked, '€1,99');
+      setBtn('btn-buy-hot',      hotUnlocked,   '€2,99');
+      setBtn('btn-buy-all-home', allUnlocked,   '€4,99');
     }
 
     function applyAdultVisibility() {
@@ -760,14 +857,22 @@
     document.getElementById('btn-unlock-pro').addEventListener('click', openProModal);
     document.getElementById('btn-close-pro').addEventListener('click', closeProModal);
     document.getElementById('modal-pro-backdrop').addEventListener('click', closeProModal);
-    document.getElementById('btn-buy-pro').addEventListener('click', function () {
-      IAP.purchase('HOT_PACK', this).then(function (result) {
-        if (!result.success) { return; }
-        applyProState();
-        closeProModal();
-        fotrTrack('Pro_Purchased', { product: result.productKey || 'HOT_PACK', lang: currentLang });
-      }).catch(function (err) { console.error('IAP error', err); });
-    });
+
+    function makeBuyHandler(productKey) {
+      return function () {
+        IAP.purchase(productKey, this).then(function (result) {
+          if (!result.success) { return; }
+          applyProState();
+          if (productKey === 'HOT_PACK' || productKey === 'UNLOCK_ALL') { closeProModal(); }
+          fotrTrack('Pro_Purchased', { product: productKey, lang: currentLang });
+        }).catch(function (err) { console.error('IAP error', err); });
+      };
+    }
+    document.getElementById('btn-buy-film').addEventListener('click',     makeBuyHandler('FILM_QUIZ'));
+    document.getElementById('btn-buy-music').addEventListener('click',    makeBuyHandler('MUSIC_BUZZ'));
+    document.getElementById('btn-buy-hot').addEventListener('click',      makeBuyHandler('HOT_PACK'));
+    document.getElementById('btn-buy-all-home').addEventListener('click', makeBuyHandler('UNLOCK_ALL'));
+
     document.getElementById('btn-restore-pro').addEventListener('click', function () {
       IAP.restore(this).then(function (r) { if (r && r.restored) { applyProState(); closeProModal(); } });
     });
