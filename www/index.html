@@ -113,29 +113,31 @@
 
       <div class="grid grid-cols-2 gap-3">
 
-        <!-- Film Quiz -->
-        <div class="glass-card relative overflow-hidden p-5 flex flex-col items-center text-center active:scale-95 cursor-pointer group pro-card" data-href="film-quiz.html" role="button" tabindex="0" aria-label="Film Quiz">
-          <div class="pro-lock-overlay absolute inset-0 rounded-[inherit] bg-slate-950/60 flex items-center justify-center z-10">
-            <i class="fa-solid fa-lock text-slate-400 text-xl"></i>
+        <!-- Film Quiz — individual purchase, navigates directly to game -->
+        <a href="film-quiz.html" class="glass-card relative overflow-hidden p-5 flex flex-col items-center text-center active:scale-95 group no-underline" aria-label="Film Quiz">
+          <div id="lock-film" class="absolute inset-0 rounded-[inherit] bg-slate-950/60 flex flex-col items-center justify-center z-10">
+            <i class="fa-solid fa-lock text-slate-400 text-xl mb-1"></i>
+            <span class="text-slate-300 text-[0.6rem] font-bold">€1,99</span>
           </div>
           <div class="w-14 h-14 rounded-2xl bg-sky-500/15 flex items-center justify-center mb-3 group-hover:bg-sky-500/25 group-hover:scale-110 transition-all duration-300">
             <i class="fa-solid fa-film text-sky-400 text-2xl"></i>
           </div>
           <span class="text-white font-bold text-sm leading-tight" data-i18n="gameFilm">Film Quiz</span>
           <span class="text-slate-400 text-xs mt-1 leading-snug" data-i18n="gameFilmDesc">Guess the movie</span>
-        </div>
+        </a>
 
-        <!-- Music Buzz -->
-        <div class="glass-card relative overflow-hidden p-5 flex flex-col items-center text-center active:scale-95 cursor-pointer group pro-card" data-href="music-buzz.html" role="button" tabindex="0" aria-label="Music Buzz">
-          <div class="pro-lock-overlay absolute inset-0 rounded-[inherit] bg-slate-950/60 flex items-center justify-center z-10">
-            <i class="fa-solid fa-lock text-slate-400 text-xl"></i>
+        <!-- Music Buzz — individual purchase, navigates directly to game -->
+        <a href="music-buzz.html" class="glass-card relative overflow-hidden p-5 flex flex-col items-center text-center active:scale-95 group no-underline" aria-label="Music Buzz">
+          <div id="lock-music" class="absolute inset-0 rounded-[inherit] bg-slate-950/60 flex flex-col items-center justify-center z-10">
+            <i class="fa-solid fa-lock text-slate-400 text-xl mb-1"></i>
+            <span class="text-slate-300 text-[0.6rem] font-bold">€1,99</span>
           </div>
           <div class="w-14 h-14 rounded-2xl bg-sky-500/15 flex items-center justify-center mb-3 group-hover:bg-sky-500/25 group-hover:scale-110 transition-all duration-300">
             <i class="fa-solid fa-music text-sky-400 text-2xl"></i>
           </div>
           <span class="text-white font-bold text-sm leading-tight" data-i18n="gameMusic">Music Buzz</span>
           <span class="text-slate-400 text-xs mt-1 leading-snug" data-i18n="gameMusicDesc">Name that tune</span>
-        </div>
+        </a>
 
         <!-- Preferiresti HOT -->
         <div class="glass-card relative overflow-hidden p-5 flex flex-col items-center text-center active:scale-95 cursor-pointer group pro-card" data-href="rather-hot.html" data-adult="true" role="button" tabindex="0" aria-label="Preferiresti HOT">
@@ -246,8 +248,8 @@
       <div class="w-16 h-16 rounded-2xl bg-amber-500/20 flex items-center justify-center mx-auto mb-4">
         <i class="fa-solid fa-crown text-amber-400 text-3xl"></i>
       </div>
-      <h2 id="modal-pro-title" class="text-white font-extrabold text-xl text-center mb-1" data-i18n="proModalTitle">Sblocca il Pacchetto Premium!</h2>
-      <p class="text-slate-400 text-sm text-center mb-5" data-i18n="proModalSubtitle">Accedi a tutti i giochi HOT e alle modalità speciali per soli 2,99€.</p>
+      <h2 id="modal-pro-title" class="text-white font-extrabold text-xl text-center mb-1" data-i18n="proModalTitle">Sblocca il Pack HOT!</h2>
+      <p class="text-slate-400 text-sm text-center mb-5" data-i18n="proModalSubtitle">Accedi ai giochi HOT per adulti per soli 2,99€. Film Quiz e Music Buzz si acquistano separatamente.</p>
       <ul class="space-y-2.5 mb-6">
         <li class="flex items-center gap-3 text-slate-300 text-sm">
           <i class="fa-solid fa-check text-emerald-400 text-xs w-4 flex-shrink-0"></i>
@@ -268,7 +270,7 @@
       </ul>
       <button id="btn-buy-pro" class="btn-cta w-full py-4 rounded-2xl text-base mb-3">
         <i class="fa-solid fa-lock-open"></i>
-        <span data-i18n="proModalBuy">Buy now · €2,99</span>
+        <span data-i18n="proModalBuy">Acquista Pack HOT · €2,99</span>
       </button>
       <button id="btn-close-pro" class="btn-ghost w-full py-3 rounded-2xl text-sm" data-i18n="proModalClose">Not now</button>
       <button id="btn-restore-pro" class="block w-full text-center text-slate-500 text-xs font-medium hover:text-slate-400 transition-colors mt-3 bg-transparent border-0 cursor-pointer py-1" data-i18n="restorePurchases">Restore purchases</button>
@@ -373,13 +375,13 @@
         gameRatherHotDesc:   'Adults only',
         gameTriviaHot:       'Trivia HOT',
         gameTriviaHotDesc:   'Adults only',
-        proModalTitle:       'Unlock the Premium Package!',
-        proModalSubtitle:    'Access all HOT games and special modes for just €2,99.',
-        proFeature1:         'Film Quiz — Guess the movie',
-        proFeature2:         'Music Buzz — Name that tune',
-        proFeature3:         'Would You Rather HOT & Trivia HOT',
-        proFeature4:         'Infinite Journey — Endless mode',
-        proModalBuy:         'Buy now · €2,99',
+        proModalTitle:       'Unlock the HOT Pack!',
+        proModalSubtitle:    'Access the adult HOT games for just €2,99. Film Quiz & Music Buzz are sold separately.',
+        proFeature1:         '🌶️ Would You Rather HOT — Spicy challenges',
+        proFeature2:         '🔥 Trivia HOT — Adults only questions',
+        proFeature3:         '👥 Unlimited plays — No round limit',
+        proFeature4:         '🔓 One-time purchase — No subscription',
+        proModalBuy:         'Buy HOT Pack · €2,99',
         proModalClose:       'Not now',
         ageTitle:            'Adult Content',
         ageText:             'Confirm you are over 18 years old?',
@@ -432,13 +434,13 @@
         gameRatherHotDesc:   'Solo adulti',
         gameTriviaHot:       'Trivia HOT',
         gameTriviaHotDesc:   'Solo adulti',
-        proModalTitle:       'Sblocca il Pacchetto Premium!',
-        proModalSubtitle:    'Accedi a tutti i giochi HOT e alle modalità speciali per soli 2,99€.',
-        proFeature1:         'Film Quiz — Indovina il film',
-        proFeature2:         'Musica — Indovina la canzone',
-        proFeature3:         'Preferiresti HOT & Trivia HOT',
-        proFeature4:         'Viaggio Infinito — Modalità senza fine',   /* IT: brand name kept */
-        proModalBuy:         'Acquista ora · €2,99',
+        proModalTitle:       'Sblocca il Pack HOT!',
+        proModalSubtitle:    'Accedi ai giochi HOT per adulti per soli 2,99€. Film Quiz e Music Buzz si acquistano separatamente.',
+        proFeature1:         '🌶️ Preferiresti HOT — Sfide piccanti',
+        proFeature2:         '🔥 Trivia HOT — Domande solo adulti',
+        proFeature3:         '👥 Giocate illimitate — Nessun limite di round',
+        proFeature4:         '🔓 Acquisto unico — Nessun abbonamento',
+        proModalBuy:         'Acquista Pack HOT · €2,99',
         proModalClose:       'Non ora',
         ageTitle:            'Contenuto per adulti',
         ageText:             'Confermi di avere più di 18 anni?',
@@ -491,13 +493,13 @@
         gameRatherHotDesc:   'Adultes seulement',
         gameTriviaHot:       'Trivia HOT',
         gameTriviaHotDesc:   'Adultes seulement',
-        proModalTitle:       'Débloquer le Pack Premium !',
-        proModalSubtitle:    'Accédez à tous les jeux HOT et modes spéciaux pour seulement 2,99€.',
-        proFeature1:         'Film Quiz — Devine le film',
-        proFeature2:         'Music Buzz — Retrouve la chanson',
-        proFeature3:         'Tu préférerais HOT & Trivia HOT',
-        proFeature4:         'Voyage Infini — Mode sans fin',
-        proModalBuy:         'Acheter maintenant · €2,99',
+        proModalTitle:       'Débloquer le Pack HOT !',
+        proModalSubtitle:    'Accédez aux jeux HOT adultes pour seulement 2,99€. Film Quiz et Music Buzz sont vendus séparément.',
+        proFeature1:         '🌶️ Tu préférerais HOT — Défis épicés',
+        proFeature2:         '🔥 Trivia HOT — Questions adultes',
+        proFeature3:         '👥 Parties illimitées — Sans limite de rounds',
+        proFeature4:         '🔓 Achat unique — Sans abonnement',
+        proModalBuy:         'Acheter le Pack HOT · €2,99',
         proModalClose:       'Pas maintenant',
         ageTitle:            'Contenu pour adultes',
         ageText:             'Confirmez-vous avoir plus de 18 ans ?',
@@ -550,13 +552,13 @@
         gameRatherHotDesc:   'Nur für Erwachsene',
         gameTriviaHot:       'Trivia HOT',
         gameTriviaHotDesc:   'Nur für Erwachsene',
-        proModalTitle:       'Premium-Paket freischalten!',
-        proModalSubtitle:    'Zugang zu allen HOT-Spielen und Spezialmodi für nur 2,99€.',
-        proFeature1:         'Film Quiz — Errate den Film',
-        proFeature2:         'Music Buzz — Erkenne den Song',
-        proFeature3:         'Würdest du lieber HOT & Trivia HOT',
-        proFeature4:         'Unendliche Reise — Endlosmodus',
-        proModalBuy:         'Jetzt kaufen · €2,99',
+        proModalTitle:       'HOT-Pack freischalten!',
+        proModalSubtitle:    'Zugang zu allen HOT-Spielen für nur 2,99€. Film Quiz & Music Buzz werden separat gekauft.',
+        proFeature1:         '🌶️ Würdest du lieber HOT — Pikante Aufgaben',
+        proFeature2:         '🔥 Trivia HOT — Nur für Erwachsene',
+        proFeature3:         '👥 Unbegrenzte Spiele — Kein Rundenlimit',
+        proFeature4:         '🔓 Einmaliger Kauf — Kein Abo',
+        proModalBuy:         'HOT-Pack kaufen · €2,99',
         proModalClose:       'Nicht jetzt',
         ageTitle:            'Inhalt für Erwachsene',
         ageText:             'Bestätigen Sie, dass Sie über 18 Jahre alt sind?',
@@ -609,13 +611,13 @@
         gameRatherHotDesc:   'Solo adultos',
         gameTriviaHot:       'Trivia HOT',
         gameTriviaHotDesc:   'Solo adultos',
-        proModalTitle:       '¡Desbloquea el Paquete Premium!',
-        proModalSubtitle:    'Accede a todos los juegos HOT y modos especiales por solo 2,99€.',
-        proFeature1:         'Film Quiz — Adivina la película',
-        proFeature2:         'Music Buzz — Adivina la canción',
-        proFeature3:         '¿Preferirías HOT? & Trivia HOT',
-        proFeature4:         'Viaje Infinito — Modo infinito',
-        proModalBuy:         'Comprar ahora · €2,99',
+        proModalTitle:       '¡Desbloquea el Pack HOT!',
+        proModalSubtitle:    'Accede a los juegos HOT para adultos por solo 2,99€. Film Quiz y Music Buzz se venden por separado.',
+        proFeature1:         '🌶️ ¿Preferirías HOT? — Retos picantes',
+        proFeature2:         '🔥 Trivia HOT — Solo adultos',
+        proFeature3:         '👥 Partidas ilimitadas — Sin límite de rondas',
+        proFeature4:         '🔓 Compra única — Sin suscripción',
+        proModalBuy:         'Comprar Pack HOT · €2,99',
         proModalClose:       'Ahora no',
         ageTitle:            'Contenido adulto',
         ageText:             '¿Confirmas que tienes más de 18 años?',
@@ -692,12 +694,18 @@
     }
 
     function applyProState() {
-      const unlocked = isProUnlocked();
-      document.getElementById('btn-unlock-pro').classList.toggle('hidden', unlocked);
-      document.getElementById('badge-pro-unlocked').classList.toggle('hidden', !unlocked);
+      const hotUnlocked = isProUnlocked(); // hotPack || all — controls Trivia HOT & Rather HOT
+      document.getElementById('btn-unlock-pro').classList.toggle('hidden', hotUnlocked);
+      document.getElementById('badge-pro-unlocked').classList.toggle('hidden', !hotUnlocked);
       document.querySelectorAll('.pro-lock-overlay').forEach(el => {
-        el.style.display = unlocked ? 'none' : '';
+        el.style.display = hotUnlocked ? 'none' : '';
       });
+      // Film Quiz & Music Buzz have independent purchase states
+      const p = JSON.parse(localStorage.getItem('fotr_purchases') || '{}');
+      const lf = document.getElementById('lock-film');
+      const lm = document.getElementById('lock-music');
+      if (lf) lf.style.display = (p.filmQuiz || p.all) ? 'none' : '';
+      if (lm) lm.style.display = (p.musicBuzz || p.all) ? 'none' : '';
     }
 
     function applyAdultVisibility() {
@@ -796,8 +804,8 @@
     }
 
     /* ── Rate Prompt ─────────────────────────────────────────── */
-    const STORE_URL   = 'https://apps.apple.com/app/id000000000';
-    const IOS_REVIEW  = 'itms-apps://itunes.apple.com/app/id000000000?action=write-review';
+    const STORE_URL   = 'https://apps.apple.com/app/id6772791053';
+    const IOS_REVIEW  = 'itms-apps://itunes.apple.com/app/id6772791053?action=write-review';
     const DROID_REVIEW = 'market://details?id=com.francesco.funontheroad&showAllReviews=true';
 
     function openRateStore() {
