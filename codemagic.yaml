@@ -18,6 +18,7 @@ workflows:
         APP_ID: com.francesco.funontheroad
         XCODE_PROJECT: ios/App/App.xcodeproj
         XCODE_SCHEME: App
+        APP_VERSION: "1.1"
       node: latest
       xcode: latest
 
@@ -51,9 +52,10 @@ workflows:
           mkdir -p "$PROFILES_DIR"
           echo $CM_PROVISIONING_PROFILE | base64 --decode > "$PROFILES_DIR/profile.mobileprovision"
 
-      - name: Set build number from Codemagic build number
+      - name: Set version and build number
         script: |
           cd ios/App
+          agvtool new-marketing-version $APP_VERSION
           agvtool new-version -all $BUILD_NUMBER
 
       - name: Build and archive for App Store
