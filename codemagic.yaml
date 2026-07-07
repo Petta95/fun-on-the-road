@@ -18,7 +18,7 @@ workflows:
         APP_ID: com.francesco.funontheroad
         XCODE_PROJECT: ios/App/App.xcodeproj
         XCODE_SCHEME: App
-        APP_VERSION: "1.1"
+        APP_VERSION: "1.2"
       node: latest
       xcode: latest
 
