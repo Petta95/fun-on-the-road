@@ -122,31 +122,39 @@ var IAP = {
         if (settled) { return; }
         settled = true;
         clearTimeout(safetyTimer);
-        if (unsub) { try { unsub(); } catch (_) {} }
         IAP._btnLoading(btn, false);
         if (result instanceof Error) { reject(result); } else { resolve(result); }
       }
 
       IAP._btnLoading(btn, true);
 
-      // Sblocca il bottone dopo 60s se nessun evento arriva
+      // Sblocca il bottone dopo 25s se nessun evento arriva (dialog chiuso, rete assente, ecc.)
       var safetyTimer = setTimeout(function () {
         done({ success: false, reason: 'timeout' });
-      }, 60000);
+      }, 25000);
 
-      // Ascolta ownership del prodotto specifico
-      var unsub = store.when().productUpdated(function (p) {
+      // Ascolta ownership: il prodotto è nostro
+      store.when().productUpdated(function (p) {
         if (p.id !== pid || !p.owned) { return; }
         _markPurchased(key);
         done({ success: true, productKey: key });
+      });
+
+      // Transazione annullata o rifiutata: libera subito il bottone
+      store.when().unverified(function (receipt) {
+        var prods = receipt && receipt.products;
+        if (!prods) { return; }
+        for (var i = 0; i < prods.length; i++) {
+          if (prods[i].id === pid) { done({ success: false, reason: 'unverified' }); return; }
+        }
       });
 
       // Avvia l'ordine sullo store
       store.order(pid)
         .then(function (res) {
           if (!res || !res.isError) { return; } // attende productUpdated
-          var cancelled = (typeof CdvPurchase !== 'undefined') &&
-                          (res.code === CdvPurchase.ErrorCode.PAYMENT_CANCELLED);
+          var isCdv     = typeof CdvPurchase !== 'undefined';
+          var cancelled = isCdv && (res.code === CdvPurchase.ErrorCode.PAYMENT_CANCELLED);
           done(cancelled ? { success: false, reason: 'cancelled' } : Object.assign(new Error('IAP error'), res));
         })
         .catch(function (e) { done(e instanceof Error ? e : new Error(String(e))); });
