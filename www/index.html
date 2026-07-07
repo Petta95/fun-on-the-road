@@ -856,6 +856,20 @@
     document.getElementById('btn-close-pro').addEventListener('click', closeProModal);
     document.getElementById('modal-pro-backdrop').addEventListener('click', closeProModal);
 
+    // Lock overlay su Film Quiz e Music Buzz: apre la modal invece di navigare al gioco
+    var lockFilm = document.getElementById('lock-film');
+    var lockMusic = document.getElementById('lock-music');
+    if (lockFilm) {
+      lockFilm.addEventListener('click', function (e) {
+        e.preventDefault(); e.stopPropagation(); openProModal();
+      });
+    }
+    if (lockMusic) {
+      lockMusic.addEventListener('click', function (e) {
+        e.preventDefault(); e.stopPropagation(); openProModal();
+      });
+    }
+
     function makeBuyHandler(productKey) {
       return function () {
         IAP.purchase(productKey, this).then(function (result) {

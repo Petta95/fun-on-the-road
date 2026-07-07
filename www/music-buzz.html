@@ -422,7 +422,11 @@
         if (!result.success) { return; }
         document.getElementById('paywall').style.display = 'none';
         startGame();
-      }).catch(function (err) { console.error('IAP error', err); });
+      }).catch(function (err) {
+        if (typeof _iapToast === 'function') {
+          _iapToast('Errore: ' + (err && err.message ? err.message : String(err)));
+        }
+      });
     }
 
     /* ─ SONG DATA ─ */

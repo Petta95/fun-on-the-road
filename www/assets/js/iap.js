@@ -72,6 +72,18 @@ function _markPurchased(key) {
   _saveState(s);
 }
 
+/* ── Toast errore visibile senza console ────────────────────── */
+function _iapToast(msg) {
+  var t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;bottom:90px;left:50%;transform:translateX(-50%);'
+    + 'background:rgba(220,38,38,0.92);color:#fff;padding:10px 20px;border-radius:14px;'
+    + 'font-size:13px;z-index:9999;max-width:80vw;text-align:center;pointer-events:none;'
+    + 'box-shadow:0 4px 20px rgba(0,0,0,0.4)';
+  document.body.appendChild(t);
+  setTimeout(function () { if (t.parentNode) { t.parentNode.removeChild(t); } }, 4000);
+}
+
 /* ── Modulo IAP ─────────────────────────────────────────────── */
 var IAP = {
   _store: null,
@@ -128,8 +140,9 @@ var IAP = {
 
       IAP._btnLoading(btn, true);
 
-      // Sblocca il bottone dopo 25s se nessun evento arriva (dialog chiuso, rete assente, ecc.)
+      // Libera il bottone dopo 25s se nessun evento arriva
       var safetyTimer = setTimeout(function () {
+        _iapToast('Acquisto non completato. Riprova.');
         done({ success: false, reason: 'timeout' });
       }, 25000);
 
@@ -140,7 +153,7 @@ var IAP = {
         done({ success: true, productKey: key });
       });
 
-      // Transazione annullata o rifiutata: libera subito il bottone
+      // Transazione non verificata: libera subito il bottone
       store.when().unverified(function (receipt) {
         var prods = receipt && receipt.products;
         if (!prods) { return; }
@@ -149,15 +162,36 @@ var IAP = {
         }
       });
 
-      // Avvia l'ordine sullo store
-      store.order(pid)
+      // CdvPurchase v13: order() richiede un oggetto Offer, non solo l'ID stringa
+      var product = store.get(pid, CdvPurchase.Platform.APPLE_APPSTORE);
+      if (!product) {
+        _iapToast('Prodotto non ancora caricato. Attendi qualche secondo e riprova.');
+        done({ success: false, reason: 'product_not_loaded' });
+        return;
+      }
+      var offer = product.getOffer ? product.getOffer() : null;
+      if (!offer) {
+        _iapToast('Offerta non disponibile. Riprova tra un momento.');
+        done({ success: false, reason: 'no_offer' });
+        return;
+      }
+
+      store.order(offer)
         .then(function (res) {
           if (!res || !res.isError) { return; } // attende productUpdated
           var isCdv     = typeof CdvPurchase !== 'undefined';
           var cancelled = isCdv && (res.code === CdvPurchase.ErrorCode.PAYMENT_CANCELLED);
-          done(cancelled ? { success: false, reason: 'cancelled' } : Object.assign(new Error('IAP error'), res));
+          if (cancelled) {
+            done({ success: false, reason: 'cancelled' });
+          } else {
+            _iapToast('Errore acquisto: ' + (res.message || res.code || 'sconosciuto'));
+            done(Object.assign(new Error('IAP error'), res));
+          }
         })
-        .catch(function (e) { done(e instanceof Error ? e : new Error(String(e))); });
+        .catch(function (e) {
+          _iapToast('Errore: ' + (e && e.message ? e.message : String(e)));
+          done(e instanceof Error ? e : new Error(String(e)));
+        });
     });
   },
 
@@ -177,9 +211,9 @@ var IAP = {
   /* ── Fallback web/browser ──────────────────────────────── */
   _fallback: function () {
     var lang = localStorage.getItem('fotr_lang') || 'en';
-    alert(lang === 'it'
-      ? 'Gli acquisti in-app sono disponibili solo nell\'app installata dallo Store.'
-      : 'In-app purchases are available only in the installed app. Download it from the Store!');
+    _iapToast(lang === 'it'
+      ? 'Acquisti disponibili solo nell\'app installata dallo Store.'
+      : 'In-app purchases are only available in the installed app.');
     return Promise.resolve({ success: false, reason: 'web_mode' });
   },
 
