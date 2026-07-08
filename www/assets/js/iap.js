@@ -72,6 +72,25 @@ function _markPurchased(key) {
   _saveState(s);
 }
 
+/* ── Log diagnostico persistente ────────────────────────────────
+   Traccia ogni evento del ciclo di vita IAP (ordine, approvazione,
+   verifica, finish, errori) in console + in un buffer localStorage,
+   così se un acquisto resta bloccato si può capire a che punto è
+   arrivato anche senza avere Xcode collegato in quel momento.
+   Recupero log: Safari → Sviluppo → [dispositivo] → pagina → Console,
+   oppure da localStorage.getItem('_fotr_iap_log') via Web Inspector.
+   ─────────────────────────────────────────────────────────── */
+var _IAP_LOG_KEY = '_fotr_iap_log';
+function _iapLog(event, data) {
+  try { console.log('[IAP]', event, data || ''); } catch (e) {}
+  try {
+    var log = JSON.parse(localStorage.getItem(_IAP_LOG_KEY) || '[]');
+    log.push({ t: new Date().toISOString(), event: event, data: data || null });
+    if (log.length > 150) { log = log.slice(-150); }
+    localStorage.setItem(_IAP_LOG_KEY, JSON.stringify(log));
+  } catch (e) {}
+}
+
 /* ── Toast errore visibile senza console ────────────────────── */
 function _iapToast(msg) {
   var t = document.createElement('div');
@@ -112,12 +131,15 @@ var IAP = {
   restore: function (btn) {
     if (!IAP._store) { return IAP._fallback(); }
     IAP._btnLoading(btn, true);
+    _iapLog('restore_start');
     return IAP._store.restorePurchases()
       .then(function () {
+        _iapLog('restore_done');
         IAP._btnLoading(btn, false);
         return { restored: true };
       })
       .catch(function (e) {
+        _iapLog('restore_error', { message: e && e.message ? e.message : String(e) });
         IAP._btnLoading(btn, false);
         return Promise.reject(e);
       });
@@ -139,17 +161,51 @@ var IAP = {
       }
 
       IAP._btnLoading(btn, true);
+      _iapLog('order_start', { key: key, pid: pid });
 
-      // Libera il bottone dopo 25s se nessun evento arriva
+      // Traccia se Apple ha già confermato il pagamento (transazione "approved")
+      // prima che scada il timer di sicurezza: in tal caso i soldi sono presi
+      // e NON dobbiamo invitare l'utente a "riprovare" (rischio doppio addebito),
+      // ma solo ad attendere la verifica della ricevuta.
+      var paymentApproved = false;
+      store.when().approved(function (t) {
+        var prods = t && t.products;
+        if (!prods) { return; }
+        for (var i = 0; i < prods.length; i++) {
+          if (prods[i].id === pid) {
+            paymentApproved = true;
+            _iapLog('approved', { key: key, pid: pid });
+            return;
+          }
+        }
+      });
+
+      // Libera il bottone dopo 30s se nessun evento definitivo arriva
       var safetyTimer = setTimeout(function () {
-        _iapToast('Acquisto non completato. Riprova.');
-        done({ success: false, reason: 'timeout' });
-      }, 25000);
+        if (paymentApproved) {
+          _iapLog('timeout_pending_verification', { key: key, pid: pid });
+          _iapToast('Pagamento ricevuto: verifica in corso, attendi qualche istante...');
+          done({ success: false, reason: 'pending_verification' });
+        } else {
+          _iapLog('timeout_no_payment', { key: key, pid: pid });
+          _iapToast('Acquisto non completato. Riprova.');
+          done({ success: false, reason: 'timeout' });
+        }
+      }, 30000);
 
       // Ascolta ownership: il prodotto è nostro
       store.when().productUpdated(function (p) {
         if (p.id !== pid || !p.owned) { return; }
+        var wasAlreadySettled = settled;
+        _iapLog('product_updated_owned', { key: key, pid: pid, lateArrival: wasAlreadySettled });
         _markPurchased(key);
+        if (wasAlreadySettled) {
+          // Conferma arrivata dopo il timeout: la verifica era solo lenta,
+          // il contenuto è ora sbloccato. Avvisa l'utente e ricarica la UI.
+          _iapToast('Acquisto confermato! Contenuto sbloccato.');
+          setTimeout(function () { location.reload(); }, 1200);
+          return;
+        }
         done({ success: true, productKey: key });
       });
 
@@ -158,19 +214,25 @@ var IAP = {
         var prods = receipt && receipt.products;
         if (!prods) { return; }
         for (var i = 0; i < prods.length; i++) {
-          if (prods[i].id === pid) { done({ success: false, reason: 'unverified' }); return; }
+          if (prods[i].id === pid) {
+            _iapLog('unverified', { key: key, pid: pid, receipt: receipt && receipt.id });
+            done({ success: false, reason: 'unverified' });
+            return;
+          }
         }
       });
 
       // CdvPurchase v13: order() richiede un oggetto Offer, non solo l'ID stringa
       var product = store.get(pid, CdvPurchase.Platform.APPLE_APPSTORE);
       if (!product) {
+        _iapLog('product_not_loaded', { key: key, pid: pid });
         _iapToast('Prodotto non ancora caricato. Attendi qualche secondo e riprova.');
         done({ success: false, reason: 'product_not_loaded' });
         return;
       }
       var offer = product.getOffer ? product.getOffer() : null;
       if (!offer) {
+        _iapLog('no_offer', { key: key, pid: pid });
         _iapToast('Offerta non disponibile. Riprova tra un momento.');
         done({ success: false, reason: 'no_offer' });
         return;
@@ -182,13 +244,16 @@ var IAP = {
           var isCdv     = typeof CdvPurchase !== 'undefined';
           var cancelled = isCdv && (res.code === CdvPurchase.ErrorCode.PAYMENT_CANCELLED);
           if (cancelled) {
+            _iapLog('order_cancelled', { key: key, pid: pid });
             done({ success: false, reason: 'cancelled' });
           } else {
+            _iapLog('order_error', { key: key, pid: pid, code: res.code, message: res.message });
             _iapToast('Errore acquisto: ' + (res.message || res.code || 'sconosciuto'));
             done(Object.assign(new Error('IAP error'), res));
           }
         })
         .catch(function (e) {
+          _iapLog('order_exception', { key: key, pid: pid, message: e && e.message ? e.message : String(e) });
           _iapToast('Errore: ' + (e && e.message ? e.message : String(e)));
           done(e instanceof Error ? e : new Error(String(e)));
         });
@@ -238,21 +303,53 @@ var IAP = {
 
     // Ciclo di vita transazioni: verifica e conferma automatica
     store.when()
-      .approved(function (t) { t.verify(); })
-      .verified(function (r) { r.finish(); });
+      .approved(function (t) {
+        _iapLog('global_approved', { pids: t.products && t.products.map(function (p) { return p.id; }) });
+        t.verify();
+      })
+      .verified(function (r) {
+        _iapLog('global_verified', { pids: r.products && r.products.map(function (p) { return p.id; }) });
+        r.finish();
+      });
 
     // Applica ownership al caricamento e al restore
     store.when().productUpdated(function (p) {
       if (!p.owned) { return; }
+      _iapLog('global_product_updated', { pid: p.id });
       Object.keys(PRODUCT_ID).forEach(function (k) {
         if (PRODUCT_ID[k] === p.id) { _markPurchased(k); }
       });
     });
 
-    store.initialize([
+    // Errori a livello di store (rete, configurazione, StoreKit) altrimenti silenti
+    if (typeof store.error === 'function') {
+      store.error(function (err) {
+        _iapLog('store_error', { code: err && err.code, message: err && err.message });
+      });
+    }
+
+    // Al ritorno in foreground, riconcilia eventuali transazioni rimaste a
+    // metà (es. app chiusa mentre la verifica della ricevuta era in corso):
+    // store.update() ricontrolla la coda e riemette gli eventi mancanti.
+    document.addEventListener('resume', function () {
+      if (!IAP._store || typeof IAP._store.update !== 'function') { return; }
+      _iapLog('resume_update');
+      IAP._store.update();
+    }, false);
+
+    var initResult = store.initialize([
       CdvPurchase.Platform.APPLE_APPSTORE,
       CdvPurchase.Platform.GOOGLE_PLAY,
     ]);
+    // store.initialize() e' una Promise in CdvPurchase v13; controllo difensivo
+    // nel caso l'API non la restituisca, per non rompere l'init in quel caso.
+    if (initResult && typeof initResult.then === 'function') {
+      initResult.then(function () {
+        _iapLog('init_done');
+      }).catch(function (e) {
+        _iapLog('init_error', { message: e && e.message ? e.message : String(e) });
+      });
+    }
   },
 };
 
