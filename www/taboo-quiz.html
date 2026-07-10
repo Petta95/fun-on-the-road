@@ -1219,12 +1219,6 @@
       var u = JSON.parse(localStorage.getItem('fotr_usage') || '{}');
       u[GAME_KEY] = (u[GAME_KEY] || 0) + 1;
       localStorage.setItem('fotr_usage', JSON.stringify(u));
-      if (u[GAME_KEY] > FREE_LIMIT && !isPurchased(GAME_KEY)) {
-        stopTimer();
-        showPaywall();
-        return;
-      }
-
       if (cardIdx >= cards.length) {
         cards  = shuffle(CARDS);
         cardIdx = 0;
@@ -1267,7 +1261,6 @@
     /* ─ START TURN ─ */
     function startTurn() {
       var u = JSON.parse(localStorage.getItem('fotr_usage') || '{}');
-      if ((u[GAME_KEY] || 0) >= FREE_LIMIT && !isPurchased(GAME_KEY)) { showPaywall(); return; }
 
       turnScore                      = 0;
       turnScoreDisplay.textContent   = '0';
@@ -1328,6 +1321,10 @@
     function endTurn() {
       gameState = 'turn-end';
       stopTimer();
+      // La carta mostrata quando scade il timer è già stata vista dal
+      // giocatore precedente: passa oltre così il turno successivo non
+      // ripropone la stessa parola.
+      cardIdx++;
 
       var teams    = getTeams();
       var scoreKey = (currentTeam === 'team1') ? 'score1' : 'score2';

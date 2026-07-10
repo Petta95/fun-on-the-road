@@ -193,32 +193,26 @@ var IAP = {
         }
       }, 30000);
 
-      // Ascolta ownership: il prodotto è nostro
-      store.when().productUpdated(function (p) {
-        if (p.id !== pid || !p.owned) { return; }
-        var wasAlreadySettled = settled;
-        _iapLog('product_updated_owned', { key: key, pid: pid, lateArrival: wasAlreadySettled });
-        _markPurchased(key);
-        if (wasAlreadySettled) {
-          // Conferma arrivata dopo il timeout: la verifica era solo lenta,
-          // il contenuto è ora sbloccato. Avvisa l'utente e ricarica la UI.
-          _iapToast('Acquisto confermato! Contenuto sbloccato.');
-          setTimeout(function () { location.reload(); }, 1200);
-          return;
-        }
-        done({ success: true, productKey: key });
-      });
-
-      // Transazione non verificata: libera subito il bottone
-      store.when().unverified(function (receipt) {
-        var prods = receipt && receipt.products;
+      // Ascolta il completamento reale della transazione ("finished", non
+      // "productUpdated" — quest'ultimo si attiva solo al caricamento dei
+      // metadati prodotto, MAI dopo un acquisto, quindi era l'evento sbagliato).
+      store.when().finished(function (t) {
+        var prods = t && t.products;
         if (!prods) { return; }
         for (var i = 0; i < prods.length; i++) {
-          if (prods[i].id === pid) {
-            _iapLog('unverified', { key: key, pid: pid, receipt: receipt && receipt.id });
-            done({ success: false, reason: 'unverified' });
-            return;
+          if (prods[i].id !== pid) { continue; }
+          var wasAlreadySettled = settled;
+          _iapLog('finished', { key: key, pid: pid, lateArrival: wasAlreadySettled });
+          _markPurchased(key);
+          if (wasAlreadySettled) {
+            // Conferma arrivata dopo il timeout: lo sblocco è ora completo.
+            // Avvisa l'utente e ricarica la UI.
+            _iapToast('Acquisto confermato! Contenuto sbloccato.');
+            setTimeout(function () { location.reload(); }, 1200);
+          } else {
+            done({ success: true, productKey: key });
           }
+          return;
         }
       });
 
@@ -301,23 +295,34 @@ var IAP = {
     });
     store.register(list);
 
-    // Ciclo di vita transazioni: verifica e conferma automatica
-    store.when()
-      .approved(function (t) {
-        _iapLog('global_approved', { pids: t.products && t.products.map(function (p) { return p.id; }) });
-        t.verify();
-      })
-      .verified(function (r) {
-        _iapLog('global_verified', { pids: r.products && r.products.map(function (p) { return p.id; }) });
-        r.finish();
-      });
+    // Ciclo di vita transazioni: NON usiamo un validator (nessun server di
+    // verifica ricevute configurato), quindi l'evento "verified" non si
+    // attiverebbe mai (richiede un validator per definizione del plugin) e
+    // "finish()" non verrebbe mai chiamato. Chiudiamo la transazione subito
+    // all'approvazione, come da pattern ufficiale del plugin per chi non usa
+    // un validator (vedi doc di store.when()).
+    store.when().approved(function (t) {
+      _iapLog('global_approved', { pids: t.products && t.products.map(function (p) { return p.id; }) });
+      t.finish();
+    });
 
-    // Applica ownership al caricamento e al restore
-    store.when().productUpdated(function (p) {
-      if (!p.owned) { return; }
-      _iapLog('global_product_updated', { pid: p.id });
+    // Segnale autoritativo di acquisto completato/riconosciuto da StoreKit.
+    store.when().finished(function (t) {
+      var pids = t.products && t.products.map(function (p) { return p.id; });
+      _iapLog('global_finished', { pids: pids });
+      (pids || []).forEach(function (pid) {
+        Object.keys(PRODUCT_ID).forEach(function (k) {
+          if (PRODUCT_ID[k] === pid) { _markPurchased(k); }
+        });
+      });
+    });
+
+    // Rete di sicurezza: se la ricevuta locale cambia per un altro motivo
+    // (restore, sync di un'altra sessione), ricontrolla l'ownership.
+    store.when().receiptUpdated(function () {
+      _iapLog('global_receipt_updated');
       Object.keys(PRODUCT_ID).forEach(function (k) {
-        if (PRODUCT_ID[k] === p.id) { _markPurchased(k); }
+        if (store.owned(PRODUCT_ID[k])) { _markPurchased(k); }
       });
     });
 

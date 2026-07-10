@@ -829,7 +829,6 @@
       var u = JSON.parse(localStorage.getItem('fotr_usage') || '{}');
       u[GAME_KEY] = (u[GAME_KEY] || 0) + 1;
       localStorage.setItem('fotr_usage', JSON.stringify(u));
-      if (u[GAME_KEY] > FREE_LIMIT && !isPurchased(GAME_KEY)) { showPaywall(); return; }
 
       var filename = cities[currentIdx];
       hintStep = 0;
@@ -868,7 +867,6 @@
     /* ─ START GAME ─ */
     function startGame() {
       var u = JSON.parse(localStorage.getItem('fotr_usage') || '{}');
-      if ((u[GAME_KEY] || 0) >= FREE_LIMIT && !isPurchased(GAME_KEY)) { showPaywall(); return; }
 
       cities     = shuffle(CITIES);
       currentIdx = 0;
